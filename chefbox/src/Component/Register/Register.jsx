@@ -1,17 +1,21 @@
 import React from 'react'
-import './Cover.css'
+import './Register.css'
 import bgCover from '../../Asset/Frame 4.svg'
 import logo from '../../Asset/Group 2.svg'
 import { Grid, Paper, Box, Button, Divider } from '@mui/material';      
 import { styled } from '@mui/material/styles';
 import { Formik, Form } from 'formik';
-import TextBarLogin from '../TextBar/TextBarLogin'
-import ButtonComp from '../Button/Button';
+import TextBarRegis from '../TextBar/TextBarRegis';
+import ButtonRegis from '../Button/ButtonRegis'
 import * as Yup from 'yup';
 import Auth from '../Auth/Auth';
+import AuthRegis from '../Auth/AuthRegis';
 
-function Cover() {
+function Register() {
     const validate = Yup.object({
+        username: Yup.string()
+            .max(15, 'Must be 20 character or less')
+            .required('Required'),
         email: Yup.string()
             .email("Email is Invalid")
             .required('Required')
@@ -19,6 +23,15 @@ function Cover() {
                 /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
                 "Please Input Your Email"
             ),
+        password: Yup.string("Please Enter Your Password")
+            .required('Password must be required')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                "Password Must be at least 8 Characters"
+            ),
+        confirmPassword: Yup.string()
+            .required('Re-enter your password')
+            .oneOf([Yup.ref("password"), null], "Password must match"),
     })
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
@@ -28,8 +41,8 @@ function Cover() {
     }));
 
     return (
-        <div className="cover-page">
-            <div className="cover-background">
+        <div className="register-page">
+            <div className="register-background">
                 <img className="bg-image" src={bgCover} alt="background image" />
                 <Grid container>
                     <Grid item xl={6}>
@@ -48,30 +61,33 @@ function Cover() {
                         >
                             <Formik
                                 initialValues = {{
+                                    username: '',
                                     email: '',
-                                    passowrd: ''
+                                    passowrd: '',
+                                    confirmPassword: '',
                                 }}
                                 validationSchema={validate}
                             >
                                 {formik => 
                                     <div className="field-top">
                                         <div className="name-top">
-                                            <h1>Login</h1>
-                                            <h6>New user? <span>Create an account</span></h6>
+                                            <h1>Create Account</h1>
+                                            <h6>Already have account? <span>Login</span></h6>
                                         </div>
                                         {console.log(formik)}
                                         <Form>
-                                            <TextBarLogin label="Email" name="email" type="text" />
-                                            <TextBarLogin label="Passowrd" name="password" type="password"/>
-                                            <h6 className="forgot">Forgot password?</h6>
-                                            <ButtonComp />
+                                            <TextBarRegis label="Username" name="username" type="text" />
+                                            <TextBarRegis label="Email" name="email" type="text" />
+                                            <TextBarRegis label="Passowrd" name="password" type="password"/>
+                                            <TextBarRegis label="Confirm Passowrd" name="confirmPassword" type="password"/>
+                                            <ButtonRegis />
                                         </Form>
                                         
                                 </div>
                                 }
                             </Formik>
-                            <Divider sx={{width: '700px', marginLeft: 'auto', marginRight: 'auto', marginTop: '136px'}} />
-                            <Auth />
+                            <Divider sx={{width: '700px', marginLeft: 'auto', marginRight: 'auto', marginTop: '20px'}} />
+                            <AuthRegis />
                         </Box>
                         
                     </Grid>
@@ -83,4 +99,4 @@ function Cover() {
     )
 }
 
-export default Cover
+export default Register
