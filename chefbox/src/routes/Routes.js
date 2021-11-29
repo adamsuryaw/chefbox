@@ -1,11 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Home from "../page/home/Home";
 
 export default function Routers() {
   return (
     <>
       <Routes>
-        <Route path='/' exact />
+        <Route exact path='/' element={<Home />} />
       </Routes>
     </>
   );
