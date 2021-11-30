@@ -1,22 +1,38 @@
 .Body {
-  .OrderContainer {
-    background: #f7f4f2;
-    //   background: #fff;
-    //   width: 100%;
-    margin: 3rem;
-    border-bottom: 5rem;
-  }
-  h3 {
-    color: #828282;
-  }
-  h4 {
-    color: #828282;
-  }
-  .ProductContent {
-    background: #fffaef;
-    
-    h4 {
-      color: black;
+  // width: 100%;
+  // position: relative;
+  // display: flex;
+  // justify-content: space-evenly;
+  .SecondBody {
+    background: #e5e5e5;
+    .ThirdBody {
+      background: rgb(255, 255, 255);
+      margin: 3rem 15rem 10rem 15rem;
+      .OrderContainer {
+        //   width: 100%;
+        margin: 3rem;
+        border-bottom: 5rem;
+      }
+      .ProductOrder {
+        h3,
+        h4 {
+          color: #828282;
+        }
+      }
+
+      .ProductContent {
+        background: #fffaef;
+
+        h4 {
+          color: black;
+        }
+      }
+      .OrderProduct {
+        h3,
+        h4 {
+          color: black;
+        }
+      }
     }
   }
 }
