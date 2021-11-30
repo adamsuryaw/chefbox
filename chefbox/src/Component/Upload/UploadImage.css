@@ -1,0 +1,19 @@
+.upload-section {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(0deg, #f5f5f5, #f5f5f5);
+  box-shadow: 0px 4px 8px 1px rgba(159, 159, 159, 0.2);
+  border-radius: 100px;
+  margin-top: 20px;
+  margin-left: 38%;
+}
+
+.upload-image {
+  margin-left: 42%;
+  margin-top: 40%;
+}
+
+.upload-text {
+  margin-left: 22%;
+  color: #828282;
+}
