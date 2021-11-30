@@ -30,7 +30,7 @@ export default function Home() {
             sx={{
               width: 400,
               background: "#828282",
-              height: 50,
+              // height: 50,
               borderRadius: "10px",
               background: "white",
               position: "absolute",
