@@ -3,9 +3,11 @@
 .body {
   .topSections {
     padding-right: 250px;
+    // width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     height: 35rem;
+    // align-items: center;
 
     h1 {
       position: absolute;
