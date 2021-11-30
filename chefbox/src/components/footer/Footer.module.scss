@@ -1,0 +1,51 @@
+.footer {
+  background-color: #8d836a;
+  width: 100%;
+  color: #fff;
+  padding: 2rem 2.5rem;
+
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      width: 85%;
+    }
+  }
+
+  .listContainer {
+    display: flex;
+    justify-content: space-between;
+    .list {
+      font-size: 0.7rem;
+      padding-left: 5rem;
+
+      h3 {
+        padding-bottom: 1rem;
+      }
+      li {
+        padding-bottom: 0.5rem;
+      }
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .textFooter {
+    display: flex;
+    justify-content: space-between;
+
+    .iconsContainer {
+      display: flex;
+      padding-right: 2.6rem;
+    }
+    .icons {
+        padding-right: 0.7rem;
+        font-size: 1.3rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}
