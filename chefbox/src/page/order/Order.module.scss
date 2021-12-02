@@ -1,0 +1,84 @@
+.Body {
+  // width: 100%;
+  // position: relative;
+  // display: flex;
+  // justify-content: space-evenly;
+  .button:active {
+    background-color: #fffaef;
+    color: black;
+  }
+  .SecondBody {
+    background: #e5e5e5;
+
+    .ThirdBody {
+      background: rgb(255, 255, 255);
+      margin: 3rem 15rem 10rem 15rem;
+      .OrderContainer {
+        //   width: 100%;
+        margin: 3rem;
+      }
+      .AddressUser {
+        width: 100%;
+        display: flex;
+        position: space-between;
+        margin: 0 3.5rem;
+        h3 {
+          color: #828282;
+          margin-bottom: 0.5rem;
+          width: 100%;
+
+          .AddressUserName {
+            display: flex;
+            position: relative;
+          }
+        }
+      }
+      .ProductOrder {
+        position: absolute;
+        top: 10rem;
+        left: -10rem;
+        h3,
+        h4 {
+          color: #828282;
+        }
+      }
+
+      .ProductContent {
+        background: #fffaef;
+        // margin-right: ;
+        width: 40%;
+
+        h4 {
+          color: black;
+          margin: 1rem;
+        }
+        // li {
+        //   display: list-item;
+        // }
+
+        .ProductList {
+          background: #ffae00;
+          margin: 0rem 0rem 4rem 3rem;
+        }
+      }
+      .ProductDetails {
+        margin-left: 2.5rem;
+        // display: flex;
+        h3,
+        h5 {
+          color: black;
+          margin: 1rem 0 0rem 1rem;
+        }
+        .MenuList {
+          width: 100%;
+          display: flex;
+          position: space-between;
+          align-items: center;
+        }
+      }
+      .PaymentContentDetails {
+        display: flex;
+      }
+    }
+  }
+}
