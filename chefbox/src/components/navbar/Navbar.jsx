@@ -31,7 +31,7 @@ export default function Navbar() {
             className={styles.signup}
             variant='contained'
             sx={{
-              background: "red",
+              background: "#B6340B",
               borderRadius: "50px",
               padding: "6px 30px",
               fontFamily: "Nunito Sans",

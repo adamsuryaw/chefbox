@@ -15,6 +15,8 @@ import TheTelegraph from "../../components/assets/thetelegraph.png";
 import TheSun from "../../components/assets/thesun.png";
 import DailyExpress from "../../components/assets/dailyexpress.png";
 import TIA from "../../components/assets/TIA.png";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import "swiper/swiper.scss"; // core Swiper
 
 export default function Home() {
   return (
@@ -55,12 +57,22 @@ export default function Home() {
             />
           </Stack>
         </div>
-        <div className={styles.ContainerPNG}>
-          <img src={ContainerPNG} alt='' slick={{infinite: true, arrows:false, dots:false, autoplay:false, speed:1100}} />
-            <img className={styles.topImage1} src={TopImage1} alt='' />
-            <img className={styles.topImage2} src={TopImage2} alt='' />
-          <div className={styles.ContainerTopImages}>
-          </div>
+        <div className={styles.ContainerPNGS}>
+          {/* <div className={styles.ContainerTopImages}></div> */}
+          <img src={ContainerPNG} alt='' />
+          <Swiper
+            className={styles.Swiper}
+            spaceBetween={50}
+            slidesPerView={3}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}>
+            <SwiperSlide className={styles.SwiperSlide}>
+              <img className={styles.topImage1} src={TopImage1} alt='' />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className={styles.topImage1} src={TopImage2} alt='' />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
       <div className={styles.midSections}>
