@@ -57,7 +57,7 @@ function Cover() {
                                     <div className="field-top">
                                         <div className="name-top">
                                             <h1>Login</h1>
-                                            <h6>New user? <span>Create an account</span></h6>
+                                            <h6>New user? <span className="span-name">Create an account</span></h6>
                                         </div>
                                         {console.log(formik)}
                                         <Form>

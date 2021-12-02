@@ -6,7 +6,9 @@ import { styled } from '@mui/material/styles';
 
 function TextBarRegis({label,...props}) {
     const [field, meta] = useField(props)
-    console.log(field, meta)
+    // console.log(label)
+    // console.log(field)
+    // console.log(meta)
     console.log(props)
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,

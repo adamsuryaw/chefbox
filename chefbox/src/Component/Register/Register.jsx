@@ -72,7 +72,7 @@ function Register() {
                                     <div className="field-top">
                                         <div className="name-top">
                                             <h1>Create Account</h1>
-                                            <h6>Already have account? <span>Login</span></h6>
+                                            <h6>Already have account? <span className="span-regis">Login</span></h6>
                                         </div>
                                         {console.log(formik)}
                                         <Form>
