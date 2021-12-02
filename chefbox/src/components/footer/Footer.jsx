@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.scss";
+import { Link } from "react-router-dom";
 import Logo from "../assets/LogoWhiteBoxed.png";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
@@ -7,9 +8,9 @@ export default function Footer() {
   return (
     <div className={styles.footer}>
       <div className={styles.footerContainer}>
-        <div className={styles.footerLogoContainer}>
+        <Link to={"/"} className={styles.footerLogoContainer}>
           <img className={styles.logo} src={Logo} alt='' />
-        </div>
+        </Link>
         <div className={styles.listContainer}>
           <div className={styles.list}>
             <h3>About Us</h3>
