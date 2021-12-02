@@ -3,8 +3,13 @@
   // position: relative;
   // display: flex;
   // justify-content: space-evenly;
+  .button:active {
+    background-color: #fffaef;
+    color: black;
+  }
   .SecondBody {
     background: #e5e5e5;
+
     .ThirdBody {
       background: rgb(255, 255, 255);
       margin: 3rem 15rem 10rem 15rem;
@@ -22,7 +27,7 @@
           margin-bottom: 0.5rem;
           width: 100%;
 
-          .AddressUserName{
+          .AddressUserName {
             display: flex;
             position: relative;
           }
@@ -42,7 +47,6 @@
         background: #fffaef;
         // margin-right: ;
         width: 40%;
-        
 
         h4 {
           color: black;
@@ -53,6 +57,7 @@
         // }
 
         .ProductList {
+          background: #ffae00;
           margin: 0rem 0rem 4rem 3rem;
         }
       }
@@ -70,6 +75,9 @@
           position: space-between;
           align-items: center;
         }
+      }
+      .PaymentContentDetails {
+        display: flex;
       }
     }
   }
