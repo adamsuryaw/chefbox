@@ -13,7 +13,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
+  bgcolor: "#fffaef",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
@@ -91,43 +91,43 @@ export default function Order() {
                     id='modal-modal-title'
                     variant='h6'
                     component='h2'>
-                    Text in a modal
+                    <div className={styles.ProductContent}>
+                      <h4>Product content</h4>
+                      <div className={styles.ProductList}>
+                        <ul style={{ listStyleType: "circle" }}>
+                          <li>1 kg package egg noodles</li>
+                          <li>50 gr butter</li>
+                          <li>50 gr minced parsley</li>
+                          <li>50 gr salt</li>
+                          <li>10 gr black pepper</li>
+                          <li>100 ml olive oil</li>
+                        </ul>
+                      </div>
+                    </div>
                   </Typography>
-                  <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor
-                    ligula.
-                  </Typography>
+                  <Typography
+                    id='modal-modal-description'
+                    sx={{ mt: 2 }}></Typography>
                 </Box>
               </Modal>
               <h4>Healthy Fruit Oatmeal</h4>
               <h4>1</h4>
               <h4>Rp.35.000</h4>
             </div>
-            <div className={styles.ProductContent}>
-              <h4>Product content</h4>
-              <div className={styles.ProductList}>
-                <ul style={{ listStyleType: "circle" }}>
-                  <li>1 kg package egg noodles</li>
-                  <li>50 gr butter</li>
-                  <li>50 gr minced parsley</li>
-                  <li>50 gr salt</li>
-                  <li>10 gr black pepper</li>
-                  <li>100 ml olive oil</li>
-                </ul>
-              </div>
-            </div>
           </div>
           <div className={styles.PaymentContent}>
-            <ul className={styles.Subtotal}>
-              <li>Subtotal</li>
-              <li>Delivery Fee</li>
-              <li style={{ color: "#B6340B" }}>Total</li>
-            </ul>
-            <ul className={styles.Nominal}>
-              <li>Rp.35.000</li>
-              <li>Rp.15.000</li>
-              <li style={{ color: "#B6340B" }}>Rp.50.000</li>
-            </ul>
+            <div className={styles.PaymentContentDetails}>
+              <ul className={styles.Subtotal}>
+                <li>Subtotal</li>
+                <li>Delivery Fee</li>
+                <li style={{ color: "#B6340B" }}>Total</li>
+              </ul>
+              <ul className={styles.Nominal}>
+                <li>Rp.35.000</li>
+                <li>Rp.15.000</li>
+                <li style={{ color: "#B6340B" }}>Rp.50.000</li>
+              </ul>
+            </div>
             <Stack className={styles.buttons} spacing={2} direction='row'>
               <Button
                 className={styles.button}
@@ -139,6 +139,8 @@ export default function Order() {
                   fontFamily: "Nunito Sans",
                   fontWeight: "bold",
                   textTransform: "capitalize",
+                  // backgroundColor: "#FFFAEF",
+                  // color: "black",
                 }}>
                 Choose Payment Method
               </Button>
