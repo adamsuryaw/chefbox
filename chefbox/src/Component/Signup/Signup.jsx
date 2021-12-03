@@ -1,18 +1,20 @@
 import React from "react";
-import "./Register.css";
+import "./Signup.css";
 import bgCover from "../../Asset/Frame 4.svg";
 import logo from "../../Asset/Group 2.svg";
 import { Grid, Paper, Box, Button, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Formik, Form } from "formik";
-import TextBarRegis from "../TextBar/TextBarRegis";
 import ButtonRegis from "../Button/ButtonRegis";
 import * as Yup from "yup";
 import Auth from "../Auth/Auth";
 import AuthRegis from "../Auth/AuthRegis";
+import TextBarSignup from "../TextBar/TextBarSignup";
+import UploadImage from "../Upload/UploadImage";
+import ButtonSignup from "../Button/ButtonSignup";
 import { Link } from "react-router-dom";
 
-function Register() {
+function Signup() {
   const validate = Yup.object({
     username: Yup.string()
       .max(15, "Must be 20 character or less")
@@ -39,8 +41,8 @@ function Register() {
   }));
 
   return (
-    <div className='register-page'>
-      <div className='register-background'>
+    <div className='signup-page'>
+      <div className='signup-background'>
         <img className='bg-image' src={bgCover} alt='background image' />
         <Grid container>
           <Grid item xl={6}>
@@ -67,45 +69,35 @@ function Register() {
                 {(formik) => (
                   <div className='field-top'>
                     <div className='name-top'>
-                      <h1>Create Account</h1>
-                      <h6>
-                        Already have account? <span>Login</span>
-                      </h6>
+                      <h1>One more step!</h1>
+                      <h6>Help us know you better</h6>
                     </div>
-                    {console.log(formik)}
+                    {/* {console.log(formik)} */}
+                    <UploadImage />
                     <Form>
-                      <TextBarRegis
-                        label='Username'
-                        name='username'
+                      <TextBarSignup
+                        label='Phone Number'
+                        name='phoneNumber'
                         type='text'
                       />
-                      <TextBarRegis label='Email' name='email' type='text' />
-                      <TextBarRegis
-                        label='Passowrd'
-                        name='password'
-                        type='password'
+                      <TextBarSignup
+                        label='Address'
+                        name='address'
+                        type='text'
                       />
-                      <TextBarRegis
-                        label='Confirm Passowrd'
-                        name='confirmPassword'
-                        type='password'
+                      <TextBarSignup
+                        label='Location (City)'
+                        name='location'
+                        select='true'
+                        type='text'
                       />
-                      <Link to='/register/signup'>
-                        <ButtonRegis />
+                      <Link to='/'>
+                        <ButtonSignup />
                       </Link>
                     </Form>
                   </div>
                 )}
               </Formik>
-              <Divider
-                sx={{
-                  width: "700px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  marginTop: "20px",
-                }}
-              />
-              <AuthRegis />
             </Box>
           </Grid>
         </Grid>
@@ -114,4 +106,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Signup;
