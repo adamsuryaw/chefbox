@@ -31,8 +31,8 @@ export default function Order() {
           <div
             style={{
               borderBottom: "3px groove",
-              margin: "1rem 0rem 1.5rem -2rem",
-              padding: "1rem 4rem 1.5rem 5rem",
+              margin: "0rem 0rem 1.5rem 0rem",
+              padding: "1rem 0rem 0.7rem 2rem",
             }}
             className={styles.OrderContainer}>
             <h1>Checkout</h1>
@@ -43,35 +43,45 @@ export default function Order() {
                 <h3>Delivery Address</h3>
                 <div className={styles.AddressUserName}>
                   <h4>Justin Junaedi</h4>
-                  <div className={styles.AddressUserDetails}>
-                    <p
-                      style={{ marginTop: "0.5rem" }}
-                      className={styles.address}>
-                      Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis Mejoyo,
-                      Kota SBY, Jawa Timur 60237
-                    </p>
-                    <p style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}>
-                      +62 812 2345 2345
-                    </p>
+                  <div
+                    className={styles.AddressUserDetailsContainer}
+                    style={{ display: "flex", justifyContent: "space-evenly" }}>
+                    <div className={styles.AddressUserDetails}>
+                      <p
+                        style={{ marginTop: "0.5rem" }}
+                        className={styles.address}>
+                        Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis
+                        Mejoyo, Kota SBY, Jawa Timur 60237
+                      </p>
+                      <p
+                        style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}>
+                        +62 812 2345 2345
+                      </p>
+                    </div>
+                    <div className={styles.AddressUserDetailsButton}>
+                      <Stack
+                        className={styles.buttons}
+                        spacing={5}
+                        direction='row'>
+                        <Button
+                          className={styles.button}
+                          variant='contained'
+                          sx={{
+                            width: "100%",
+                            background: "#fff",
+                            color: "black",
+                            borderRadius: "50px",
+                            margin: "0 3.5rem",
+                            padding: "5px 5rem",
+                            fontFamily: "Nunito Sans",
+                            fontWeight: "bold",
+                            textTransform: "capitalize",
+                          }}>
+                          Edit Address
+                        </Button>
+                      </Stack>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.AddressUserDetailsButton}>
-                  <Stack className={styles.buttons} spacing={2} direction='row'>
-                    <Button
-                      className={styles.button}
-                      variant='contained'
-                      sx={{
-                        background: "#fff",
-                        color: "black",
-                        borderRadius: "50px",
-                        padding: "6px 30px",
-                        fontFamily: "Nunito Sans",
-                        fontWeight: "bold",
-                        textTransform: "capitalize",
-                      }}>
-                      Edit Address
-                    </Button>
-                  </Stack>
                 </div>
               </div>
             </div>
@@ -79,59 +89,115 @@ export default function Order() {
               <h3 style={{ color: "#828282" }}>Product Details</h3>
               <div className={styles.ProductDetailsMenus}>
                 <div className={styles.MenuList}>
-                  <h5 style={{ color: "#828282" }}>Menu</h5>
-                  <h5 style={{ color: "#828282" }}>Amount</h5>
-                  <h5 style={{ color: "#828282" }}>Price</h5>
+                  <h5
+                    style={{ color: "#828282", margin: "0.5rem 0 1rem 1rem" }}>
+                    Menu
+                  </h5>
+                  <h5
+                    style={{
+                      color: "#828282",
+                      margin: "0.5rem 0rem 1rem 26rem",
+                    }}>
+                    Amount
+                  </h5>
+                  <h5
+                    style={{
+                      color: "#828282",
+                      margin: "0.5rem 7rem 1rem 0rem",
+                    }}>
+                    Price
+                  </h5>
                 </div>
-                <img src={MenuIMG} alt='' onClick={handleOpen} />
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby='modal-modal-title'
-                  aria-describedby='modal-modal-description'>
-                  <Box sx={style}>
-                    <Typography
-                      id='modal-modal-title'
-                      variant='h6'
-                      component='h2'>
-                      <div className={styles.ProductContent}>
-                        <h4>Product content</h4>
-                        <div className={styles.ProductList}>
-                          <ul style={{ listStyleType: "circle" }}>
-                            <li>1 kg package egg noodles</li>
-                            <li>50 gr butter</li>
-                            <li>50 gr minced parsley</li>
-                            <li>50 gr salt</li>
-                            <li>10 gr black pepper</li>
-                            <li>100 ml olive oil</li>
-                          </ul>
+                <div className={styles.ProductContainer}>
+                  <img src={MenuIMG} alt='' onClick={handleOpen} />
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'>
+                    <Box sx={style}>
+                      <Typography
+                        id='modal-modal-title'
+                        variant='h6'
+                        component='h2'>
+                        <div className={styles.ProductContent}>
+                          <h4>Product content</h4>
+                          <div className={styles.ProductList}>
+                            <ul style={{ listStyleType: "circle" }}>
+                              <li>1 kg package egg noodles</li>
+                              <li>50 gr butter</li>
+                              <li>50 gr minced parsley</li>
+                              <li>50 gr salt</li>
+                              <li>10 gr black pepper</li>
+                              <li>100 ml olive oil</li>
+                            </ul>
+                          </div>
                         </div>
-                      </div>
-                    </Typography>
-                    <Typography
-                      id='modal-modal-description'
-                      sx={{ mt: 2 }}></Typography>
-                  </Box>
-                </Modal>
-                <h4>Healthy Fruit Oatmeal</h4>
-                <h4>1</h4>
-                <h4>Rp.35.000</h4>
+                      </Typography>
+                      <Typography
+                        id='modal-modal-description'
+                        sx={{ mt: 2 }}></Typography>
+                    </Box>
+                  </Modal>
+                  <h4 style={{ marginLeft: "-15rem", marginRight: "6rem" }}>
+                    Healthy Fruit Oatmeal
+                  </h4>
+                  <h4>1</h4>
+                  <h4 style={{ position: "relative", right: "5.6rem" }}>
+                    Rp.35.000
+                  </h4>
+                </div>
               </div>
             </div>
-            <div className={styles.PaymentContent}>
-              <div className={styles.PaymentContentDetails}>
-                <ul className={styles.Subtotal}>
-                  <li>Subtotal</li>
-                  <li>Delivery Fee</li>
-                  <li style={{ color: "#B6340B" }}>Total</li>
-                </ul>
-                <ul className={styles.Nominal}>
-                  <li>Rp.35.000</li>
-                  <li>Rp.15.000</li>
-                  <li style={{ color: "#B6340B" }}>Rp.50.000</li>
-                </ul>
+            <div
+              className={styles.PaymentContent}
+              style={{ margin: "10rem 3rem 0 3rem" }}>
+              <div
+                style={{ borderTop: "3px groove" }}
+                className={styles.PaymentContentDetails}>
+                <div
+                  className={styles.TotalContainer}
+                  style={{
+                    margin: "2rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}>
+                  <ul
+                    className={styles.Subtotal}
+                    style={{
+                      marginRight: "5rem",
+                      marginTop: "1rem",
+                      listStyle: "none",
+                      textAlign: "right",
+                    }}>
+                    <li style={{ marginBottom: "1rem" }}>Subtotal</li>
+                    <li style={{ marginBottom: "1rem" }}>Delivery Fee</li>
+                    <li style={{ color: "#B6340B", marginBottom: "1rem" }}>
+                      Total
+                    </li>
+                  </ul>
+                  <ul
+                    className={styles.Nominal}
+                    style={{
+                      marginRight: "1rem",
+                      marginTop: "1rem",
+                      listStyle: "none",
+                    }}>
+                    <li style={{ marginBottom: "1rem" }}>Rp.35.000</li>
+                    <li style={{ marginBottom: "1rem" }}>Rp.15.000</li>
+                    <li style={{ color: "#B6340B", marginBottom: "1rem" }}>Rp.50.000</li>
+                  </ul>
+                </div>
               </div>
-              <Stack className={styles.buttons} spacing={2} direction='row'>
+              <Stack
+                className={styles.buttons}
+                spacing={2}
+                direction='row'
+                style={{
+                  marginLeft: "41.5rem",
+                  paddingTop: "1rem",
+                  paddingBottom: "2rem",
+                }}>
                 <Button
                   className={styles.button}
                   variant='contained'

@@ -1,5 +1,6 @@
 .Body {
-  // width: 100%;
+  width: 100%;
+  height: 100%;
   // position: relative;
   // display: flex;
   // justify-content: space-evenly;
@@ -9,28 +10,34 @@
   }
   .SecondBody {
     background: #e5e5e5;
+    width: 100%;
+    height: 100%;
 
     .ThirdBody {
       background: rgb(255, 255, 255);
-      margin: 3rem 15rem 10rem 15rem;
+      margin: 0rem 15rem 0rem 15rem;
       .OrderContainer {
         //   width: 100%;
-        margin: 3rem;
+        // margin-left: -3rem;
       }
       .AddressUser {
         width: 100%;
         display: flex;
-        position: space-between;
+        justify-content: space-between;
+        flex-wrap: wrap;
         margin: 0 3.5rem;
         h3 {
           color: #828282;
           margin-bottom: 0.5rem;
           width: 100%;
 
-          .AddressUserName {
-            display: flex;
-            position: relative;
-          }
+          // .AddressUserName {
+          //   display: flex;
+          //   position: relative;
+          // }
+          // .AddressUserDetailsContainer{
+          //   display: flex;
+          // }
         }
       }
       .ProductOrder {
@@ -69,15 +76,25 @@
           color: black;
           margin: 1rem 0 0rem 1rem;
         }
+
+        .ProductContainer {
+          display: flex;
+          justify-content: space-between;
+        }
+
         .MenuList {
           width: 100%;
           display: flex;
-          position: space-between;
+          justify-content: space-between;
           align-items: center;
+          h5 {
+            margin: 0;
+          }
         }
       }
       .PaymentContentDetails {
         display: flex;
+        justify-content: flex-end;
       }
     }
   }
