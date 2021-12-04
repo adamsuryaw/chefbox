@@ -16,6 +16,7 @@ import TheSun from "../../components/assets/thesun.png";
 import DailyExpress from "../../components/assets/dailyexpress.png";
 import TIA from "../../components/assets/TIA.png";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Link } from "react-router-dom";
 import "swiper/swiper.scss"; // core Swiper
 
 export default function Home() {
@@ -96,7 +97,10 @@ export default function Home() {
         </div>
         <div className={styles.Containertext2}>
           <h1>Click</h1>
-          <a href=''>here</a>
+          <Link to='/dashboard'>
+            <a href=''>here</a>
+          </Link>
+
           <h1>to start searching for recipes</h1>
         </div>
       </div>

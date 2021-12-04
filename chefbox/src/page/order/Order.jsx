@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const style = {
+  display: 'flex',
+  justifyContent: 'space-around',
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -116,14 +118,14 @@ export default function Order() {
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'>
                     <Box sx={style}>
-                      <Typography
+                      <Typography 
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'>
                         <div className={styles.ProductContent}>
                           <h4>Product content</h4>
                           <div className={styles.ProductList}>
-                            <ul style={{ listStyleType: "circle" }}>
+                            <ul style={{ listStyleType: "disc" }}>
                               <li>1 kg package egg noodles</li>
                               <li>50 gr butter</li>
                               <li>50 gr minced parsley</li>

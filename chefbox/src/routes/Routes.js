@@ -5,6 +5,7 @@ import Order from "../page/order/Order";
 import Register from "../Component/Register/Register";
 import Signup from "../Component/Signup/Signup";
 import Login from "../Pages/Login/Login";
+import Dashboard from "../page/dashboard/MyRecipe";
 
 export default function Routers() {
   return (
@@ -15,6 +16,7 @@ export default function Routers() {
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/register/signup' element={<Signup />} />
+        <Route exact path='/dashboard' element={<Dashboard />} />
       </Routes>
     </>
   );

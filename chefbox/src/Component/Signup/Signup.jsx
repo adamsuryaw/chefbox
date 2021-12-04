@@ -46,7 +46,9 @@ function Signup() {
         <img className='bg-image' src={bgCover} alt='background image' />
         <Grid container>
           <Grid item xl={6}>
-            <img className='logo-image' src={logo} alt='logo image' />
+            <Link to='/'>
+              <img className='logo-image' src={logo} alt='logo image' />
+            </Link>
           </Grid>
           <Grid item xl={6}>
             <Box
