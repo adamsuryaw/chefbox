@@ -185,7 +185,9 @@ export default function Order() {
                     }}>
                     <li style={{ marginBottom: "1rem" }}>Rp.35.000</li>
                     <li style={{ marginBottom: "1rem" }}>Rp.15.000</li>
-                    <li style={{ color: "#B6340B", marginBottom: "1rem" }}>Rp.50.000</li>
+                    <li style={{ color: "#B6340B", marginBottom: "1rem" }}>
+                      Rp.50.000
+                    </li>
                   </ul>
                 </div>
               </div>
