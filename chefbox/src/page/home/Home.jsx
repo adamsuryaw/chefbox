@@ -92,7 +92,7 @@ export default function Home() {
         </div>
         <div className={styles.Containertext2}>
           <h1>Click</h1>
-          <Link to='/dashboard'>
+          <Link to='/recipe'>
             <a style={{marginRight:"-0.1rem"}} href=''>here</a>
           </Link>
 

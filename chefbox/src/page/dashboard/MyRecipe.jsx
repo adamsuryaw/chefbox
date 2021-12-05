@@ -41,7 +41,7 @@ export default function MyRecipe() {
         <div className={styles.LeftSidebar}>
           <div className={styles.MenuBar}>
             <ul>
-              <Link to='/myrecipe'>
+              <Link to='/dashboard'>
                 <li className={styles.MyRecipe}></li>
               </Link>
               <Link to='/order'>
