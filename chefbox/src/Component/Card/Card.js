@@ -9,9 +9,9 @@ import avatarPic from '../../Asset/Ellipse 12.svg'
 import './Card.css'
 
 function CardComp(props) {
-    const {data} = props
+    const {product} = props
 
-    console.log(data)
+    console.log(props)
 
     return (
         <div className="container">
@@ -33,7 +33,7 @@ function CardComp(props) {
                             right: '20px'
                         }}
                         component="img"
-                        image={data.image}
+                        image={product.image}
                         alt="makan"
                     />
                         <CardContent sx={{padding: '14px 0px 0px 0px'}}>
@@ -46,7 +46,7 @@ function CardComp(props) {
                                     fontSize: '16px',
                                 }}
                             >
-                                {data.title}
+                                {product.title}
                             </Typography>
                             <Typography 
                                 variant="body2" 
@@ -57,7 +57,7 @@ function CardComp(props) {
                                     color: '#B6340B'
                                 }}
                             >
-                                {data.price}
+                                {product.price}
                             </Typography>
                             <div className="content-card">
                                 <div className="left-content">
@@ -71,7 +71,7 @@ function CardComp(props) {
                                                 fontSize: '12px',
                                             }}
                                         >
-                                            {data.time}
+                                            {product.time}
                                         </Typography>
                                     </div>
                                     <div className="bottom-left-content">
@@ -84,7 +84,7 @@ function CardComp(props) {
                                                 fontSize: '12px',
                                             }}
                                         >
-                                            {data.service}
+                                            {product.service}
                                         </Typography>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ function CardComp(props) {
                                                 fontSize: '12px',
                                             }}
                                         >
-                                            {data.location}
+                                            {product.location}
                                         </Typography>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@ function CardComp(props) {
                                         marginLeft: '9px'
                                     }}
                                 >
-                                    {data.name}
+                                    {product.name}
                                 </Typography>
                             </div>
                         </CardContent>

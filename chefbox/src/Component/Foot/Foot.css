@@ -1,0 +1,54 @@
+.foot-section {
+  background: #8d836a;
+  display: flex;
+}
+
+.foot-right {
+  padding: 32px 0 59px 47px;
+}
+
+.foot-right h5 {
+  margin: 0;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 12px;
+  color: #f5f5f5;
+  margin-top: 44px;
+}
+
+h4 {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+h6 {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.foot-about {
+  padding: 57px 0;
+  margin-left: 714px;
+}
+
+.foot-resources {
+  padding: 57px 0;
+  margin-left: 100px;
+}
+
+.foot-get {
+  padding: 57px 0;
+  margin-left: 111px;
+}
+
+.sosmed-foot {
+  margin-top: 34px;
+}

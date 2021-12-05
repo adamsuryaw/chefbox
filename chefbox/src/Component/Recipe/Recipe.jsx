@@ -4,91 +4,12 @@ import { FormControlLabel, Checkbox,  Card, CardActions, CardContent, CardMedia,
 import TextBarRecipe from '../TextBar/TextBarRecipe';
 import montes from '../../Asset/Frame 3.svg'
 import CardComp from '../Card/Card'
+import data from '../Data/data'
 
 function Recipe() {
-    const dataCard = [
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-        {
-            image : montes,
-            title: 'Quisque montes',
-            price: 'Rp.135.000',
-            time: '30 min',
-            service: '5 servings',
-            location: 'Surabaya',
-            name: 'Akachi Chua'
-        },
-    ]
+    const {product} = data;
+    console.log(data)
+    
     return (
         <div className="recipe-page">
             <div className="recipe-section">
@@ -155,8 +76,8 @@ function Recipe() {
                     <TextBarRecipe name="sorting" select="true" type="text"/>
                 </div>
                 <div className="card-section">
-                    {dataCard?.map(item => (
-                        <CardComp data={item} />
+                    {product?.map((product) => (
+                        <CardComp key={product.id} product={product} />
                     ))}
                 </div>
                 <div className="pagination-section">
