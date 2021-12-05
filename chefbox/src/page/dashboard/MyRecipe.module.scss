@@ -3,15 +3,25 @@
   height: 100vh;
   background-color: #f7f4f2;
 
-  .SecondBody{
+  .SecondBody {
+    .ThirdBody {
       display: flex;
-  }
+    }
 
-  .LeftSidebar {
-    width: 15%;
-    height: 20%;
-    padding: 1rem;
-    background-color: #fff;
-    border: 1rem solid #fff;
+    .LeftSidebar {
+      margin: 2.5rem;
+      width: 15%;
+      height: 20%;
+      padding: 1rem;
+      background-color: #fff;
+      border: 1rem solid #fff;
+
+      li {
+        list-style: none;
+      }
+    }
+    .mainContainer {
+      margin: 2.5rem;
+    }
   }
 }
