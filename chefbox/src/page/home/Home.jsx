@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -16,7 +17,6 @@ import TheSun from "../../components/assets/thesun.png";
 import DailyExpress from "../../components/assets/dailyexpress.png";
 import TIA from "../../components/assets/TIA.png";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import { Link } from "react-router-dom";
 import "swiper/swiper.scss"; // core Swiper
 
 export default function Home() {
@@ -89,16 +89,11 @@ export default function Home() {
               <img className={styles.Image3} src={RightIMGMidSection} alt='' />
             </div>
           </div>
-
-          {/* <div className={styles.ContainerIMG}>
-          </div>
-          <div className={styles.ContainerIMG}>
-          </div> */}
         </div>
         <div className={styles.Containertext2}>
           <h1>Click</h1>
           <Link to='/dashboard'>
-            <a href=''>here</a>
+            <a style={{marginRight:"-0.1rem"}} href=''>here</a>
           </Link>
 
           <h1>to start searching for recipes</h1>
