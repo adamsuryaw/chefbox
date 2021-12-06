@@ -1,3 +1,7 @@
+import CreateDesc from "./Component/CreateDesc/CreateDesc";
+import CreateDirect from "./Component/CreateDirect/CreateDirect";
+import CreateIngred from "./Component/CreateIngred/CreateIngred";
+import CreateProduct from "./Component/CreateProduct/CreateProduct";
 import DetailRecipe from "./Component/DetailRecipe/DetailRecipe";
 import Foot from "./Component/Foot/Foot";
 import Header from "./Component/Header/Header";
@@ -10,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <DetailRecipe />
+      <CreateProduct />
       <Foot />
     </div>
   );

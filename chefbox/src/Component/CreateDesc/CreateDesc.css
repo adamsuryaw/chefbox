@@ -1,0 +1,77 @@
+.desc-section {
+  height: 1093px;
+  background: #f7f4f2;
+  display: flex;
+  padding: 46px 0px 46px 140px;
+}
+
+.recipe-desc {
+  width: 259px;
+  height: 225px;
+  background: #ffffff;
+  margin-right: 32px;
+}
+
+.input-desc {
+  width: 854px;
+  height: 909px;
+  background: #ffffff;
+  padding-bottom: 60px;
+}
+
+.recipe-desc h4 {
+  margin: 0;
+}
+
+.recipe-text {
+  padding: 21px 60px 49px 36px;
+}
+
+.input-desc img {
+  margin: 90px 226px 0 225px;
+  width: 67px;
+  height: 67px;
+}
+
+.input-desc h6 {
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 14px;
+  color: #828282;
+  margin: 6px 190px 71px 191px;
+}
+
+.input-text {
+  padding: 0 69px;
+}
+
+.input-text h6 {
+  margin: 0 0 6px 0;
+  font-family: Nunito;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000000;
+}
+
+.input-select {
+  display: flex;
+  margin-top: 24px;
+}
+
+.input-rightSelect {
+  margin-left: 24px;
+}
+
+.input-info {
+  display: flex;
+  margin-top: 24px;
+}
+
+.input-rightInfo {
+  margin-left: 24px;
+}
+
+.input-description {
+  width: 716px;
+  margin-top: 24px;
+}

@@ -1,0 +1,28 @@
+.direct-section {
+  height: 1093px;
+  background: #f7f4f2;
+  display: flex;
+  padding: 46px 0px 46px 140px;
+}
+
+.direct-desc {
+  width: 259px;
+  height: 225px;
+  background: #ffffff;
+  margin-right: 32px;
+}
+
+.input-direct {
+  width: 854px;
+  height: 520px;
+  background: #ffffff;
+  padding: 42px 56px 60px 38px;
+}
+
+.direct-desc h4 {
+  margin: 0;
+}
+
+.direct-text {
+  padding: 21px 52px 49px 36px;
+}
