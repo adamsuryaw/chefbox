@@ -4,8 +4,11 @@
   background-color: #f7f4f2;
 
   .SecondBody {
+    width: 20%;
+    height: 100vh;
+    display: flex;
+
     .ThirdBody {
-      display: flex;
     }
 
     .LeftSidebar {
@@ -21,7 +24,9 @@
       }
     }
     .mainContainer {
+      background-color: #fff;
       margin: 2.5rem;
+      display: flex;
     }
   }
 }

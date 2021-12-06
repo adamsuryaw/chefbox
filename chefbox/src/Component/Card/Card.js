@@ -19,7 +19,7 @@ function CardComp(props) {
             {/* <Link to="/event/1" style={{ textDecoration: 'none' }}> */}
             <Card sx={{ 
                 width: '295px',
-                height: '355px',
+                height: '379px',
                 borderRadius: '16px',
                 padding: '0px 12px 12px 12px',
                 margin: '0px 24px 24px 0px'

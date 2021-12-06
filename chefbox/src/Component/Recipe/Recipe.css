@@ -8,7 +8,7 @@
 
 .recipe-section {
   margin-left: 64px;
-  width: 259px;
+  width: 282px;
   height: 591px;
   background: #ffffff;
   padding: 24px 16px 57px 16px;
@@ -50,11 +50,12 @@
 }
 
 .browse-section {
-  width: 1029px;
-  height: 1550px;
+  width: 1920px;
+  height: 1610px;
   background-color: white;
   padding: 44px;
   margin-left: 32px;
+  margin-right: 64px;
 }
 
 .paragraf {
@@ -70,7 +71,7 @@
 .browse-bar {
   display: flex;
   margin-top: 53px;
-  margin-left: 570px;
+  margin-left: 530px;
 }
 
 .content-card {
@@ -114,12 +115,24 @@
   background-color: #fffaef;
 }
 
+/* .css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  color: black;
+  background-color: #f9c959;
+} */
+
 .card-section {
+  /* position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 45px;
+  margin-top: 45px; */
   position: relative;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 45px;
   margin-top: 45px;
+  margin-right: -25px;
+  justify-content: space-between;
 }
 
 .pagination-section {
@@ -128,4 +141,5 @@
   flex-direction: row;
   align-items: center;
   margin-left: 35%;
+  color: #f9c959;
 }

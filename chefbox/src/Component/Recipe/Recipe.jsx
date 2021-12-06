@@ -104,6 +104,7 @@ function Recipe() {
             labelPlacement='end'
             sx={{
               color: "black",
+              marginLeft: "1rem"
             }}
           />
           <TextBarRecipe name='sorting' select='true' type='text' />
@@ -114,7 +115,7 @@ function Recipe() {
           ))}
         </Link>
         <div className='pagination-section'>
-          <Pagination count={10} color='primary' />
+          <Pagination count={10} color='primary'/>
         </div>
       </div>
     </div>
