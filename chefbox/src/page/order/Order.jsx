@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
 
 const style = {
   display: "flex",
@@ -265,21 +266,24 @@ export default function Order() {
                   paddingTop: "1rem",
                   paddingBottom: "2rem",
                 }}>
-                <Button
-                  className={styles.button}
-                  variant='contained'
-                  sx={{
-                    background: "#B6340B",
-                    borderRadius: "50px",
-                    padding: "6px 30px",
-                    fontFamily: "Nunito Sans",
-                    fontWeight: "bold",
-                    textTransform: "capitalize",
-                    // backgroundColor: "#FFFAEF",
-                    // color: "black",
-                  }}>
-                  Choose Payment Method
-                </Button>
+                <Link to='/order/payment'>
+                  <Button
+                    className={styles.button}
+                    variant='contained'
+                    sx={{
+                      background: "#B6340B",
+                      borderRadius: "50px",
+                      padding: "6px 30px",
+                      fontFamily: "Nunito Sans",
+                      fontWeight: "bold",
+                      textTransform: "capitalize",
+                      textDecoration: "none"
+                      // backgroundColor: "#FFFAEF",
+                      // color: "black",
+                    }}>
+                    Choose Payment Method
+                  </Button>
+                </Link>
               </Stack>
             </div>
           </div>

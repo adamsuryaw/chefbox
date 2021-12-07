@@ -1,0 +1,33 @@
+.Body {
+  width: 100%;
+  height: 100vh;
+  background-color: #f7f4f2;
+  display: flex;
+  .SecondBody {
+    margin: 5rem;
+    width: 100%;
+    height: 70%;
+    background-color: #fff;
+  }
+  .ThirdBody {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .Container {
+      width: 100%;
+      height: 20%;
+    }
+    .BankContainer {
+      background: #fffaef;
+      //   margin-left: 5rem;
+      width: 50%;
+      height: 20%;
+      text-align: center;
+
+      .BankDetails {
+        //   margin: 5rem;
+      }
+    }
+  }
+}
