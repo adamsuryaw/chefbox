@@ -41,8 +41,18 @@ export default function Payment() {
               <h2 style={{ color: "#333333", marginTop: "2rem" }}>
                 Bank Transfer
               </h2>
-              <p style={{ marginTop: "5rem" }}> Please complete your payment</p>
-              {/* <Timer /> */}
+              <p style={{ margin: "1rem 0 1.5rem 0" }}> Please complete your payment</p>
+              <div className={styles.OrderLists}>
+                <div className={styles.FirstOrder}>
+                  <h4>Sate Lontong</h4>
+                  <h4>Es Teh</h4>
+                </div>
+                <div className={styles.SecondOrder}>
+                  <h4>213100</h4>
+                  <h4>100000</h4>
+                </div>
+              </div>
+
               <div className={styles.DetailedBank}>
                 <div className={styles.DetailedBankContainer}>
                   <p>Total</p>

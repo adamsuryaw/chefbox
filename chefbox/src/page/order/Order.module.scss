@@ -43,7 +43,8 @@
 
       .ProductContent {
         background: #fffaef;
-        width: 40%;
+        width: 60%;
+        margin: 0rem 0rem;
 
         .ProductList {
           background: #fffaef;
@@ -77,6 +78,7 @@
       .PaymentContentDetails {
         display: flex;
         justify-content: flex-end;
+        font-weight: bold;
       }
     }
   }

@@ -1,8 +1,9 @@
 import { put, takeEvery } from "@redux-saga/core/effects";
 import { LOGIN_BEGIN, LOGIN_SUCCESS, LOGIN_FAIL } from "../actions/types";
 import axios from "axios";
+import {BASE_URL} from "../../constants/constants"
 
-const baseUrl = "http://see-event.herokuapp.com";
+const baseUrl = "http://chefbox2021.herokuapp.com/";
 //function generator
 function* login(action) {
   const { body } = action;
