@@ -1,22 +1,38 @@
 .Body {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #f7f4f2;
   display: flex;
   .SecondBody {
+    padding-bottom: 13rem;
     margin: 5rem;
     width: 100%;
-    height: 70%;
+    height: 85%;
     background-color: #fff;
   }
   .ThirdBody {
     display: flex;
-    justify-content: space-around;
-    flex-direction: row;
+    justify-content: space-between;
+    flex-direction: column;
     flex-wrap: wrap;
+    align-content: space-around;
+    align-items: center;
     .Container {
       width: 100%;
       height: 20%;
+    }
+
+    .LowerSection {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 52rem;
+
+      h4 {
+        color: #828282;
+        text-decoration: underline;
+      }
     }
     .BankContainer {
       background: #fffaef;
@@ -25,8 +41,23 @@
       height: 20%;
       text-align: center;
 
-      .BankDetails {
-        //   margin: 5rem;
+      .DetailedBank {
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+        display: flex;
+        justify-content: space-evenly;
+        p {
+          margin-bottom: 1rem;
+        }
+        h4 {
+          margin-bottom: 1rem;
+        }
+        .DetailedBankContainer {
+          text-align: left;
+        }
+        .DetailedBankContainerNominal {
+          text-align: right;
+        }
       }
     }
   }
