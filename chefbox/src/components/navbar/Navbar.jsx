@@ -13,33 +13,37 @@ export default function Navbar() {
           <img className={styles.logo} src={Logo} alt='' />
         </Link>
         <Stack className={styles.buttons} spacing={2} direction='row'>
-          <Button
-            className={styles.login}
-            variant='contained'
-            sx={{
-              background: "white",
-              color: "black",
-              borderRadius: "50px",
-              padding: "6px 30px",
-              fontFamily: "Nunito Sans",
-              fontWeight: "bold",
-              textTransform: "capitalize",
-            }}>
-            Login
-          </Button>
-          <Button
-            className={styles.signup}
-            variant='contained'
-            sx={{
-              background: "#B6340B",
-              borderRadius: "50px",
-              padding: "6px 30px",
-              fontFamily: "Nunito Sans",
-              fontWeight: "bold",
-              textTransform: "capitalize",
-            }}>
-            Signup
-          </Button>
+          <Link to='/login'>
+            <Button
+              className={styles.login}
+              variant='contained'
+              sx={{
+                background: "white",
+                color: "black",
+                borderRadius: "50px",
+                padding: "6px 30px",
+                fontFamily: "Nunito Sans",
+                fontWeight: "bold",
+                textTransform: "capitalize",
+              }}>
+              Login
+            </Button>
+          </Link>
+          <Link to='/register'>
+            <Button
+              className={styles.signup}
+              variant='contained'
+              sx={{
+                background: "#B6340B",
+                borderRadius: "50px",
+                padding: "6px 30px",
+                fontFamily: "Nunito Sans",
+                fontWeight: "bold",
+                textTransform: "capitalize",
+              }}>
+              Signup
+            </Button>
+          </Link>
         </Stack>
       </div>
     </div>

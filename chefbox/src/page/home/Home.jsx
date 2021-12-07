@@ -1,4 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
+=======
+import { Link } from "react-router-dom";
+>>>>>>> 70805879b9f5313f41931246f065f8d4add87700
 import styles from "./Home.module.scss";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -88,6 +92,7 @@ export default function Home() {
               <img className={styles.Image3} src={RightIMGMidSection} alt='' />
             </div>
           </div>
+<<<<<<< HEAD
 
           {/* <div className={styles.ContainerIMG}>
           </div>
@@ -97,6 +102,15 @@ export default function Home() {
         <div className={styles.Containertext2}>
           <h1>Click</h1>
           <a href=''>here</a>
+=======
+        </div>
+        <div className={styles.Containertext2}>
+          <h1>Click</h1>
+          <Link to='/recipe'>
+            <a style={{marginRight:"-0.1rem"}} href=''>here</a>
+          </Link>
+
+>>>>>>> 70805879b9f5313f41931246f065f8d4add87700
           <h1>to start searching for recipes</h1>
         </div>
       </div>

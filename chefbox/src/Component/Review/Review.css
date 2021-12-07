@@ -1,0 +1,15 @@
+.avatar-section {
+  display: flex;
+}
+
+.name-avatar {
+  display: flex;
+}
+
+.review-in {
+  margin-left: 13px;
+}
+
+.review-in p {
+  margin: 8px 0px 16px 0px;
+}
