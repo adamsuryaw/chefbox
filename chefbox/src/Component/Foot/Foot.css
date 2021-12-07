@@ -16,7 +16,7 @@
   margin-top: 44px;
 }
 
-h4 {
+.foot-section h4 {
   font-family: Nunito;
   font-style: normal;
   font-weight: bold;
@@ -25,7 +25,7 @@ h4 {
   margin: 0 0 16px 0;
 }
 
-h6 {
+.foot-section h6 {
   font-family: Nunito;
   font-style: normal;
   font-weight: normal;

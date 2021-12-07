@@ -9,6 +9,10 @@ import Dashboard from "../page/dashboard/MyRecipe";
 import Recipe from "../Component/Recipe/Recipe";
 import Details from "../Component/DetailRecipe/DetailRecipe";
 import Payment from "../page/order/Payment";
+// import CreateDesc from "./Component/CreateDesc/CreateDesc";
+// import CreateDirect from "./Component/CreateDirect/CreateDirect";
+// import CreateIngred from "./Component/CreateIngred/CreateIngred";
+// import CreateProduct from "./Component/CreateProduct/CreateProduct";
 
 export default function Routers() {
   return (

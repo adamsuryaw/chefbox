@@ -124,6 +124,79 @@ const data = {
             timePost: 'Yesterday',
             review: 'Easy to make. You can freeze these and reheat again. It’s last for a whole week',
         },
+    ],
+    tempat: [
+        {
+            id: '1',
+            value: 'Surabaya',
+            label: 'Surabaya',
+        },
+        {
+            id: '2',
+            value: 'Jakarta',
+            label: 'Jakarta',
+        },
+        {
+            id: '3',
+            value: 'Yogyakarta',
+            label: 'Yogyakarta',
+        },
+        {
+            id: '4',
+            value: 'Balikpapan',
+            label: 'Balikpapan',
+        },
+    ],
+    tipe: [
+        {
+            id: '1',
+            value: 'Food',
+            label: 'Food',
+        },
+        {
+            id: '2',
+            value: 'Beverages',
+            label: 'Beverages',
+        },
+    ],
+    kategori: [
+        {
+            id: '1',
+            value: 'Meat',
+            label: 'Meat',
+        },
+        {
+            id: '2',
+            value: 'Chicken',
+            label: 'Chicken',
+        },
+        {
+            id: '3',
+            value: 'Seafood',
+            label: 'Seafood',
+        },
+        {
+            id: '4',
+            value: 'Vegetarian',
+            label: 'Vegetarian',
+        },
+        {
+            id: '5',
+            value: 'Local',
+            label: 'Local',
+        },
+    ],
+    sorting: [
+        {
+            id: '1',
+            value: 'Newest',
+            label: 'Newest',
+        },
+        {
+            id: '2',
+            value: 'Oldest',
+            label: 'Oldest',
+        },
     ]
 }
 

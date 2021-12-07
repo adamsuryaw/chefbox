@@ -1,74 +1,13 @@
 import React from 'react'
-import { TextField, Grid, Paper, Box, MenuItem } from '@mui/material';
+import { TextField, Box, MenuItem } from '@mui/material';
 import { useField } from 'formik';
 import { styled } from '@mui/material/styles';
-import './TextBarRecipe.css'
-
-const tempat = [
-    {
-        value: 'Surabaya',
-        label: 'Surabaya',
-    },
-    {
-        value: 'Jakarta',
-        label: 'Jakarta',
-    },
-    {
-        value: 'Yogyakarta',
-        label: 'Yogyakarta',
-    },
-    {
-        value: 'Balikpapan',
-        label: 'Balikpapan',
-    },
-];
-
-const tipe = [
-    {
-        value: 'Food',
-        label: 'Food',
-    },
-    {
-        value: 'Beverages',
-        label: 'Beverages',
-    },
-];
-
-const kategori = [
-    {
-        value: 'Meat',
-        label: 'Meat',
-    },
-    {
-        value: 'Chicken',
-        label: 'Chicken',
-    },
-    {
-        value: 'Seafood',
-        label: 'Seafood',
-    },
-    {
-        value: 'Vegetarian',
-        label: 'Vegetarian',
-    },
-    {
-        value: 'Local',
-        label: 'Local',
-    },
-];
-
-const sorting = [
-    {
-        value: 'Newest',
-        label: 'Newest',
-    },
-    {
-        value: 'Oldest',
-        label: 'Oldest',
-    },
-];
+import './TextBarRecipe.css';
+import data from '../Data/data';
 
 function TextBarRecipe(props) {
+    const {tempat, tipe, kategori, sorting} = data;
+    console.log(data)
     console.log(props)
     const [location, setLocation] = React.useState();
     const handleChangeLocation = (event) => {
