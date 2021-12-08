@@ -126,7 +126,6 @@
   flex-wrap: wrap;
   margin-bottom: 45px; */
   margin-top: 45px;
-<<<<<<< HEAD
    /* position: relative; */
   /* display: flex; */
   /* flex-wrap: wrap; */
@@ -135,10 +134,6 @@
   /* margin-right: -25px;  */
   padding: 0px 65px;
   /* justify-content: space-between; */
-=======
-  margin-right: -25px;
-  justify-content: space-between;
->>>>>>> 03290a4dd23b1c0a6db667be47f7c35bad8c8c42
 }
 
 .pagination-section {

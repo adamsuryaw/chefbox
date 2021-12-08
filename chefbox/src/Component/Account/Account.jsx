@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const Account = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-}
-
-export default Account;
-=======
 import React from 'react'
 import './Account.css'
 import store from '../../Asset/store.svg'
@@ -338,4 +325,3 @@ function Account() {
 }
 
 export default Account
->>>>>>> 03290a4dd23b1c0a6db667be47f7c35bad8c8c42
