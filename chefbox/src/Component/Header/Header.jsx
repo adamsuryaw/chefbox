@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../Asset/Group 2.svg'
 import './Header.css'
+import { Link } from "react-router-dom";
 import { Box, IconButton, InputBase, Paper, Button, Typography, Avatar, Menu, MenuItem, Divider, Tooltip } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
@@ -133,11 +134,11 @@ function Header() {
                         overflow: 'visible',
                         filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                         mt: 1.5,
+                        width: 150,
                         '& .MuiAvatar-root': {
-                        width: 32,
-                        height: 32,
+                        width: 22,
+                        height: 22,
                         ml: -0.5,
-                        mr: 1,
                         },
                         '&:before': {
                         content: '""',
@@ -157,7 +158,9 @@ function Header() {
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
                     <MenuItem>
+                    <Link to='/account' style={{ textDecoration: 'none' }}>
                         <Avatar /> My account
+                    </Link>
                     </MenuItem>
                     <Divider />
                     <MenuItem>

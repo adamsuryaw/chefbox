@@ -13,6 +13,7 @@ import CreateDesc from "../Component/CreateDesc/CreateDesc";
 import CreateDirect from "../Component/CreateDirect/CreateDirect";
 import CreateIngred from "../Component/CreateIngred/CreateIngred";
 import CreateProduct from "../Component/CreateProduct/CreateProduct";
+import Account from "../Component/Account/Account";
 
 export default function Routers() {
   return (
@@ -32,6 +33,7 @@ export default function Routers() {
         <Route exact path='/create/ingredient' element={<CreateIngred />} />
         <Route exact path='/create/direct' element={<CreateDirect />} />
         <Route exact path='/create/product' element={<CreateProduct />} />
+        <Route exact path='/account' element={<Account />} />
       </Routes>
     </>
   );
