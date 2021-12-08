@@ -213,7 +213,7 @@ export default function Order() {
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'>
                     <Box sx={style}>
-                      <Typography
+                      <Typography 
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'>

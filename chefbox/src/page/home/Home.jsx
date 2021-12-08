@@ -96,7 +96,7 @@ export default function Home() {
             <a style={{marginRight:"-0.1rem"}} href=''>here</a>
           </Link>
 
-          <h1>to start searching for recipes</h1>
+          <h1>to start browsing for recipes!</h1>
         </div>
       </div>
       <div className={styles.botSections}>
