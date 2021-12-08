@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import "./Register.css";
 import bgCover from "../../Asset/Frame 4.svg";
 import logo from "../../Asset/Group 2.svg";
-import { Grid, Paper, Box, Button, Divider } from "@mui/material";
+import { Grid, Paper, Box, Button, Divider, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Formik, Form } from "formik";
 import TextBarRegis from "../TextBar/TextBarRegis";
@@ -10,9 +11,16 @@ import ButtonRegis from "../Button/ButtonRegis";
 import * as Yup from "yup";
 import Auth from "../Auth/Auth";
 import AuthRegis from "../Auth/AuthRegis";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {RegisterAction} from '../../store/actions/auth'
 
 function Register() {
+  const { data: userData } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const validate = Yup.object({
     username: Yup.string()
       .max(15, "Must be 20 character or less")
@@ -65,8 +73,15 @@ function Register() {
                   passowrd: "",
                   confirmPassword: "",
                 }}
+                onSubmit={(values) => {
+                  dispatch(RegisterAction(values));
+                  navigate('/register/signup')
+                  console.log(values)
+                }}
                 validationSchema={validate}>
-                {(formik) => (
+                {(formikProps) => {
+                  const {handleSubmit} = formikProps
+                  return (
                   <div className='field-top'>
                     <div className='name-top'>
                       <h1>Create Account</h1>
@@ -74,14 +89,19 @@ function Register() {
                         Already have account? <span>Login</span>
                       </h6>
                     </div>
-                    {console.log(formik)}
-                    <Form>
+                    {/* {console.log(formik.values)} */}
+                    <form onSubmit={handleSubmit}>
                       <TextBarRegis
                         label='Username'
                         name='username'
                         type='text'
+                        
                       />
-                      <TextBarRegis label='Email' name='email' type='text' />
+                      <TextBarRegis 
+                        label='Email' 
+                        name='email' 
+                        type='text' 
+                      />
                       <TextBarRegis
                         label='Passowrd'
                         name='password'
@@ -92,12 +112,35 @@ function Register() {
                         name='confirmPassword'
                         type='password'
                       />
-                      <Link to='/register/signup'>
-                        <ButtonRegis />
-                      </Link>
-                    </Form>
+                      {/* <Link to='/register/signup'> */}
+                        <Box sx={{marginLeft: '88px', width:'700px', marginTop: '30px'}}>
+                          <Button 
+                            variant="contained"
+                            // onClick={(e) => handleSubmit(formik.values)}
+                            type="submit"
+                            fullWidth
+                            sx={{
+                              height: '45px',
+                              borderRadius: '24px',
+                              background: 'linear-gradient(45deg, #B6340B 30%, #B6340B 90%)',
+                              boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)'
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontFamily: 'Nunito',
+                                fontWeight: 'bold',
+                                fontSize: '16px',
+                              }}
+                            >
+                              Sign Up
+                            </Typography>
+                          </Button>
+                        </Box>
+                      {/* </Link> */}
+                    </form>
                   </div>
-                )}
+                )}}
               </Formik>
               <Divider
                 sx={{

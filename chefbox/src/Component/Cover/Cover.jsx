@@ -1,17 +1,21 @@
 import React from "react";
 import "./Cover.css";
+import { useDispatch, useSelector } from 'react-redux';
 import bgCover from "../../Asset/Frame 4.svg";
 import logo from "../../Asset/Group 2.svg";
-import { Grid, Paper, Box, Button, Divider } from "@mui/material";
+import { Grid, Paper, Box, Button, Divider, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Formik, Form } from "formik";
 import TextBarLogin from "../TextBar/TextBarLogin";
 import ButtonComp from "../Button/Button";
 import * as Yup from "yup";
 import Auth from "../Auth/Auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginAction } from "../../store/actions/auth";
 
 function Cover() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const validate = Yup.object({
     email: Yup.string()
       .email("Email is Invalid")
@@ -50,8 +54,15 @@ function Cover() {
                   email: "",
                   passowrd: "",
                 }}
+                onSubmit={(values) => {
+                  dispatch(LoginAction(values));
+                  navigate('/')
+                  console.log(values)
+                }}
                 validationSchema={validate}>
-                {(formik) => (
+                {(formikProps) => {
+                  const {handleSubmit} = formikProps
+                  return(
                   <div className='field-top'>
                     <div className='name-top'>
                       <h1>Login</h1>
@@ -59,19 +70,44 @@ function Cover() {
                         New user? <span>Create an account</span>
                       </h6>
                     </div>
-                    {console.log(formik)}
-                    <Form>
-                      <TextBarLogin label='Email' name='email' type='text' />
+                    <form onSubmit={handleSubmit}>
+                      <TextBarLogin 
+                        label='Email' 
+                        name='email' 
+                        type='text' 
+                      />
                       <TextBarLogin
                         label='Passowrd'
                         name='password'
                         type='password'
                       />
                       <h6 className='forgot'>Forgot password?</h6>
-                      <ButtonComp />
-                    </Form>
+                      <Box sx={{marginLeft: '88px', width:'700px', marginTop: '42px'}}>
+                        <Button 
+                          variant="contained"
+                          type="submit"
+                          fullWidth
+                          sx={{
+                            height: '45px',
+                            borderRadius: '24px',
+                            background: 'linear-gradient(45deg, #B6340B 30%, #B6340B 90%)',
+                            boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)'
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: 'Nunito',
+                              fontWeight: 'bold',
+                              fontSize: '16px',
+                            }}
+                          >
+                            Login
+                          </Typography>
+                        </Button>
+                      </Box>
+                    </form>
                   </div>
-                )}
+                )}}
               </Formik>
               <Divider
                 sx={{
