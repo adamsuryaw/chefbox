@@ -1,0 +1,63 @@
+.account-section {
+  height: 1545px;
+  background: #f7f4f2;
+  display: flex;
+  padding: 46px 0px 46px 140px;
+}
+
+.recipe-sec {
+  width: 259px;
+  height: 182px;
+  background: #ffffff;
+  padding: 30px 70px 40px 39px;
+  margin-bottom: 29px;
+}
+
+.seller-sec {
+  width: 259px;
+  height: 73px;
+  background: #ffffff;
+  padding: 24px 0 25px 32px;
+}
+
+.seller-sec img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.account-text {
+  width: 1020px;
+  height: 939px;
+  background: #ffffff;
+  margin-left: 32px;
+  padding: 64px 152px 155px 152px;
+}
+
+.avatar-sec img {
+  width: 200px;
+  height: 200px;
+  box-shadow: 0px 4px 8px 1px rgba(159, 159, 159, 0.2);
+  border-radius: 100px;
+  margin-left: 258px;
+}
+
+.text-field {
+  margin-top: 49px;
+  margin-bottom: 53px;
+}
+
+.text-field-1 {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.text-field-2 {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.text-field-3 {
+  display: flex;
+  margin-bottom: 25px;
+}
