@@ -104,18 +104,18 @@ function Recipe() {
             labelPlacement='end'
             sx={{
               color: "black",
-              marginLeft: "1rem"
+              marginLeft: "1rem",
             }}
           />
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
-        <Link to='/details'className='card-section'>
+        <Link to='/details' className='card-section'>
           {product?.map((product) => (
             <CardComp key={product.id} product={product} />
           ))}
         </Link>
         <div className='pagination-section'>
-          <Pagination count={10} color='primary'/>
+          <Pagination count={10} color='primary' />
         </div>
       </div>
     </div>
