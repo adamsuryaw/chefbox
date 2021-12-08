@@ -6,7 +6,7 @@ import { BASE_URL } from "../../constants/constants";
 function* getOrderList() {
   try {
     const res = yield axios.get(
-      `${BASE_URL}order?api_key=${process.env.REACT_APP_API_KEY}`
+      `${BASE_URL}order`
     );
     yield put({
       type: GET_ORDER_SUCCESS,
