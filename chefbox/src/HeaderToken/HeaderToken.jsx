@@ -7,9 +7,9 @@ function HeaderToken() {
     return (
         <div>
             {!token ? (
-                <Navbar />
-                ) : (
                 <Header />
+                ) : (
+                <Navbar />
             )}
 
         </div>

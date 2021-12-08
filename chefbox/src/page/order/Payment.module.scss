@@ -41,6 +41,15 @@
       height: 20%;
       text-align: center;
 
+      .OrderLists {
+        text-align: justify;
+        .FirstOrder,
+        .SecondOrder {
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+
       .DetailedBank {
         margin-top: 2rem;
         padding-bottom: 2rem;

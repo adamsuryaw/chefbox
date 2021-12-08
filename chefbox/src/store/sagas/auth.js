@@ -11,6 +11,7 @@ import {
   SIGNUP_FAIL,
 } from "../../constants/types";
 import axios from "axios";
+import {BASE_URL} from "../../constants/constants"
 
 const baseUrl = "http://chefbox2021.herokuapp.com";
 //function generator
@@ -23,7 +24,7 @@ function* login(action) {
       {
         type: GET_LOGIN_SUCCESS,
       },
-      localStorage.setItem("token", res.data.token) // setup token on local storage
+      localStorage.setItem("access_token", res.data.token) // setup token on local storage
     );
   } catch (err) {
     console.log(err);
@@ -70,7 +71,7 @@ function* signup(action) {
       {
         type: SIGNUP_SUCCESS,
       },
-      localStorage.getItem("token") // setup token on local storage
+      localStorage.getItem("access_token") // setup token on local storage
     );
   } catch (err) {
     console.log(err);

@@ -13,6 +13,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    // function token() {
+    //     localStorage.removeItem("token");
+    // }
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

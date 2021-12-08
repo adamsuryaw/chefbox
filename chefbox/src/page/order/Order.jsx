@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const style = {
   display: "flex",
@@ -24,10 +24,139 @@ const style = {
   p: 4,
 };
 
+export const DeliveryDetails = (props) => {
+  const { setForm } = props;
+  return (
+    <div className={styles.AddressUserName}>
+      <h4>Justin Junaedi</h4>
+      <div
+        className={styles.AddressUserDetailsContainer}
+        style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <div className={styles.AddressUserDetails}>
+          <p style={{ marginTop: "0.5rem" }} className={styles.address}>
+            Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis Mejoyo, Kota SBY,
+            Jawa Timur 60237
+          </p>
+          <p style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}>
+            +62 812 2345 2345
+          </p>
+        </div>
+        <div className={styles.AddressUserDetailsButton}>
+          <Stack className={styles.buttons} spacing={5} direction='row'>
+            <Button
+              onClick={() => setForm(true)}
+              className={styles.button}
+              variant='contained'
+              sx={{
+                width: "100%",
+                background: "#fff",
+                color: "black",
+                borderRadius: "50px",
+                margin: "0 3.5rem",
+                padding: "5px 5rem",
+                fontFamily: "Nunito Sans",
+                fontWeight: "bold",
+                textTransform: "capitalize",
+              }}>
+              Edit Address
+            </Button>
+          </Stack>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const DeliveryForm = () => {
+  return (
+    <div className={styles.BoxedTextField}>
+      <Box
+        component='form'
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "20ch" },
+        }}
+        noValidate
+        autoComplete='off'>
+        <div>
+          <TextField
+            // required
+            id='outlined-required'
+            label='First Name'
+            defaultValue=''
+          />
+          <TextField
+            // disabled
+            id='outlined-disabled'
+            label='Last Name'
+            defaultValue=''
+          />
+          <TextField
+            id='outlined-password-input'
+            label='Password'
+            type='password'
+            autoComplete='current-password'
+          />
+          <TextField
+            id='outlined-read-only-input'
+            label='Read Only'
+            defaultValue=''
+            InputProps={{
+              readOnly: true,
+            }}
+          />
+          <TextField
+            id='outlined-number'
+            label='Phone Number'
+            type='number'
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </div>
+      </Box>
+      <Box
+        component='form'
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "20ch" },
+        }}
+        noValidate
+        autoComplete='off'>
+        <div>
+          <TextField
+            // required
+            id='outlined-required'
+            label='First Name'
+            defaultValue=''
+          />
+        </div>
+      </Box>
+      <Stack className={styles.buttons} spacing={5} direction='row'>
+        <Button
+          className={styles.button}
+          variant='contained'
+          sx={{
+            width: "20%",
+            background: "#fff",
+            color: "black",
+            borderRadius: "50px",
+            margin: "0 3.5rem",
+            padding: "5px 5rem",
+            fontFamily: "Nunito Sans",
+            fontWeight: "bold",
+            textTransform: "capitalize",
+          }}>
+          Save Changes
+        </Button>
+      </Stack>
+    </div>
+  );
+};
+
 export default function Order() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [showform, setForm] = React.useState(false);
 
   return (
     <div className={styles.Body}>
@@ -46,111 +175,11 @@ export default function Order() {
             <div className={styles.OrderUserAddress}>
               <div className={styles.AddressUser}>
                 <h3>Delivery Address</h3>
-                {/* <div className={styles.BoxedTextField}>
-                  <Box
-                    component='form'
-                    sx={{
-                      "& .MuiTextField-root": { m: 1, width: "20ch" },
-                    }}
-                    noValidate
-                    autoComplete='off'>
-                    <div>
-                      <TextField
-                        // required
-                        id='outlined-required'
-                        label='First Name'
-                        defaultValue=''
-                      />
-                      <TextField
-                        // disabled
-                        id='outlined-disabled'
-                        label='Last Name'
-                        defaultValue=''
-                      />
-                      <TextField
-                        id='outlined-password-input'
-                        label='Password'
-                        type='password'
-                        autoComplete='current-password'
-                      />
-                      <TextField
-                        id='outlined-read-only-input'
-                        label='Read Only'
-                        defaultValue=''
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                      />
-                      <TextField
-                        id='outlined-number'
-                        label='Phone Number'
-                        type='number'
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </div>
-                  </Box>
-                  <Box
-                    component='form'
-                    sx={{
-                      "& .MuiTextField-root": { m: 1, width: "20ch" },
-                    }}
-                    noValidate
-                    autoComplete='off'>
-                    <div>
-                      <TextField
-                        // required
-                        id='outlined-required'
-                        label='First Name'
-                        defaultValue=''
-                      />
-                    </div>
-                  </Box>
-                </div> */}
-                <div className={styles.AddressUserName}>
-                  <h4>Justin Junaedi</h4>
-                  <div
-                    className={styles.AddressUserDetailsContainer}
-                    style={{ display: "flex", justifyContent: "space-evenly" }}>
-                    <div className={styles.AddressUserDetails}>
-                      <p
-                        style={{ marginTop: "0.5rem" }}
-                        className={styles.address}>
-                        Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis
-                        Mejoyo, Kota SBY, Jawa Timur 60237
-                      </p>
-                      <p
-                        style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}>
-                        +62 812 2345 2345
-                      </p>
-                    </div>
-                    <div className={styles.AddressUserDetailsButton}>
-                      <Stack
-                        className={styles.buttons}
-                        spacing={5}
-                        direction='row'>
-
-                        <Button
-                          className={styles.button}
-                          variant='contained'
-                          sx={{
-                            width: "100%",
-                            background: "#fff",
-                            color: "black",
-                            borderRadius: "50px",
-                            margin: "0 3.5rem",
-                            padding: "5px 5rem",
-                            fontFamily: "Nunito Sans",
-                            fontWeight: "bold",
-                            textTransform: "capitalize",
-                          }}>
-                          Edit Address
-                        </Button>
-                      </Stack>
-                    </div>
-                  </div>
-                </div>
+                {showform ? (
+                  <DeliveryForm />
+                ) : (
+                  <DeliveryDetails setForm={setForm} />
+                )}
               </div>
             </div>
             <div className={styles.ProductDetails}>
@@ -184,20 +213,32 @@ export default function Order() {
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'>
                     <Box sx={style}>
-                      <Typography
+                      <Typography 
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'>
                         <div className={styles.ProductContent}>
                           <h4>Product content</h4>
                           <div className={styles.ProductList}>
-                            <ul style={{ listStyleType: "disc" }}>
-                              <li>1 kg package egg noodles</li>
-                              <li>50 gr butter</li>
-                              <li>50 gr minced parsley</li>
-                              <li>50 gr salt</li>
-                              <li>10 gr black pepper</li>
-                              <li>100 ml olive oil</li>
+                            <ul>
+                              <li style={{ listStyleType: "disc" }}>
+                                1 kg package egg noodles
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr butter
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr minced parsley
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr salt
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                10 gr black pepper
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                100 ml olive oil
+                              </li>
                             </ul>
                           </div>
                         </div>
@@ -279,7 +320,7 @@ export default function Order() {
                       fontFamily: "Nunito Sans",
                       fontWeight: "bold",
                       textTransform: "capitalize",
-                      textDecoration: "none"
+                      textDecoration: "none",
                       // backgroundColor: "#FFFAEF",
                       // color: "black",
                     }}>

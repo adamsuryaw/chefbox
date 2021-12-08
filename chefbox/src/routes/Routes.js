@@ -9,10 +9,10 @@ import Dashboard from "../page/dashboard/MyRecipe";
 import Recipe from "../Component/Recipe/Recipe";
 import Details from "../Component/DetailRecipe/DetailRecipe";
 import Payment from "../page/order/Payment";
-// import CreateDesc from "./Component/CreateDesc/CreateDesc";
-// import CreateDirect from "./Component/CreateDirect/CreateDirect";
-// import CreateIngred from "./Component/CreateIngred/CreateIngred";
-// import CreateProduct from "./Component/CreateProduct/CreateProduct";
+import CreateDesc from "../Component/CreateDesc/CreateDesc";
+import CreateDirect from "../Component/CreateDirect/CreateDirect";
+import CreateIngred from "../Component/CreateIngred/CreateIngred";
+import CreateProduct from "../Component/CreateProduct/CreateProduct";
 
 export default function Routers() {
   return (
@@ -27,6 +27,11 @@ export default function Routers() {
         <Route exact path='/recipe' element={<Recipe />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/register/signup' element={<Signup />} />
+        <Route exact path='/dashboard' element={<Dashboard />} />
+        <Route exact path='/create' element={<CreateDesc />} />
+        <Route exact path='/create/direct' element={<CreateDirect />} />
+        <Route exact path='/create/ingredient' element={<CreateIngred />} />
+        <Route exact path='/create/product' element={<CreateProduct />} />
       </Routes>
     </>
   );
