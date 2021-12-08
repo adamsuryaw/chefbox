@@ -8,7 +8,8 @@ import HeaderToken from "./HeaderToken/HeaderToken";
 function App() {
   return (
     <>
-      <HeaderToken />
+      {/* <HeaderToken /> */}
+      <Navbar />
       <Routers />
       <Footer />
     </>
