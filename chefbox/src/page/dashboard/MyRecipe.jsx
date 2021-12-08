@@ -47,7 +47,7 @@ export default function MyRecipe() {
         <div className={styles.ThirdBody}>
           <div className={styles.LeftSidebar}>
             <div className={styles.MenuBar}>
-              <ul>
+              <div className={styles.FirstButton}>
                 <Link to='/dashboard'>
                   <Button
                     sx={{
@@ -66,8 +66,10 @@ export default function MyRecipe() {
                     <h4>My Recipe</h4>
                   </Button>
                 </Link>
+              </div>
+              <div className={styles.SecondButton}>
                 <Link to='/order'>
-                <Button
+                  <Button
                     sx={{
                       fontFamily: "Nunito",
                       fontWeight: "bold",
@@ -84,7 +86,7 @@ export default function MyRecipe() {
                     <h4>My Order</h4>
                   </Button>
                 </Link>
-              </ul>
+              </div>
             </div>
             <div className={styles.SellerDashboard}>
               <img src={SVG} alt='' />
@@ -94,6 +96,7 @@ export default function MyRecipe() {
             </div>
           </div>
           <div className={styles.MainContainer}>
+            <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
             <div
               // sytle={{ display: "flex", position: "relative" }}
               className='card-section'>

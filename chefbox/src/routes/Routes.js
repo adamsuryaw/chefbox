@@ -29,8 +29,8 @@ export default function Routers() {
         <Route exact path='/register/signup' element={<Signup />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/create' element={<CreateDesc />} />
-        <Route exact path='/create/direct' element={<CreateDirect />} />
         <Route exact path='/create/ingredient' element={<CreateIngred />} />
+        <Route exact path='/create/direct' element={<CreateDirect />} />
         <Route exact path='/create/product' element={<CreateProduct />} />
       </Routes>
     </>
