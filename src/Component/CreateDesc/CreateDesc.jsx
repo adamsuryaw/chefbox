@@ -35,26 +35,23 @@ function CreateDesc() {
             }}>
             <h4>Recipe Description</h4>
           </Button>
-          <Link to='/create/ingredient' sx={{textDecoration: "none"}}>
-            <Button
-              sx={{
-                fontFamily: "Nunito",
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "#828282",
-                textTransform: "none",
-                padding: 0,
-                marginBottom: "17px",
-                "&:hover": {
-                  backgroundColor: "#ffffff",
-                  boxShadow: "none",
-                  color: "#000000",
-                },
-              }}>
-              <h4>Ingredients</h4>
-            </Button>
-          </Link>
-
+          <Button
+            sx={{
+              fontFamily: "Nunito",
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "#828282",
+              textTransform: "none",
+              padding: 0,
+              marginBottom: "17px",
+              "&:hover": {
+                backgroundColor: "#ffffff",
+                boxShadow: "none",
+                color: "#000000",
+              },
+            }}>
+            <h4>Ingredients</h4>
+          </Button>
           <Button
             sx={{
               fontFamily: "Nunito",
@@ -195,29 +192,31 @@ function CreateDesc() {
             />
           </div>
           <div className='btn-next'>
-            <Button
-              variant='contained'
-              sx={{
-                width: "125px",
-                height: "45px",
-                background: "#F9C959",
-                boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-                borderRadius: "24px",
-                marginTop: "57px",
-                marginLeft: "590px",
-                textTransform: "none",
-              }}>
-              <Typography
-                component='div'
+            <Link to='/create/ingredient'>
+              <Button
+                variant='contained'
                 sx={{
-                  fontFamily: "Nunito",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#333333",
+                  width: "125px",
+                  height: "45px",
+                  background: "#F9C959",
+                  boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                  borderRadius: "24px",
+                  marginTop: "57px",
+                  marginLeft: "590px",
+                  textTransform: "none",
                 }}>
-                Next
-              </Typography>
-            </Button>
+                <Typography
+                  component='div'
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    color: "#333333",
+                  }}>
+                  Next
+                </Typography>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
