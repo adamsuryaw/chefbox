@@ -18,12 +18,12 @@ export default function Routers() {
   return (
     <>
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Login />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/details' element={<Details />} />
         <Route exact path='/order' element={<Order />} />
         <Route exact path='/order/payment' element={<Payment />} />
-        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/login' element={<Home />} />
         <Route exact path='/recipe' element={<Recipe />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/register/signup' element={<Signup />} />
