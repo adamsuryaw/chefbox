@@ -30,7 +30,7 @@ export default function Routers() {
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/register/signup' element={<Signup />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route exact path='/dashboard/seller' element={<Seller />} />
+        <Route exact path='/seller' element={<Seller />} />
         <Route exact path='/create' element={<CreateDesc />} />
         <Route exact path='/create/ingredient' element={<CreateIngred />} />
         <Route exact path='/create/direct' element={<CreateDirect />} />

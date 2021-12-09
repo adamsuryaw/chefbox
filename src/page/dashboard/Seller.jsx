@@ -1,8 +1,8 @@
-import styles from "../seller/Seller.module.scss";
-import sellerIcon from "../../../Asset/store.svg";
-import buttonShipping from "../../../Asset/seller.svg";
-import buttonCompleted from "../../../Asset/completed.svg";
-import MenuImage from "../../../Asset/Frame 3.svg";
+import styles from "./Seller.module.scss";
+import sellerIcon from "../../Asset/sellerIcon/Dashboard/store.svg";
+import buttonShipping from "../../Asset/seller.svg";
+import buttonCompleted from "../../Asset/completed.svg";
+import MenuImage from "../../Asset/Frame 3.svg";
 import { Link } from "react-router-dom";
 
 export default function Seller() {
