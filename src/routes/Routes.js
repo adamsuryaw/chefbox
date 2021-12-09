@@ -6,6 +6,7 @@ import Register from "../Component/Register/Register";
 import Signup from "../Component/Signup/Signup";
 import Login from "../Pages/Login/Login";
 import Dashboard from "../page/dashboard/MyRecipe";
+import Seller from "../page/dashboard/Seller";
 import Recipe from "../Component/Recipe/Recipe";
 import Details from "../Component/DetailRecipe/DetailRecipe";
 import Payment from "../page/order/Payment";
@@ -29,6 +30,7 @@ export default function Routers() {
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/register/signup' element={<Signup />} />
         <Route exact path='/dashboard' element={<Dashboard />} />
+        <Route exact path='/dashboard/seller' element={<Seller />} />
         <Route exact path='/create' element={<CreateDesc />} />
         <Route exact path='/create/ingredient' element={<CreateIngred />} />
         <Route exact path='/create/direct' element={<CreateDirect />} />
