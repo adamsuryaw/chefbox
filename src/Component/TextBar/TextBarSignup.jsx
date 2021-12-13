@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 import './TextBarRegis.css'
 import { TextField, Grid, Paper, Box, MenuItem } from '@mui/material';
 import { useField } from 'formik';
 import { styled } from '@mui/material/styles';
+import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import {useParams} from 'react-router-dom'
 
 const currencies = [
     {
@@ -37,6 +40,28 @@ function TextBarSignup({label,...props}) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
+    const [location, setLocation] = useState()
+    const dispatch = useDispatch()
+    const currentToken = localStorage.getItem("token")
+
+    useEffect(() => {
+        const fetchLocation = async () => {
+            try{
+                const res = await axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, {
+                    headers: {
+                        Authorization: `Bearer ${currentToken}`
+                    }
+                })
+                setLocation(res.data.data)
+                console.log(res.data.data)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        fetchLocation()
+    }, [])
+
+    console.log(location, 'lokasi')
 
     return (
         <div>

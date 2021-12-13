@@ -14,6 +14,17 @@
 }
 
 .upload-text {
-  margin-left: 22%;
+  text-align: center;
   color: #828282;
+}
+
+input {
+  display: none;
+}
+
+#uploaded-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
 }

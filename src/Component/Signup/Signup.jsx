@@ -21,10 +21,8 @@ function Signup() {
   const navigate = useNavigate();
   const validate = Yup.object({
     phoneNumber: Yup.string()
-      .required("Required")
       .matches(/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/, "Wrong Phone Number"),
     address: Yup.string()
-      .required("Required"),
   });
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -55,8 +53,10 @@ function Signup() {
               }}>
               <Formik
                 initialValues={{
+                  image: "",
                   phoneNumber: "",
                   address: "",
+                  id_location: ""
                 }}
                 onSubmit={(values) => {
                   dispatch(SignupAction(values));
@@ -72,8 +72,9 @@ function Signup() {
                       <h1>One more step!</h1>
                       <h6>Help us know you better</h6>
                     </div>
-                    <UploadImage />
+                    
                     <form onSubmit={handleSubmit}>
+                    <UploadImage />
                       <TextBarSignup
                         label='Phone Number'
                         name='phoneNumber'
@@ -86,7 +87,7 @@ function Signup() {
                       />
                       <TextBarSignup
                         label='Location (City)'
-                        name='location'
+                        name='id_location'
                         select='true'
                         type='text'
                       />

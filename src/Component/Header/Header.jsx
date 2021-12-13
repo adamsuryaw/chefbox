@@ -14,9 +14,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    // function token() {
-    //     localStorage.removeItem("token");
-    // }
+    function clearToken() {
+        localStorage.clear();
+        window.location.reload()
+    }
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -169,7 +170,8 @@ function Header() {
                         </ListItemIcon>
                         Settings
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem onClick={clearToken}>
+                    
                         <ListItemIcon>
                             <Logout fontSize="small" />
                         </ListItemIcon>

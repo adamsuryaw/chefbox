@@ -28,7 +28,7 @@ function Recipe() {
       <div className='recipe-section'>
         <div className='location-section'>
           <h5>Location</h5>
-          <h6>Based on your profile</h6>
+          {/* <h6>Based on your profile</h6>
           <FormControlLabel
             value='end'
             control={<Checkbox />}
@@ -37,7 +37,7 @@ function Recipe() {
             sx={{
               color: "black",
             }}
-          />
+          /> */}
           <TextBarRecipe
             name='location'
             select='true'

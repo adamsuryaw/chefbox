@@ -52,7 +52,7 @@ function Cover() {
               <Formik
                 initialValues={{
                   email: "",
-                  passowrd: "",
+                  password: "",
                 }}
                 onSubmit={(values) => {
                   dispatch(LoginAction(values));
