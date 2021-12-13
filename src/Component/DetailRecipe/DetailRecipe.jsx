@@ -22,11 +22,21 @@ import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 import data from "../Data/data";
 import Cart from "../Cart/Cart";
+import { getRecipeDetails } from "../../store/actions/recipe";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
   const { comment } = data;
-  console.log(data);
+  const details = useSelector((state) => state.recipe.listDetails);
+  console.log("details", details);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipeDetails(id));
+  }, []);
 
   const [cartItems, setCartItems] = React.useState([]);
 

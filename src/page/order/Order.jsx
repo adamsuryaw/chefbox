@@ -70,66 +70,68 @@ export const DeliveryDetails = (props) => {
 export const DeliveryForm = () => {
   return (
     <div className={styles.BoxedTextField}>
-      <Box
-        component='form'
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "20ch" },
-        }}
-        noValidate
-        autoComplete='off'>
-        <div>
-          <TextField
-            // required
-            id='outlined-required'
-            label='First Name'
-            defaultValue=''
-          />
-          <TextField
-            // disabled
-            id='outlined-disabled'
-            label='Last Name'
-            defaultValue=''
-          />
-          <TextField
-            id='outlined-password-input'
-            label='Password'
-            type='password'
-            autoComplete='current-password'
-          />
-          <TextField
-            id='outlined-read-only-input'
-            label='Read Only'
-            defaultValue=''
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <TextField
-            id='outlined-number'
-            label='Phone Number'
-            type='number'
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </div>
-      </Box>
-      <Box
-        component='form'
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "20ch" },
-        }}
-        noValidate
-        autoComplete='off'>
-        <div>
-          <TextField
-            // required
-            id='outlined-required'
-            label='First Name'
-            defaultValue=''
-          />
-        </div>
-      </Box>
+      <div className={styles.InputField}>
+        <Box
+          component='form'
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "20ch" },
+            display: "flex",
+          }}
+          noValidate
+          autoComplete='off'>
+          <div>
+            <div className={styles.firstName}>
+              <h4>First Name</h4>
+              <div className='TextFieldss'>
+                <TextField
+                  // required
+                  id='outlined-required'
+                  // label='First Name'
+                  defaultValue=''
+                />
+              </div>
+            </div>
+            <div className={styles.lastName}>
+              <h4>Last Name</h4>
+              <div className='TextFieldss'>
+                <TextField
+                  // disabled
+                  id='outlined-disabled'
+                  // label='Last Name'
+                  defaultValue=''
+                />
+              </div>
+            </div>
+            <div className={styles.phoneNumber}>
+              <h4>Phone Number</h4>
+              <div className='TextFieldss'>
+                <TextField
+                  id='outlined-number'
+                  // label='Phone Number'
+                  type='number'
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.AddressField}>
+              <h4>Address</h4>
+              <div className='TextFieldss'>
+                <TextField
+                  id='outlined-number'
+                  // label='Phone Number'
+                  // type='number'
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </Box>
+      </div>
+
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
           className={styles.button}
@@ -206,6 +208,8 @@ export default function Order() {
                   </h5>
                 </div>
                 <div className={styles.ProductContainer}>
+                  {" "}
+                  {/* This is Modal */}
                   <img src={MenuIMG} alt='' onClick={handleOpen} />
                   <Modal
                     open={open}
@@ -213,7 +217,7 @@ export default function Order() {
                     aria-labelledby='modal-modal-title'
                     aria-describedby='modal-modal-description'>
                     <Box sx={style}>
-                      <Typography 
+                      <Typography
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'>
@@ -321,8 +325,6 @@ export default function Order() {
                       fontWeight: "bold",
                       textTransform: "capitalize",
                       textDecoration: "none",
-                      // backgroundColor: "#FFFAEF",
-                      // color: "black",
                     }}>
                     Choose Payment Method
                   </Button>

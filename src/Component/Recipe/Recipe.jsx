@@ -18,10 +18,16 @@ import montes from "../../Asset/Frame 3.svg";
 import CardComp from "../Card/Card";
 import data from "../Data/data";
 import { Link } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { useEffect} from "react";
+import {getRecipe} from '../../store/actions/recipe'
 
 function Recipe() {
   const { product } = data;
   console.log(data);
+
+const dispatch = useDispatch() 
+useEffect(() => {dispatch(getRecipe())},[]) 
 
   return (
     <div className='recipe-page'>
