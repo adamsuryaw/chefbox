@@ -115,7 +115,7 @@ useEffect(() => {dispatch(getRecipe())},[])
           />
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
-        <Link to='/details' className='card-section'>
+        <Link to='/details/1' className='card-section'>
           {product?.map((product) => (
             <CardComp key={product.id} product={product} />
           ))}
