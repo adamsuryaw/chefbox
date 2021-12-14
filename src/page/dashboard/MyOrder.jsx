@@ -38,7 +38,7 @@ export default function Seller() {
                 <h4>My Recipe</h4>
               </Button>
             </Link>
-            <Link to='/order'>
+            <Link to='/dashboard/my-order'>
               <Button
                 sx={{
                   fontFamily: "Nunito",

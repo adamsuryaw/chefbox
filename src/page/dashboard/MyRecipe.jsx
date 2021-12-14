@@ -69,7 +69,7 @@ export default function MyRecipe() {
                 </Link>
               </div>
               <div className={styles.SecondButton}>
-                <Link to='/order'>
+                <Link to='/dashboard/my-order'>
                   <Button
                     sx={{
                       fontFamily: "Nunito",
