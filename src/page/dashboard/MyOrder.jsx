@@ -69,7 +69,7 @@ export default function Seller() {
           </div>
         </div>
         <div className={styles.menuSeller}>
-          <h2>Seller Dashboard</h2>
+          <h2>My Order</h2>
           <div className={styles.menuButton}>
             <div className={styles.listButton}>
               <button className={styles.buttonAll}>All</button>
@@ -99,10 +99,11 @@ export default function Seller() {
                   <div className={styles.title3}>
                     <h4>Baked Oatmeal with Mixed Berries</h4>
                   </div>
-                  <div className={styles.button2}>
-                  </div>
+                  <div className={styles.button2}></div>
                   <div style={{ marginLeft: "9rem" }} className={styles.button}>
-                    <Link to="/seller/payment"><button>Verify Payment</button></Link>
+                    <Link to='/seller/payment'>
+                      <button>Verify Payment</button>
+                    </Link>
                   </div>
                 </div>
                 <div className={styles.billDescription}>
@@ -133,7 +134,9 @@ export default function Seller() {
                     </p>
                   </div>
                   <div className={styles.button}>
-                  <Link to="/seller/payment"><button>Verify Payment</button></Link>
+                    <Link to='/seller/payment'>
+                      <button>Verify Payment</button>
+                    </Link>
                   </div>
                 </div>
                 <div className={styles.billDescription}>
@@ -164,7 +167,9 @@ export default function Seller() {
                     </p> */}
                   </div>
                   <div style={{ marginLeft: "9rem" }} className={styles.button}>
-                  <Link to="/seller/payment"><button >Verify Payment</button></Link>
+                    <Link to='/seller/payment'>
+                      <button>Verify Payment</button>
+                    </Link>
                   </div>
                 </div>
                 <div className={styles.billDescription}>

@@ -101,11 +101,11 @@ export default function MyRecipe() {
           </div>
           <div className={styles.MainContainer}>
             <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
-            <div className='card-sections'>
+            <Link to='/details/1'className='card-sections'>
               {product?.map((product) => (
                 <CardComp key={product.id} product={product} />
               ))}
-            </div>
+            </Link>
             <div className={styles.PaginationSection}>
               <Pagination count={10} color='primary' />
             </div>

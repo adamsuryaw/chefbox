@@ -5,7 +5,7 @@
 
   .seller {
     display: flex;
-    padding-right: 40px;
+    justify-content: space-between;
     .menuBarSeller {
       .menuBar {
         margin-bottom: 50px;
@@ -48,11 +48,15 @@
     .menuSeller {
       padding: 40px 40px;
       margin-left: 40px;
-      width: 1020px;
-      height: 1098px;
+      width: 1920px;
+      height: 1080px;
       border: 1px solid #ffffff;
       background-color: #ffffff;
       // font-weight: bold;
+      h2 {
+        width: 100%;
+        font-weight: 700;
+      }
 
       .menuButton {
         padding: 20px 0;

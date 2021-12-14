@@ -18,11 +18,19 @@ import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 import avatarPic from "../../Asset/Ellipse 12.svg";
 import "./Card.css";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getRecipe } from "../../store/actions/recipe";
 
 function CardComp(props) {
   const { product } = props;
   
   console.log(props);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
 
   return (
     <div className='container'>
