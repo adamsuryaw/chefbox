@@ -26,11 +26,11 @@ function Recipe() {
   const {list} = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list)
 
-const dispatch = useDispatch() 
-useEffect(() => {
-  dispatch(getRecipe())
+  const dispatch = useDispatch() 
+  useEffect(() => {
+    dispatch(getRecipe())
 
-},[]) 
+  },[]) 
 
   return (
     <div className='recipe-page'>
@@ -118,7 +118,7 @@ useEffect(() => {
           />
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
-        <Link to='/details' className='card-section'>
+        <Link to={`/details/`} className='card-section'>
           {list?.map((data) => (
             <CardComp key={data.id} data={data} />
           ))}

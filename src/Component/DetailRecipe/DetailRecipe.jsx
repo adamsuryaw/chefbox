@@ -30,7 +30,7 @@ import { useParams } from "react-router-dom";
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
   const { comment } = data;
-  const details = useSelector((state) => state.recipe.listDetails);
+  const {details} = useSelector((state) => state.recipe.listDetails);
   console.log("details", details);
   const { id } = useParams();
   const dispatch = useDispatch();

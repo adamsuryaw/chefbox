@@ -68,14 +68,20 @@ function Signup() {
                   id_location: ""
                 }}
                 onSubmit={(values) => {
-                  dispatch(SignupAction(values));
+
+                  let formData = new FormData();
+
+                  Object.entries(values).forEach((item)=> {
+                    formData.append(item[0], item[1])
+                  })
+
+                  dispatch(SignupAction(formData));
                   navigate("/")
-                  console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {
                 const {values, handleChange, handleBlur, handleSubmit} = formikProps
-                console.log(values)
+                // console.log(values)
                 return (
                   <div className='field-top'>
                     <div className='name-top'>
@@ -84,7 +90,7 @@ function Signup() {
                     </div>
                     
                     <form onSubmit={handleSubmit}>
-                      <UploadImage name="image" />
+                      <UploadImage name="image" value={values.image} />
                       <TextBarSignup
                         label='Phone Number'
                         name='phoneNumber'

@@ -41,8 +41,7 @@ function TextBarSignup({label,...props}) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
-    const lokasi = useSelector((state) => state.location.listLocation);
-    console.log("location", lokasi)
+    // const lokasi = useSelector((state) => state.location.listLocation);
     const dispatch = useDispatch()
     const currentToken = localStorage.getItem("token")
 

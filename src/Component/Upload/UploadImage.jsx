@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadImage.css'
+import { connect, getIn } from 'formik';
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -9,27 +10,39 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
       resolve(event.target.result)
     };
     reader.readAsDataURL(file);
+    console.log(file, "file")
     })
 
 function UploadImage(props) {
     console.log(props)
     const [image, setImage] = useState('')
     const [isUploaded, setIsUploaded] = useState(false)
+    const {formik} = props
+    const {setFieldValue} = formik
     const handleImageChange = (file) => {
-        console.log("bisa")
+        // const fileReader = new FileReader();
+        // fileReader.onload = () => {
+        //     if (fileReader.readyState === 2) {
+        //         setIsUploaded('avatar', fileReader.result);
+        //         setImage(fileReader.result);
+        //     }
+        //   };
+        // fileReader.readAsDataURL(e.target.files[0]);
+        console.log(file)
         if(!file) {
-            setImage('');
+            // setImage('');
             return;
           }
       
         fileToImage(file)
             .then(dataUri => {
                 console.log(dataUri)
-              setImage(dataUri)
+                setImage(dataUri)
+                setFieldValue(props.name, file)
             })
     }
-    console.log(image, "ini foto")
-    console.log(setImage, "ini pilih foto")
+    // console.log("ini foto")
+    // console.log(setImage, "ini pilih foto")
 
     return (
         <div className="upload-section">
@@ -42,6 +55,7 @@ function UploadImage(props) {
                             type="file" 
                             accept=".jpg,.jpeg,.gif,.png,.mov,.mp4" 
                             onChange={(event) => 
+                                // console.log(event.target.files[0], "event")
                                 handleImageChange(event.target.files[0] || null)
                             }
                             />
@@ -62,4 +76,4 @@ function UploadImage(props) {
     )
 }
 
-export default UploadImage
+export default connect(UploadImage)
