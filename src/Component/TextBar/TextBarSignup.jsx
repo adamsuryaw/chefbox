@@ -4,8 +4,9 @@ import { TextField, Grid, Paper, Box, MenuItem } from '@mui/material';
 import { useField } from 'formik';
 import { styled } from '@mui/material/styles';
 import axios from 'axios'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom'
+import { getLocation } from '../../store/actions/location'
 
 const currencies = [
     {
@@ -28,7 +29,7 @@ const currencies = [
 
 function TextBarSignup({label,...props}) {
     const [field, meta] = useField(props)
-    // console.log(field, meta)
+    console.log(field)
     console.log(props)
     const [currency, setCurrency] = React.useState('EUR');
     const handleChange = (event) => {
@@ -40,28 +41,14 @@ function TextBarSignup({label,...props}) {
         textAlign: 'center',
         color: theme.palette.text.secondary,
     }));
-    const [location, setLocation] = useState()
+    const lokasi = useSelector((state) => state.location.listLocation);
+    console.log("location", lokasi)
     const dispatch = useDispatch()
     const currentToken = localStorage.getItem("token")
 
     useEffect(() => {
-        const fetchLocation = async () => {
-            try{
-                const res = await axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, {
-                    headers: {
-                        Authorization: `Bearer ${currentToken}`
-                    }
-                })
-                setLocation(res.data.data)
-                console.log(res.data.data)
-            } catch(error) {
-                console.log(error)
-            }
-        }
-        fetchLocation()
+        dispatch(getLocation())
     }, [])
-
-    console.log(location, 'lokasi')
 
     return (
         <div>
@@ -90,7 +77,7 @@ function TextBarSignup({label,...props}) {
                             {...props}
                             fullWidth
                             select
-                            value={currency}
+                            value="lokasi"
                             onChange={handleChange}
                             variant="outlined"
                             error={meta.touched && Boolean(meta.error)}

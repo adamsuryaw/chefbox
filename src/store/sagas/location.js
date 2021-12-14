@@ -3,23 +3,23 @@ import { GET_LOCATION_BEGIN, GET_LOCATION_SUCCESS, GET_LOCATION_FAIL } from "../
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
 
-function* getLocation() {
+function* getLocationList() {
   try {
     const res = yield axios.get(
-      `${BASE_URL}order`
+      `${BASE_URL}user/complete-signup`
     );
     yield put({
-      type: GET_ORDER_SUCCESS,
+      type: GET_LOCATION_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
     yield put({
-      type: GET_ORDER_FAIL,
+      type: GET_LOCATION_FAIL,
       error: err,
     });
   }
 }
 
-export function* watchGetOrderList() {
-  yield takeEvery(GET_ORDER_BEGIN, getOrderList);
+export function* watchGetLocationList() {
+  yield takeEvery(GET_LOCATION_BEGIN, getLocationList);
 }

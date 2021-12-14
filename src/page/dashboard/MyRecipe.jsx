@@ -1,4 +1,5 @@
 import React from "react";
+import "./MyRecipe.css";
 import SVG from "../../Asset/sellerIcon/Dashboard/store.svg";
 import { Link } from "react-router-dom";
 import styles from "./MyRecipe.module.scss";
@@ -20,7 +21,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Pagination } from "@mui/material";
 import data from "./data";
 import CardComp from "../../Component/Card/Card";
-import "./MyRecipe.css";
 import { Button } from "@mui/material";
 
 const ExpandMore = styled((props) => {
@@ -54,13 +54,14 @@ export default function MyRecipe() {
                       fontFamily: "Nunito",
                       fontWeight: "bold",
                       fontSize: "16px",
-                      color: "#000000",
+                      color: "#828282",
                       textTransform: "none",
                       padding: 0,
                       marginBottom: "17px",
                       "&:hover": {
                         backgroundColor: "#ffffff",
                         boxShadow: "none",
+                        color: "#000000",
                       },
                     }}>
                     <h4>My Recipe</h4>
@@ -74,13 +75,14 @@ export default function MyRecipe() {
                       fontFamily: "Nunito",
                       fontWeight: "bold",
                       fontSize: "16px",
-                      color: "#000000",
+                      color: "#828282",
                       textTransform: "none",
                       padding: 0,
                       marginBottom: "17px",
                       "&:hover": {
                         backgroundColor: "#ffffff",
                         boxShadow: "none",
+                        color: "#000000",
                       },
                     }}>
                     <h4>My Order</h4>
@@ -90,16 +92,16 @@ export default function MyRecipe() {
             </div>
             <div className={styles.SellerDashboard}>
               <img src={SVG} alt='' />
-              <ul>
-                <li style={{ color: "#587b67" }}>Seller Dashboard</li>
-              </ul>
+              <Link to='/seller'>
+                <ul>
+                  <li style={{ color: "#587b67" }}>Seller Dashboard</li>
+                </ul>
+              </Link>
             </div>
           </div>
           <div className={styles.MainContainer}>
             <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
-            <div
-              // sytle={{ display: "flex", position: "relative" }}
-              className='card-section'>
+            <div className='card-sections'>
               {product?.map((product) => (
                 <CardComp key={product.id} product={product} />
               ))}

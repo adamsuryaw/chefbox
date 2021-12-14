@@ -8,7 +8,7 @@ const initialState = {
   },
 };
 
-export const series = (state = initialState, action) => {
+export const location = (state = initialState, action) => {
   const { type, payload, error } = action;
   switch (type) {
     default:

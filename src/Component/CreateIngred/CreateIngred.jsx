@@ -17,25 +17,23 @@ function CreateIngred() {
     <div className='ingred-section'>
       <div className='ingred-desc'>
         <div className='ingred-text'>
-          <Link to='/create'>
-            <Button
-              sx={{
-                fontFamily: "Nunito",
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "#000000",
-                textTransform: "none",
-                padding: 0,
-                marginBottom: "17px",
-                "&:hover": {
-                  backgroundColor: "#ffffff",
-                  boxShadow: "none",
-                },
-              }}>
-              <h4>Recipe Description</h4>
-              <img src={check} alt='' />
-            </Button>
-          </Link>
+          <Button
+            sx={{
+              fontFamily: "Nunito",
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "#000000",
+              textTransform: "none",
+              padding: 0,
+              marginBottom: "17px",
+              "&:hover": {
+                backgroundColor: "#ffffff",
+                boxShadow: "none",
+              },
+            }}>
+            <h4>Recipe Description</h4>
+            <img src={check} alt='' />
+          </Button>
           <Button
             sx={{
               fontFamily: "Nunito",

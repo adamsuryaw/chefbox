@@ -29,6 +29,14 @@
 
         .BoxedTextField {
           display: block;
+          margin-top: 1rem;
+
+          .InputField {
+            display: flex;
+            .firstNameField {
+              
+            }
+          }
         }
       }
       .ProductOrder {

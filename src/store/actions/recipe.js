@@ -1,4 +1,4 @@
-import { GET_RECIPE_BEGIN } from "../../constants/types";
+import { GET_RECIPE_BEGIN, GET_RECIPE_DETAILS_BEGIN } from "../../constants/types";
 
 export const getRecipe = () => {
   return {
@@ -7,7 +7,7 @@ export const getRecipe = () => {
 };
 export const getRecipeDetails = (id) => {
   return {
-    type: GET_RECIPE_BEGIN,
+    type: GET_RECIPE_DETAILS_BEGIN,
     id,
   };
 };

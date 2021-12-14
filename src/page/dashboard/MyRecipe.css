@@ -120,20 +120,15 @@
   background-color: #f9c959;
 } */
 
-.card-section {
-  /* position: relative;
+.card-sections {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 45px; */
-  margin-top: 45px;
-   /* position: relative; */
-  /* display: flex; */
-  /* flex-wrap: wrap; */
   margin-bottom: 80px;
-  /* margin-top: 45px; */
-  /* margin-right: -25px;  */
+  margin-top: 45px;
+  margin-right: -25px; 
   padding: 0px 65px;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 .pagination-section {

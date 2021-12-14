@@ -9,8 +9,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import check from "../../Asset/check.svg";
+import { Link } from "react-router-dom";
 
 function CreateDirect() {
   return (
@@ -34,27 +34,24 @@ function CreateDirect() {
             <h4>Recipe Description</h4>
             <img src={check} alt='' />
           </Button>
-          <Link to='/create/ingredient'>
-            <Button
-              sx={{
-                fontFamily: "Nunito",
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "#000000",
-                textTransform: "none",
-                padding: 0,
-                marginBottom: "17px",
-                paddingRight: "20px",
-                "&:hover": {
-                  backgroundColor: "#ffffff",
-                  boxShadow: "none",
-                },
-              }}>
-              <h4>Ingredients</h4>
-              <img src={check} alt='' />
-            </Button>
-          </Link>
-
+          <Button
+            sx={{
+              fontFamily: "Nunito",
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "#000000",
+              textTransform: "none",
+              padding: 0,
+              marginBottom: "17px",
+              paddingRight: "20px",
+              "&:hover": {
+                backgroundColor: "#ffffff",
+                boxShadow: "none",
+              },
+            }}>
+            <h4>Ingredients</h4>
+            <img src={check} alt='' />
+          </Button>
           <Button
             sx={{
               fontFamily: "Nunito",

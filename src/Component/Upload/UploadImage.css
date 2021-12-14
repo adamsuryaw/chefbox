@@ -8,7 +8,7 @@
   margin-left: 38%;
 }
 
-.upload-image {
+.upload-icon-image {
   margin-left: 42%;
   margin-top: 40%;
 }
@@ -18,7 +18,7 @@
   color: #828282;
 }
 
-input {
+#upload-image {
   display: none;
 }
 

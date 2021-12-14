@@ -20,7 +20,7 @@ const initialState = {
   },
 };
 
-export const series = (state = initialState, action) => {
+export const recipe = (state = initialState, action) => {
   const { type, payload, error } = action;
   switch (type) {
     default:

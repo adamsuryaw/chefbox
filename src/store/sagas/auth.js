@@ -69,14 +69,18 @@ export function* watchRegister() {
 
 function* signup(action) {
   const { body } = action;
+  const currentToken = localStorage.getItem("token")
+  const config = {
+    headers: { 'access_token': currentToken }
+  }
   try {
-    const res = yield axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, body);
+    const res = yield axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, body, config);
     console.log(res);
     yield put(
       {
         type: SIGNUP_SUCCESS,
       },
-      localStorage.getItem("token") // setup token on local storage
+       // setup token on local storage
     );
   } catch (err) {
     console.log(err);

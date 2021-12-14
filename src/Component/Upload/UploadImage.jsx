@@ -11,20 +11,11 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
     reader.readAsDataURL(file);
     })
 
-function UploadImage() {
+function UploadImage(props) {
+    console.log(props)
     const [image, setImage] = useState('')
     const [isUploaded, setIsUploaded] = useState(false)
     const handleImageChange = (file) => {
-        // if(e.target.files && e.target.files[0]) {
-        //     let reader = new FileReader();
-            
-        //     reader.onload = function (e) {
-        //         console.log(e)
-        //         setImage(e.target.result)
-        //         setIsUploaded(true)
-        //     }
-        //     reader.readAsDataURL(e.target.files[0])
-        // }
         console.log("bisa")
         if(!file) {
             setImage('');
@@ -54,24 +45,15 @@ function UploadImage() {
                                 handleImageChange(event.target.files[0] || null)
                             }
                             />
-                            <img className="upload-image" src={imageLogo} alt="logo image" />
+                            <img className="upload-icon-image" src={imageLogo} alt="logo image" />
                             <h6 className="upload-text">Upload Profile Photo</h6>
                         </div>
                     </label>
-                    {/* <input 
-                        id="upload-image" 
-                        type="file" 
-                        accept=".jpg,.jpeg,.gif,.png,.mov,.mp4"
-                        onChange={(event) => 
-                            console.log("bisa")
-                            handleImageChange(event.target.files[0] || null)
-                        }
-                    /> */}
                 </>
                 )
             :
                 (
-                    <img id="uploaded-image" src={image} alt="uploaded.img" />
+                    <img id="uploaded-image" src={image} alt="uploaded.img" value={image} />
                 )
             }
             

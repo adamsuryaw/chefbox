@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Recipe.css";
 import {
   FormControlLabel,
@@ -13,15 +13,24 @@ import {
   Avatar,
   Pagination,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import TextBarRecipe from "../TextBar/TextBarRecipe";
 import montes from "../../Asset/Frame 3.svg";
 import CardComp from "../Card/Card";
 import data from "../Data/data";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getRecipe } from '../../store/actions/recipe'
 
 function Recipe() {
-  const { product } = data;
-  console.log(data);
+  const {list} = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list)
+
+const dispatch = useDispatch() 
+useEffect(() => {
+  dispatch(getRecipe())
+
+},[]) 
 
   return (
     <div className='recipe-page'>
@@ -110,8 +119,8 @@ function Recipe() {
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
         <Link to='/details' className='card-section'>
-          {product?.map((product) => (
-            <CardComp key={product.id} product={product} />
+          {list?.map((data) => (
+            <CardComp key={data.id} data={data} />
           ))}
         </Link>
         <div className='pagination-section'>

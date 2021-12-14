@@ -16,7 +16,7 @@ const style = {
   bgcolor: "#fffaef",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
 export default function Payment() {
@@ -44,11 +44,11 @@ export default function Payment() {
               <p style={{ margin: "1rem 0 1.5rem 0" }}> Please complete your payment</p>
               <div className={styles.OrderLists}>
                 <div className={styles.FirstOrder}>
-                  <h4>Sate Lontong</h4>
-                  <h4>Es Teh</h4>
+                  <h4 style={{ textAlign: "left"}}>Sate Lontong</h4>
+                  <h4 style={{ textAlign: "left"}}>213100</h4>
                 </div>
                 <div className={styles.SecondOrder}>
-                  <h4>213100</h4>
+                  <h4>Es Teh</h4>
                   <h4>100000</h4>
                 </div>
               </div>
