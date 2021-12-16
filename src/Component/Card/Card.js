@@ -130,7 +130,7 @@ function CardComp({data}) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {data.location.name}
+                      {data?.location?.name}
                     </Typography>
                   </div>
                 </div>
