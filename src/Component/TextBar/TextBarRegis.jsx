@@ -9,7 +9,7 @@ function TextBarRegis({label,...props}) {
     // console.log(label)
     // console.log(field, meta)
     // console.log(meta)
-    // console.log(props)
+    console.log(props)
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),

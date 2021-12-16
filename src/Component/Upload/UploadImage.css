@@ -8,12 +8,23 @@
   margin-left: 38%;
 }
 
-.upload-image {
+.upload-icon-image {
   margin-left: 42%;
   margin-top: 40%;
 }
 
 .upload-text {
-  margin-left: 22%;
+  text-align: center;
   color: #828282;
+}
+
+#upload-image {
+  display: none;
+}
+
+#uploaded-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
 }

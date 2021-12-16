@@ -9,11 +9,23 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipe } from "../../store/actions/recipe";
+import CardComp from "../../Component/Card/Card";
 
-export default function Seller() {
+export default function MyOrder() {
   const [firstValue, setFirstValue] = React.useState(0);
   const [secondValue, setSecondValue] = React.useState(0);
   const [thirdValue, setThirdValue] = React.useState(0);
+
+  const { list } = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
 
   return (
     <div className={styles.sellerContainer}>
@@ -90,34 +102,39 @@ export default function Seller() {
             </div>
           </div>
           <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title3}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
+            {list?.map((data) => (
+              // <CardComp key={data.id} data={data} />
+              <div className={styles.menuContainer}>
+                <div className={styles.menuImage}>
+                  <img src={data.image} alt='' />
+                </div>
+                <div className={styles.menuDescriptions}>
+                  <div className={styles.menuCollectionButton}>
+                    <div className={styles.title3}>
+                    <h4>{data.title}</h4>
+                    </div>
+                    <div className={styles.button2}></div>
+                    <div
+                      style={{ marginLeft: "9rem" }}
+                      className={styles.button}>
+                      <Link to='/seller/payment'>
+                        <button>Verify Payment</button>
+                      </Link>
+                    </div>
                   </div>
-                  <div className={styles.button2}></div>
-                  <div style={{ marginLeft: "9rem" }} className={styles.button}>
-                    <Link to='/seller/payment'>
-                      <button>Verify Payment</button>
-                    </Link>
+                  <div className={styles.billDescription}>
+                    <h4>{data.price}</h4>
+                    <p>{data.stock}</p>
+                  </div>
+                  <div className={styles.descriptionDates}>
+                    <Link to='/details/1'>see ingredient details</Link>
+                    <p>26 Jul 2021</p>
                   </div>
                 </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
               </div>
-            </div>
+            ))}
           </div>
-          <div className={styles.menuCollections}>
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -161,10 +178,10 @@ export default function Seller() {
                     <h4>Baked Oatmeal with Mixed Berries</h4>
                   </div>
                   <div className={styles.button2}>
-                    {/* <p>
+                    <p>
                       <img src={buttonShipping} alt='' />
                       Prepare Shipping
-                    </p> */}
+                    </p>
                   </div>
                   <div style={{ marginLeft: "9rem" }} className={styles.button}>
                     <Link to='/seller/payment'>
@@ -311,7 +328,7 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

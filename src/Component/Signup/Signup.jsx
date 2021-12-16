@@ -16,15 +16,21 @@ import ButtonSignup from "../Button/ButtonSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupAction } from "../../store/actions/auth";
 
+const selectStyle = {
+  padding: '12px 16px',
+  border: '1px solid #9F9F9F',
+  boxSizing: 'border-box',
+  borderRadius: '4px',
+  width: '700px',
+}
+
 function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const validate = Yup.object({
     phoneNumber: Yup.string()
-      .required("Required")
       .matches(/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/, "Wrong Phone Number"),
     address: Yup.string()
-      .required("Required"),
   });
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -32,6 +38,7 @@ function Signup() {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+  
 
   return (
     <div className='signup-page'>
@@ -55,25 +62,35 @@ function Signup() {
               }}>
               <Formik
                 initialValues={{
+                  image: "",
                   phoneNumber: "",
                   address: "",
+                  id_location: ""
                 }}
                 onSubmit={(values) => {
-                  dispatch(SignupAction(values));
+
+                  let formData = new FormData();
+
+                  Object.entries(values).forEach((item)=> {
+                    formData.append(item[0], item[1])
+                  })
+
+                  dispatch(SignupAction(formData));
                   navigate("/")
-                  console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {
-                const {handleSubmit} = formikProps
+                const {values, handleChange, handleBlur, handleSubmit} = formikProps
+                // console.log(values)
                 return (
                   <div className='field-top'>
                     <div className='name-top'>
                       <h1>One more step!</h1>
                       <h6>Help us know you better</h6>
                     </div>
-                    <UploadImage />
+                    
                     <form onSubmit={handleSubmit}>
+                      <UploadImage name="image" value={values.image} />
                       <TextBarSignup
                         label='Phone Number'
                         name='phoneNumber'
@@ -84,12 +101,26 @@ function Signup() {
                         name='address'
                         type='text'
                       />
-                      <TextBarSignup
-                        label='Location (City)'
-                        name='location'
-                        select='true'
-                        type='text'
-                      />
+                      <div className='select-bar'>
+                        <div className="labelLoc">
+                              <label htmlFor="id_location">Location</label>
+                          </div>
+                        <select
+                          name="id_location"
+                          value={values.id_location}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          style={selectStyle}
+                        >
+                          <option value="" label="Select a Location" />
+                          <option value="1" label="Jakarta" />
+                          <option value="2" label="Bogor" />
+                          <option value="3" label="Depok" />
+                          <option value="4" label="Tangerang" />
+                          <option value="5" label="Bekasi" />
+                        </select>
+                      </div>
+                      
                       {/* <Link to='/'> */}
                         <Box sx={{marginLeft: '88px', width:'700px', marginTop: '30px'}}>
                           <Button 

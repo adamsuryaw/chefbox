@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Recipe.css";
 import {
   FormControlLabel,
@@ -13,18 +13,19 @@ import {
   Avatar,
   Pagination,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import TextBarRecipe from "../TextBar/TextBarRecipe";
 import montes from "../../Asset/Frame 3.svg";
 import CardComp from "../Card/Card";
 import data from "../Data/data";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
+import styles from './Recipe.module.scss'
 
 function Recipe() {
-  const { product } = data;
-  console.log(data);
+  const { list } = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,7 +37,7 @@ function Recipe() {
       <div className='recipe-section'>
         <div className='location-section'>
           <h5>Location</h5>
-          <h6>Based on your profile</h6>
+          {/* <h6>Based on your profile</h6>
           <FormControlLabel
             value='end'
             control={<Checkbox />}
@@ -45,7 +46,7 @@ function Recipe() {
             sx={{
               color: "black",
             }}
-          />
+          /> */}
           <TextBarRecipe
             name='location'
             select='true'
@@ -117,11 +118,14 @@ function Recipe() {
           />
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
-        <Link to='/details/1' className='card-section'>
-          {product?.map((product) => (
-            <CardComp key={product.id} product={product} />
+        <div className={styles.CardSections}>
+          {list?.map((data) => (
+            <Link to={`/details/${data.id}`} className={"card-section"}>
+              <CardComp key={data.id} data={data} />
+            </Link>
           ))}
-        </Link>
+        </div>
+
         <div className='pagination-section'>
           <Pagination count={10} color='primary' />
         </div>

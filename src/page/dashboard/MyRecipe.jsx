@@ -22,6 +22,9 @@ import { Pagination } from "@mui/material";
 import data from "./data";
 import CardComp from "../../Component/Card/Card";
 import { Button } from "@mui/material";
+import { useEffect } from "react";
+import { getRecipe } from "../../store/actions/recipe";
+import { useDispatch, useSelector } from "react-redux";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,6 +43,14 @@ export default function MyRecipe() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const { list } = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
 
   return (
     <div className={styles.Body}>
@@ -101,11 +112,14 @@ export default function MyRecipe() {
           </div>
           <div className={styles.MainContainer}>
             <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
-            <Link to='/details/1'className='card-sections'>
-              {product?.map((product) => (
-                <CardComp key={product.id} product={product} />
+            <div className={styles.CardSections}>
+              {list?.map((data) => (
+                <Link to={`/details/${data.id}`} className='card-sections'>
+                  <CardComp key={data.id} data={data} />
+                </Link>
               ))}
-            </Link>
+            </div>
+
             <div className={styles.PaginationSection}>
               <Pagination count={10} color='primary' />
             </div>

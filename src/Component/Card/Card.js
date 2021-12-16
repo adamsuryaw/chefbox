@@ -22,10 +22,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
 
-function CardComp(props) {
-  const { product } = props;
-  
-  console.log(props);
+function CardComp({data}) {
+  console.log("data", data);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -53,7 +51,7 @@ function CardComp(props) {
                 right: "20px",
               }}
               component='img'
-              image={product.image}
+              image={data.image}
               alt='makan'
             />
             <CardContent sx={{ padding: "14px 0px 0px 0px" }}>
@@ -66,7 +64,7 @@ function CardComp(props) {
                   fontWeight: "bold",
                   fontSize: "16px",
                 }}>
-                {product.title}
+                {data.title}
               </Typography>
               <Typography
                 variant='body2'
@@ -76,7 +74,7 @@ function CardComp(props) {
                   fontSize: "16px",
                   color: "#B6340B",
                 }}>
-                {product.price}
+                {data.price}
               </Typography>
               <div className='content-card'>
                 <div className='left-content'>
@@ -89,7 +87,7 @@ function CardComp(props) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {product.time}
+                      {data.duration}
                     </Typography>
                   </div>
                   <div className='bottom-left-content'>
@@ -101,7 +99,7 @@ function CardComp(props) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {product.service}
+                      {data.serving}
                     </Typography>
                   </div>
                 </div>
@@ -132,7 +130,7 @@ function CardComp(props) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {product.location}
+                      {data.location.name}
                     </Typography>
                   </div>
                 </div>
@@ -152,7 +150,7 @@ function CardComp(props) {
                     padding: "5px 0 5px 0",
                     marginLeft: "9px",
                   }}>
-                  {product.name}
+                  {data.user.userName}
                 </Typography>
               </div>
             </CardContent>

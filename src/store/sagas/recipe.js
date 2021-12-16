@@ -10,14 +10,14 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
 
+const currentToken = localStorage.getItem("token")
+const config = {
+  headers: { 'access_token': currentToken }
+}
+
 function* getRecipeList() {
   try {
-    const res = yield axios.get(`${BASE_URL}recipe`, {
-      headers: {
-        access_token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJOYW1lIjoibXVseW9ubyIsImVtYWlsIjoibXVseW9ub0BnbWFpbC5jb20iLCJpYXQiOjE2MzgxNjgyOTd9.quJygGH9FbG7Axemd9Y20GAV6bdgJwTcifcwkEDjGSU",
-      },
-    });
+    const res = yield axios.get(`${BASE_URL}recipe`, config);
     yield put({
       type: GET_RECIPE_SUCCESS,
       payload: res.data.data,
@@ -29,15 +29,10 @@ function* getRecipeList() {
     });
   }
 }
-function* getDetailsList(action) {
+function* detailsList(action) {
   const { id } = action;
   try {
-    const res = yield axios.get(`${BASE_URL}recipe/${id}`, {
-      headers: {
-        access_token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJOYW1lIjoibXVseW9ubyIsImVtYWlsIjoibXVseW9ub0BnbWFpbC5jb20iLCJpYXQiOjE2MzgxNjgyOTd9.quJygGH9FbG7Axemd9Y20GAV6bdgJwTcifcwkEDjGSU",
-      },
-    });
+    const res = yield axios.get(`${BASE_URL}recipe/${id}`, config);
     yield put({
       type: GET_RECIPE_DETAILS_SUCCESS,
       payload: res.data.data,
@@ -54,5 +49,5 @@ export function* watchGetRecipeList() {
   yield takeEvery(GET_RECIPE_BEGIN, getRecipeList);
 }
 export function* watchGetDetailsList() {
-  yield takeEvery(GET_RECIPE_DETAILS_BEGIN, getDetailsList);
+  yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);
 }

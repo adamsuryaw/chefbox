@@ -7,8 +7,8 @@ import data from '../Data/data';
 
 function TextBarRecipe(props) {
     const {tempat, tipe, kategori, sorting} = data;
-    console.log(data)
-    console.log(props)
+    // console.log(data)
+    // console.log(props)
     const [location, setLocation] = React.useState();
     const handleChangeLocation = (event) => {
         setLocation(event.target.value);

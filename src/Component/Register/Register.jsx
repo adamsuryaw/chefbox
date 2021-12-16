@@ -22,7 +22,7 @@ function Register() {
   const navigate = useNavigate();
 
   const validate = Yup.object({
-    username: Yup.string()
+    userName: Yup.string()
       .max(15, "Must be 20 character or less")
       .required("Required"),
     email: Yup.string()
@@ -39,6 +39,24 @@ function Register() {
       .required("Re-enter your password")
       .oneOf([Yup.ref("password"), null], "Password must match"),
   });
+  // const validationSchema = Yup.object({
+  //   userName: Yup.string()
+  //     .max(15, "Must be 20 character or less")
+  //     .required("Required"),
+  //   email: Yup.string()
+  //     .email("Email is Invalid")
+  //     .required("Required")
+  //     .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please Input Your Email"),
+  //   password: Yup.string("Please Enter Your Password")
+  //     .required("Password must be required")
+  //     .matches(
+  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+  //       "Password Must be at least 8 Characters"
+  //     ),
+  //   confirmPassword: Yup.string()
+  //     .required("Re-enter your password")
+  //     .oneOf([Yup.ref("password"), null], "Password must match"),
+  // });
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
@@ -68,7 +86,7 @@ function Register() {
               }}>
               <Formik
                 initialValues={{
-                  username: "",
+                  userName: "",
                   email: "",
                   passowrd: "",
                   confirmPassword: "",
@@ -93,7 +111,7 @@ function Register() {
                     <form onSubmit={handleSubmit}>
                       <TextBarRegis
                         label='Username'
-                        name='username'
+                        name='userName'
                         type='text'
                         
                       />

@@ -17,15 +17,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../store/actions/profile";
 
 function Account() {
-  const [username, setUsername] = React.useState("justinj");
-  const [email, setEmail] = React.useState("justin@mail.com");
-  const [firstName, setFirstname] = React.useState("Justin ");
-  const [lastName, setLastname] = React.useState("Junaedi ");
-  const [location, setLocation] = React.useState("Surabaya ");
-  const [phoneNumber, setPhonenumber] = React.useState("+62 1234 2345 ");
-  const [address, setAddress] = React.useState(
-    "Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis Mejoyo, Kota SBY, Jawa Timur 60237"
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+  const userDetails = useSelector((state) => state.userDetails.userDetails);
+  console.log("user details", userDetails);
+  const [username, setUsername] = React.useState(userDetails.details.userName);
+  const [email, setEmail] = React.useState(userDetails.details.email);
+  const [firstName, setFirstname] = React.useState(userDetails.details.firstName);
+  const [lastName, setLastname] = React.useState(userDetails.details.lastName);
+  const [location, setLocation] = React.useState(userDetails.details.location.name);
+  const [phoneNumber, setPhonenumber] = React.useState(userDetails.details.phoneNumber);
+  const [address, setAddress] = React.useState(userDetails.details.address);
   const handleUsername = (event) => {
     setUsername(event.target.value);
   };
@@ -47,12 +51,7 @@ function Account() {
   const handleAddress = (event) => {
     setAddress(event.target.value);
   };
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
-  const userDetails = useSelector((state) => state.userDetails.userDetails);
-  console.log(userDetails);
+  
   return (
     <div className='account-section'>
       <div className='aside-section'>

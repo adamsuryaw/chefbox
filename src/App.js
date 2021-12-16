@@ -4,12 +4,12 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Routers from "./routes/Routes"
 import HeaderToken from "./HeaderToken/HeaderToken";
+import Header from "./Component/Header/Header";
 
 function App() {
   return (
     <>
-      {/* <HeaderToken /> */}
-      <Navbar />
+      <HeaderToken />
       <Routers />
       <Footer />
     </>

@@ -7,14 +7,14 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
 
-function* getUser() {
+function* user() {
+  const currentToken = localStorage.getItem("token")
+  const config = {
+    headers: { 'access_token': currentToken }
+  }
   try {
-    const res = yield axios.get(`${BASE_URL}user`, {
-      headers: {
-        access_token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJOYW1lIjoibXVseW9ubyIsImVtYWlsIjoibXVseW9ub0BnbWFpbC5jb20iLCJpYXQiOjE2MzgxNjgyOTd9.quJygGH9FbG7Axemd9Y20GAV6bdgJwTcifcwkEDjGSU",
-      },
-    });
+    const res = yield axios.get(`${BASE_URL}user`, config);
+    console.log(res, "res");
     yield put({
       type: GET_USER_SUCCESS,
       payload: res.data.data,
@@ -28,5 +28,5 @@ function* getUser() {
 }
 
 export function* watchGetUser() {
-  yield takeEvery(GET_USER_BEGIN, getUser);
+  yield takeEvery(GET_USER_BEGIN, user);
 }
