@@ -20,7 +20,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Pagination } from "@mui/material";
 import data from "./data";
-import CardComp from "../../Component/Card/Card";
+// import CardComp from "../../Component/Card/Card";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";

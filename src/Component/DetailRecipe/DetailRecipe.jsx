@@ -23,20 +23,26 @@ import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 import data from "../Data/data";
 import Cart from "../Cart/Cart";
 import { getRecipeDetails } from "../../store/actions/recipe";
+import { getReview } from "../../store/actions/review";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
-  const { comment } = data;
-  const {details} = useSelector((state) => state.recipe.listDetails);
-  console.log("details", details);
+  const [count, setCount] = React.useState(0)
+
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipeDetails(id));
+    dispatch(getReview())
   }, []);
+
+  const {details} = useSelector((state) => state.recipe.listDetails);
+  console.log("details", details);
+  const review = useSelector((state) => state.review.userReview);
+  console.log("review", review);
 
   const [cartItems, setCartItems] = React.useState([]);
 
@@ -44,17 +50,15 @@ function DetailRecipe() {
     <div className='detail-page'>
       <div className='menu-section'>
         <div className='food-section'>
-          <h1>Baked Oatmeal with Mixed Berries</h1>
+          <h1>{details.title}</h1>
           <h3>
-            This gluten-free baked oatmeal dotted with blueberries and
-            raspberries is an easy and heathy brunch casserole. Reheat leftovers
-            for a quick breakfast all weeklong.
+            {details.description}
           </h3>
           <div className='food-mid-section'>
             <div className='avatar-section'>
               <Avatar
                 alt='Remy Sharp'
-                src={avatarPic}
+                src={"details.user.image"}
                 sx={{ width: 32, height: 32 }}
               />
               <div className='avatar-info'>
@@ -67,7 +71,7 @@ function DetailRecipe() {
                     marginLeft: "10px",
                     color: "#333333",
                   }}>
-                  Akachi Chua
+                  {"details.user.userName"}
                 </Typography>
                 <Typography
                   component='div'
@@ -132,7 +136,7 @@ function DetailRecipe() {
                     fontWeight: "normal",
                     fontSize: "12px",
                   }}>
-                  30 mins
+                  {`${details.duration} mins`}
                 </Typography>
               </div>
             </div>
@@ -164,13 +168,13 @@ function DetailRecipe() {
                     fontWeight: "normal",
                     fontSize: "12px",
                   }}>
-                  5 servings
+                  {`${details.serving} servings`}
                 </Typography>
               </div>
             </div>
           </div>
           <div className='picture-section'>
-            <img src={bigPict} alt='' />
+            <img src={details.image} alt='' />
           </div>
           <div className='ingredient-section'>
             <Typography
@@ -183,6 +187,7 @@ function DetailRecipe() {
               }}>
               Ingredients
             </Typography>
+            {details.ingredient == null ?
             <ul>
               <li>250 gr rolled oats</li>
               <li>125 ml milk</li>
@@ -192,6 +197,9 @@ function DetailRecipe() {
               <li>100 gr blueberries, divided</li>
               <li>100 gr raspberries, divided</li>
             </ul>
+            :
+            details.ingredient
+            }
           </div>
           <div className='method-section'>
             <Typography
@@ -206,31 +214,17 @@ function DetailRecipe() {
             </Typography>
             <ol>
               <li>
-                Preheat your oven to 375°F. Grease with butter or lined a 9x9
-                baking dish with parchment.
-              </li>
-              <li>
-                In a large mixing bowl, add oats, milk, eggs, melted butter,
-                honey, yogurt, vanilla, and salt. Stir with a fork or whisk to
-                combine thoroughly.
-              </li>
-              <li>
-                Fold 3/4 cup each of blueberries and raspberries into the
-                mixture. Pour mixture into prepared casserole dish. Sprinkle all
-                remaining berries over top.
-              </li>
-              <li>
-                Bake the oatmeal casserole for 45 minutes, or until the
-                casserole is shiny on top and firm to the touch.
+              {details.direction}
               </li>
             </ol>
+            
           </div>
         </div>
         <div className='review-section'>
           <h1>Review</h1>
           <div className='review-per-section'>
-            {comment?.map((comment) => (
-              <Review key={comment.id} comment={comment} />
+            {review.details?.map((details) => (
+              <Review key={details.id} details={details} />
             ))}
           </div>
         </div>
@@ -264,7 +258,7 @@ function DetailRecipe() {
                 color: "#828282",
                 margin: 0,
               }}>
-              Surabaya
+              {"details.location.name"}
             </Typography>
           </div>
         </div>
@@ -290,8 +284,9 @@ function DetailRecipe() {
           </div>
           <div className='text-stock'>
             <input type='text' />
+            <h2>{count}</h2>
             <h6>
-              Stock <span>4</span>
+              Stock <span>{details.stock}</span>
             </h6>
           </div>
           <div className='plus-stock'>
@@ -332,7 +327,7 @@ function DetailRecipe() {
               color: "#000000",
               paddingLeft: "20px",
             }}>
-            Rp. 75.000
+            {`Rp. ${details.price}`}
           </Typography>
         </div>
         <div className='btn-field'>

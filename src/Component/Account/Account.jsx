@@ -2,6 +2,7 @@ import React from "react";
 import "./Account.css";
 import store from "../../Asset/store.svg";
 import { Link } from "react-router-dom";
+import { Formik, Form } from "formik";
 import {
   Button,
   Box,
@@ -14,42 +15,44 @@ import {
 import profilePict from "../../Asset/Ellipse 11-1.svg";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../store/actions/profile";
+import { getUser, patchUpdate } from "../../store/actions/profile";
+import UploadImage from "../Upload/UploadImage";
 
 function Account() {
   const dispatch = useDispatch();
+  const userDetails = useSelector((state) => state?.account?.userDetails);
+  console.log("user details", userDetails);
+  // const globalStore = JSON.parse(localStorage.getItem("persist:root"))
+  // console.log(JSON.parse(globalStore.account), 'datauser')
+  // const userData = JSON.parse(globalStore?.account)
+  // const [update, setUpdate] = useState({
+  //   userName: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   phoneNumber: "",
+  //   address: "",
+  //   id_location: "",
+  //   image: null,
+  // });
+
   useEffect(() => {
     dispatch(getUser());
   }, []);
-  const userDetails = useSelector((state) => state.userDetails.userDetails);
-  console.log("user details", userDetails);
-  const [username, setUsername] = React.useState(userDetails.details.userName);
-  const [email, setEmail] = React.useState(userDetails.details.email);
-  const [firstName, setFirstname] = React.useState(userDetails.details.firstName);
-  const [lastName, setLastname] = React.useState(userDetails.details.lastName);
-  const [location, setLocation] = React.useState(userDetails.details.location.name);
-  const [phoneNumber, setPhonenumber] = React.useState(userDetails.details.phoneNumber);
-  const [address, setAddress] = React.useState(userDetails.details.address);
-  const handleUsername = (event) => {
-    setUsername(event.target.value);
-  };
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleFirstname = (event) => {
-    setFirstname(event.target.value);
-  };
-  const handleLastname = (event) => {
-    setLastname(event.target.value);
-  };
-  const handleLocation = (event) => {
-    setLocation(event.target.value);
-  };
-  const handlePhonenumber = (event) => {
-    setPhonenumber(event.target.value);
-  };
-  const handleAddress = (event) => {
-    setAddress(event.target.value);
+
+  // const changeUpdate = (e) => {
+  //   console.log(e)
+  //   setUpdate({
+  //     ...update,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  
+  // const [initialValues, setInitialValues] = useState(userDetails.details)
+  // console.log(initialValues, "initialValues")
+  const handleDataChange = (event) => {
+    console.log(event, "event")
+    // setInitialValues(event.target.value);
   };
   
   return (
@@ -128,193 +131,241 @@ function Account() {
         </div>
       </div>
       <div className='account-text'>
-        <div className='avatar-sec'>
+        {/* <div className='avatar-sec'>
           <img src={profilePict} alt='' />
-        </div>
+        </div> */}
         <div className='text-field'>
-          <div className='text-field-1'>
-            <div>
-              <h5>Username</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={username}
-                onChange={handleUsername}
-              />
-            </div>
-            <div>
-              <h5>Email</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={email}
-                onChange={handleEmail}
-              />
-            </div>
-          </div>
-          <div className='text-field-2'>
-            <div>
-              <h5>First Name</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={firstName}
-                onChange={handleFirstname}
-              />
-            </div>
-            <div>
-              <h5>Last Name</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={lastName}
-                onChange={handleLastname}
-              />
-            </div>
-          </div>
-          <div className='text-field-3'>
-            <div>
-              <h5>Location (City)</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={location}
-                onChange={handleLocation}
-              />
-            </div>
-            <div>
-              <h5>Phone Number</h5>
-              <InputBase
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                value={phoneNumber}
-                onChange={handlePhonenumber}
-              />
-            </div>
-          </div>
-          <div className='text-field-4'>
-            <div>
-              <h5>Address</h5>
-              <InputBase
-                sx={{
-                  width: "740px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  marginRight: "47px",
-                  marginTop: "6px",
-                }}
-                fullWidth
-                multiline
-                rows={2}
-                value={address}
-                onChange={handleAddress}
-              />
-            </div>
-          </div>
+
+        <Formik
+          initialValues={{
+            userName: userDetails?.details?.userName,
+            email: userDetails?.details?.email,
+            firstName: userDetails?.details?.firstName,
+            lastName: userDetails?.details?.lastName,
+            phoneNumber: userDetails?.details?.phoneNumber,
+            address: userDetails?.details?.address,
+            id_location: userDetails?.details?.id_location,
+            image: userDetails?.details?.image,
+          }}
+          onSubmit={(values) => {
+            console.log(values, "bisa")
+            // let formData = new FormData();
+
+            // Object.entries(values).forEach((item)=> {
+            //   formData.append(item[0], item[1])
+            // })
+
+            // dispatch(patchUpdate(values))
+            // navigate("/")
+          }}
+          >
+            {(formikProps)=> {
+              const {values, handleChange, handleBlur, handleSubmit} = formikProps
+              console.log(values, "ini value")
+              return (
+                <form onSubmit={handleSubmit}>
+                  <div className='avatar-sec'>
+                    {/* <img src={initialValues?.image || null} alt='' /> */}
+                    <UploadImage className="avatar" name="image" value={values.image} />
+                  </div>
+                  <h1>ini formik</h1>
+                  <div className='text-field-1'>
+                    <div>
+                      <h5>Username</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="userName"
+                        value={values.email}
+                        // defaultValue={values.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <h5>Email</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className='text-field-2'>
+                    <div>
+                      <h5>First Name</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="firstName"
+                        value={values.firstName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <h5>Last Name</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="lastName"
+                        value={values.lastName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className='text-field-3'>
+                    <div>
+                      <h5>Location (City)</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="id_location"
+                        value={values.id_location == 1 ? "Jakarta" : "Bogor"}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <h5>Phone Number</h5>
+                      <InputBase
+                        sx={{
+                          width: "346px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="phoneNumber"
+                        value={values.phoneNumber}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className='text-field-4'>
+                    <div>
+                      <h5>Address</h5>
+                      <InputBase
+                        sx={{
+                          width: "740px",
+                          border: "1px solid #9F9F9F",
+                          boxSizing: "border-box",
+                          borderRadius: "4px",
+                          padding: "12px 16px",
+                          fontFamily: "Nunito",
+                          fontWeight: "normal",
+                          fontSize: "14px",
+                          lineHeight: "20px",
+                          marginRight: "47px",
+                          marginTop: "6px",
+                        }}
+                        fullWidth
+                        name="address"
+                        multiline
+                        rows={2}
+                        value={values.address}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className='btn-save'>
+                    <Button
+                      variant='contained'
+                      type="submit"
+                      sx={{
+                        width: "167px",
+                        height: "36px",
+                        background: "#F9C959",
+                        boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                        borderRadius: "24px",
+                        marginTop: "57px",
+                        marginLeft: "80px",
+                        textTransform: "none",
+                      }}>
+                      <Typography
+                        component='div'
+                        sx={{
+                          fontFamily: "Nunito",
+                          fontWeight: "bold",
+                          fontSize: "16px",
+                          color: "#333333",
+                        }}>
+                        Save Changes
+                      </Typography>
+                    </Button>
+                  </div>
+                </form>
+              )
+            }}
+        </Formik>
         </div>
-        <div className='btn-save'>
-          <Button
-            variant='contained'
-            sx={{
-              width: "167px",
-              height: "36px",
-              background: "#F9C959",
-              boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-              borderRadius: "24px",
-              marginTop: "57px",
-              marginLeft: "80px",
-              textTransform: "none",
-            }}>
-            <Typography
-              component='div'
-              sx={{
-                fontFamily: "Nunito",
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "#333333",
-              }}>
-              Save Changes
-            </Typography>
-          </Button>
-        </div>
+        
       </div>
     </div>
   );

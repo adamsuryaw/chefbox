@@ -3,18 +3,18 @@ import avatarPic2 from '../../Asset/Ellipse 11.svg'
 import { Rating, Divider,  Card, CardActions, CardContent, CardMedia, Button, Typography, CardActionArea, Avatar } from '@mui/material';
 import './Review.css'
 
-function Review(props) {
+function Review({details}) {
     const [value, setValue] = React.useState(2);
-    const {comment} = props
-    console.log(props)
+    
+    console.log(details, 'review details')
 
     return (
         <div className="review-content">
             <div className="avatar-section">
-                <Avatar 
+                <img
                     alt="Remy Sharp" 
-                    src={avatarPic2} 
-                    sx={{ width: 34, height: 34, paddingBottom: '20px' }}
+                    src={details.user.image} 
+                    // sx={{ width: 34, height: 34, paddingBottom: '20px', objectFit: 'cover' }}
                 />
                 <div className="review-in">
                     <div className="name-avatar">
@@ -30,7 +30,7 @@ function Review(props) {
                                 margin: '6px 6px 0px 0px'
                             }}
                         >
-                            {comment.namePost}
+                            {details.user.userName}
                         </Typography>
                         <Divider 
                             orientation="vertical" 
@@ -44,12 +44,12 @@ function Review(props) {
                                 fontWeight: 'normal',
                                 fontSize: '14px',
                                 color: '#BDBDBD',
-                                width: '69px',
+                                width: '80px',
                                 height: '20px',
                                 margin: '6px 6px 0px 6px'
                             }}
                         >
-                            {comment.timePost}
+                            {details.commentTime}
                         </Typography>
                     </div>
                     <Rating 
@@ -63,7 +63,7 @@ function Review(props) {
                         size="small"
                     />
                     <p>
-                        {comment.review}
+                        {details.comment}
                     </p>
                 </div>
                 <div className="comment">

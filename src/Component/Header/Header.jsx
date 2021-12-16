@@ -75,29 +75,32 @@ function Header() {
           <SearchIcon />
         </IconButton>
       </Paper>
-      <Button
-        variant='contained'
-        sx={{
-          width: "172px",
-          height: "36px",
-          background: "#B6340B",
-          boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-          borderRadius: "24px",
-          marginTop: "5px",
-          marginLeft: "505px",
-          textTransform: "none",
-        }}>
-        <Typography
-          component='div'
+      <Link to='/create'>
+        <Button
+          variant='contained'
           sx={{
-            fontFamily: "Nunito",
-            fontWeight: "bold",
-            fontSize: "16px",
-            color: "#F2F2F2",
+            width: "145px",
+            height: "36px",
+            background: "#B6340B",
+            boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+            borderRadius: "24px",
+            marginTop: "5px",
+            marginLeft: "505px",
+            textTransform: "none",
           }}>
-          Create Recipe
-        </Typography>
-      </Button>
+          <Typography
+            component='div'
+            sx={{
+              fontFamily: "Nunito",
+              fontWeight: "bold",
+              fontSize: "16px",
+              color: "#F2F2F2",
+            }}>
+            Create Recipe
+          </Typography>
+        </Button>
+      </Link>
+
       <div className='shop-button'>
         <ShoppingCartOutlined sx={{ fontSize: "24px" }} />
       </div>

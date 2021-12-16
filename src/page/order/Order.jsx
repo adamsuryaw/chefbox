@@ -9,7 +9,17 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getRecipe } from "../../store/actions/recipe";
 
+// const { list } = useSelector((state) => state.recipe.listRecipe);
+// console.log("list", list);
+
+// const dispatch = useDispatch();
+// useEffect(() => {
+//   dispatch(getRecipe());
+// }, []);
+// {list?.map((data) => ())} this is the data that will be in the modal
 const style = {
   display: "flex",
   justifyContent: "space-around",
@@ -67,7 +77,8 @@ export const DeliveryDetails = (props) => {
   );
 };
 
-export const DeliveryForm = () => {
+export const DeliveryForm = (props) => {
+  const {setForm} = props;
   return (
     <div className={styles.BoxedTextField}>
       <div className={styles.InputField}>
@@ -134,6 +145,7 @@ export const DeliveryForm = () => {
 
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
+          onClick={() => setForm(false)}
           className={styles.button}
           variant='contained'
           sx={{
@@ -178,7 +190,7 @@ export default function Order() {
               <div className={styles.AddressUser}>
                 <h3>Delivery Address</h3>
                 {showform ? (
-                  <DeliveryForm />
+                  <DeliveryForm setForm={setForm} />
                 ) : (
                   <DeliveryDetails setForm={setForm} />
                 )}

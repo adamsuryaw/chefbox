@@ -5,6 +5,9 @@ import {
   GET_RECIPE_DETAILS_BEGIN,
   GET_RECIPE_DETAILS_SUCCESS,
   GET_RECIPE_DETAILS_FAIL,
+  PAGINATION_BEGIN,
+  PAGINATION_SUCCESS,
+  PAGINATION_FAIL
 } from "../../constants/types";
 
 const initialState = {
@@ -83,6 +86,35 @@ export const recipe = (state = initialState, action) => {
           loading: false,
           error: error,
           details: {},
+        },
+      };
+    case PAGINATION_BEGIN:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: true,
+          error: null,
+        },
+      };
+    case PAGINATION_SUCCESS:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: false,
+          error: null,
+          list: payload,
+        },
+      };
+    case PAGINATION_FAIL:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: false,
+          error: error,
+          list: [],
         },
       };
   }

@@ -3,15 +3,19 @@ import {
   GET_USER_BEGIN,
   GET_USER_SUCCESS,
   GET_USER_FAIL,
+  PATCH_PROFILE_BEGIN,
+  PATCH_PROFILE_SUCCESS,
+  PATCH_PROFILE_FAIL
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
 
+const currentToken = localStorage.getItem("token")
+const config = {
+  headers: { 'access_token': currentToken }
+}
+
 function* user() {
-  const currentToken = localStorage.getItem("token")
-  const config = {
-    headers: { 'access_token': currentToken }
-  }
   try {
     const res = yield axios.get(`${BASE_URL}user`, config);
     console.log(res, "res");
@@ -27,6 +31,26 @@ function* user() {
   }
 }
 
+function* updateUser(action) {
+  const { body } = action;
+  try {
+    const res = yield axios.patch(`${BASE_URL}user/changeprofile`, body, config);
+    console.log(res, "res");
+    yield put({
+      type: PATCH_PROFILE_SUCCESS,
+    });
+  } catch (err) {
+    yield put({
+      type: PATCH_PROFILE_FAIL,
+      error: err,
+    });
+  }
+}
+
 export function* watchGetUser() {
   yield takeEvery(GET_USER_BEGIN, user);
+}
+
+export function* watchUpdateUser() {
+  yield takeEvery(PATCH_PROFILE_BEGIN, updateUser);
 }

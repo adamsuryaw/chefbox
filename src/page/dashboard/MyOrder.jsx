@@ -12,7 +12,8 @@ import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipe } from "../../store/actions/recipe";
-import CardComp from "../../Component/Card/Card";
+import Modal from "@mui/material/Modal";
+import { Pagination } from "@mui/material";
 
 export default function MyOrder() {
   const [firstValue, setFirstValue] = React.useState(0);
@@ -26,6 +27,25 @@ export default function MyOrder() {
   useEffect(() => {
     dispatch(getRecipe());
   }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [showform, setForm] = React.useState(false);
+
+  const style = {
+    display: "flex",
+    justifyContent: "space-around",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "#fffaef",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <div className={styles.sellerContainer}>
@@ -82,7 +102,7 @@ export default function MyOrder() {
         </div>
         <div className={styles.menuSeller}>
           <h2>My Order</h2>
-          <div className={styles.menuButton}>
+          {/* <div className={styles.menuButton}>
             <div className={styles.listButton}>
               <button className={styles.buttonAll}>All</button>
               <div className={styles.list}>
@@ -100,7 +120,7 @@ export default function MyOrder() {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className={styles.menuCollections}>
             {list?.map((data) => (
               // <CardComp key={data.id} data={data} />
@@ -111,9 +131,50 @@ export default function MyOrder() {
                 <div className={styles.menuDescriptions}>
                   <div className={styles.menuCollectionButton}>
                     <div className={styles.title3}>
-                    <h4>{data.title}</h4>
+                      <h4>{data.title}</h4>
                     </div>
                     <div className={styles.button2}></div>
+                    {/* <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby='modal-modal-title'
+                    aria-describedby='modal-modal-description'>
+                    <Box sx={style}>
+                      <Typography
+                        id='modal-modal-title'
+                        variant='h6'
+                        component='h2'>
+                        <div className={styles.ProductContent}>
+                          <h4>Product content</h4>
+                          <div className={styles.ProductList}>
+                            <ul>
+                              <li style={{ listStyleType: "disc" }}>
+                                1 kg package egg noodles
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr butter
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr minced parsley
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                50 gr salt
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                10 gr black pepper
+                              </li>
+                              <li style={{ listStyleType: "disc" }}>
+                                100 ml olive oil
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </Typography>
+                      <Typography
+                        id='modal-modal-description'
+                        sx={{ mt: 2 }}></Typography>
+                    </Box>
+                  </Modal> */}
                     <div
                       style={{ marginLeft: "9rem" }}
                       className={styles.button}>
@@ -133,6 +194,9 @@ export default function MyOrder() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className={styles.PaginationSection}>
+            <Pagination count={10} color='primary' />
           </div>
           {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>

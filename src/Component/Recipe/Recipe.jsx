@@ -24,8 +24,10 @@ import { getRecipe } from "../../store/actions/recipe";
 import styles from './Recipe.module.scss'
 
 function Recipe() {
-  const { list } = useSelector((state) => state.recipe.listRecipe);
-  console.log("list", list);
+  const {list} = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list)
+  const [loc, setLoc] = useState()
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,6 +49,19 @@ function Recipe() {
               color: "black",
             }}
           /> */}
+          <select
+            name="loc"
+            value={loc}
+            // onChange={}
+            // onBlur={}
+          >
+            <option value="" label="Select a Location" />
+            <option value="1" label="Jakarta" />
+            <option value="2" label="Bogor" />
+            <option value="3" label="Depok" />
+            <option value="4" label="Tangerang" />
+            <option value="5" label="Bekasi" />
+          </select>
           <TextBarRecipe
             name='location'
             select='true'
@@ -56,6 +71,16 @@ function Recipe() {
         </div>
         <div className='type-section'>
           <h5>Type</h5>
+          <select
+            name="loc"
+            value={loc}
+            // onChange={}
+            // onBlur={}
+          >
+            <option value="" label="Select your Type" />
+            <option value="1" label="Food" />
+            <option value="2" label="Beverage" />
+          </select>
           <TextBarRecipe
             name='type'
             select='true'
@@ -65,6 +90,19 @@ function Recipe() {
         </div>
         <div className='category-section'>
           <h5>Category</h5>
+          <select
+            name="loc"
+            value={loc}
+            // onChange={}
+            // onBlur={}
+          >
+            <option value="" label="Select Category" />
+            <option value="1" label="Meat" />
+            <option value="2" label="Chicken" />
+            <option value="3" label="Seafood" />
+            <option value="4" label="Vegetarian" />
+            <option value="5" label="Local" />
+          </select>
           <TextBarRecipe
             name='category'
             select='true'
@@ -116,6 +154,16 @@ function Recipe() {
               marginLeft: "1rem",
             }}
           />
+          <select
+            name="loc"
+            value={loc}
+            // onChange={}
+            // onBlur={}
+          >
+            <option value="" label="Select Time" />
+            <option value="ASC" label="Newest" />
+            <option value="DESC" label="Oldest" />
+          </select>
           <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
         <div className={styles.CardSections}>

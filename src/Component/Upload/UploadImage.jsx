@@ -5,17 +5,17 @@ import { connect, getIn } from 'formik';
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
-    console.log(reader)
+    // console.log(reader)
     reader.onload = (event) => {
       resolve(event.target.result)
     };
     reader.readAsDataURL(file);
-    console.log(file, "file")
+    // console.log(file, "file")
     })
 
 function UploadImage(props) {
-    console.log(props)
-    const [image, setImage] = useState('')
+    // console.log(props.value, "props")
+    const [image, setImage] = useState(props.value)
     const [isUploaded, setIsUploaded] = useState(false)
     const {formik} = props
     const {setFieldValue} = formik
@@ -36,7 +36,7 @@ function UploadImage(props) {
       
         fileToImage(file)
             .then(dataUri => {
-                console.log(dataUri)
+                console.log(dataUri, "dataUri")
                 setImage(dataUri)
                 setFieldValue(props.name, file)
             })
@@ -70,9 +70,7 @@ function UploadImage(props) {
                     <img id="uploaded-image" src={image} alt="uploaded.img" value={image} />
                 )
             }
-            
         </div>
-        
     )
 }
 

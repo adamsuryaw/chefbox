@@ -33,6 +33,23 @@ function* detailsList(action) {
   const { id } = action;
   try {
     const res = yield axios.get(`${BASE_URL}recipe/${id}`, config);
+    console.log(res, "res")
+    yield put({
+      type: GET_RECIPE_DETAILS_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    yield put({
+      type: GET_RECIPE_DETAILS_FAIL,
+      error: err,
+    });
+  }
+}
+
+function* pagination(action) {
+  const { page } = action;
+  try {
+    const res = yield axios.get(`${BASE_URL}recipe&page${page}`);
     yield put({
       type: GET_RECIPE_DETAILS_SUCCESS,
       payload: res.data.data,
@@ -50,4 +67,7 @@ export function* watchGetRecipeList() {
 }
 export function* watchGetDetailsList() {
   yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);
+}
+export function* watchPagination() {
+  yield takeEvery(GET_RECIPE_DETAILS_BEGIN, pagination);
 }
