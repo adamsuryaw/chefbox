@@ -7,9 +7,18 @@ import HeaderToken from "./HeaderToken/HeaderToken";
 import Header from "./Component/Header/Header";
 
 function App() {
+  // console.log(window.location.pathname, "pathname")
   return (
     <>
-      <HeaderToken />
+      {window.location.pathname == "/login" 
+      || window.location.pathname == "/register" 
+      || window.location.pathname == "/register/signup"
+      ?
+        null
+        :
+        <HeaderToken />
+      }
+      
       <Routers />
       <Footer />
     </>

@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import userReducer from "./auth";
-import { userDetails } from "./profile";
+import { account } from "./profile";
 import {recipe} from "./recipe";
 import {location} from "./location";
+import {review} from "./review";
 
 export default combineReducers({
   user: userReducer,
-  userDetails,
+  account,
   recipe,
   location,
+  review,
 });

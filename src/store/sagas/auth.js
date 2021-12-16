@@ -20,7 +20,6 @@ function* login(action) {
   console.log(body, "saga login")
   try {
     const res = yield axios.post(`${baseUrl}/user/login`, body);
-    console.log(res, "res saga");
     yield put(
       {
         type: GET_LOGIN_SUCCESS,
@@ -38,7 +37,6 @@ function* login(action) {
 }
 
 export function* watchLogin() {
-  console.log("watch login")
   yield takeEvery(GET_LOGIN_BEGIN, login);
 }
 
@@ -47,7 +45,6 @@ function* register(action) {
   console.log(body, "saga regis")
   try {
     const res = yield axios.post(`${baseUrl}/user/signup`, body);
-    console.log(res);
     yield put(
       {
         type: REGISTER_SUCCESS,
@@ -63,7 +60,6 @@ function* register(action) {
   }
 }
 export function* watchRegister() {
-  console.log("watch register")
   yield takeEvery(REGISTER_BEGIN, register);
 }
 
@@ -75,7 +71,6 @@ function* signup(action) {
   }
   try {
     const res = yield axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, body, config);
-    console.log(res);
     yield put(
       {
         type: SIGNUP_SUCCESS,
@@ -91,6 +86,5 @@ function* signup(action) {
   }
 }
 export function* watchSignup() {
-  console.log("watch signup")
   yield takeEvery(SIGNUP_BEGIN, signup);
 }

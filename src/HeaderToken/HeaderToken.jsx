@@ -5,6 +5,7 @@ import Navbar from '../components/navbar/Navbar';
 function HeaderToken() {
     const token = localStorage.getItem("token");
     const [login, setLogin] = useState(false)
+    
     useEffect(() => {
         if(token) {
             setLogin(token)
