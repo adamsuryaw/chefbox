@@ -33,7 +33,7 @@ function* detailsList(action) {
   const { id } = action;
   try {
     const res = yield axios.get(`${BASE_URL}recipe/${id}`, config);
-    console.log(res, "res")
+    // console.log(res, "res")
     yield put({
       type: GET_RECIPE_DETAILS_SUCCESS,
       payload: res.data.data,

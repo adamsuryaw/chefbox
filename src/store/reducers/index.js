@@ -4,6 +4,7 @@ import { account } from "./profile";
 import {recipe} from "./recipe";
 import {location} from "./location";
 import {review} from "./review";
+import {addCart} from "./cart";
 
 export default combineReducers({
   user: userReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   recipe,
   location,
   review,
+  addCart,
 });

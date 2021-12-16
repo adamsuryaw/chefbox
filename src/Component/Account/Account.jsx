@@ -137,6 +137,7 @@ function Account() {
         <div className='text-field'>
 
         <Formik
+          enableReinitialize
           initialValues={{
             userName: userDetails?.details?.userName,
             email: userDetails?.details?.email,
@@ -148,14 +149,15 @@ function Account() {
             image: userDetails?.details?.image,
           }}
           onSubmit={(values) => {
-            console.log(values, "bisa")
-            // let formData = new FormData();
+            // console.log(values, "bisa")
+            let formData = new FormData();
+            Object.entries(values).filter(([key, value]) => value !== userDetails.details[`${key}`]).forEach(([key, value]) => {formData.append(key, value)})
+            
 
-            // Object.entries(values).forEach((item)=> {
-            //   formData.append(item[0], item[1])
-            // })
-
-            // dispatch(patchUpdate(values))
+            //       Object.entries(values).forEach((item)=> {
+            //         formData.append(item[0], item[1])
+            //       })
+            dispatch(patchUpdate(formData))
             // navigate("/")
           }}
           >
@@ -188,7 +190,7 @@ function Account() {
                         }}
                         fullWidth
                         name="userName"
-                        value={values.email}
+                        value={values.userName}
                         // defaultValue={values.email}
                         onChange={handleChange}
                       />
@@ -281,7 +283,7 @@ function Account() {
                         }}
                         fullWidth
                         name="id_location"
-                        value={values.id_location == 1 ? "Jakarta" : "Bogor"}
+                        value={values.id_location == 1 ? "Jakarta" : values.id_location == 2 ? "Bogor" : values.id_location == 3 ? "Depok" : "Tangerang"}
                         onChange={handleChange}
                       />
                     </div>

@@ -27,23 +27,26 @@ import { getReview } from "../../store/actions/review";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../../store/actions/cart";
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
   const [count, setCount] = React.useState(0)
-
+  
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipeDetails(id));
-    dispatch(getReview())
-  }, []);
+    dispatch(getReview(id))
+    dispatch(addToCart(id))
+  }, [id]);
 
   const {details} = useSelector((state) => state.recipe.listDetails);
   console.log("details", details);
   const review = useSelector((state) => state.review.userReview);
   console.log("review", review);
-
+  const shopCart = useSelector((state) => state.addCart.cartUser);
+  console.log("shop", shopCart);
   const [cartItems, setCartItems] = React.useState([]);
 
   return (
@@ -271,7 +274,9 @@ function DetailRecipe() {
                 color: "#000000",
                 padding: "3px 0px",
                 borderRadius: "16px",
-              }}>
+              }}
+              onClick={() => setCount(count - 1)}
+              >
               <Typography
                 sx={{
                   fontFamily: "Nunito",
@@ -283,8 +288,9 @@ function DetailRecipe() {
             </Button>
           </div>
           <div className='text-stock'>
-            <input type='text' />
-            <h2>{count}</h2>
+            <div className="counter">
+              <h2>{count}</h2>
+            </div>
             <h6>
               Stock <span>{details.stock}</span>
             </h6>
@@ -296,7 +302,9 @@ function DetailRecipe() {
                 color: "#000000",
                 padding: "3px 0px",
                 borderRadius: "16px",
-              }}>
+              }}
+              onClick={() => setCount(count + 1)}
+              >
               <Typography
                 sx={{
                   fontFamily: "Nunito",
@@ -333,6 +341,11 @@ function DetailRecipe() {
         <div className='btn-field'>
           <Button
             variant='contained'
+            onClick={(count) => {
+              // dispatch(RegisterAction(values));
+              // navigate('/register/signup')
+              console.log(count, "count")
+            }}
             sx={{
               minWidth: "259px",
               height: "45px",

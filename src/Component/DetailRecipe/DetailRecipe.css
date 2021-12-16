@@ -141,7 +141,7 @@
   margin-top: 16px;
 }
 
-.text-stock input {
+.counter {
   width: 168px;
   height: 40px;
   background: rgba(255, 255, 255, 0.5);
@@ -149,7 +149,11 @@
   box-sizing: border-box;
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  padding: 0px 80px;
+  padding: 3px 76px 0 76px;
+}
+
+.counter h2 {
+  margin: 0;
 }
 
 .min-stock {

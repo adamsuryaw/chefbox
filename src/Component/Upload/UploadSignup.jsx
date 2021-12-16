@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadImage.css'
 import { connect, getIn } from 'formik';
-import { useEffect } from "react";
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -14,21 +13,12 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
     // console.log(file, "file")
     })
 
-function UploadImage(props) {
+function UploadSignup(props) {
     // console.log(props.value, "props")
-    const [image, setImage] = useState("")
-    console.log(image, "gambar1")
+    const [image, setImage] = useState(props.value)
     const [isUploaded, setIsUploaded] = useState(false)
     const {formik} = props
     const {setFieldValue} = formik
-
-    useEffect(() => {
-        if(props.value && !isUploaded) {
-            setImage(props.value)
-            setIsUploaded(true)
-        }
-    }, [props.value])
-
     const handleImageChange = (file) => {
         // const fileReader = new FileReader();
         // fileReader.onload = () => {
@@ -38,7 +28,7 @@ function UploadImage(props) {
         //     }
         //   };
         // fileReader.readAsDataURL(e.target.files[0]);
-        console.log(file, "file")
+        console.log(file)
         if(!file) {
             // setImage('');
             return;
@@ -46,13 +36,14 @@ function UploadImage(props) {
       
         fileToImage(file)
             .then(dataUri => {
-                // console.log(dataUri, "dataUri")
+                console.log(dataUri, "dataUri")
                 setImage(dataUri)
                 setFieldValue(props.name, file)
             })
     }
     // console.log("ini foto")
-    console.log(image, "ini pilih foto")
+    // console.log(setImage, "ini pilih foto")
+
     return (
         <div className="upload-section">
             {image == "" || image == null ? (
@@ -76,25 +67,11 @@ function UploadImage(props) {
                 )
             :
                 (
-                    <label htmlFor="upload-image">
-                        <div>
-                            <input
-                            
-                            id="upload-image" 
-                            type="file" 
-                            accept=".jpg,.jpeg,.gif,.png,.mov,.mp4" 
-                            onChange={(event) => 
-                                // console.log(event.target.files[0], "event")
-                                handleImageChange(event.target.files[0] || null)
-                            }
-                            />
-                            <img id="uploaded-image" src={image} alt="uploaded.img" value={image} />
-                         </div>
-                    </label>
+                    <img id="uploaded-image" src={image} alt="uploaded.img" value={image} />
                 )
             }
         </div>
     )
 }
 
-export default connect(UploadImage)
+export default connect(UploadSignup)

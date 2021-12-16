@@ -15,8 +15,8 @@ const config = {
 function* reviewList(action) {
     const { id } = action;
     try {
-      const res = yield axios.get(`${BASE_URL}review/10`, config);
-      console.log(res, "res review")
+      const res = yield axios.get(`${BASE_URL}review/${id}`, config);
+      // console.log(res, "res review")
       yield put({
         type: GET_REVIEW_SUCCESS,
         payload: res.data.data,

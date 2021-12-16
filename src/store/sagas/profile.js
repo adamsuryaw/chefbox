@@ -32,9 +32,18 @@ function* user() {
 }
 
 function* updateUser(action) {
-  const { body } = action;
+  const { payload } = action;
+  const data = payload
   try {
-    const res = yield axios.patch(`${BASE_URL}user/changeprofile`, body, config);
+    const res = yield axios.patch(`${BASE_URL}user/changeprofile`, data, config);
+    // const res = axios({
+    //   method: 'patch',
+    //   url: '/user/12345',
+    //   data: {
+    //     firstName: 'Fred',
+    //     lastName: 'Flintstone'
+    //   }
+    // });
     console.log(res, "res");
     yield put({
       type: PATCH_PROFILE_SUCCESS,
