@@ -178,9 +178,9 @@ export default function MyOrder() {
                     <div
                       style={{ marginLeft: "9rem" }}
                       className={styles.button}>
-                      <Link to='/seller/payment'>
+                      {/* <Link to='/seller/payment'> */}
                         <button>Verify Payment</button>
-                      </Link>
+                      {/* </Link> */}
                     </div>
                   </div>
                   <div className={styles.billDescription}>

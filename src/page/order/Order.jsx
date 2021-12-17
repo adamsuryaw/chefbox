@@ -9,17 +9,12 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getRecipe } from "../../store/actions/recipe";
+import Grid from "@mui/material/Grid";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipe } from "../../store/actions/recipe";
 
-// const { list } = useSelector((state) => state.recipe.listRecipe);
-// console.log("list", list);
-
-// const dispatch = useDispatch();
-// useEffect(() => {
-//   dispatch(getRecipe());
-// }, []);
-// {list?.map((data) => ())} this is the data that will be in the modal
 const style = {
   display: "flex",
   justifyContent: "space-around",
@@ -33,6 +28,13 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+// const Item = styled(Paper)(({ theme }) => ({
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
 
 export const DeliveryDetails = (props) => {
   const { setForm } = props;
@@ -67,6 +69,10 @@ export const DeliveryDetails = (props) => {
                 fontFamily: "Nunito Sans",
                 fontWeight: "bold",
                 textTransform: "capitalize",
+                "&:hover": {
+                  background: "#F9C959",
+                  color: "#fff",
+                },
               }}>
               Edit Address
             </Button>
@@ -78,86 +84,106 @@ export const DeliveryDetails = (props) => {
 };
 
 export const DeliveryForm = (props) => {
-  const {setForm} = props;
+  const { setForm } = props;
   return (
     <div className={styles.BoxedTextField}>
       <div className={styles.InputField}>
         <Box
           component='form'
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "20ch" },
+            "& .MuiTextField-root": { m: 1, width: "27ch" },
             display: "flex",
+            justifyContent: "flex-start",
           }}
           noValidate
           autoComplete='off'>
-          <div>
-            <div className={styles.firstName}>
-              <h4>First Name</h4>
-              <div className='TextFieldss'>
-                <TextField
-                  // required
-                  id='outlined-required'
-                  // label='First Name'
-                  defaultValue=''
-                />
+          <Grid container spacing={2}>
+            <Grid item xs={6} md={4}>
+              <div className={styles.firstName}>
+                <h4>First Name</h4>
+                <div className='TextFieldss'>
+                  <TextField
+                    // required
+                    id='outlined-required'
+                    // label='First Name'
+                    defaultValue=''
+                  />
+                </div>
               </div>
-            </div>
-            <div className={styles.lastName}>
-              <h4>Last Name</h4>
-              <div className='TextFieldss'>
-                <TextField
-                  // disabled
-                  id='outlined-disabled'
-                  // label='Last Name'
-                  defaultValue=''
-                />
+              {/* <Item>xs=6 md=8</Item> */}
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <div className={styles.lastName}>
+                <h4>Last Name</h4>
+                <div className='TextFieldss'>
+                  <TextField
+                    // disabled
+                    id='outlined-disabled'
+                    // label='Last Name'
+                    defaultValue=''
+                  />
+                </div>
               </div>
-            </div>
-            <div className={styles.phoneNumber}>
-              <h4>Phone Number</h4>
-              <div className='TextFieldss'>
-                <TextField
-                  id='outlined-number'
-                  // label='Phone Number'
-                  type='number'
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
+              {/* <Item>xs=6 md=4</Item> */}
+            </Grid>
+            <Grid item xs={6} md={4}>
+              <div className={styles.phoneNumber}>
+                <h4>Phone Number</h4>
+                <div className='TextFieldss'>
+                  <TextField
+                    id='outlined-number'
+                    // label='Phone Number'
+                    type='number'
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-            <div className={styles.AddressField}>
-              <h4>Address</h4>
-              <div className='TextFieldss'>
-                <TextField
-                  id='outlined-number'
-                  // label='Phone Number'
-                  // type='number'
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
+              {/* <Item>xs=6 md=4</Item> */}
+            </Grid>
+            <Grid item xs={1} md={1}>
+              <div className={styles.AddressField}>
+                <h4>Address</h4>
+                <div className='TextFieldss'>
+                  <TextField
+                    id='outlined-number'
+                    // label='Phone Number'
+                    // type='number'
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          </div>
+              {/* <Item>xs=6 md=8</Item> */}
+            </Grid>
+          </Grid>
+          <div></div>
         </Box>
       </div>
-
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
           onClick={() => setForm(false)}
           className={styles.button}
           variant='contained'
           sx={{
-            width: "20%",
+            width: "30.9%",
+            height: "2.5rem",
             background: "#fff",
             color: "black",
             borderRadius: "50px",
             margin: "0 3.5rem",
-            padding: "5px 5rem",
+            padding: "0 7rem",
             fontFamily: "Nunito Sans",
             fontWeight: "bold",
             textTransform: "capitalize",
+            postition: 'absolute',
+            right:"-36rem",
+            "&:hover": {
+              background: "#F9C959",
+              color: "#fff",
+            },
           }}>
           Save Changes
         </Button>
@@ -167,6 +193,13 @@ export const DeliveryForm = (props) => {
 };
 
 export default function Order() {
+  const { list } = useSelector((state) => state.recipe.listRecipe);
+  console.log("list", list);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -237,24 +270,9 @@ export default function Order() {
                           <h4>Product content</h4>
                           <div className={styles.ProductList}>
                             <ul>
-                              <li style={{ listStyleType: "disc" }}>
-                                1 kg package egg noodles
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr butter
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr minced parsley
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr salt
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                10 gr black pepper
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                100 ml olive oil
-                              </li>
+                              {list?.map((data) => (
+                                <li>{data.ingredient}</li>
+                              ))}
                             </ul>
                           </div>
                         </div>

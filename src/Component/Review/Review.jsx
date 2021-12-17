@@ -6,7 +6,7 @@ import './Review.css'
 function Review({details}) {
     const [value, setValue] = React.useState(2);
     
-    console.log(details, 'review details')
+    // console.log(details, 'review details')
 
     return (
         <div className="review-content">

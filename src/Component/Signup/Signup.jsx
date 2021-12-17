@@ -15,6 +15,7 @@ import UploadImage from "../Upload/UploadImage";
 import ButtonSignup from "../Button/ButtonSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupAction } from "../../store/actions/auth";
+import UploadSignup from "../Upload/UploadSignup";
 
 const selectStyle = {
   padding: '12px 16px',
@@ -90,7 +91,7 @@ function Signup() {
                     </div>
                     
                     <form onSubmit={handleSubmit}>
-                      <UploadImage name="image" value={values.image} />
+                      <UploadSignup name="image" value={values.image} valueFromApi={values.image} />
                       <TextBarSignup
                         label='Phone Number'
                         name='phoneNumber'

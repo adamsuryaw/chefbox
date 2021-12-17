@@ -23,6 +23,9 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import { getUser } from "../../store/actions/profile";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,6 +40,14 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  const userHeader = useSelector((state) => state?.account?.userDetails);
+  console.log("user header", userHeader);
 
   return (
     <div className='header-section'>
@@ -113,11 +124,22 @@ function Header() {
           marginTop: "1px",
         }}
       />
-      <div>
+      {/* <div>
         <Tooltip title='Account settings'>
           <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
             <Avatar
               src={profilePict}
+              sx={{
+                width: 32,
+                height: 32,
+                marginRight: "12px",
+              }}
+            /> */}
+      <div>
+        <Tooltip title='Account settings'>
+          <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
+            <Avatar
+              src={userHeader?.details?.image}
               sx={{
                 width: 32,
                 height: 32,
@@ -133,7 +155,7 @@ function Header() {
                 color: "#000000",
                 marginRight: "14px",
               }}>
-              Justin
+              {userHeader?.details?.userName}
             </Typography>
             <KeyboardArrowDownIcon />
           </IconButton>

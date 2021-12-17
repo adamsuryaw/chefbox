@@ -96,7 +96,7 @@ function CreateProduct() {
       <div className='input-product'>
         <Box
           sx={{
-            width: "850px",
+            // width: "850px",
             height: "204px",
             background: "#FFFCF5",
             border: "1px solid #E0E0E0",

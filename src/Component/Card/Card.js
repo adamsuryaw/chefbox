@@ -115,7 +115,7 @@ function CardComp({data}) {
                         marginRight: "6px",
                         marginLeft: "9px",
                       }}>
-                      In Stock
+                      {data.stock}
                     </Typography>
                     <img src={deliver} alt='mobil' />
                   </div>

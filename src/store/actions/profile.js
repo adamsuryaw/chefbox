@@ -7,8 +7,9 @@ export const getUser = (data) => {
   };
 };
 
-export const patchUpdate = () => {
+export const patchUpdate = (data) => {
   return {
     type: PATCH_PROFILE_BEGIN,
+    payload: data
   };
 };
