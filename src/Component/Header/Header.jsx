@@ -12,6 +12,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { getUser } from "../../store/actions/profile";
+import { viewCart } from "../../store/actions/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -32,11 +33,13 @@ function Header() {
 
     useEffect(() => {
         dispatch(getUser());
+        dispatch(viewCart());
       }, []);
 
     const userHeader = useSelector((state) => state?.account?.userDetails);
     console.log("user header", userHeader);
-
+    const cartShop = useSelector((state) => state?.addCart?.cartUser);
+    // console.log("cart total", cartShop.details.length);
     return (
         <div className="header-section">
             <img src={logo} alt="logo" />
@@ -98,7 +101,12 @@ function Header() {
                 </Typography>
             </Button>
             <div className="shop-button">
-                <ShoppingCartOutlined sx={{ fontSize: '24px' }} />
+                <ShoppingCartOutlined sx={{  marginTop: '12px', marginLeft: '24px', fontSize: '24px' }} />
+                {cartShop?.details?.length ?
+                    <h3>{cartShop?.details?.length}</h3>
+                    :
+                    null
+                }
             </div>
             <Box
                 sx={{

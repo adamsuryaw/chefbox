@@ -1,9 +1,16 @@
-import { POST_CART_BEGIN } from "../../constants/types";
+import { POST_CART_BEGIN, GET_CART_BEGIN } from "../../constants/types";
 
-export const addToCart = (id, body) => {
+export const addToCart = (id, data) => {
     return {
       type: POST_CART_BEGIN,
       id,
-      body
+      data
     };
+};
+
+export const viewCart = (data) => {
+  return {
+    type: GET_CART_BEGIN,
+    payload: data
+  };
 };

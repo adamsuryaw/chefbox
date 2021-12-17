@@ -38,13 +38,17 @@ function DetailRecipe() {
   useEffect(() => {
     dispatch(getRecipeDetails(id));
     dispatch(getReview(id))
-    dispatch(addToCart(id))
+    // dispatch(addToCart(id))
   }, [id]);
 
+  const handleCart = (count) => {
+    dispatch(addToCart(count))
+  }
+
   const {details} = useSelector((state) => state.recipe.listDetails);
-  console.log("details", details);
+  // console.log("details", details);
   const review = useSelector((state) => state.review.userReview);
-  console.log("review", review);
+  // console.log("review", review);
   const shopCart = useSelector((state) => state.addCart.cartUser);
   console.log("shop", shopCart);
   const [cartItems, setCartItems] = React.useState([]);
@@ -61,7 +65,7 @@ function DetailRecipe() {
             <div className='avatar-section'>
               <Avatar
                 alt='Remy Sharp'
-                src={"details.user.image"}
+                src={details?.user?.image}
                 sx={{ width: 32, height: 32 }}
               />
               <div className='avatar-info'>
@@ -74,7 +78,7 @@ function DetailRecipe() {
                     marginLeft: "10px",
                     color: "#333333",
                   }}>
-                  {"details.user.userName"}
+                  {details?.user?.userName}
                 </Typography>
                 <Typography
                   component='div'
@@ -261,7 +265,7 @@ function DetailRecipe() {
                 color: "#828282",
                 margin: 0,
               }}>
-              {"details.location.name"}
+              {details?.location?.name}
             </Typography>
           </div>
         </div>
@@ -341,11 +345,14 @@ function DetailRecipe() {
         <div className='btn-field'>
           <Button
             variant='contained'
-            onClick={(count) => {
-              // dispatch(RegisterAction(values));
+            onClick={
+              () => {
+              dispatch(addToCart(id, count));
               // navigate('/register/signup')
-              console.log(count, "count")
-            }}
+              console.log(id, count, "count")
+            }
+          
+            }
             sx={{
               minWidth: "259px",
               height: "45px",

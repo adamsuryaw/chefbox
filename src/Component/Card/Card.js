@@ -79,7 +79,7 @@ function CardComp({data}) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {data.duration}
+                      {`${data.duration} mins`}
                     </Typography>
                   </div>
                   <div className='bottom-left-content'>
@@ -91,7 +91,7 @@ function CardComp({data}) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {data.serving}
+                      {`${data.serving} servings`}
                     </Typography>
                   </div>
                 </div>

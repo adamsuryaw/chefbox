@@ -5,7 +5,7 @@ import { watchGetRecipeList, watchGetDetailsList } from "./recipe";
 import { watchLogin, watchRegister, watchSignup } from "./auth";
 import { watchGetLocationList } from "./location";
 import { watchReviewList } from "./review";
-import { watchAddCart } from "./cart";
+import { watchAddCart, watchAllCart } from "./cart";
 
 function* rootSaga() {
   yield all([
@@ -20,6 +20,7 @@ function* rootSaga() {
     watchGetLocationList(), 
     watchReviewList(),
     watchAddCart(),
+    watchAllCart(),
   ]);
 }
 
