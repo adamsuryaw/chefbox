@@ -5,7 +5,7 @@
 
   .seller {
     display: flex;
-    padding-right: 40px;
+    justify-content: space-between;
     .menuBarSeller {
       .menuBar {
         margin-bottom: 50px;
@@ -48,12 +48,25 @@
     .menuSeller {
       padding: 40px 40px;
       margin-left: 40px;
-      width: 1020px;
-      height: 1098px;
+      width: 1920px;
+      height: 1080px;
       border: 1px solid #ffffff;
       background-color: #ffffff;
       // font-weight: bold;
-
+      h2 {
+        width: 100%;
+        font-weight: 700;
+      }
+      .PaginationSection {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 69rem;
+        right: 27rem;
+      }
       .menuButton {
         padding: 20px 0;
 
@@ -170,12 +183,17 @@
                 button {
                   width: 142px;
                   height: 36px;
-                  background: #b6340b;
-                  color: #ffffff;
-                  border: 1px solid #b6340b;
+                  background: #f9c959;
+                  color: #000;
+                  border: 1px solid #f9c959;
                   box-shadow: 0px 4px 10px rgba(33, 68, 87, 0.2);
                   border-radius: 24px;
                   font-weight: bold;
+                  &:hover {
+                    cursor: pointer;
+                    background-color: ffffff;
+                    color: #000;
+                  }
                 }
               }
             }

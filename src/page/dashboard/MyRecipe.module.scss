@@ -46,8 +46,8 @@
           margin-left: 0.5rem;
         }
         &:hover {
-          background-color: #FFFAEF;
-          transition: all 0.5s
+          background-color: #fffaef;
+          transition: all 0.5s;
         }
       }
     }
@@ -58,6 +58,17 @@
       background-color: #fff;
       margin: 2.5rem 2.5rem 2.5rem 0rem;
       position: relative;
+
+      .CardSections {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 80px;
+        margin-top: 45px;
+        margin-right: -25px;
+        padding: 0px 65px;
+        justify-content: space-between;
+      }
 
       .PaginationSection {
         display: flex;

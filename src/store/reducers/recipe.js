@@ -7,7 +7,10 @@ import {
   GET_RECIPE_DETAILS_FAIL,
   PAGINATION_BEGIN,
   PAGINATION_SUCCESS,
-  PAGINATION_FAIL
+  PAGINATION_FAIL,
+  GET_FILTER_RECIPE_BEGIN,
+  GET_FILTER_RECIPE_SUCCESS,
+  GET_FILTER_RECIPE_FAIL,
 } from "../../constants/types";
 
 const initialState = {
@@ -117,5 +120,34 @@ export const recipe = (state = initialState, action) => {
           list: [],
         },
       };
+      case GET_FILTER_RECIPE_BEGIN:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: true,
+            error: null,
+          },
+        };
+      case GET_FILTER_RECIPE_SUCCESS:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: false,
+            error: null,
+            list: payload,
+          },
+        };
+      case GET_FILTER_RECIPE_FAIL:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: false,
+            error: error,
+            list: [],
+          },
+        };
   }
 };

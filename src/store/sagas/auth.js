@@ -24,6 +24,11 @@ function* login(action) {
       {
         type: GET_LOGIN_SUCCESS,
       },
+    // const apalah = yield axios.get(`${baseUrl}/user/login`, body);
+    // yield put(
+    //   {
+    //     type: PUT_LOGIN_SUCCESS,
+    //   },
       localStorage.setItem("token", res.data.token), // setup token on local storage
       window.location.reload()
     );
