@@ -202,7 +202,7 @@ export default function Order() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipeDetails());
+    dispatch(getRecipeDetails(id));
     dispatch(getOrder());
   }, []);
 
