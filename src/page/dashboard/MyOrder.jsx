@@ -14,8 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipe } from "../../store/actions/recipe";
 import Modal from "@mui/material/Modal";
 import { Pagination } from "@mui/material";
+import { styled } from "@mui/system";
 
 export default function MyOrder() {
+  const [name, setName] = React.useState("");
+
   const [firstValue, setFirstValue] = React.useState(0);
   const [secondValue, setSecondValue] = React.useState(0);
   const [thirdValue, setThirdValue] = React.useState(0);
@@ -28,10 +31,12 @@ export default function MyOrder() {
     dispatch(getRecipe());
   }, []);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [open, setOpen] = React.useState(true);
+  const handleOpen = (recipe) => {
+    setOpen(true);
+    setName(recipe);
+  };
   const handleClose = () => setOpen(false);
-  const [showform, setForm] = React.useState(false);
 
   const style = {
     display: "flex",
@@ -46,6 +51,17 @@ export default function MyOrder() {
     boxShadow: 24,
     p: 4,
   };
+
+  const Backdrop = styled("div")`
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+  `;
 
   return (
     <div className={styles.sellerContainer}>
@@ -102,297 +118,104 @@ export default function MyOrder() {
         </div>
         <div className={styles.menuSeller}>
           <h2>My Order</h2>
-          {/* <div className={styles.menuButton}>
-            <div className={styles.listButton}>
-              <button className={styles.buttonAll}>All</button>
-              <div className={styles.list}>
-                <button className={styles.buttonshipping}>
-                  <div className={styles.iconbutton}>
-                    <img src={buttonShipping} alt='' />
-                    <span>Prepare Shipping</span>
-                  </div>
-                </button>
-                <button className={styles.buttoncompleted}>
-                  <div className={styles.iconbutton}>
-                    <img src={buttonCompleted} alt='' />
-                    <span>Completed</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div> */}
           <div className={styles.menuCollections}>
             {list?.map((data) => (
-              // <CardComp key={data.id} data={data} />
               <div className={styles.menuContainer}>
                 <div className={styles.menuImage}>
                   <img src={data.image} alt='' />
                 </div>
                 <div className={styles.menuDescriptions}>
-                  <div className={styles.menuCollectionButton}>
-                    <div className={styles.title3}>
-                      <h4>{data.title}</h4>
-                    </div>
-                    <div className={styles.button2}></div>
-                    {/* <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby='modal-modal-title'
-                    aria-describedby='modal-modal-description'>
-                    <Box sx={style}>
-                      <Typography
-                        id='modal-modal-title'
-                        variant='h6'
-                        component='h2'>
-                        <div className={styles.ProductContent}>
-                          <h4>Product content</h4>
-                          <div className={styles.ProductList}>
-                            <ul>
-                              <li style={{ listStyleType: "disc" }}>
-                                1 kg package egg noodles
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr butter
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr minced parsley
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                50 gr salt
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                10 gr black pepper
-                              </li>
-                              <li style={{ listStyleType: "disc" }}>
-                                100 ml olive oil
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </Typography>
-                      <Typography
-                        id='modal-modal-description'
-                        sx={{ mt: 2 }}></Typography>
-                    </Box>
-                  </Modal> */}
-                    <div
-                      style={{ marginLeft: "9rem" }}
-                      className={styles.button}>
-                      {/* <Link to='/seller/payment'> */}
-                        <button>Verify Payment</button>
-                      {/* </Link> */}
-                    </div>
+                  <div className={styles.title3}>
+                    <h4>{data.title}</h4>
                   </div>
                   <div className={styles.billDescription}>
-                    <h4>{data.price}</h4>
-                    <p>{data.stock}</p>
-                  </div>
-                  <div className={styles.descriptionDates}>
+                    <div className={styles.priceAndStock}>
+                      <h4>{data.price}</h4>
+                      <p>{data.stock}</p>
+                    </div>
                     <Link to='/details/1'>see ingredient details</Link>
-                    <p>26 Jul 2021</p>
+                  </div>
+                  <div
+                    className={styles.leftSideDescriptions}
+                    style={{
+                      position: "absolute",
+                      marginTop: "-5rem",
+                      right: "7.5rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}>
+                    <div className={styles.menuCollectionButton}>
+                      <div className={styles.button2}></div>
+                      <div className={styles.button}>
+                        <button onClick={() => handleOpen(data.title)} open={open}>
+                          Review
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      className={styles.descriptionDates}
+                      style={{ marginTop: "2rem", color: "#BDBDBD" }}>
+                      <p>26 Jul 2021</p>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+              BackdropComponent={Backdrop}>
+              <Box sx={style}>
+                <Typography id='modal-modal-title' variant='h6' component='h2'>
+                  <div className={styles.ProductContent}>
+                    <h4>{name}</h4>
+                    <div className={styles.ProductList}>
+                      <Box
+                        className={styles.rating}
+                        sx={{
+                          "& > legend": { mt: 0 },
+                          transform: "translateX(10px)",
+                        }}>
+                        <Typography component='legend'></Typography>
+                        <Rating
+                          name='simple-controlled'
+                          value={secondValue}
+                          onChange={(event, newValue) => {
+                            setSecondValue(newValue);
+                          }}
+                        />
+                      </Box>
+                      <ul>
+                        <li style={{ listStyleType: "disc" }}>
+                          1 kg package egg noodles
+                        </li>
+                        <li style={{ listStyleType: "disc" }}>50 gr butter</li>
+                        <li style={{ listStyleType: "disc" }}>
+                          50 gr minced parsley
+                        </li>
+                        <li style={{ listStyleType: "disc" }}>50 gr salt</li>
+                        <li style={{ listStyleType: "disc" }}>
+                          10 gr black pepper
+                        </li>
+                        <li style={{ listStyleType: "disc" }}>
+                          100 ml olive oil
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </Typography>
+                <Typography
+                  id='modal-modal-description'
+                  sx={{ mt: 2 }}></Typography>
+              </Box>
+            </Modal>
           </div>
           <div className={styles.PaginationSection}>
             <Pagination count={10} color='primary' />
           </div>
-          {/* <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title3}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
-                  </div>
-                  <div className={styles.button2}>
-                    <p>
-                      <img src={buttonShipping} alt='' />
-                      Prepare Shipping
-                    </p>
-                  </div>
-                  <div className={styles.button}>
-                    <Link to='/seller/payment'>
-                      <button>Verify Payment</button>
-                    </Link>
-                  </div>
-                </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title3}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
-                  </div>
-                  <div className={styles.button2}>
-                    <p>
-                      <img src={buttonShipping} alt='' />
-                      Prepare Shipping
-                    </p>
-                  </div>
-                  <div style={{ marginLeft: "9rem" }} className={styles.button}>
-                    <Link to='/seller/payment'>
-                      <button>Verify Payment</button>
-                    </Link>
-                  </div>
-                </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title2}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
-                    <Box
-                      className={styles.rating}
-                      sx={{
-                        "& > legend": { mt: 0 },
-                        transform: "translateX(10px)",
-                      }}>
-                      <Typography component='legend'></Typography>
-                      <Rating
-                        name='simple-controlled'
-                        value={secondValue}
-                        onChange={(event, newValue) => {
-                          setSecondValue(newValue);
-                        }}
-                      />
-                    </Box>
-                  </div>
-                  <div className={styles.button1}>
-                    <p>
-                      Completed
-                      <img src={buttonCompleted} alt='' />
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title2}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
-                    <Box
-                      className={styles.rating}
-                      sx={{
-                        "& > legend": { mt: 0 },
-                        transform: "translateX(10px)",
-                      }}>
-                      <Typography component='legend'></Typography>
-                      <Rating
-                        name='simple-controlled'
-                        value={firstValue}
-                        onChange={(event, newValue) => {
-                          setFirstValue(newValue);
-                        }}
-                      />
-                    </Box>
-                  </div>
-                  <div className={styles.button1}>
-                    <p>
-                      Completed
-                      <img src={buttonCompleted} alt='' />
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.menuCollections}>
-            <div className={styles.menuContainer}>
-              <div className={styles.menuImage}>
-                <img src={MenuImage} alt='' />
-              </div>
-              <div className={styles.menuDescriptions}>
-                <div className={styles.menuCollectionButton}>
-                  <div className={styles.title2}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
-                    <Box
-                      className={styles.rating}
-                      sx={{
-                        "& > legend": { mt: 0 },
-                        transform: "translateX(10px)",
-                      }}>
-                      <Typography component='legend'></Typography>
-                      <Rating
-                        name='simple-controlled'
-                        value={thirdValue}
-                        onChange={(event, newValue) => {
-                          setThirdValue(newValue);
-                        }}
-                      />
-                    </Box>
-                  </div>
-                  <div className={styles.button1}>
-                    <p>
-                      Completed
-                      <img src={buttonCompleted} alt='' />
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
-                </div>
-                <div className={styles.descriptionDates}>
-                  <Link to='/details/1'>see ingredient details</Link>
-                  <p>26 Jul 2021</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

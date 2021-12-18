@@ -13,8 +13,20 @@ import imageLogo from "../../Asset/XMLID 306.svg";
 import data from "../Data/data";
 import TextBarCreate from "../TextBar/TextBarCreate";
 import { Link } from "react-router-dom";
+import { putCreate, postCreate } from "../../store/actions/create";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function CreateDesc() {
+  // const { id } = useParams();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(putCreate());
+    dispatch(postCreate());
+  }, []);
+  console.log("putCreate", "postCreate", putCreate, postCreate);
   return (
     <div className='desc-section'>
       <div className='recipe-desc'>

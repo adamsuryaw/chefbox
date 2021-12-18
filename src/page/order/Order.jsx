@@ -8,12 +8,14 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipe } from "../../store/actions/recipe";
+import { useParams } from "react-router-dom";
+import { getRecipeDetails } from "../../store/actions/recipe";
+import { getOrder } from "../../store/actions/order";
 
 const style = {
   display: "flex",
@@ -178,8 +180,8 @@ export const DeliveryForm = (props) => {
             fontFamily: "Nunito Sans",
             fontWeight: "bold",
             textTransform: "capitalize",
-            postition: 'absolute',
-            right:"-36rem",
+            postition: "absolute",
+            right: "-36rem",
             "&:hover": {
               background: "#F9C959",
               color: "#fff",
@@ -196,10 +198,14 @@ export default function Order() {
   const { list } = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list);
 
+  const { id } = useParams();
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipe());
+    dispatch(getRecipeDetails());
+    dispatch(getOrder());
   }, []);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -38,7 +38,6 @@ export default function Routers() {
         <Route exact path='/order' element={<Order />} />
         <Route exact path='/order/payment' element={<Payment />} />
         <Route exact path='/recipe' element={<Recipe />} />
-        <Route exact path='/dashboard' element={<Dashboard />} />
         <Route exact path='/seller' element={<Seller />} />
         <Route exact path='/seller/payment' element={<SellerPayment />} />
         <Route exact path='/create' element={<CreateDesc />} />
