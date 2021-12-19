@@ -21,7 +21,7 @@ function* postCreate() {
   try {
     const res = yield axios.get(`${BASE_URL}recipe`, {
       headers: `access_token: ${currentToken}`,
-      ...data.getHeaders(),
+      // ...data.postCreate(),
     });
     yield put({
       type: POST_CREATE_SUCCESS,
