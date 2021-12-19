@@ -34,7 +34,6 @@
           .InputField {
             display: flex;
             .firstNameField {
-              
             }
           }
         }
@@ -70,6 +69,29 @@
         .ProductContainer {
           display: flex;
           justify-content: space-between;
+          margin-bottom: 2rem;
+          .mapMenu {
+            img {
+              border-radius: 10px;
+              width: 30%;
+              margin-bottom: 2rem;
+            }
+          }
+          .mapTitle {
+            h4 {
+              margin: 0.1rem 6rem 8.5rem -29.5rem;
+            }
+          }
+          .mapAmount {
+            h4 {
+              margin: 0.1rem 15.8rem 8.5rem -5.8rem;
+            }
+          }
+          .mapTotal {
+            h4 {
+              margin: 0.1rem 0rem 8.5rem -9.8rem;
+            }
+          }
         }
 
         .MenuList {

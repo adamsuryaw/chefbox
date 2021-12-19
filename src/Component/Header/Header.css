@@ -24,6 +24,22 @@
 }
 
 .shop-button {
-  margin-top: 12px;
-  margin-left: 24px;
+  display: flex;
+}
+
+.shop-button h3 {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  background: #b6340b;
+  color: white;
+  text-align: center;
+  margin: 0;
+  border-radius: 10px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  padding-top: 3px;
+  margin: 5px 0 0px 35px;
 }

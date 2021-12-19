@@ -24,6 +24,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { getUser } from "../../store/actions/profile";
+import { viewCart } from "../../store/actions/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -42,12 +43,91 @@ function Header() {
   };
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
+    useEffect(() => {
+        dispatch(getUser());
+        dispatch(viewCart());
+      }, []);
 
-  const userHeader = useSelector((state) => state?.account?.userDetails);
-  console.log("user header", userHeader);
+    const userHeader = useSelector((state) => state?.account?.userDetails);
+    console.log("user header", userHeader);
+    const cartShop = useSelector((state) => state?.addCart?.cartUser);
+    // console.log("cart total", cartShop.details.length);
+    // return (
+    //     <div className="header-section">
+    //         <img src={logo} alt="logo" />
+    //         <div className="recipe">
+    //             <h3>Recipe</h3>
+    //             <Box
+    //                 sx={{
+    //                     width: '49px',
+    //                     height: '2px',
+    //                     background: '#B6340B',
+    //                 }}
+    //             />
+    //         </div>
+    //         <Paper
+    //             sx={{ 
+    //                 p: '2px 4px', 
+    //                 display: 'flex', 
+    //                 alignItems: 'center', 
+    //                 width: '466px',
+    //                 height: '40px',
+    //                 border: '1px solid #333333',
+    //                 borderRadius: '8px',
+    //                 background: '#FCE4AC',
+    //                 marginLeft: '31px',
+    //             }}
+    //             >
+    //             <InputBase
+    //                 sx={{ ml: 1, flex: 1 }}
+    //                 placeholder="What do you want to eat today?"
+    //                 inputProps={{ 'aria-label': 'search google maps' }}
+    //             />
+    //             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+    //                 <SearchIcon />
+    //             </IconButton>
+    //         </Paper>
+    //         <Button 
+    //             variant="contained"
+    //             sx={{
+    //                 width: '172px',
+    //                 height: '36px',
+    //                 background: '#B6340B',
+    //                 boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+    //                 borderRadius: '24px',
+    //                 marginTop: '5px',
+    //                 marginLeft: '505px',
+    //                 textTransform: 'none'
+    //             }}
+    //         >
+    //             <Typography 
+    //                 component="div"
+    //                 sx={{
+    //                     fontFamily: 'Nunito',
+    //                     fontWeight: 'bold',
+    //                     fontSize: '16px',
+    //                     color: '#F2F2F2',
+    //                     }}
+    //             >
+    //                 Create Recipe
+    //             </Typography>
+    //         </Button>
+    //         <div className="shop-button">
+    //             <ShoppingCartOutlined sx={{  marginTop: '12px', marginLeft: '24px', fontSize: '24px' }} />
+    //             {cartShop?.details?.length ?
+    //                 <h3>{cartShop?.details?.length}</h3>
+    //                 :
+    //                 null
+    //             }
+    //         </div>
+    //         <Box
+    //             sx={{
+    //                 width: '0px',
+    //                 height: '35px',
+    //                 border: '1px solid #828282',
+    //                 marginLeft: '36px',
+    //                 marginTop: '1px',
+    //             }}
 
   return (
     <div className='header-section'>
@@ -113,7 +193,12 @@ function Header() {
       </Link>
 
       <div className='shop-button'>
-        <ShoppingCartOutlined sx={{ fontSize: "24px" }} />
+        <ShoppingCartOutlined sx={{ marginTop: '12px', marginLeft: '24px', fontSize: "24px" }} />
+        {cartShop?.details?.length ?
+            <h3>{cartShop?.details?.length}</h3>
+            :
+            null
+        }
       </div>
       <Box
         sx={{

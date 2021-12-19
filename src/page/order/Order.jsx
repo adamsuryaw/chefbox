@@ -14,7 +14,7 @@ import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getRecipeDetails } from "../../store/actions/recipe";
+import { viewCart } from "../../store/actions/cart";
 import { getOrder } from "../../store/actions/order";
 
 const style = {
@@ -195,16 +195,18 @@ export const DeliveryForm = (props) => {
 };
 
 export default function Order() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(viewCart());
+    dispatch(getOrder());
+  }, []);
   const { list } = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list);
 
-  const { id } = useParams();
+  const { details } = useSelector((state) => state?.addCart?.cartUser);
+  console.log("details", details);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRecipeDetails(id));
-    dispatch(getOrder());
-  }, []);
+  const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -261,7 +263,30 @@ export default function Order() {
                 <div className={styles.ProductContainer}>
                   {" "}
                   {/* This is Modal */}
-                  <img src={MenuIMG} alt='' onClick={handleOpen} />
+                  <div className={styles.mapMenu}>
+                    {details?.map((data) => (
+                      <div className={styles.imgData}>
+                        <img src={data.image} alt='' onClick={handleOpen} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.mapTitle}>
+                    {details?.map((data) => (
+                      <h4>{data.title}</h4>
+                    ))}
+                  </div>
+                  <div className={styles.mapAmount}>
+                    {details?.map((data) => (
+                      <h4>{data.quantity}</h4>
+                    ))}
+                  </div>
+                  <div className={styles.mapTotal}>
+                    {details?.map((data) => (
+                      <h4 /*style={{ position: "relative", right: "5.6rem" }}*/>
+                        {data.total}
+                      </h4>
+                    ))}
+                  </div>
                   <Modal
                     open={open}
                     onClose={handleClose}
@@ -288,19 +313,12 @@ export default function Order() {
                         sx={{ mt: 2 }}></Typography>
                     </Box>
                   </Modal>
-                  <h4 style={{ marginLeft: "-15rem", marginRight: "6rem" }}>
-                    Healthy Fruit Oatmeal
-                  </h4>
-                  <h4>1</h4>
-                  <h4 style={{ position: "relative", right: "5.6rem" }}>
-                    Rp.35.000
-                  </h4>
                 </div>
               </div>
             </div>
             <div
               className={styles.PaymentContent}
-              style={{ margin: "10rem 3rem 0 3rem" }}>
+              style={{ margin: "0rem 3rem 0 3rem" }}>
               <div
                 style={{ borderTop: "3px groove" }}
                 className={styles.PaymentContentDetails}>

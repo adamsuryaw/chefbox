@@ -20,18 +20,24 @@ import CardComp from "../Card/Card";
 import data from "../Data/data";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getRecipe } from "../../store/actions/recipe";
+import { getRecipe, getFilterRecipe } from "../../store/actions/recipe";
 import styles from './Recipe.module.scss'
 
 function Recipe() {
   const {list} = useSelector((state) => state.recipe.listRecipe);
-  console.log("list", list)
-  const [loc, setLoc] = useState()
-
+  // console.log("list", list)
+  const [select, setSelect] = useState({
+    cat: null,
+    type: null,
+    loc: null,
+    gte: null,
+    lte: null,
+  })
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipe());
+    // dispatch(getFilterRecipe());
   }, []);
 
   return (
@@ -39,20 +45,10 @@ function Recipe() {
       <div className='recipe-section'>
         <div className='location-section'>
           <h5>Location</h5>
-          {/* <h6>Based on your profile</h6>
-          <FormControlLabel
-            value='end'
-            control={<Checkbox />}
-            label='Surabaya'
-            labelPlacement='end'
-            sx={{
-              color: "black",
-            }}
-          /> */}
           <select
             name="loc"
-            value={loc}
-            // onChange={}
+            value={select.loc}
+            onChange={setSelect}
             // onBlur={}
           >
             <option value="" label="Select a Location" />
@@ -72,12 +68,12 @@ function Recipe() {
         <div className='type-section'>
           <h5>Type</h5>
           <select
-            name="loc"
-            value={loc}
-            // onChange={}
+            name="type"
+            value={select.type}
+            onChange={setSelect}
             // onBlur={}
           >
-            <option value="" label="Select your Type" />
+            <option value="" label="Select Type" />
             <option value="1" label="Food" />
             <option value="2" label="Beverage" />
           </select>
@@ -91,9 +87,9 @@ function Recipe() {
         <div className='category-section'>
           <h5>Category</h5>
           <select
-            name="loc"
-            value={loc}
-            // onChange={}
+            name="cat"
+            value={select.cat}
+            onChange={setSelect}
             // onBlur={}
           >
             <option value="" label="Select Category" />
@@ -110,30 +106,25 @@ function Recipe() {
             placeholder='Choose food category'
           />
         </div>
+        
         <div className='price-section'>
           <h5>Price</h5>
           <div className='button-section'>
-            <Button
-              sx={{
-                marginRight: "26px",
-                width: "110px",
-                border: "1px solid #E0E0E0",
-                color: "black",
-              }}
-              variant='outlined'>
-              Min
-            </Button>
-            <Button
-              sx={{
-                width: "110px",
-                border: "1px solid #E0E0E0",
-                color: "black",
-              }}
-              variant='outlined'>
-              Max
-            </Button>
+            <input type="text" name="gte" value={select.gte} onChange={setSelect} />
+            <input type="text" name="lte" value={select.lte} onChange={setSelect} />
           </div>
         </div>
+        <Button
+          onClick={() => {dispatch(getFilterRecipe(select))}}
+          sx={{
+            marginRight: "26px",
+            width: "110px",
+            border: "1px solid #E0E0E0",
+            color: "black",
+          }}
+          variant='outlined'>
+          Submit
+        </Button>
       </div>
       <div className='browse-section'>
         <h1>Browse Recipe</h1>
@@ -154,17 +145,18 @@ function Recipe() {
               marginLeft: "1rem",
             }}
           />
+          
+          <TextBarRecipe name='sorting' select='true' type='text' />
           <select
-            name="loc"
-            value={loc}
-            // onChange={}
+            name="sort"
+            // value={select.sort}
+            // onChange={setSelect}
             // onBlur={}
           >
             <option value="" label="Select Time" />
-            <option value="ASC" label="Newest" />
-            <option value="DESC" label="Oldest" />
+            <option value="1" label="Newest" />
+            <option value="2" label="Oldest" />
           </select>
-          <TextBarRecipe name='sorting' select='true' type='text' />
         </div>
         <div className={styles.CardSections}>
           {list?.map((data) => (

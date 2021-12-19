@@ -23,7 +23,7 @@ import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
 
 function CardComp({data}) {
-  console.log("data", data);
+  // console.log("data", data);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -87,7 +87,7 @@ function CardComp({data}) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {data.duration}
+                      {`${data.duration} mins`}
                     </Typography>
                   </div>
                   <div className='bottom-left-content'>
@@ -99,7 +99,7 @@ function CardComp({data}) {
                         fontWeight: "normal",
                         fontSize: "12px",
                       }}>
-                      {data.serving}
+                      {`${data.serving} servings`}
                     </Typography>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ function CardComp({data}) {
                         marginRight: "6px",
                         marginLeft: "9px",
                       }}>
-                      {data.stock}
+                      In Stock
                     </Typography>
                     <img src={deliver} alt='mobil' />
                   </div>

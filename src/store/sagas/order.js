@@ -18,14 +18,11 @@ const config = {
 
 function* getOrderList() {
   try {
-    const res = yield axios.get(`${BASE_URL}order`, {
-      headers: {
-        access_token: currentToken,
-      },
-    });
+    const res = yield axios.get(`${BASE_URL}order`, config,
+    );
     yield put({
       type: GET_ORDER_SUCCESS,
-      payload: res.data,
+      payload: res.data.data.data,
     });
   } catch (err) {
     console.log(err, "err");
@@ -42,7 +39,7 @@ function* patchOrderList(action) {
     const res = yield axios.patch(`${BASE_URL}order/${id}`);
     yield put({
       type: PATCH_ORDER_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
   } catch (err) {
     yield put({

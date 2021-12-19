@@ -6,8 +6,10 @@ export const getOrder = () => {
   };
 };
 
-export const patchOrder = () => {
+export const patchOrder = (data) => {
+  console.log("data patch", data)
   return {
     type: PATCH_ORDER_BEGIN,
+    data,
   };
 };

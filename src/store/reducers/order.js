@@ -1,4 +1,11 @@
-import { GET_ORDER_BEGIN, GET_ORDER_SUCCESS, GET_ORDER_FAIL, PATCH_ORDER_BEGIN, PATCH_ORDER_SUCCESS, PATCH_ORDER_FAIL } from "../../constants/types";
+import {
+  GET_ORDER_BEGIN,
+  GET_ORDER_SUCCESS,
+  GET_ORDER_FAIL,
+  PATCH_ORDER_BEGIN,
+  PATCH_ORDER_SUCCESS,
+  PATCH_ORDER_FAIL,
+} from "../../constants/types";
 
 const initialState = {
   listOrder: {

@@ -26,6 +26,7 @@ function CreateDesc() {
     dispatch(putCreate());
     dispatch(postCreate());
   }, []);
+
   console.log("putCreate", "postCreate", putCreate, postCreate);
   return (
     <div className='desc-section'>
