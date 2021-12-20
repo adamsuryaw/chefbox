@@ -20,23 +20,26 @@ import CardComp from "../Card/Card";
 import data from "../Data/data";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getRecipe, getFilterRecipe } from "../../store/actions/recipe";
+import { getRecipe, getFilterRecipe, getPagination } from "../../store/actions/recipe";
 import styles from './Recipe.module.scss'
 
 function Recipe() {
   const {list} = useSelector((state) => state.recipe.listRecipe);
-  // console.log("list", list)
-  const [select, setSelect] = useState({
-    cat: null,
-    type: null,
-    loc: null,
-    gte: null,
-    lte: null,
-  })
-
+  console.log("list", list)
+  const [cat, setCat] = useState("")
+  const [type, setType] = useState("")
+  const [gte, setGte] = useState("")
+  const [lte, setLte] = useState("")
+  const [loc, setLoc] = useState("")
+  // console.log(select, "select")
+  const handleSubmit = () => {
+    dispatch(getFilterRecipe({cat, type, gte, lte, loc}))
+  }
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipe());
+    // dispatch(getPagination());
     // dispatch(getFilterRecipe());
   }, []);
 
@@ -47,8 +50,8 @@ function Recipe() {
           <h5>Location</h5>
           <select
             name="loc"
-            value={select.loc}
-            onChange={setSelect}
+            value={loc}
+            onChange={(e) => setLoc(e.target.value)}
             // onBlur={}
           >
             <option value="" label="Select a Location" />
@@ -69,8 +72,8 @@ function Recipe() {
           <h5>Type</h5>
           <select
             name="type"
-            value={select.type}
-            onChange={setSelect}
+            value={type}
+            onChange={(e) => setType(e.target.value)}
             // onBlur={}
           >
             <option value="" label="Select Type" />
@@ -88,8 +91,8 @@ function Recipe() {
           <h5>Category</h5>
           <select
             name="cat"
-            value={select.cat}
-            onChange={setSelect}
+            value={cat}
+            onChange={(e) => setCat(e.target.value)}
             // onBlur={}
           >
             <option value="" label="Select Category" />
@@ -110,12 +113,12 @@ function Recipe() {
         <div className='price-section'>
           <h5>Price</h5>
           <div className='button-section'>
-            <input type="text" name="gte" value={select.gte} onChange={setSelect} />
-            <input type="text" name="lte" value={select.lte} onChange={setSelect} />
+            <input type="text" name="gte" value={gte} onChange={(e) => setGte(e.target.value)} />
+            <input type="text" name="lte" value={lte} onChange={(e) => setLte(e.target.value)} />
           </div>
         </div>
         <Button
-          onClick={() => {dispatch(getFilterRecipe(select))}}
+          onClick={handleSubmit}
           sx={{
             marginRight: "26px",
             width: "110px",
@@ -167,7 +170,12 @@ function Recipe() {
         </div>
 
         <div className='pagination-section'>
-          <Pagination count={10} color='primary' />
+        <Pagination
+          count={6}
+          variant="outlined"
+          shape="rounded"
+          onChange={(e) => console.log(e, "e pagi")}
+        />
         </div>
       </div>
     </div>

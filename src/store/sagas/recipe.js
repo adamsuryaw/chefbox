@@ -6,6 +6,9 @@ import {
   GET_RECIPE_DETAILS_BEGIN,
   GET_RECIPE_DETAILS_SUCCESS,
   GET_RECIPE_DETAILS_FAIL,
+  PAGINATION_BEGIN,
+  PAGINATION_SUCCESS,
+  PAGINATION_FAIL,
   GET_FILTER_RECIPE_BEGIN,
   GET_FILTER_RECIPE_SUCCESS,
   GET_FILTER_RECIPE_FAIL,
@@ -18,9 +21,12 @@ const config = {
   headers: { 'access_token': currentToken }
 }
 
-function* getRecipeList() {
+function* getRecipeList(action) {
+  // const { page } = action;
   try {
     const res = yield axios.get(`${BASE_URL}recipe`, config);
+    // const res = yield axios.get(`${BASE_URL}recipe?page=${page}&limit=6`, config);
+    console.log(res, "res recipe list")
     yield put({
       type: GET_RECIPE_SUCCESS,
       payload: res.data.data,
@@ -52,14 +58,15 @@ function* detailsList(action) {
 function* pagination(action) {
   const { page } = action;
   try {
-    const res = yield axios.get(`${BASE_URL}recipe&page${page}`);
+    const res = yield axios.get(`${BASE_URL}recipe?page${page}&limit=6`, config);
+    console.log(res, "res pagination")
     yield put({
-      type: GET_RECIPE_DETAILS_SUCCESS,
+      type: PAGINATION_SUCCESS,
       payload: res.data.data,
     });
   } catch (err) {
     yield put({
-      type: GET_RECIPE_DETAILS_FAIL,
+      type: PAGINATION_FAIL,
       error: err,
     });
   }
@@ -73,7 +80,7 @@ function* filter(action) {
   console.log(data, "data filter") 
   // console.log(params, "params filter") 
   try {
-    const res = yield axios.get(`${BASE_URL}recipe/filter?cat=${data}&type=${data}&sort=DESC&orders=id&gte=${data}&lte=${data}&loc=${data}`, config);
+    const res = yield axios.get(`${BASE_URL}recipe/filter?cat=${data.cat}&type=${data.type}&sort=DESC&orders=id&gte=${data.gte}&lte=${data.lte}&loc=${data.loc}`, config);
     console.log(res, "res filter")
     yield put({
       type: GET_FILTER_RECIPE_SUCCESS,
@@ -94,7 +101,7 @@ export function* watchGetDetailsList() {
   yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);
 }
 export function* watchPagination() {
-  yield takeEvery(GET_RECIPE_DETAILS_BEGIN, pagination);
+  yield takeEvery(PAGINATION_BEGIN, pagination);
 }
 export function* watchFilterData() {
   yield takeEvery(GET_FILTER_RECIPE_BEGIN, filter);

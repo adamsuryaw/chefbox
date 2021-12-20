@@ -1,4 +1,4 @@
-import { GET_RECIPE_BEGIN, GET_RECIPE_DETAILS_BEGIN, GET_FILTER_RECIPE_BEGIN } from "../../constants/types";
+import { GET_RECIPE_BEGIN, GET_RECIPE_DETAILS_BEGIN, GET_FILTER_RECIPE_BEGIN, PAGINATION_BEGIN } from "../../constants/types";
 
 export const getRecipe = () => {
   return {
@@ -16,5 +16,12 @@ export const getFilterRecipe = (data) => {
   return {
     type: GET_FILTER_RECIPE_BEGIN,
     data,
+  };
+};
+
+export const getPagination = (page) => {
+  return {
+    type: PAGINATION_BEGIN,
+    page,
   };
 };

@@ -49,9 +49,9 @@ function Header() {
       }, []);
 
     const userHeader = useSelector((state) => state?.account?.userDetails);
-    console.log("user header", userHeader);
+    // console.log("user header", userHeader);
     const cartShop = useSelector((state) => state?.addCart?.cartUser);
-    // console.log("cart total", cartShop.details.length);
+    // console.log("cart total", cartShop?.details?.total);
     // return (
     //     <div className="header-section">
     //         <img src={logo} alt="logo" />
@@ -194,8 +194,8 @@ function Header() {
 
       <div className='shop-button'>
         <ShoppingCartOutlined sx={{ marginTop: '12px', marginLeft: '24px', fontSize: "24px" }} />
-        {cartShop?.details?.length ?
-            <h3>{cartShop?.details?.length}</h3>
+        {cartShop?.details?.total ?
+            <h3>{cartShop?.details?.total}</h3>
             :
             null
         }
