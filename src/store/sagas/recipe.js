@@ -1,4 +1,4 @@
-import { takeEvery, put } from "@redux-saga/core/effects";
+import { takeEvery, takeLatest, put } from "@redux-saga/core/effects";
 import {
   GET_RECIPE_BEGIN,
   GET_RECIPE_SUCCESS,
@@ -95,7 +95,7 @@ function* filter(action) {
 }
 
 export function* watchGetRecipeList() {
-  yield takeEvery(GET_RECIPE_BEGIN, getRecipeList);
+  yield takeLatest(GET_RECIPE_BEGIN, getRecipeList);
 }
 export function* watchGetDetailsList() {
   yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);

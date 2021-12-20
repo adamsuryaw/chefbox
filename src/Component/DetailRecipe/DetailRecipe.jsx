@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../store/actions/cart";
+import { Link, useNavigate } from "react-router-dom";
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);

@@ -47,14 +47,13 @@ function Account() {
   //   });
   // };
 
-  
   // const [initialValues, setInitialValues] = useState(userDetails.details)
   // console.log(initialValues, "initialValues")
   const handleDataChange = (event) => {
-    console.log(event, "event")
+    console.log(event, "event");
     // setInitialValues(event.target.value);
   };
-  
+
   return (
     <div className='account-section'>
       <div className='aside-section'>
@@ -135,40 +134,48 @@ function Account() {
           <img src={profilePict} alt='' />
         </div> */}
         <div className='text-field'>
+          <Formik
+            enableReinitialize
+            initialValues={{
+              userName: userDetails?.details?.userName,
+              email: userDetails?.details?.email,
+              firstName: userDetails?.details?.firstName,
+              lastName: userDetails?.details?.lastName,
+              phoneNumber: userDetails?.details?.phoneNumber,
+              address: userDetails?.details?.address,
+              id_location: userDetails?.details?.id_location,
+              image: userDetails?.details?.image,
+            }}
+            onSubmit={(values) => {
+              console.log(values, "bisa")
+              let formData = new FormData();
+              Object.entries(values)
+                .filter(
+                  ([key, value]) => value !== userDetails.details[`${key}`]
+                )
+                .forEach(([key, value]) => {
+                  formData.append(key, value);
+                });
 
-        <Formik
-          enableReinitialize
-          initialValues={{
-            userName: userDetails?.details?.userName,
-            email: userDetails?.details?.email,
-            firstName: userDetails?.details?.firstName,
-            lastName: userDetails?.details?.lastName,
-            phoneNumber: userDetails?.details?.phoneNumber,
-            address: userDetails?.details?.address,
-            id_location: userDetails?.details?.id_location,
-            image: userDetails?.details?.image,
-          }}
-          onSubmit={(values) => {
-            // console.log(values, "bisa")
-            let formData = new FormData();
-            Object.entries(values).filter(([key, value]) => value !== userDetails.details[`${key}`]).forEach(([key, value]) => {formData.append(key, value)})
-            
-
-            //       Object.entries(values).forEach((item)=> {
-            //         formData.append(item[0], item[1])
-            //       })
-            dispatch(patchUpdate(formData))
-            // navigate("/")
-          }}
-          >
-            {(formikProps)=> {
-              const {values, handleChange, handleBlur, handleSubmit} = formikProps
-              console.log(values, "ini value")
+              //       Object.entries(values).forEach((item)=> {
+              //         formData.append(item[0], item[1])
+              //       })
+              dispatch(patchUpdate(formData));
+              // navigate("/")
+            }}>
+            {(formikProps) => {
+              const { values, handleChange, handleBlur, handleSubmit } =
+                formikProps;
+              console.log(values, "ini value");
               return (
                 <form onSubmit={handleSubmit}>
                   <div className='avatar-sec'>
                     {/* <img src={initialValues?.image || null} alt='' /> */}
-                    <UploadImage className="avatar" name="image" value={values.image} />
+                    <UploadImage
+                      className='avatar'
+                      name='image'
+                      value={values.image}
+                    />
                   </div>
                   <h1>ini formik</h1>
                   <div className='text-field-1'>
@@ -189,7 +196,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="userName"
+                        name='userName'
                         value={values.userName}
                         // defaultValue={values.email}
                         onChange={handleChange}
@@ -212,7 +219,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="email"
+                        name='email'
                         value={values.email}
                         onChange={handleChange}
                       />
@@ -236,7 +243,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="firstName"
+                        name='firstName'
                         value={values.firstName}
                         onChange={handleChange}
                       />
@@ -258,7 +265,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="lastName"
+                        name='lastName'
                         value={values.lastName}
                         onChange={handleChange}
                       />
@@ -282,8 +289,16 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="id_location"
-                        value={values.id_location == 1 ? "Jakarta" : values.id_location == 2 ? "Bogor" : values.id_location == 3 ? "Depok" : "Tangerang"}
+                        name='id_location'
+                        value={
+                          values.id_location == 1
+                            ? "Jakarta"
+                            : values.id_location == 2
+                            ? "Bogor"
+                            : values.id_location == 3
+                            ? "Depok"
+                            : "Tangerang"
+                        }
                         onChange={handleChange}
                       />
                     </div>
@@ -304,7 +319,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="phoneNumber"
+                        name='phoneNumber'
                         value={values.phoneNumber}
                         onChange={handleChange}
                       />
@@ -328,7 +343,7 @@ function Account() {
                           marginTop: "6px",
                         }}
                         fullWidth
-                        name="address"
+                        name='address'
                         multiline
                         rows={2}
                         value={values.address}
@@ -339,7 +354,7 @@ function Account() {
                   <div className='btn-save'>
                     <Button
                       variant='contained'
-                      type="submit"
+                      type='submit'
                       sx={{
                         width: "167px",
                         height: "36px",
@@ -363,11 +378,10 @@ function Account() {
                     </Button>
                   </div>
                 </form>
-              )
+              );
             }}
-        </Formik>
+          </Formik>
         </div>
-        
       </div>
     </div>
   );

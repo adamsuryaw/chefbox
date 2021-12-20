@@ -1,83 +1,83 @@
 import {
-  GET_ORDER_BEGIN,
-  GET_ORDER_SUCCESS,
-  GET_ORDER_FAIL,
-  PATCH_ORDER_BEGIN,
-  PATCH_ORDER_SUCCESS,
-  PATCH_ORDER_FAIL,
+  POST_CREATE_BEGIN,
+  POST_CREATE_SUCCESS,
+  POST_CREATE_FAIL,
+  PUT_CREATE_BEGIN,
+  PUT_CREATE_SUCCESS,
+  PUT_CREATE_FAIL,
 } from "../../constants/types";
 
 const initialState = {
-  listOrder: {
+  createRecipe: {
     loading: false,
     error: null,
-    list: [],
+    details: [],
   },
 };
 
-export const order = (state = initialState, action) => {
+export const create = (state = initialState, action) => {
   const { type, payload, error } = action;
   switch (type) {
     default:
       return {
         ...state,
       };
-    case GET_ORDER_BEGIN:
+    case POST_CREATE_BEGIN:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: true,
           error: null,
         },
       };
-    case GET_ORDER_SUCCESS:
+    case POST_CREATE_SUCCESS:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: false,
           error: null,
-          list: payload,
+          details: payload,
         },
       };
-    case GET_ORDER_FAIL:
+    case POST_CREATE_FAIL:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: false,
           error: error,
-          list: [],
+          details: [],
         },
       };
-    case PATCH_ORDER_BEGIN:
+    case PUT_CREATE_BEGIN:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: true,
           error: null,
         },
       };
-    case PATCH_ORDER_SUCCESS:
+    case PUT_CREATE_SUCCESS:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: false,
           error: null,
-          list: payload,
+          details: payload,
         },
       };
-    case PATCH_ORDER_FAIL:
+    case PUT_CREATE_FAIL:
       return {
         ...state,
-        listOrder: {
-          ...state.listOrder,
+        createRecipe: {
+          ...state.createRecipe,
           loading: false,
           error: error,
-          list: [],
+          details: [],
         },
       };
   }

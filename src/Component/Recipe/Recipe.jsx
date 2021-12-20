@@ -25,15 +25,20 @@ import styles from './Recipe.module.scss'
 
 function Recipe() {
   const {list} = useSelector((state) => state.recipe.listRecipe);
+  const {filterList} = useSelector((state) => state.recipe.listFilter);
   console.log("list", list)
+  console.log("list filter", filterList)
   const [cat, setCat] = useState("")
   const [type, setType] = useState("")
   const [gte, setGte] = useState("")
   const [lte, setLte] = useState("")
   const [loc, setLoc] = useState("")
+  const [showFilter, setShowFilter] = useState(false)
   // console.log(select, "select")
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     dispatch(getFilterRecipe({cat, type, gte, lte, loc}))
+    setShowFilter(true)
   }
   
   const dispatch = useDispatch();
@@ -162,11 +167,20 @@ function Recipe() {
           </select>
         </div>
         <div className={styles.CardSections}>
-          {list?.map((data) => (
-            <Link to={`/details/${data.id}`} className={"card-section"}>
-              <CardComp key={data.id} data={data} />
-            </Link>
-          ))}
+          {showFilter ? 
+            filterList?.map((data) => (
+              <Link to={`/details/${data.id}`} className={"card-section"}>
+                <CardComp key={data.id} data={data} />
+              </Link>
+            ))
+          :
+            list?.map((data) => (
+              <Link to={`/details/${data.id}`} className={"card-section"}>
+                <CardComp key={data.id} data={data} />
+              </Link>
+            ))
+          }
+          
         </div>
 
         <div className='pagination-section'>

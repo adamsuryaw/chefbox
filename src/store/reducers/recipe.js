@@ -24,15 +24,17 @@ const initialState = {
     error: null,
     details: {},
   },
+  listFilter: {
+    loading: false,
+    error: null,
+    filterList: [],
+  },
 };
 
 export const recipe = (state = initialState, action) => {
   const { type, payload, error } = action;
   switch (type) {
-    default:
-      return {
-        ...state,
-      };
+    
     case GET_RECIPE_BEGIN:
       return {
         ...state,
@@ -123,8 +125,8 @@ export const recipe = (state = initialState, action) => {
       case GET_FILTER_RECIPE_BEGIN:
         return {
           ...state,
-          listRecipe: {
-            ...state.listRecipe,
+          listFilter: {
+            ...state.listFilter,
             loading: true,
             error: null,
           },
@@ -132,22 +134,26 @@ export const recipe = (state = initialState, action) => {
       case GET_FILTER_RECIPE_SUCCESS:
         return {
           ...state,
-          listRecipe: {
-            ...state.listRecipe,
+          listFilter: {
+            ...state.listFilter,
             loading: false,
             error: null,
-            list: payload,
+            filterList: payload,
           },
         };
       case GET_FILTER_RECIPE_FAIL:
         return {
           ...state,
-          listRecipe: {
-            ...state.listRecipe,
+          listFilter: {
+            ...state.listFilter,
             loading: false,
             error: error,
-            list: [],
+            filterList: [],
           },
         };
+        default:
+          return {
+            ...state,
+          };
   }
 };
