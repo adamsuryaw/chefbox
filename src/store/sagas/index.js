@@ -11,6 +11,7 @@ import { watchPutCreate, watchPostCreate, watchPutCreateThree, watchPutCreateFou
 function* rootSaga() {
   yield all([
     watchGetOrderList(),
+    watchUpdateAddress(),
     watchGetRecipeList(),
     watchGetDetailsList(),
     watchFilterData(),
