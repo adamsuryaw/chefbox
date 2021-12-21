@@ -44,6 +44,11 @@ function* patchOrderList(action) {
       type: PATCH_ORDER_SUCCESS,
       // payload: res.data,
     });
+    const update = yield axios.get(`${BASE_URL}order`, config);
+    yield put({
+      type: GET_ORDER_SUCCESS,
+      payload: update,
+    });
   } catch (err) {
     yield put({
       type: PATCH_ORDER_FAIL,
