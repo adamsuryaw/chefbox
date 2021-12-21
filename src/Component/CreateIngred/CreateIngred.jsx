@@ -14,34 +14,41 @@ import { Link } from "react-router-dom";
 import { putCreateTwo } from "../../store/actions/create";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
+import { useState, useEffect } from "react";
+import { getRecipe } from "../../store/actions/recipe";
+
+const initialValues = {
+  addRecipe: [
+    {
+      amount: '',
+      unit: '',
+      label: '',
+    },
+  ],
+};
+
+const styleAmount = {
+  width: "83px",
+  border: "1px solid #9F9F9F",
+  boxSizing: "border-box",
+  borderRadius: "4px",
+  padding: "12px 16px",
+  fontFamily: "Nunito",
+  fontWeight: "normal",
+  fontSize: "14px",
+  marginRight: "30px",
+}
 
 function CreateIngred() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const stepTwo = useSelector((state) => state.create.createRecipe)
-  console.log(stepTwo, "stepTwo")
-  // const [amount, setAmount] = React.useState('')
-  // const [unit, setUnit] = React.useState('')
-  // const [label, setLabel] = React.useState('')
-  const [value, setValue] = React.useState({
-    amount: '',
-    unit: '',
-    label: '',
-  })
-
-  const initialValues = {
-    addRecipe: [
-      {
-        amount: '',
-        unit: '',
-        label: '',
-      },
-    ],
-  };
-  // const handleSubmit = () => {
-  //   dispatch(putCreateTwo(id))
-  // }
+  const {list} = useSelector((state) => state.recipe.listRecipe);
+  console.log(list, "stepTwo")
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
+  
   return (
     <div className='ingred-section'>
       <div className='ingred-desc'>
@@ -117,25 +124,28 @@ function CreateIngred() {
         </div>
       </div>
       <div className='input-ingred'>
-        <Formik
-          initialValues={{
-            addRecipe:[
-              {
-                name: '',
-                email: '',
-              },
-            ]
-          }}
-          onSubmit={async (values) => {
-            await new Promise((r) => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
-          }}
-        >
+      <Formik
+        initialValues={{
+          amount: '',
+          unit: '',
+          label: ''
+        }}
+        onSubmit={(values, {resetForm}) => {
+          dispatch(putCreateTwo(list[0].id, values))
+          resetForm()
+          window.location.reload();
+          // console.log(values)
+        }}
+        // {async (values) => {
+        //   await new Promise((r) => setTimeout(r, 500));
+        //   alert(JSON.stringify(values, null, 2));
+        // }}
+      >
         {(formikProps) => {
           const {values, handleChange, handleBlur, handleSubmit} = formikProps
           return (
-            <form>
-            <div className='item-list'>
+            <form onSubmit={handleSubmit}>
+              <div className='item-list'>
               <div className='list'>
                 <h4>1</h4>
                 <div className='amount-ingred'>
@@ -143,7 +153,7 @@ function CreateIngred() {
                   <InputBase
                     placeholder='e.g. 1'
                     name="amount"
-                    value={values.initialValues.addRecipe.amount}
+                    value={values.amount}
                     onChange={handleChange}
                     sx={{
                       width: "83px",
@@ -162,7 +172,7 @@ function CreateIngred() {
                   <h5>Unit</h5>
                   <InputBase
                     name="unit"
-                    value={value.unit}
+                    value={values.unit}
                     onChange={handleChange}
                     placeholder='e.g. 1'
                     sx={{
@@ -182,7 +192,7 @@ function CreateIngred() {
                   <h5>Label</h5>
                   <InputBase
                     name="label"
-                    value={value.label}
+                    value={values.label}
                     onChange={handleChange}
                     placeholder='e.g. Flour'
                     sx={{
@@ -200,6 +210,7 @@ function CreateIngred() {
               </div>
               <Button
                 variant='contained'
+                type="submit"
                 sx={{
                   width: "145px",
                   height: "45px",
@@ -227,10 +238,9 @@ function CreateIngred() {
                 </Typography>
               </Button>
             </div>
-            {/* <Link to='/create/direct'> */}
+            <Link to='/create/direct'>
               <Button
-                type="submit"
-                onClick={handleSubmit}
+                // type="submit"
                 variant='contained'
                 sx={{
                   width: "125px",
@@ -257,13 +267,87 @@ function CreateIngred() {
                   Next
                 </Typography>
               </Button>
-            {/* </Link> */}
-          </form>
+            </Link>
+            </form>
+            
           )
-          
-        }}
-        
-        </Formik>
+        }
+
+          // <Form>
+          //   <FieldArray name="addRecipe">
+          //     {({ insert, remove, push }) => (
+          //       <div>
+          //         {values.addRecipe.length > 0 &&
+          //           values.addRecipe.map((add, index) => (
+          //             <div className="row" key={index}>
+          //               <div className="col">
+          //                 <label htmlFor={`addRecipe.${index}.amount`}>Amount</label>
+          //                 <Field
+          //                   name={`addRecipe.${index}.amount`}
+          //                   placeholder="e.g 1"
+          //                   type="text"
+          //                 />
+          //                 <ErrorMessage
+          //                   name={`addRecipe.${index}.amount`}
+          //                   component="div"
+          //                   className="field-error"
+          //                 />
+          //               </div>
+          //               <div className="col">
+          //                 <label htmlFor={`addRecipe.${index}.unit`}>Unit</label>
+          //                 <Field
+          //                   name={`addRecipe.${index}.unit`}
+          //                   placeholder="e.g gram"
+          //                   type="text"
+          //                 />
+          //                 <ErrorMessage
+          //                   name={`addRecipe.${index}.unit`}
+          //                   component="div"
+          //                   className="field-error"
+          //                 />
+          //               </div>
+          //               <div className="col">
+          //                 <label htmlFor={`addRecipe.${index}.label`}>Label</label>
+          //                 <Field
+          //                   name={`addRecipe.${index}.label`}
+          //                   placeholder="item..."
+          //                   type="text"
+          //                 />
+          //                 <ErrorMessage
+          //                   name={`addRecipe.${index}.label`}
+          //                   component="div"
+          //                   className="field-error"
+          //                 />
+          //               </div>
+          //               <div className="col">
+          //                 <button
+          //                   type="button"
+          //                   className="secondary"
+          //                   onClick={() => remove(index)}
+          //                 >
+          //                   X
+          //                 </button>
+          //               </div>
+          //             </div>
+          //           ))}
+          //         <button
+          //           type="button"
+          //           className="secondary"
+          //           onClick={() => push({ amount: '', unit: '', label: '' })}
+          //         >
+          //           Add New
+          //         </button>
+          //       </div>
+          //     )}
+          //   </FieldArray>
+          //   <button 
+          //     type="submit"
+          //   >
+          //       Next
+          //   </button>
+          // </Form>
+        }
+      </Formik>
         
       </div>
     </div>

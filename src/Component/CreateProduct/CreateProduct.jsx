@@ -11,7 +11,24 @@ import {
 } from "@mui/material";
 import check from "../../Asset/check.svg";
 import data from "../Data/data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { putCreateFour } from "../../store/actions/create";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
+import { useState, useEffect } from "react";
+import { getRecipe } from "../../store/actions/recipe";
+
+const stylesSub = {
+  width: "359px",
+  border: "1px solid #9F9F9F",
+  boxSizing: "border-box",
+  borderRadius: "4px",
+  padding: "12px 16px",
+  fontFamily: "Nunito",
+  fontWeight: "normal",
+  fontSize: "14px",
+}
 
 function CreateProduct() {
   const { tempat } = data;
@@ -19,6 +36,13 @@ function CreateProduct() {
   const handleChangeLocation = (event) => {
     setLocation(event.target.value);
   };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {list} = useSelector((state) => state.recipe.listRecipe);
+  console.log(list, "stepFour")
+  useEffect(() => {
+    dispatch(getRecipe());
+  }, []);
   return (
     <div className='product-section'>
       <div className='product-desc'>
@@ -105,114 +129,134 @@ function CreateProduct() {
           }}>
           <h4>Product contents</h4>
           <ul>
-            <li>1 kg package egg noodles</li>
-            <li>50 gr butter</li>
-            <li>50 gr minced parsley</li>
-            <li>50 gr salt</li>
-            <li>10 gr black pepper</li>
-            <li>100 ml olive oil</li>
+            <li>{list[0]?.ingredient}</li>
           </ul>
         </Box>
-        <div className='input-one'>
-          <div className='input-price'>
-            <h6>Price</h6>
-            <InputBase
-              sx={{
-                width: "359px",
-                border: "1px solid #9F9F9F",
-                boxSizing: "border-box",
-                borderRadius: "4px",
-                padding: "12px 16px",
-                fontFamily: "Nunito",
-                fontWeight: "normal",
-                fontSize: "14px",
-                lineHeight: "20px",
-                marginRight: "47px",
-              }}
-              fullWidth
-              placeholder='e.g. 120000'
-            />
-          </div>
-          <div className='input-stock'>
-            <h6>Stock</h6>
-            <InputBase
-              sx={{
-                width: "359px",
-                border: "1px solid #9F9F9F",
-                boxSizing: "border-box",
-                borderRadius: "4px",
-                padding: "12px 16px",
-                fontFamily: "Nunito",
-                fontWeight: "normal",
-                fontSize: "14px",
-                lineHeight: "20px",
-              }}
-              fullWidth
-              placeholder='e.g. 25'
-            />
-          </div>
-        </div>
-        <div className='input-loc'>
-          <h6>Location</h6>
-          <TextField
-            sx={{ display: "block", fontSize: "14px", marginTop: "8.21px" }}
-            type='text'
-            select
-            fullWidth
-            value={location}
-            onChange={handleChangeLocation}
-            variant='outlined'>
-            {tempat.map((option) => (
-              <MenuItem
-                key={option.value}
-                value={option.value}
-                sx={{ fontSize: "14px" }}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-        <div className='btn-save'>
-          <Button
-            variant='text'
-            sx={{
-              fontFamily: "Nunito",
-              fontWeight: "bold",
-              fontSize: "14px",
-              color: "#333333",
-              textTransform: "none",
-            }}>
-            Save as draft
-          </Button>
-          <Link to='/dashboard'>
-            <Button
-              variant='contained'
-              sx={{
-                width: "125px",
-                height: "45px",
-                background: "#F9C959",
-                boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-                borderRadius: "24px",
-                textTransform: "none",
-                marginLeft: "36px",
-                "&:hover": {
-                  backgroundColor: "#F9C959",
-                  boxShadow: "none",
-                },
-              }}>
-              <Typography
-                component='div'
-                sx={{
-                  fontFamily: "Nunito",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  color: "#333333",
-                }}>
-                Publish
-              </Typography>
-            </Button>
-          </Link>
-        </div>
+        <Formik
+          initialValues={{
+            price: '',
+            stock: '',
+            id_location: ''
+          }}
+          onSubmit={(values, {resetForm}) => {
+            dispatch(putCreateFour(list[0].id, values))
+            navigate('/recipe')
+            window.location.reload();
+            // console.log(values)
+          }}
+        >
+          {(formikProps) => {
+          const {values, handleChange, handleBlur, handleSubmit} = formikProps
+          return (
+            <form onSubmit={handleSubmit}>
+              <div className='input-one'>
+                <div className='input-price'>
+                  <h6>Price</h6>
+                  <InputBase
+                    name="price"
+                    value={values.price}
+                    onChange={handleChange}
+                    sx={{
+                      width: "359px",
+                      border: "1px solid #9F9F9F",
+                      boxSizing: "border-box",
+                      borderRadius: "4px",
+                      padding: "12px 16px",
+                      fontFamily: "Nunito",
+                      fontWeight: "normal",
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                      marginRight: "47px",
+                    }}
+                    fullWidth
+                    placeholder='e.g. 120000'
+                  />
+                </div>
+                <div className='input-stock'>
+                  <h6>Stock</h6>
+                  <InputBase
+                    name="stock"
+                    value={values.stock}
+                    onChange={handleChange}
+                    sx={{
+                      width: "359px",
+                      border: "1px solid #9F9F9F",
+                      boxSizing: "border-box",
+                      borderRadius: "4px",
+                      padding: "12px 16px",
+                      fontFamily: "Nunito",
+                      fontWeight: "normal",
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                    fullWidth
+                    placeholder='e.g. 25'
+                  />
+                </div>
+              </div>
+              <div className='input-loc'>
+                <h6>Location</h6>
+                <select
+                  name="id_location"
+                  value={values.id_location}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  style={stylesSub}
+                >
+                  <option value="" label="Please Select Location" />
+                  <option value="1" label="Jakarta" />
+                  <option value="2" label="Bogor" />
+                  <option value="3" label="Depok" />
+                  <option value="4" label="Tangerang" />
+                  <option value="5" label="Bekasi" />
+                </select>
+              </div>
+              <div className='btn-save'>
+                <Button
+                  variant='text'
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    color: "#333333",
+                    textTransform: "none",
+                  }}>
+                  Save as draft
+                </Button>
+                {/* <Link to='/dashboard'> */}
+                  <Button
+                    variant='contained'
+                    type="submit"
+                    sx={{
+                      width: "125px",
+                      height: "45px",
+                      background: "#F9C959",
+                      boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                      borderRadius: "24px",
+                      textTransform: "none",
+                      marginLeft: "36px",
+                      "&:hover": {
+                        backgroundColor: "#F9C959",
+                        boxShadow: "none",
+                      },
+                    }}>
+                    <Typography
+                      component='div'
+                      sx={{
+                        fontFamily: "Nunito",
+                        fontWeight: "bold",
+                        fontSize: "16px",
+                        color: "#333333",
+                      }}>
+                      Publish
+                    </Typography>
+                  </Button>
+                {/* </Link> */}
+              </div>
+            </form>
+          )}}
+        </Formik>
+        
       </div>
     </div>
   );

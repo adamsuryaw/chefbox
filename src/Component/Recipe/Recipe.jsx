@@ -173,7 +173,13 @@ function Recipe() {
                 <CardComp key={data.id} data={data} />
               </Link>
             ))
-          :
+          : filterList.length !== 0 ?
+            filterList?.map((data) => (
+              <Link to={`/details/${data.id}`} className={"card-section"}>
+                <CardComp key={data.id} data={data} />
+              </Link>
+            ))
+            :
             list?.map((data) => (
               <Link to={`/details/${data.id}`} className={"card-section"}>
                 <CardComp key={data.id} data={data} />

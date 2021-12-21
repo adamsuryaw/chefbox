@@ -27,9 +27,21 @@ import { getUser } from "../../store/actions/profile";
 import { viewCart } from "../../store/actions/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { getRecipe, getFilterRecipe, getSearchRecipe } from "../../store/actions/recipe";
 
 function Header() {
+  const {list} = useSelector((state) => state.recipe.listRecipe);
+  const {filterList} = useSelector((state) => state.recipe.listFilter);
+  // console.log("list", list)
+  console.log("list SEARCH", filterList)
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [keyword, setKeyword] = useState('')
+  const [showFilter, setShowFilter] = useState(false)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(getSearchRecipe(keyword))
+    setShowFilter(true)
+  }
   function clearToken() {
     localStorage.clear();
     window.location.reload();
@@ -134,7 +146,7 @@ function Header() {
       <Link to='/'>
         <img src={logo} alt='logo' />
       </Link>
-
+      <Link to='/recipe' style={{ textDecoration: "none", color: "black" }}>
       <div className='recipe'>
         <h3>Recipe</h3>
         <Box
@@ -145,6 +157,7 @@ function Header() {
           }}
         />
       </div>
+      </Link>
       <Paper
         sx={{
           p: "2px 4px",
@@ -159,10 +172,13 @@ function Header() {
         }}>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
+          name="keyword"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
           placeholder='What do you want to eat today?'
           inputProps={{ "aria-label": "search google maps" }}
         />
-        <IconButton type='submit' sx={{ p: "10px" }} aria-label='search'>
+        <IconButton type='submit' onClick={handleSubmit} sx={{ p: "10px" }} aria-label='search'>
           <SearchIcon />
         </IconButton>
       </Paper>

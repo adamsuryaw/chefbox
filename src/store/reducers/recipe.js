@@ -11,6 +11,9 @@ import {
   GET_FILTER_RECIPE_BEGIN,
   GET_FILTER_RECIPE_SUCCESS,
   GET_FILTER_RECIPE_FAIL,
+  GET_SEARCH_RECIPE_BEGIN,
+  GET_SEARCH_RECIPE_SUCCESS,
+  GET_SEARCH_RECIPE_FAIL,
 } from "../../constants/types";
 
 const initialState = {
@@ -122,7 +125,36 @@ export const recipe = (state = initialState, action) => {
           list: [],
         },
       };
-      case GET_FILTER_RECIPE_BEGIN:
+    case GET_FILTER_RECIPE_BEGIN:
+      return {
+        ...state,
+        listFilter: {
+          ...state.listFilter,
+          loading: true,
+          error: null,
+        },
+      };
+    case GET_FILTER_RECIPE_SUCCESS:
+      return {
+        ...state,
+        listFilter: {
+          ...state.listFilter,
+          loading: false,
+          error: null,
+          filterList: payload,
+        },
+      };
+    case GET_FILTER_RECIPE_FAIL:
+      return {
+        ...state,
+        listFilter: {
+          ...state.listFilter,
+          loading: false,
+          error: error,
+          filterList: [],
+        },
+      };
+      case GET_SEARCH_RECIPE_BEGIN:
         return {
           ...state,
           listFilter: {
@@ -131,7 +163,7 @@ export const recipe = (state = initialState, action) => {
             error: null,
           },
         };
-      case GET_FILTER_RECIPE_SUCCESS:
+      case GET_SEARCH_RECIPE_SUCCESS:
         return {
           ...state,
           listFilter: {
@@ -141,7 +173,7 @@ export const recipe = (state = initialState, action) => {
             filterList: payload,
           },
         };
-      case GET_FILTER_RECIPE_FAIL:
+      case GET_SEARCH_RECIPE_FAIL:
         return {
           ...state,
           listFilter: {
@@ -151,9 +183,9 @@ export const recipe = (state = initialState, action) => {
             filterList: [],
           },
         };
-        default:
-          return {
-            ...state,
-          };
+      default:
+        return {
+          ...state,
+        };
   }
 };
