@@ -37,6 +37,12 @@
             }
           }
         }
+        .userName {
+          display: flex;
+          .lastName{
+            margin-left: 0.3rem;
+          }
+        }
       }
       .ProductOrder {
         position: absolute;

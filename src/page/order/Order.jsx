@@ -7,17 +7,15 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, patchOrder } from "../../store/actions/order";
-
-
 
 const style = {
   display: "flex",
@@ -44,16 +42,28 @@ export const DeliveryDetails = (props) => {
   const { setForm } = props;
   return (
     <div className={styles.AddressUserName}>
-      <h4>Justin Junaedi</h4>
+      <div className={styles.userName}>
+        <h4 name='firstName' className={styles.firstName}>
+          Justin
+        </h4>
+        <h4 name='lastName' className={styles.lastName}>
+          Junaedi
+        </h4>
+      </div>
       <div
         className={styles.AddressUserDetailsContainer}
         style={{ display: "flex", justifyContent: "space-evenly" }}>
         <div className={styles.AddressUserDetails}>
-          <p style={{ marginTop: "0.5rem" }} className={styles.address}>
+          <p
+            style={{ marginTop: "0.5rem" }}
+            className={styles.address}
+            name='address'>
             Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis Mejoyo, Kota SBY,
             Jawa Timur 60237
           </p>
-          <p style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}>
+          <p
+            style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}
+            name='phoneNumber'>
             +62 812 2345 2345
           </p>
         </div>
@@ -88,7 +98,23 @@ export const DeliveryDetails = (props) => {
 };
 
 export const DeliveryForm = (props) => {
+  const dispatch = useDispatch();
+  const [inputs, setInputs] = useState({
+    lastName: "",
+    phoneNumber: "",
+    firstName: "",
+    address: "",
+  });
+  console.log("inputs", inputs);
+  const changeInput = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const submitChanges = (e) => [];
   const { setForm } = props;
+  console.log("setForm", setForm);
   return (
     <div className={styles.BoxedTextField}>
       <div className={styles.InputField}>
@@ -101,7 +127,7 @@ export const DeliveryForm = (props) => {
           }}
           noValidate
           autoComplete='off'>
-          <Grid container spacing={2}>
+          <Grid container spacing={-15}>
             <Grid item xs={6} md={4}>
               <div className={styles.firstName}>
                 <h4>First Name</h4>
@@ -111,6 +137,8 @@ export const DeliveryForm = (props) => {
                     id='outlined-required'
                     // label='First Name'
                     defaultValue=''
+                    onChange={(e) => changeInput(e)}
+                    name='firstName'
                   />
                 </div>
               </div>
@@ -125,6 +153,8 @@ export const DeliveryForm = (props) => {
                     id='outlined-disabled'
                     // label='Last Name'
                     defaultValue=''
+                    onChange={(e) => changeInput(e)}
+                    name='lastName'
                   />
                 </div>
               </div>
@@ -138,6 +168,8 @@ export const DeliveryForm = (props) => {
                     id='outlined-number'
                     // label='Phone Number'
                     type='number'
+                    onChange={(e) => changeInput(e)}
+                    name='phoneNumber'
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -152,6 +184,8 @@ export const DeliveryForm = (props) => {
                 <div className='TextFieldss'>
                   <TextField
                     id='outlined-number'
+                    onChange={(e) => changeInput(e)}
+                    name='address'
                     // label='Phone Number'
                     // type='number'
                     InputLabelProps={{
@@ -169,6 +203,7 @@ export const DeliveryForm = (props) => {
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
           onClick={() => setForm(false)}
+          onChange={(e) => submitChanges}
           className={styles.button}
           variant='contained'
           sx={{
@@ -207,6 +242,9 @@ export default function Order() {
 
   const { details } = useSelector((state) => state?.addCart?.cartUser);
   console.log("details", details);
+
+  const order = useSelector((state) => state.order.detailDelivery);
+  console.log("order", order);
 
   const { id } = useParams();
 
@@ -365,7 +403,7 @@ export default function Order() {
                 spacing={2}
                 direction='row'
                 style={{
-                  marginLeft: "41.5rem",
+                  marginLeft: "43.5rem",
                   paddingTop: "1rem",
                   paddingBottom: "2rem",
                 }}>
@@ -376,7 +414,7 @@ export default function Order() {
                     sx={{
                       background: "#B6340B",
                       borderRadius: "50px",
-                      padding: "6px 30px",
+                      padding: "6px 20px 6px 20px",
                       fontFamily: "Nunito Sans",
                       fontWeight: "bold",
                       textTransform: "capitalize",

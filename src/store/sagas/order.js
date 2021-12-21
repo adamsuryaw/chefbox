@@ -13,17 +13,20 @@ import { BASE_URL } from "../../constants/constants";
 const baseUrl = "http://chefbox2021.herokuapp.com";
 const currentToken = localStorage.getItem("token");
 const config = {
-  headers: { access_token: currentToken },
+  headers: {
+    access_token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJOYW1lIjoibXVseW9ubyIsImVtYWlsIjoibXVseW9ub0BnbWFpbC5jb20iLCJpYXQiOjE2MzgyMzUxMDZ9.Pty2HNIDHzRp8OEqf31c0Zp-bcj7TlezYKlt4s91W3g",
+  },
 };
 
 function* getOrderList() {
   try {
-    const res = yield axios.get(`${BASE_URL}order`, config,
-    );
+    const res = yield axios.get(`${BASE_URL}order`, config);
     yield put({
       type: GET_ORDER_SUCCESS,
-      payload: res.data.data.data,
+      payload: res,
     });
+    // console.log(res.data);
   } catch (err) {
     console.log(err, "err");
     yield put({
