@@ -14,18 +14,16 @@ import data from "../../Component/Data/data";
 const baseUrl = "http://chefbox2021.herokuapp.com";
 const currentToken = localStorage.getItem("token");
 const config = {
-  headers: { access_token: currentToken },
+  headers: { 'access_token': currentToken },
 };
 
-function* postCreate() {
+function* postCreate(action) {
+  const { data } = action;
   try {
-    const res = yield axios.get(`${BASE_URL}recipe`, {
-      headers: `access_token: ${currentToken}`,
-      // ...data.postCreate(),
-    });
+    const res = yield axios.post(`${BASE_URL}recipe/`, data, config);
+    console.log(res, "res post create")
     yield put({
       type: POST_CREATE_SUCCESS,
-      payload: res.data,
     });
   } catch (err) {
     console.log(err, "err");
@@ -36,20 +34,15 @@ function* postCreate() {
   }
 }
 function* putCreate(action) {
-  const { payload } = action;
-  const data = payload;
+  const { id } = action;
+  console.log(id, "ini id create")
+  // console.log(data, "ini data create")
   try {
-    const res = yield axios.patch(
-      `${BASE_URL}recipe/steptwo/${id}`,
-      `${BASE_URL}recipe/stepthree/${id}`,
-      `${BASE_URL}recipe/stepfour/${id}`,
-      {
-        headers: `access_token: ${currentToken}`,
-      }
-    );
+    const res = yield axios.put(`${BASE_URL}recipe/steptwo/${id}`, config);
+    console.log(res, "res put create")
     yield put({
       type: PUT_CREATE_SUCCESS,
-      payload: res.data,
+      payload: res.data.data
     });
   } catch (err) {
     yield put({

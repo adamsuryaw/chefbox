@@ -46,7 +46,7 @@ export const DeliveryDetails = (props) => {
   return (
     <div className={styles.AddressUserName}>
       <div className={styles.userName}>
-        <h4 /*name='firstName' */className={styles.firstName}>
+        <h4 /*name='firstName' */ className={styles.firstName}>
           {order.firstName}
         </h4>
         <h4 name='lastName' className={styles.lastName}>
@@ -205,8 +205,11 @@ export const DeliveryForm = (props) => {
       </div>
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
-          onClick={() => setForm(false)}
-          onChange={(e) => submitChanges}
+          onClick={() => {
+            setForm(false);
+            dispatch(patchOrder(inputs, id));
+          }}
+          // onChange={(e) => submitChanges}
           className={styles.button}
           variant='contained'
           sx={{
@@ -306,27 +309,26 @@ export default function Order() {
                   </h5>
                 </div>
                 <div className={styles.ProductContainer}>
-                  {" "}
                   {/* This is Modal */}
                   <div className={styles.mapMenu}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <div className={styles.imgData}>
                         <img src={data.image} alt='' onClick={handleOpen} />
                       </div>
                     ))}
                   </div>
                   <div className={styles.mapTitle}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4>{data.title}</h4>
                     ))}
                   </div>
                   <div className={styles.mapAmount}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4>{data.quantity}</h4>
                     ))}
                   </div>
                   <div className={styles.mapTotal}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4 /*style={{ position: "relative", right: "5.6rem" }}*/>
                         {data.total}
                       </h4>

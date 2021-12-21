@@ -5,7 +5,7 @@ import './TextBarCreate.css'
 
 function TextBarCreate(props) {
     const {tipe, kategori} = data;
-    console.log(tipe)
+    // console.log(tipe)
     const [type, setType] = React.useState();
     const handleChangeType = (event) => {
         setType(event.target.value);

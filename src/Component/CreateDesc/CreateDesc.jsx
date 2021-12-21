@@ -12,44 +12,91 @@ import {
 import imageLogo from "../../Asset/XMLID 306.svg";
 import data from "../Data/data";
 import TextBarCreate from "../TextBar/TextBarCreate";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { putCreate, postCreate } from "../../store/actions/create";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Formik, Form } from "formik";
+import UploadRecipe from "../Upload/UploadRecipe";
 
 export default function CreateDesc() {
   // const { id } = useParams();
+  const stylesTitle = {
+    width: "716px",
+    border: "1px solid #9F9F9F",
+    boxSizing: "border-box",
+    borderRadius: "4px",
+    padding: "12px 16px",
+    fontFamily: "Nunito",
+    fontWeight: "normal",
+    fontSize: "14px",
+  }
 
+  const stylesSub = {
+    width: "346px",
+    border: "1px solid #9F9F9F",
+    boxSizing: "border-box",
+    borderRadius: "4px",
+    padding: "12px 16px",
+    fontFamily: "Nunito",
+    fontWeight: "normal",
+    fontSize: "14px",
+  }
+
+  const stylesDesc = {
+    width: "716px",
+    border: "1px solid #9F9F9F",
+    boxSizing: "border-box",
+    borderRadius: "4px",
+    padding: "12px 16px",
+    fontFamily: "Nunito",
+    fontWeight: "normal",
+    fontSize: "14px",
+    lineHeight: "20px",
+  }
+
+  const stylesSelect = {
+    width: "716px",
+    border: "1px solid #9F9F9F",
+    boxSizing: "border-box",
+    borderRadius: "4px",
+    padding: "12px 16px",
+    fontFamily: "Nunito",
+    fontWeight: "normal",
+    fontSize: "14px",
+    lineHeight: "20px",
+  }
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(putCreate());
-    dispatch(postCreate());
-  }, []);
-  const [createInputs, setCreateInput] = useState({
-    id_category: [],
-    id_type: [],
-    title: "",
-    duration: "",
-    serving: "",
-    image: {},
-    description: "",
-  });
+  // useEffect(() => {
+  //   dispatch(putCreate());
+  //   dispatch(postCreate());
+  // }, []);
+  // const [createInputs, setCreateInput] = useState({
+  //   id_category: [],
+  //   id_type: [],
+  //   title: "",
+  //   duration: "",
+  //   serving: "",
+  //   image: {},
+  //   description: "",
+  // });
 
-  console.log("createInputs", "postCreate", createInputs, postCreate);
+  // console.log("createInputs", "postCreate", createInputs, postCreate);
 
-  const changeInputs = (e) => {
-    setCreateInput({
-      ...createInputs,
-      [e.target.name]: e.target.values,
-    });
-  };
+  // const changeInputs = (e) => {
+  //   setCreateInput({
+  //     ...createInputs,
+  //     [e.target.name]: e.target.values,
+  //   });
+  // };
 
-  const submit = () => {
-    if (createInputs.title.length > 0) {
-      dispatch(postCreate(createInputs));
-    }
-  };
+  // const submit = () => {
+  //   if (createInputs.title.length > 0) {
+  //     dispatch(postCreate(createInputs));
+  //   }
+  // };
 
   return (
     <div className='desc-section'>
@@ -125,142 +172,143 @@ export default function CreateDesc() {
         </div>
       </div>
       <div className='input-desc'>
-        <Box
-          sx={{
-            width: "518px",
-            height: "260px",
-            background: "linear-gradient(0deg, #F5F5F5, #F5F5F5)",
-            boxShadow: "0px 4px 24px 4px rgba(0, 0, 0, 0.1)",
-            borderRadius: "8px",
-            margin: "38px 168px 40px 168px",
-          }}>
-          <img src={imageLogo} alt='logo image' />
-          <h6>Upload Profile Photo</h6>
-        </Box>
-        <div className='input-text'>
-          <h6>Title</h6>
-          <InputBase
-            placeholder='e.g. Healthy Berry Pancake'
-            sx={{
-              width: "716px",
-              border: "1px solid #9F9F9F",
-              boxSizing: "border-box",
-              borderRadius: "4px",
-              padding: "12px 16px",
-              fontFamily: "Nunito",
-              fontWeight: "normal",
-              fontSize: "14px",
-            }}
-            onChange={(e) => changeInputs(e)}
-          />
-          <div className='input-select'>
-            <div className='input-leftSelect'>
-              <h6>Type</h6>
-              <TextBarCreate
-                name='type'
-                select='true'
-                type='text'
-                placeholder='Choose your type'
-                onChange={(e) => changeInputs(e)}
-              />
-            </div>
-            <div className='input-rightSelect'>
-              <h6>Category</h6>
-              <TextBarCreate
-                name='category'
-                select='true'
-                type='text'
-                placeholder='Choose your type'
-                onChange={(e) => changeInputs(e)}
-              />
-            </div>
-          </div>
-          <div className='input-info'>
-            <div className='input-leftInfo'>
-              <h6>Cooking Time</h6>
-              <InputBase
-                placeholder='e.g. 30 minutes'
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                }}
-                onChange={(e) => changeInputs(e)}
-              />
-            </div>
-            <div className='input-rightInfo'>
-              <h6>Servings</h6>
-              <InputBase
-                placeholder='e.g. 5'
-                sx={{
-                  width: "346px",
-                  border: "1px solid #9F9F9F",
-                  boxSizing: "border-box",
-                  borderRadius: "4px",
-                  padding: "12px 16px",
-                  fontFamily: "Nunito",
-                  fontWeight: "normal",
-                  fontSize: "14px",
-                }}
-                onChange={(e) => changeInputs(e)}
-              />
-            </div>
-          </div>
-          <div className='input-description'>
-            <h6>Description</h6>
-            <InputBase
-              sx={{
-                width: "716px",
-                border: "1px solid #9F9F9F",
-                boxSizing: "border-box",
-                borderRadius: "4px",
-                padding: "12px 16px",
-                fontFamily: "Nunito",
-                fontWeight: "normal",
-                fontSize: "14px",
-                lineHeight: "20px",
-              }}
-              id='outlined-multiline-static'
-              multiline
-              rows={4}
-              fullWidth
-              placeholder='e.g. This gluten-free baked oatmeal dotted with blueberries and raspberries is an easy and heathy brunch casserole. Reheat leftovers for a quick breakfast all weeklong.'
-              onChange={(e) => changeInputs(e)}
-            />
-          </div>
-          <div className='btn-next'>
-            <Link to='/create/ingredient'>
-              <Button
-                variant='contained'
-                sx={{
-                  width: "125px",
-                  height: "45px",
-                  background: "#F9C959",
-                  boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-                  borderRadius: "24px",
-                  marginTop: "57px",
-                  marginLeft: "590px",
-                  textTransform: "none",
-                }}>
-                <Typography
-                  component='div'
-                  sx={{
-                    fontFamily: "Nunito",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    color: "#333333",
-                  }}>
-                  Next
-                </Typography>
-              </Button>
-            </Link>
-          </div>
-        </div>
+        <Formik
+          initialValues={{
+            id_category: "",
+            id_type: "",
+            title: "",
+            duration: "",
+            serving: "",
+            image: "",
+            description: "",
+          }}
+          onSubmit={(values) => {
+            let formData = new FormData();
+            Object.entries(values).forEach((item)=> {
+              formData.append(item[0], item[1])
+            })
+            dispatch(postCreate(formData));
+            navigate('/create/ingredient')
+            console.log(values)
+          }}
+        >
+          {(formikProps) => {
+            const {values, handleChange, handleBlur, handleSubmit} = formikProps
+            return (
+              <form onSubmit={handleSubmit}>
+                <UploadRecipe name="image" value={values.image} />
+                <div className='input-text'>
+                  <h6>Title</h6>
+                  <InputBase
+                    name="title"
+                    value={values.title}
+                    placeholder='e.g. Healthy Berry Pancake'
+                    sx={stylesTitle}
+                    onChange={handleChange}
+                  />
+                  <div className='input-select'>
+                    <div className='input-leftSelect'>
+                      <h6>Type</h6>
+                      <select
+                          name="id_type"
+                          value={values.id_type}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          style={stylesSub}
+                        >
+                          <option value="" label="Please Select..." />
+                          <option value="1" label="Food" />
+                          <option value="2" label="Beverage" />
+                        </select>
+                    </div>
+                    <div className='input-rightSelect'>
+                      <h6>Category</h6>
+                      <select
+                          name="id_category"
+                          value={values.id_category}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          style={stylesSub}
+                        >
+                          <option value="" label="Please Select..." />
+                          <option value="1" label="Meat" />
+                          <option value="2" label="Chicken" />
+                          <option value="3" label="Seafood" />
+                          <option value="4" label="Vegetarian" />
+                          <option value="5" label="Local" />
+                        </select>
+                    </div>
+                  </div>
+                  <div className='input-info'>
+                    <div className='input-leftInfo'>
+                      <h6>Cooking Time</h6>
+                      <InputBase
+                        name="duration"
+                        value={values.duration}
+                        placeholder='e.g. 30 minutes'
+                        sx={stylesSub}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className='input-rightInfo'>
+                      <h6>Servings</h6>
+                      <InputBase
+                        name="serving"
+                        value={values.serving}
+                        placeholder='e.g. 5'
+                        sx={stylesSub}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className='input-description'>
+                    <h6>Description</h6>
+                    <InputBase
+                      sx={stylesDesc}
+                      name="description"
+                      value={values.description}
+                      multiline
+                      rows={4}
+                      fullWidth
+                      placeholder='e.g. This gluten-free baked oatmeal dotted with blueberries and raspberries is an easy and heathy brunch casserole. Reheat leftovers for a quick breakfast all weeklong.'
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className='btn-next'>
+                    {/* <Link to='/create/ingredient'> */}
+                      <Button
+                        type='submit'
+                        variant='contained'
+                        sx={{
+                          width: "125px",
+                          height: "45px",
+                          background: "#F9C959",
+                          boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                          borderRadius: "24px",
+                          marginTop: "57px",
+                          marginLeft: "590px",
+                          textTransform: "none",
+                        }}>
+                        <Typography
+                          component='div'
+                          sx={{
+                            fontFamily: "Nunito",
+                            fontWeight: "bold",
+                            fontSize: "16px",
+                            color: "#333333",
+                          }}>
+                          Next
+                        </Typography>
+                      </Button>
+                    {/* </Link> */}
+                  </div>
+                </div>
+              </form>
+            )
+          }}
+          
+        </Formik>
+        
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { location } from "./location";
 import { review } from "./review";
 import { addCart } from "./cart";
 import { order } from "./order";
-// import { create } from "./create";
+import { create } from "./create";
 
 export default combineReducers({
   user: userReducer,
@@ -16,5 +16,5 @@ export default combineReducers({
   review,
   addCart,
   order,
-  // create,
+  create,
 });

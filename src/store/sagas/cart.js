@@ -47,7 +47,7 @@ function* cartAll (action) {
     yield put(
       {
         type: GET_CART_SUCCESS,
-        payload: res.data.data,
+        payload: res.data,
       },
     );
   } catch (err) {

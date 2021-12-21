@@ -36,10 +36,10 @@ function* getOrderList() {
   }
 }
 function* patchOrderList(action) {
-  const { body } = action;
+  const { data, id } = action;
   // const data = payload;
   try {
-    const res = yield axios.patch(`${BASE_URL}order/${id}`, body);
+    const res = yield axios.patch(`${BASE_URL}order/${id}`, data, config);
     yield put({
       type: PATCH_ORDER_SUCCESS,
       // payload: res.data,
