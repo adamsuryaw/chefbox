@@ -34,12 +34,12 @@ function* getOrderList() {
 }
 function* patchOrderList(action) {
   const { payload } = action;
-  // const data = payload;
+  const data = payload;
   try {
     const res = yield axios.patch(`${BASE_URL}order/${id}`);
     yield put({
       type: PATCH_ORDER_SUCCESS,
-      payload: res.data.data,
+      payload: res.data,
     });
   } catch (err) {
     yield put({

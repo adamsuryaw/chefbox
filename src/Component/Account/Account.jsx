@@ -77,7 +77,7 @@ function Account() {
               <h4>My Recipe</h4>
             </Button>
           </Link>
-          <Link to='/order' style={{ textDecoration: "none" }}>
+          <Link to='/dashboard/my-order' style={{ textDecoration: "none" }}>
             <Button
               sx={{
                 fontFamily: "Nunito",
@@ -147,7 +147,7 @@ function Account() {
               image: userDetails?.details?.image,
             }}
             onSubmit={(values) => {
-              // console.log(values, "bisa")
+              console.log(values, "bisa")
               let formData = new FormData();
               Object.entries(values)
                 .filter(
@@ -177,7 +177,7 @@ function Account() {
                       value={values.image}
                     />
                   </div>
-                  <h1>ini formik</h1>
+                  {/* <h1>ini formik</h1> */}
                   <div className='text-field-1'>
                     <div>
                       <h5>Username</h5>

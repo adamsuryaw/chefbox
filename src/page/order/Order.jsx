@@ -15,7 +15,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
-import { getOrder } from "../../store/actions/order";
+import { getOrder, patchOrder } from "../../store/actions/order";
+
+
 
 const style = {
   display: "flex",

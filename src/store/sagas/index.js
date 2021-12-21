@@ -15,6 +15,7 @@ import { watchPutCreate, watchPostCreate } from "./create";
 function* rootSaga() {
   yield all([
     watchGetOrderList(),
+    watchUpdateAddress(),
     watchGetRecipeList(),
     watchGetDetailsList(),
     watchFilterData(),
