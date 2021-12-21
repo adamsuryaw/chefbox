@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, patchOrder } from "../../store/actions/order";
+import { getRecipe } from "../../store/actions/recipe";
+import { patchUpdate } from "../../store/actions/profile";
+import { order } from "../../store/reducers/order";
 
 const style = {
   display: "flex",
@@ -43,8 +46,8 @@ export const DeliveryDetails = (props) => {
   return (
     <div className={styles.AddressUserName}>
       <div className={styles.userName}>
-        <h4 name='firstName' className={styles.firstName}>
-          Justin
+        <h4 /*name='firstName' */className={styles.firstName}>
+          {order.firstName}
         </h4>
         <h4 name='lastName' className={styles.lastName}>
           Junaedi
@@ -235,7 +238,9 @@ export default function Order() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(viewCart());
-    dispatch(getOrder());
+    dispatch(getOrder(id));
+    // dispatch(patchUpdate());
+    // dispatch(getRecipe);
   }, []);
   const { list } = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list);
@@ -243,7 +248,7 @@ export default function Order() {
   const { details } = useSelector((state) => state?.addCart?.cartUser);
   console.log("details", details);
 
-  const order = useSelector((state) => state.order.detailDelivery);
+  const order = useSelector((state) => state?.order?.detailDelivery);
   console.log("order", order);
 
   const { id } = useParams();
