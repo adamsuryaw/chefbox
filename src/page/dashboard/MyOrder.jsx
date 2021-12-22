@@ -169,7 +169,9 @@ export default function MyOrder() {
                     <div className={styles.menuCollectionButton}>
                       <div className={styles.button2}></div>
                       <div className={styles.button}>
-                        <button onClick={() => handleOpen(data.title)} open={open}>
+                        <button
+                          onClick={() => handleOpen(data.title)}
+                          open={open}>
                           Review
                         </button>
                       </div>
@@ -207,6 +209,7 @@ export default function MyOrder() {
                           onChange={(event, newValue) => {
                             setSecondValue(newValue);
                           }}
+                          sx={{ width: "10rem" }}
                         />
                       </Box>
                       <InputBase

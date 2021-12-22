@@ -17,6 +17,8 @@ import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, patchOrder } from "../../store/actions/order";
 import { getRecipe } from "../../store/actions/recipe";
+import { patchUpdate } from "../../store/actions/profile";
+import { order } from "../../store/reducers/order";
 
 const style = {
   display: "flex",
@@ -41,14 +43,19 @@ const style = {
 
 export const DeliveryDetails = (props) => {
   const { setForm } = props;
+  const detailDelivery = useSelector(
+    (state) => state?.order?.listOrder?.data?.detailDelivery
+  );
+  console.log("detailDelivery", detailDelivery);
+
   return (
     <div className={styles.AddressUserName}>
       <div className={styles.userName}>
-        <h4 name='firstName' className={styles.firstName}>
-          Justin
+        <h4 /*name='firstName' */ className={styles.firstName}>
+          {detailDelivery?.length ? detailDelivery[0]?.firstName : null}
         </h4>
         <h4 name='lastName' className={styles.lastName}>
-          Junaedi
+          {detailDelivery?.length ? detailDelivery[0]?.lastName : null}
         </h4>
       </div>
       <div
@@ -59,13 +66,12 @@ export const DeliveryDetails = (props) => {
             style={{ marginTop: "0.5rem" }}
             className={styles.address}
             name='address'>
-            Jl. Raya Jemursari No.258, Prapen, Kec. Tenggilis Mejoyo, Kota SBY,
-            Jawa Timur 60237
+            {detailDelivery?.length ? detailDelivery[0]?.address : null}
           </p>
           <p
             style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}
             name='phoneNumber'>
-            +62 812 2345 2345
+            {detailDelivery?.length ? detailDelivery[0]?.phoneNumber : null}
           </p>
         </div>
         <div className={styles.AddressUserDetailsButton}>
@@ -101,12 +107,14 @@ export const DeliveryDetails = (props) => {
 export const DeliveryForm = (props) => {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
+    // id: [],
     lastName: "",
     phoneNumber: "",
     firstName: "",
     address: "",
   });
   console.log("inputs", inputs);
+
   const changeInput = (e) => {
     setInputs({
       ...inputs,
@@ -116,6 +124,12 @@ export const DeliveryForm = (props) => {
   const submitChanges = (e) => [];
   const { setForm } = props;
   console.log("setForm", setForm);
+
+  const detailDelivery = useSelector(
+    (state) => state?.order?.listOrder?.data?.detailDelivery
+  );
+  console.log("detailDelivery", detailDelivery);
+
   return (
     <div className={styles.BoxedTextField}>
       <div className={styles.InputField}>
@@ -131,12 +145,12 @@ export const DeliveryForm = (props) => {
           <Grid container spacing={-15}>
             <Grid item xs={6} md={4}>
               <div className={styles.firstName}>
-                <h4>First Name</h4>
+                <h4>{detailDelivery?.firstName}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     // required
                     id='outlined-required'
-                    // label='First Name'
+                    label='First Name'
                     defaultValue=''
                     onChange={(e) => changeInput(e)}
                     name='firstName'
@@ -147,12 +161,12 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={6} md={4}>
               <div className={styles.lastName}>
-                <h4>Last Name</h4>
+                <h4>{detailDelivery.lastName}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     // disabled
                     id='outlined-disabled'
-                    // label='Last Name'
+                    label='Last Name'
                     defaultValue=''
                     onChange={(e) => changeInput(e)}
                     name='lastName'
@@ -163,17 +177,17 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={6} md={4}>
               <div className={styles.phoneNumber}>
-                <h4>Phone Number</h4>
+                <h4>{detailDelivery.phoneNumber}</h4>
                 <div className='TextFieldss'>
                   <TextField
-                    id='outlined-number'
-                    // label='Phone Number'
-                    type='number'
+                    id='outlined-disabled'
+                    label='Phone Number'
+                    // type='number'
                     onChange={(e) => changeInput(e)}
                     name='phoneNumber'
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    // InputLabelProps={{
+                    //   shrink: true,
+                    // }}
                   />
                 </div>
               </div>
@@ -181,17 +195,17 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={1} md={1}>
               <div className={styles.AddressField}>
-                <h4>Address</h4>
+                <h4>{detailDelivery.address}</h4>
                 <div className='TextFieldss'>
                   <TextField
-                    id='outlined-number'
+                    id='outlined-disabled'
                     onChange={(e) => changeInput(e)}
                     name='address'
-                    // label='Phone Number'
+                    label='Address'
                     // type='number'
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    // InputLabelProps={{
+                    //   shrink: true,
+                    // }}
                   />
                 </div>
               </div>
@@ -203,8 +217,11 @@ export const DeliveryForm = (props) => {
       </div>
       <Stack className={styles.buttons} spacing={5} direction='row'>
         <Button
-          onClick={() => setForm(false)}
-          onChange={(e) => submitChanges}
+          onClick={() => {
+            setForm(false);
+            dispatch(patchOrder(inputs, detailDelivery[0]?.id));
+          }}
+          // onChange={(e) => submitChanges}
           className={styles.button}
           variant='contained'
           sx={{
@@ -236,8 +253,9 @@ export default function Order() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(viewCart());
-    dispatch(getRecipe());
-    dispatch(getOrder());
+    dispatch(getOrder(id));
+    // dispatch(patchUpdate());
+    // dispatch(getRecipe);
   }, []);
   const { list } = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list);
@@ -245,8 +263,10 @@ export default function Order() {
   const {details} = useSelector((state) => state?.addCart?.cartUser);
   console.log("details", details);
 
-  const orderList = useSelector((state) => state?.order?.orderDetails);
-  console.log("order", orderList);
+  const detailOrder = useSelector(
+    (state) => state?.order?.listOrder?.data?.detailOrder
+  );
+  console.log("detailOrder", detailOrder);
 
   const { id } = useParams();
 
@@ -254,7 +274,7 @@ export default function Order() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [showform, setForm] = React.useState(false);
-
+  const subtotal = details?.data?.reduce((x, y) => x + y.total, 0);
   return (
     <div className={styles.Body}>
       <div className={styles.SecondBody}>
@@ -303,7 +323,6 @@ export default function Order() {
                   </h5>
                 </div>
                 <div className={styles.ProductContainer}>
-                  {/* {" "} */}
                   {/* This is Modal */}
                   <div className={styles.mapMenu}>
                     {details?.data?.map((data) => (
@@ -392,10 +411,12 @@ export default function Order() {
                       marginTop: "1rem",
                       listStyle: "none",
                     }}>
-                    <li style={{ marginBottom: "1rem" }}>Rp.35.000</li>
-                    <li style={{ marginBottom: "1rem" }}>Rp.15.000</li>
+                    <li style={{ marginBottom: "1rem" }}>{subtotal}</li>
+                    <li style={{ marginBottom: "1rem" }}>
+                      {detailOrder?.deliveryFee}
+                    </li>
                     <li style={{ color: "#B6340B", marginBottom: "1rem" }}>
-                      Rp.50.000
+                      {detailOrder?.deliveryFee + subtotal}
                     </li>
                   </ul>
                 </div>
@@ -422,7 +443,7 @@ export default function Order() {
                       textTransform: "capitalize",
                       textDecoration: "none",
                     }}>
-                    Choose Payment Method
+                    Checkout{" "}
                   </Button>
                 </Link>
               </Stack>
