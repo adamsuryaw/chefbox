@@ -8,75 +8,77 @@ import {
 } from "../../constants/types";
 
 const initialState = {
-  listOrder: [
-    // list: {},
-  ],
-  loading: false,
-  error: null,
+  orderDetails: {
+    loading: false,
+    error: null,
+    orderList: [],
+  },
 };
 
 export const order = (state = initialState, action) => {
   const { type, payload, error } = action;
   switch (type) {
-    default:
-      return {
-        ...state,
-      };
     case GET_ORDER_BEGIN:
       return {
         ...state,
-        loading: true,
-        error: null,
-        // listOrder: {
-        //   ...state.listOrder,
-        // },
-      };
+        orderDetails: {
+          ...state.orderDetails,
+          loading: true,
+          error: null,
+        },
+      }
     case GET_ORDER_SUCCESS:
       return {
-        // ...state,
         ...state,
-        loading: false,
-        error: null,
-        listOrder: payload,
-        // list: payload,
-      };
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: payload,
+        },
+      }
     case GET_ORDER_FAIL:
       return {
-        // ...state,
         ...state,
-        loading: false,
-        error: error,
-        listOrder: [],
-        // list: [],
-      };
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: [],
+        },
+      }
     case PATCH_ORDER_BEGIN:
       return {
         ...state,
-        listOrder: {
-          // ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: true,
+          error: null,
         },
-        loading: true,
-        error: null,
-      };
+      }
     case PATCH_ORDER_SUCCESS:
       return {
         ...state,
-        listOrder: {
-          // ...state.listOrder,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: payload,
         },
-        loading: false,
-        error: null,
-        list: payload,
-      };
+      }
     case PATCH_ORDER_FAIL:
       return {
         ...state,
-        listOrder: {
-          // ...state.listOrder,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: [],
         },
-        loading: false,
-        error: error,
-        list: [],
-      };
+      }
+      default:
+        return {
+          ...state,
+        };
   }
 };

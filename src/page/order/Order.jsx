@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, patchOrder } from "../../store/actions/order";
+import { getRecipe } from "../../store/actions/recipe";
 
 const style = {
   display: "flex",
@@ -235,16 +236,17 @@ export default function Order() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(viewCart());
+    dispatch(getRecipe());
     dispatch(getOrder());
   }, []);
   const { list } = useSelector((state) => state.recipe.listRecipe);
   console.log("list", list);
 
-  const { details } = useSelector((state) => state?.addCart?.cartUser);
+  const {details} = useSelector((state) => state?.addCart?.cartUser);
   console.log("details", details);
 
-  const order = useSelector((state) => state.order.detailDelivery);
-  console.log("order", order);
+  const orderList = useSelector((state) => state?.order?.orderDetails);
+  console.log("order", orderList);
 
   const { id } = useParams();
 
@@ -301,27 +303,27 @@ export default function Order() {
                   </h5>
                 </div>
                 <div className={styles.ProductContainer}>
-                  {" "}
+                  {/* {" "} */}
                   {/* This is Modal */}
                   <div className={styles.mapMenu}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <div className={styles.imgData}>
                         <img src={data.image} alt='' onClick={handleOpen} />
                       </div>
                     ))}
                   </div>
                   <div className={styles.mapTitle}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4>{data.title}</h4>
                     ))}
                   </div>
                   <div className={styles.mapAmount}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4>{data.quantity}</h4>
                     ))}
                   </div>
                   <div className={styles.mapTotal}>
-                    {details?.map((data) => (
+                    {details?.data?.map((data) => (
                       <h4 /*style={{ position: "relative", right: "5.6rem" }}*/>
                         {data.total}
                       </h4>

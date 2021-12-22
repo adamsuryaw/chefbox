@@ -1,8 +1,9 @@
 import { GET_RECIPE_BEGIN, GET_RECIPE_DETAILS_BEGIN, GET_FILTER_RECIPE_BEGIN, GET_SEARCH_RECIPE_BEGIN, PAGINATION_BEGIN } from "../../constants/types";
 
-export const getRecipe = () => {
+export const getRecipe = (page) => {
   return {
     type: GET_RECIPE_BEGIN,
+    page
   };
 };
 export const getRecipeDetails = (id) => {

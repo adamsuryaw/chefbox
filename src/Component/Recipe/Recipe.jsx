@@ -34,6 +34,9 @@ function Recipe() {
   const [lte, setLte] = useState("")
   const [loc, setLoc] = useState("")
   const [showFilter, setShowFilter] = useState(false)
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(0)
+  const [totalPages, setTotalPages] = useState(list?.totalPages)
   // console.log(select, "select")
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -44,9 +47,7 @@ function Recipe() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipe());
-    // dispatch(getPagination());
-    // dispatch(getFilterRecipe());
-  }, []);
+  }, [page, limit, totalPages]);
 
   return (
     <div className='recipe-page'>
@@ -180,23 +181,23 @@ function Recipe() {
               </Link>
             ))
             :
-            list?.map((data) => (
+            list?.recipe?.map((data) => (
               <Link to={`/details/${data.id}`} className={"card-section"}>
                 <CardComp key={data.id} data={data} />
               </Link>
             ))
           }
-          
+          <div className='pagination-section'>
+            <Pagination
+              count={totalPages}
+              variant="outlined"
+              shape="rounded"
+              onChange={(e) => setPage(e.target.textContent)}
+            />
+          </div>
         </div>
 
-        <div className='pagination-section'>
-        <Pagination
-          count={6}
-          variant="outlined"
-          shape="rounded"
-          onChange={(e) => console.log(e, "e pagi")}
-        />
-        </div>
+        
       </div>
     </div>
   );

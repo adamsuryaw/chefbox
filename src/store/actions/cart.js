@@ -11,6 +11,6 @@ export const addToCart = (id, data) => {
 export const viewCart = (data) => {
   return {
     type: GET_CART_BEGIN,
-    payload: data
+    data
   };
 };

@@ -33,7 +33,7 @@ function Header() {
   const {list} = useSelector((state) => state.recipe.listRecipe);
   const {filterList} = useSelector((state) => state.recipe.listFilter);
   // console.log("list", list)
-  console.log("list SEARCH", filterList)
+  // console.log("list SEARCH", filterList)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = useState('')
   const [showFilter, setShowFilter] = useState(false)

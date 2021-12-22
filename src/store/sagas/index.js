@@ -4,14 +4,15 @@ import { watchGetUser, watchUpdateUser } from "./profile";
 import { watchGetRecipeList, watchGetDetailsList, watchFilterData, watchPagination, watchSearchData } from "./recipe";
 import { watchLogin, watchRegister, watchSignup } from "./auth";
 import { watchGetLocationList } from "./location";
-import { watchReviewList } from "./review";
+import { watchReviewList, watchPostReview } from "./review";
 import { watchAddCart, watchAllCart } from "./cart";
 import { watchPutCreate, watchPostCreate, watchPutCreateThree, watchPutCreateFour } from "./create";
+import { watchOrder } from "./orderPay";
 
 function* rootSaga() {
   yield all([
-    watchGetOrderList(),
-    watchUpdateAddress(),
+    // watchGetOrderList(),
+    // watchUpdateAddress(),
     watchGetRecipeList(),
     watchGetDetailsList(),
     watchFilterData(),
@@ -22,6 +23,7 @@ function* rootSaga() {
     watchSignup(),
     watchGetLocationList(),
     watchReviewList(),
+    watchPostReview(),
     watchAddCart(),
     watchAllCart(),
     watchPagination(),
@@ -29,7 +31,8 @@ function* rootSaga() {
     watchPostCreate(),
     watchPutCreate(),
     watchPutCreateThree(),
-    watchPutCreateFour()
+    watchPutCreateFour(),
+    watchOrder()
   ]);
 }
 

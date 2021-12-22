@@ -113,7 +113,7 @@ export default function MyRecipe() {
           <div className={styles.MainContainer}>
             <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
             <div className={styles.CardSections}>
-              {list?.map((data) => (
+              {list?.recipe?.map((data) => (
                 <Link to={`/details/${data.id}`} className='card-sections'>
                   <CardComp key={data.id} data={data} />
                 </Link>

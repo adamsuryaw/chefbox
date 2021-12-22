@@ -25,14 +25,14 @@ const config = {
 }
 
 function* getRecipeList(action) {
-  // const { page } = action;
+  const { page } = action;
   try {
-    const res = yield axios.get(`${BASE_URL}recipe`, config);
-    // const res = yield axios.get(`${BASE_URL}recipe?page=${page}&limit=6`, config);
+    // const res = yield axios.get(`${BASE_URL}recipe`, config);
+    const res = yield axios.get(`${BASE_URL}recipe?page=${page}&limit=6`, config);
     console.log(res, "res recipe list")
     yield put({
       type: GET_RECIPE_SUCCESS,
-      payload: res.data.data,
+      payload: res.data,
     });
   } catch (err) {
     yield put({
@@ -65,7 +65,7 @@ function* pagination(action) {
     console.log(res, "res pagination")
     yield put({
       type: PAGINATION_SUCCESS,
-      payload: res.data.data,
+      payload: res.data,
     });
   } catch (err) {
     yield put({
