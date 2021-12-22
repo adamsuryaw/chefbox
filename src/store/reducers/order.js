@@ -5,6 +5,9 @@ import {
   PATCH_ORDER_BEGIN,
   PATCH_ORDER_SUCCESS,
   PATCH_ORDER_FAIL,
+  POST_PAYMENT_BEGIN,
+  POST_PAYMENT_SUCCESS,
+  POST_PAYMENT_FAIL,
 } from "../../constants/types";
 
 const initialState = {
@@ -67,6 +70,35 @@ export const order = (state = initialState, action) => {
         },
       }
     case PATCH_ORDER_FAIL:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: [],
+        },
+      }
+    case POST_PAYMENT_BEGIN:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: true,
+          error: null,
+        },
+      }
+    case POST_PAYMENT_SUCCESS:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: payload,
+        },
+      }
+    case POST_PAYMENT_FAIL:
       return {
         ...state,
         orderDetails: {

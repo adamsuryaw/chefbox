@@ -6,6 +6,9 @@ import {
     PATCH_ORDER_BEGIN,
     PATCH_ORDER_SUCCESS,
     PATCH_ORDER_FAIL,
+    POST_PAYMENT_BEGIN,
+    POST_PAYMENT_SUCCESS,
+    POST_PAYMENT_FAIL,
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
@@ -54,10 +57,32 @@ function* patchOrderList(action) {
   }
 }
 
+function* postPayment(action) {
+  const { body } = action;
+  console.log("bisa")
+  try {
+    const res = yield axios.post(`${BASE_URL}order/checkout`, body, config);
+    console.log(res, "res post payment")
+    yield put({
+      type: POST_PAYMENT_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    console.log(err, "err");
+    yield put({
+      type: POST_PAYMENT_FAIL,
+      error: err,
+    });
+  }
+}
+
 export function* watchGetOrderList() {
   yield takeEvery(GET_ORDER_BEGIN, getOrderList);
 }
 export function* watchUpdateAddress() {
   yield takeEvery(PATCH_ORDER_BEGIN, patchOrderList);
+}
+export function* watchPostPayment() {
+  yield takeEvery(POST_PAYMENT_BEGIN, postPayment);
 }
 

@@ -45,6 +45,7 @@ export const recipe = (state = initialState, action) => {
           ...state.listRecipe,
           loading: true,
           error: null,
+          list: [],
         },
       };
     case GET_RECIPE_SUCCESS:

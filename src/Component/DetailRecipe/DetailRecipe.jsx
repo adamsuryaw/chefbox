@@ -14,6 +14,7 @@ import {
   Typography,
   CardActionArea,
   Avatar,
+  InputBase
 } from "@mui/material";
 import AccessTime from "@mui/icons-material/AccessTime";
 import PermIdentity from "@mui/icons-material/PermIdentity";
@@ -29,11 +30,13 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../store/actions/cart";
 import { Link, useNavigate } from "react-router-dom";
+import { postReview } from "../../store/actions/review";
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
   const [count, setCount] = React.useState(0)
-  
+  const [comment, setComment] = React.useState("");
+  const [secondValue, setSecondValue] = React.useState(0);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -45,15 +48,19 @@ function DetailRecipe() {
   const handleCart = (count) => {
     dispatch(addToCart(count))
   }
-
+  
   const {details} = useSelector((state) => state.recipe.listDetails);
-  // console.log("details", details);
+  console.log("details", details);
   const review = useSelector((state) => state.review.userReview);
-  // console.log("review", review);
+  console.log("review", review);
   const shopCart = useSelector((state) => state.addCart.cartUser);
-  console.log("shop", shopCart);
+  // console.log("shop", shopCart);
   const [cartItems, setCartItems] = React.useState([]);
-
+  const handleSubmit = () => {
+    dispatch(postReview(details?.id, {comment}));
+    window.location.reload();
+    // console.log(comment)
+  }
   return (
     <div className='detail-page'>
       <div className='menu-section'>
@@ -234,6 +241,58 @@ function DetailRecipe() {
             {review.details?.map((details) => (
               <Review key={details.id} details={details} />
             ))}
+
+            <InputBase
+              name="comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder='Comment here...'
+              multiline
+              rows={4}
+              sx={{
+                width: "716px",
+                border: "1px solid #9F9F9F",
+                boxSizing: "border-box",
+                borderRadius: "4px",
+                padding: "12px 16px",
+                fontFamily: "Nunito",
+                fontWeight: "normal",
+                fontSize: "14px",
+                marginRight: "30px",
+              }}
+            />
+            <Rating
+              name='simple-controlled'
+              value={secondValue}
+              onChange={(event, newValue) => {
+                setSecondValue(newValue);
+              }}
+              sx={{ width: "10rem" }}
+            />
+            <Button
+            type="submit"
+            onClick={handleSubmit}
+            variant='contained'
+            sx={{
+              minWidth: "150px",
+              height: "45px",
+              background: "#B6340B",
+              boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+              borderRadius: "24px",
+              marginTop: "31px",
+              textTransform: "none",
+            }}>
+            <Typography
+              component='div'
+              sx={{
+                fontFamily: "Nunito",
+                fontWeight: "bold",
+                fontSize: "16px",
+                color: "#F2F2F2",
+              }}>
+              Submit
+            </Typography>
+          </Button>
           </div>
         </div>
       </div>

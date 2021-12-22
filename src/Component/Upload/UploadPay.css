@@ -1,0 +1,14 @@
+#upload-pay {
+  display: none;
+}
+
+.upload-payment {
+  width: 100%;
+  background: #f2f2f2;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 17.9rem;
+  font-family: Nunito Sans;
+  font-weight: bold;
+  text-transform: capitalize;
+}

@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
-import { getOrder, patchOrder } from "../../store/actions/order";
+import { getOrder, patchOrder, postOrderPay } from "../../store/actions/order";
 import { getRecipe } from "../../store/actions/recipe";
 import { patchUpdate } from "../../store/actions/profile";
 import { order } from "../../store/reducers/order";
@@ -444,7 +444,7 @@ export default function Order() {
                       textTransform: "capitalize",
                       textDecoration: "none",
                     }}>
-                    Checkout{" "}
+                    Checkout
                   </Button>
                 </Link>
               </Stack>

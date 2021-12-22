@@ -6,6 +6,15 @@ export const getRecipe = (page) => {
     page
   };
 };
+
+
+// export const getRecipe = (page, params) => {
+//   return {
+//     type: GET_RECIPE_BEGIN,
+//     page,
+//     params
+//   };
+// };
 export const getRecipeDetails = (id) => {
   return {
     type: GET_RECIPE_DETAILS_BEGIN,

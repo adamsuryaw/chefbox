@@ -26,9 +26,6 @@ function CardComp({data}) {
   // console.log("data", data);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getRecipe());
-  }, []);
 
   return (
     <div className='container'>

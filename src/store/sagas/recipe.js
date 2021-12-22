@@ -41,6 +41,51 @@ function* getRecipeList(action) {
     });
   }
 }
+
+
+// const serialize = (obj) =>  {
+//   var str = [];
+//   for (var p in obj)
+//     if (obj.hasOwnProperty(p)) {
+//       str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+//     }
+//   return str.join("&");
+// }
+
+// function* getRecipeList(action) {
+//   const { page, params } = action;
+//   const filterParams = Object.entries(params).filter((item) => item[1] !== '').reduce((totalParams, [key, val]) => {
+//       return {
+//         ...totalParams,
+//         [key]: val
+//       }
+//   }, {})
+//   // const filterParams = Object.entries(params).reduce((totalParams, [key, val]) => {
+//   //   if(val){
+//   //     return {
+//   //       ...totalParams,
+//   //       [key]: val
+//   //     }
+//   //   }
+//   //   return totalParams
+//   // }, {})
+//   const paramsSend = serialize(filterParams)
+//   try {
+//     // const res = yield axios.get(`${BASE_URL}recipe`, config);
+//     const res = yield axios.get(`${BASE_URL}recipe?page=${page}&limit=6&${paramsSend}`, config);
+//     yield put({
+//       type: GET_RECIPE_SUCCESS,
+//       payload: res.data,
+//     });
+//   } catch (err) {
+//     yield put({
+//       type: GET_RECIPE_FAIL,
+//       error: err,
+//     });
+//   }
+// }
+
+
 function* detailsList(action) {
   const { id } = action;
   try {
@@ -112,7 +157,7 @@ function* search(action) {
 }
 
 export function* watchGetRecipeList() {
-  yield takeLatest(GET_RECIPE_BEGIN, getRecipeList);
+  yield takeEvery(GET_RECIPE_BEGIN, getRecipeList);
 }
 export function* watchGetDetailsList() {
   yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);
