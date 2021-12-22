@@ -207,15 +207,17 @@ function Header() {
           </Typography>
         </Button>
       </Link>
-
-      <div className='shop-button'>
-        <ShoppingCartOutlined sx={{ marginTop: '12px', marginLeft: '24px', fontSize: "24px" }} />
-        {cartShop?.details?.total ?
-            <h3>{cartShop?.details?.total}</h3>
-            :
-            null
-        }
-      </div>
+      <Link to='/order'>
+        <div className='shop-button'>
+          <ShoppingCartOutlined sx={{ marginTop: '12px', marginLeft: '24px', fontSize: "24px" }} />
+          {cartShop?.details?.total ?
+              <h3>{cartShop?.details?.total}</h3>
+              :
+              null
+          }
+        </div>
+      </Link>
+      
       <Box
         sx={{
           width: "0px",

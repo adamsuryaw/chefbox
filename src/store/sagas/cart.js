@@ -21,7 +21,7 @@ function* cartSaga (action) {
     // console.log(body, "ini body")
     try {
       const res = yield axios.post(`${baseUrl}/cart/${id}`, {quantity: data}, config);
-      // console.log(res, "res cart")
+      console.log(res, "res cart")
       yield put(
         {
           type: POST_CART_SUCCESS,

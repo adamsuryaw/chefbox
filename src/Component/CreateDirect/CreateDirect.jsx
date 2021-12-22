@@ -104,9 +104,9 @@ function CreateDirect() {
           direction: '',
         }}
         onSubmit={(values, {resetForm}) => {
-          dispatch(putCreateThree(list[0].id, values))
+          dispatch(putCreateThree(list?.recipe[0]?.id, values))
           resetForm()
-          window.location.reload();
+          // window.location.reload();
           // console.log(values)
         }}
       >

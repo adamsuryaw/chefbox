@@ -58,22 +58,22 @@ function* detailsList(action) {
   }
 }
 
-function* pagination(action) {
-  const { page } = action;
-  try {
-    const res = yield axios.get(`${BASE_URL}recipe?page${page}&limit=6`, config);
-    console.log(res, "res pagination")
-    yield put({
-      type: PAGINATION_SUCCESS,
-      payload: res.data,
-    });
-  } catch (err) {
-    yield put({
-      type: PAGINATION_FAIL,
-      error: err,
-    });
-  }
-}
+// function* pagination(action) {
+//   const { page } = action;
+//   try {
+//     const res = yield axios.get(`${BASE_URL}recipe?page${page}&limit=6`, config);
+//     console.log(res, "res pagination")
+//     yield put({
+//       type: PAGINATION_SUCCESS,
+//       payload: res.data,
+//     });
+//   } catch (err) {
+//     yield put({
+//       type: PAGINATION_FAIL,
+//       error: err,
+//     });
+//   }
+// }
 
 function* filter(action) {
   const { data } = action;
@@ -117,9 +117,9 @@ export function* watchGetRecipeList() {
 export function* watchGetDetailsList() {
   yield takeEvery(GET_RECIPE_DETAILS_BEGIN, detailsList);
 }
-export function* watchPagination() {
-  yield takeEvery(PAGINATION_BEGIN, pagination);
-}
+// export function* watchPagination() {
+//   yield takeEvery(PAGINATION_BEGIN, pagination);
+// }
 export function* watchFilterData() {
   yield takeEvery(GET_FILTER_RECIPE_BEGIN, filter);
 }

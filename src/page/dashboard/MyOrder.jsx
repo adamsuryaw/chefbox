@@ -17,6 +17,7 @@ import InputBase from "@mui/material/InputBase";
 import { Pagination } from "@mui/material";
 import { styled } from "@mui/system";
 import { postReview } from "../../store/actions/review";
+import { getOrder } from "../../store/actions/order";
 
 export default function MyOrder() {
   const [name, setName] = React.useState("");
@@ -26,11 +27,14 @@ export default function MyOrder() {
   const [thirdValue, setThirdValue] = React.useState(0);
   // console.log(comment, "comment")
   const { list } = useSelector((state) => state.recipe.listRecipe);
-  console.log("list", list[0]?.id);
-
+  console.log("list", list);
+  const detailDelivery = useSelector((state) => state?.order?.orderDetails);
+  console.log("orderan", detailDelivery)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipe());
+    // dispatch(viewCart());
+    dispatch(getOrder());
   }, []);
   const handleSubmit = () => {
     dispatch(postReview(list[0]?.id, {comment}));

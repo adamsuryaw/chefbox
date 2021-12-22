@@ -34,20 +34,26 @@ function Recipe() {
   const [lte, setLte] = useState("")
   const [loc, setLoc] = useState("")
   const [showFilter, setShowFilter] = useState(false)
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(0)
-  const [totalPages, setTotalPages] = useState(list?.totalPages)
-  // console.log(select, "select")
+  const [page, setPage] = useState(null)
+  const [showPage, setShowPage] = useState(false)
+  // const [total, setTotal] = useState(list?.totalPages ? list?.totalPages : null)
+  // console.log(total, "select")
+  console.log(page, "page")
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(getFilterRecipe({cat, type, gte, lte, loc}))
     setShowFilter(true)
   }
-  
+  const handlePage = (e) => {
+    e.preventDefault()
+    // console.log(e)
+    setPage(parseInt(e.target.textContent))
+    setShowPage(true)
+  }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipe());
-  }, [page, limit, totalPages]);
+    dispatch(getRecipe(page));
+  }, [page, dispatch]);
 
   return (
     <div className='recipe-page'>
@@ -180,7 +186,13 @@ function Recipe() {
                 <CardComp key={data.id} data={data} />
               </Link>
             ))
-            :
+            : showPage && list.currentPage == page ?
+            list?.recipe?.map((data) => (
+              <Link to={`/details/${data.id}`} className={"card-section"}>
+                <CardComp key={data.id} data={data} />
+              </Link>
+            ))
+            : 
             list?.recipe?.map((data) => (
               <Link to={`/details/${data.id}`} className={"card-section"}>
                 <CardComp key={data.id} data={data} />
@@ -189,10 +201,10 @@ function Recipe() {
           }
           <div className='pagination-section'>
             <Pagination
-              count={totalPages}
+              count={list.totalPages}
               variant="outlined"
               shape="rounded"
-              onChange={(e) => setPage(e.target.textContent)}
+              onChange={handlePage}
             />
           </div>
         </div>

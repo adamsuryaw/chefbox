@@ -131,9 +131,9 @@ function CreateIngred() {
           label: ''
         }}
         onSubmit={(values, {resetForm}) => {
-          dispatch(putCreateTwo(list[0].id, values))
+          dispatch(putCreateTwo(list?.recipe[0]?.id, values))
           resetForm()
-          window.location.reload();
+          // window.location.reload();
           // console.log(values)
         }}
         // {async (values) => {

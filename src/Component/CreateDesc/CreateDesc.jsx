@@ -189,7 +189,7 @@ export default function CreateDesc() {
             })
             dispatch(postCreate(formData));
             navigate('/create/ingredient')
-            window.location.reload();
+            // window.location.reload();
             console.log(values)
           }}
         >

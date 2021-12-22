@@ -27,9 +27,9 @@ export const getSearchRecipe = (data) => {
   };
 };
 
-export const getPagination = (page) => {
-  return {
-    type: PAGINATION_BEGIN,
-    page,
-  };
-};
+// export const getPagination = (page) => {
+//   return {
+//     type: PAGINATION_BEGIN,
+//     page,
+//   };
+// };

@@ -44,18 +44,18 @@ const style = {
 export const DeliveryDetails = (props) => {
   const { setForm } = props;
   const detailDelivery = useSelector(
-    (state) => state?.order?.listOrder?.data?.detailDelivery
+    (state) => state?.order?.orderDetails
   );
-  console.log("detailDelivery", detailDelivery);
+  // console.log("detailDelivery", detailDelivery?.orderList);
 
   return (
     <div className={styles.AddressUserName}>
       <div className={styles.userName}>
         <h4 /*name='firstName' */ className={styles.firstName}>
-          {detailDelivery?.length ? detailDelivery[0]?.firstName : null}
+          {detailDelivery?.orderList?.detailDelivery?.length ? detailDelivery?.orderList.detailDelivery[0]?.firstName : null}
         </h4>
         <h4 name='lastName' className={styles.lastName}>
-          {detailDelivery?.length ? detailDelivery[0]?.lastName : null}
+          {detailDelivery?.orderList?.detailDelivery?.length ? detailDelivery?.orderList.detailDelivery[0]?.lastName : null}
         </h4>
       </div>
       <div
@@ -66,12 +66,12 @@ export const DeliveryDetails = (props) => {
             style={{ marginTop: "0.5rem" }}
             className={styles.address}
             name='address'>
-            {detailDelivery?.length ? detailDelivery[0]?.address : null}
+            {detailDelivery?.orderList?.detailDelivery?.length ? detailDelivery?.orderList.detailDelivery[0]?.address : null}
           </p>
           <p
             style={{ marginTop: "0.3rem", marginBottom: "0.5rem" }}
             name='phoneNumber'>
-            {detailDelivery?.length ? detailDelivery[0]?.phoneNumber : null}
+            {detailDelivery?.orderList?.detailDelivery?.length ? detailDelivery?.orderList?.detailDelivery[0]?.phoneNumber : null}
           </p>
         </div>
         <div className={styles.AddressUserDetailsButton}>
@@ -126,7 +126,7 @@ export const DeliveryForm = (props) => {
   console.log("setForm", setForm);
 
   const detailDelivery = useSelector(
-    (state) => state?.order?.listOrder?.data?.detailDelivery
+    (state) => state?.order?.orderDetails
   );
   console.log("detailDelivery", detailDelivery);
 
@@ -145,7 +145,7 @@ export const DeliveryForm = (props) => {
           <Grid container spacing={-15}>
             <Grid item xs={6} md={4}>
               <div className={styles.firstName}>
-                <h4>{detailDelivery?.firstName}</h4>
+                <h4>{detailDelivery?.orderList?.detailDelivery?.firstName}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     // required
@@ -161,7 +161,7 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={6} md={4}>
               <div className={styles.lastName}>
-                <h4>{detailDelivery.lastName}</h4>
+                <h4>{detailDelivery?.orderList?.detailDelivery?.lastName}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     // disabled
@@ -177,7 +177,7 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={6} md={4}>
               <div className={styles.phoneNumber}>
-                <h4>{detailDelivery.phoneNumber}</h4>
+                <h4>{detailDelivery?.orderList?.detailDelivery?.phoneNumber}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     id='outlined-disabled'
@@ -195,7 +195,7 @@ export const DeliveryForm = (props) => {
             </Grid>
             <Grid item xs={1} md={1}>
               <div className={styles.AddressField}>
-                <h4>{detailDelivery.address}</h4>
+                <h4>{detailDelivery?.orderList?.detailDelivery?.address}</h4>
                 <div className='TextFieldss'>
                   <TextField
                     id='outlined-disabled'
@@ -219,7 +219,8 @@ export const DeliveryForm = (props) => {
         <Button
           onClick={() => {
             setForm(false);
-            dispatch(patchOrder(inputs, detailDelivery[0]?.id));
+            dispatch(patchOrder(inputs, detailDelivery?.orderList?.detailDelivery[0]?.id));
+            window.location.reload();
           }}
           // onChange={(e) => submitChanges}
           className={styles.button}
@@ -264,9 +265,9 @@ export default function Order() {
   console.log("details", details);
 
   const detailOrder = useSelector(
-    (state) => state?.order?.listOrder?.data?.detailOrder
+    (state) => state?.order?.orderDetails
   );
-  console.log("detailOrder", detailOrder);
+  console.log("detailOrder", detailOrder?.orderList);
 
   const { id } = useParams();
 
@@ -362,7 +363,7 @@ export default function Order() {
                           <h4>Product content</h4>
                           <div className={styles.ProductList}>
                             <ul>
-                              {list?.map((data) => (
+                              {list?.recipe?.map((data) => (
                                 <li>{data.ingredient}</li>
                               ))}
                             </ul>
@@ -413,10 +414,10 @@ export default function Order() {
                     }}>
                     <li style={{ marginBottom: "1rem" }}>{subtotal}</li>
                     <li style={{ marginBottom: "1rem" }}>
-                      {detailOrder?.deliveryFee}
+                      {detailOrder?.orderList?.detailOrder?.deliveryFee}
                     </li>
                     <li style={{ color: "#B6340B", marginBottom: "1rem" }}>
-                      {detailOrder?.deliveryFee + subtotal}
+                      {detailOrder?.orderList?.detailOrder?.deliveryFee + subtotal}
                     </li>
                   </ul>
                 </div>
