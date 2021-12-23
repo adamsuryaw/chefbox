@@ -238,23 +238,6 @@ export default function MyOrder() {
                       <button type="submit" onClick={handleSubmit} style={styaleButton}>
                         Submit
                       </button>
-                      {/* <ul>
-                        <li style={{ listStyleType: "disc" }}>
-                          1 kg package egg noodles
-                        </li>
-                        <li style={{ listStyleType: "disc" }}>50 gr butter</li>
-                        <li style={{ listStyleType: "disc" }}>
-                          50 gr minced parsley
-                        </li>
-                        <li style={{ listStyleType: "disc" }}>50 gr salt</li>
-                        <li style={{ listStyleType: "disc" }}>
-                          10 gr black pepper
-                        </li>
-                        <li style={{ listStyleType: "disc" }}>
-                          100 ml olive oil
-                        </li>
-                      </ul> */}
-
                     </div>
                   </div>
                 </Typography>

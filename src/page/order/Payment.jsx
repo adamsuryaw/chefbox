@@ -11,6 +11,10 @@ import { Formik, Form } from "formik";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, postOrderPay } from "../../store/actions/order";
 import UploadPay from "../../Component/Upload/UploadPay";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/system";
 // import Timer from "./Timer"
 
 const style = {
@@ -27,10 +31,34 @@ const style = {
   p: 4
 };
 
+const styaleButton = {
+  width: '142px',
+  height: '36px',
+  background: '#f9c959',
+  color: '#000',
+  border: '1px solid #f9c959',
+  boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+  borderRadius: '24px',
+  fontWeight: 'bold',
+  "&:hover": {
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+    color: '#000',
+  }
+}
+
+const Backdrop = styled("div")`
+  z-index: -1;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
+
 export default function Payment() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -45,7 +73,18 @@ export default function Payment() {
   console.log("detailOrder", detailOrder);
   const handleSubmit = () => {
     dispatch(postOrderPay())
-    navigate(`/${detailOrder?.orderList?.invoice_url}`)
+    // navigate(`/${detailOrder?.orderList?.invoice_url}`)
+    // console.log(e)
+  }
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+    dispatch(postOrderPay())
+  };
+  const handleClose = () => setOpen(false);
+  const handleConfirm = () => {
+    // dispatch(postOrderPay())
+    navigate(`${detailOrder?.orderList?.invoice_url}`)
     // console.log(e)
   }
   return (
@@ -97,7 +136,7 @@ export default function Payment() {
                         <h4 style={{ textAlign: "right"}}>{data.total}</h4>
                       </div>
                     ))}
-                  <h4>{"details?.data[0]?.total + details?.data[1]?.total"}</h4>
+                  <h4>{detailOrder?.orderList?.detailOrder?.total}</h4>
                   <h4>Bank Central Asia</h4>
                   <h4>PT. Chef Box Indonesia</h4>
                   <h4>0123456789</h4>
@@ -105,49 +144,14 @@ export default function Payment() {
               </div>
             </div>
           </div>
-          {/* <Formik
-            initialValues={{
-              image: "",
-            }}
-            onSubmit={(values) => {
-              let formData = new FormData();
-              Object.entries(values).forEach((item)=> {
-                formData.append(item[0], item[1])
-              })
-              dispatch(postOrderPay(detailOrder?.orderList?.formData));
-              // navigate('/create/ingredient')
-              // window.location.reload();
-              console.log(values, "values")
-            }}
-          >
-            {(formikProps) => {
-            const {values, handleChange, handleBlur, handleSubmit} = formikProps
-            return (
-              <form onSubmit={handleSubmit}>
-                <Stack
-                  className={styles.buttons}
-                  spacing={5}
-                  direction='row'
-                  sx={{ marginTop: "3rem" }}>
-                  <UploadPay name="image" value={values.image} />                  
-                </Stack>
-                {values.image ?
-                  <button type="submit">Upload</button>
-                  :
-                  null
-                }
-              </form>
-            )}}
-          </Formik> */}
           <div className={styles.LowerSection}>
             <Link to='/order'>
               <h4>Back to order details</h4>
             </Link>
-
             <Stack className={styles.buttons} spacing={5} direction='row'>
               <Button
                 // type="submit"
-                onClick={handleSubmit}
+                onClick={handleOpen}
                 className={styles.button}
                 variant='contained'
                 sx={{
@@ -164,6 +168,33 @@ export default function Payment() {
                 Confirm Payment
               </Button>
             </Stack>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+              BackdropComponent={Backdrop}>
+              <Box sx={style}>
+                <Typography id='modal-modal-title' variant='h6' component='h2'>
+                  <div className={styles.ProductContent}>
+                    <h4>Confirm Payment?</h4>
+                    <a href={`${detailOrder?.orderList?.invoice_url}`}>
+                      <button style={styaleButton}>
+                        Yes
+                      </button>
+                    </a>
+                      
+                      <button type="submit" onClick={handleClose} style={styaleButton}>
+                        No
+                      </button>
+                  </div>
+                </Typography>
+                <Typography
+                  id='modal-modal-description'
+                  sx={{ mt: 2 }}></Typography>
+              </Box>
+            </Modal>
+            
           </div>
         </div>
       </div>

@@ -23,6 +23,9 @@ import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 import data from "../Data/data";
 import Cart from "../Cart/Cart";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { styled } from "@mui/system";
 import { getRecipeDetails } from "../../store/actions/recipe";
 import { getReview } from "../../store/actions/review";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +34,33 @@ import { useParams } from "react-router-dom";
 import { addToCart } from "../../store/actions/cart";
 import { Link, useNavigate } from "react-router-dom";
 import { postReview } from "../../store/actions/review";
+
+const styaleButton = {
+  width: '142px',
+  height: '36px',
+  background: '#f9c959',
+  color: '#000',
+  border: '1px solid #f9c959',
+  boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+  borderRadius: '24px',
+  fontWeight: 'bold',
+  "&:hover": {
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+    color: '#000',
+  }
+}
+
+const Backdrop = styled("div")`
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+  `;
 
 function DetailRecipe() {
   const [value, setValue] = React.useState(2);
@@ -48,6 +78,11 @@ function DetailRecipe() {
   const handleCart = (count) => {
     dispatch(addToCart(count))
   }
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (recipe) => {
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   
   const {details} = useSelector((state) => state.recipe.listDetails);
   console.log("details", details);
@@ -58,7 +93,7 @@ function DetailRecipe() {
   const [cartItems, setCartItems] = React.useState([]);
   const handleSubmit = () => {
     dispatch(postReview(details?.id, {comment}));
-    window.location.reload();
+    // window.location.reload();
     // console.log(comment)
   }
   return (
@@ -261,14 +296,50 @@ function DetailRecipe() {
                 marginRight: "30px",
               }}
             />
-            <Rating
+            {/* <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+              BackdropComponent={Backdrop}>
+              <Box>
+                <Typography id='modal-modal-title' variant='h6' component='h2'>
+                  <div>
+                    <div>
+                      <Box
+                        sx={{
+                          "& > legend": { mt: 0 },
+                          transform: "translateX(10px)",
+                        }}>
+                        <Typography component='legend'></Typography>
+                        <Rating
+                          name='simple-controlled'
+                          value={secondValue}
+                          onChange={(event, newValue) => {
+                            setSecondValue(newValue);
+                          }}
+                          sx={{ width: "10rem" }}
+                        />
+                      </Box>
+                      <button type="submit" onClick={"handleRating"} style={styaleButton}>
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </Typography>
+                <Typography
+                  id='modal-modal-description'
+                  sx={{ mt: 2 }}></Typography>
+              </Box>
+            </Modal> */}
+            {/* <Rating
               name='simple-controlled'
               value={secondValue}
               onChange={(event, newValue) => {
                 setSecondValue(newValue);
               }}
               sx={{ width: "10rem" }}
-            />
+            /> */}
             <Button
             type="submit"
             onClick={handleSubmit}

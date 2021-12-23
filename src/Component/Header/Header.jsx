@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../Asset/Group 2.svg";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   IconButton,
@@ -37,6 +37,7 @@ function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = useState('')
   const [showFilter, setShowFilter] = useState(false)
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(getSearchRecipe(keyword))
@@ -44,7 +45,8 @@ function Header() {
   }
   function clearToken() {
     localStorage.clear();
-    window.location.reload();
+    // window.location.reload();
+    navigate(`/`)
   }
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

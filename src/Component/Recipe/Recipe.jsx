@@ -27,6 +27,15 @@ import { BASE_URL } from "../../constants/constants";
 
 function Recipe() {
 
+  const selectStyle = {
+    padding: '12px 16px',
+    border: '1px solid #9F9F9F',
+    boxSizing: 'border-box',
+    borderRadius: '4px',
+    width: '250px',
+    marginTop: '10px'
+  }
+
   // const {list} = useSelector((state) => state.recipe.listRecipe);
   // const {filterList} = useSelector((state) => state.recipe.listFilter);
   // console.log("list", list)
@@ -97,6 +106,7 @@ function Recipe() {
           <select
             name="loc"
             value={loc}
+            style={selectStyle}
             onChange={(e) => setLoc(e.target.value)}
             // onBlur={}
           >
@@ -107,17 +117,18 @@ function Recipe() {
             <option value="4" label="Tangerang" />
             <option value="5" label="Bekasi" />
           </select>
-          <TextBarRecipe
+          {/* <TextBarRecipe
             name='location'
             select='true'
             type='text'
             placeholder='Search other location'
-          />
+          /> */}
         </div>
         <div className='type-section'>
           <h5>Type</h5>
           <select
             name="type"
+            style={selectStyle}
             value={type}
             onChange={(e) => setType(e.target.value)}
             // onBlur={}
@@ -126,17 +137,18 @@ function Recipe() {
             <option value="1" label="Food" />
             <option value="2" label="Beverage" />
           </select>
-          <TextBarRecipe
+          {/* <TextBarRecipe
             name='type'
             select='true'
             type='text'
             placeholder='Choose your type'
-          />
+          /> */}
         </div>
         <div className='category-section'>
           <h5>Category</h5>
           <select
             name="cat"
+            style={selectStyle}
             value={cat}
             onChange={(e) => setCat(e.target.value)}
             // onBlur={}
@@ -148,19 +160,19 @@ function Recipe() {
             <option value="4" label="Vegetarian" />
             <option value="5" label="Local" />
           </select>
-          <TextBarRecipe
+          {/* <TextBarRecipe
             name='category'
             select='true'
             type='text'
             placeholder='Choose food category'
-          />
+          /> */}
         </div>
         
         <div className='price-section'>
           <h5>Price</h5>
           <div className='button-section'>
-            <input type="text" name="gte" value={gte} onChange={(e) => setGte(e.target.value)} />
-            <input type="text" name="lte" value={lte} onChange={(e) => setLte(e.target.value)} />
+            <input type="text" name="gte" style={selectStyle} placeholder="Min price..." value={gte} onChange={(e) => setGte(e.target.value)} />
+            <input type="text" name="lte" style={selectStyle} placeholder="Max price..." value={lte} onChange={(e) => setLte(e.target.value)} />
           </div>
         </div>
         <Button
@@ -170,6 +182,8 @@ function Recipe() {
             width: "110px",
             border: "1px solid #E0E0E0",
             color: "black",
+            marginTop: "10px",
+            borderRadius: "20px"
           }}
           variant='outlined'>
           Submit
@@ -184,7 +198,7 @@ function Recipe() {
           and Japanese cuisines.
         </p>
         <div className='browse-bar'>
-          <FormControlLabel
+          {/* <FormControlLabel
             value='end'
             control={<Checkbox />}
             label='Show in stock only'
@@ -193,10 +207,10 @@ function Recipe() {
               color: "black",
               marginLeft: "1rem",
             }}
-          />
+          /> */}
           
-          <TextBarRecipe name='sorting' select='true' type='text' />
-          <select
+          {/* <TextBarRecipe name='sorting' select='true' type='text' /> */}
+          {/* <select
             name="sort"
             // value={select.sort}
             // onChange={setSelect}
@@ -205,7 +219,7 @@ function Recipe() {
             <option value="" label="Select Time" />
             <option value="1" label="Newest" />
             <option value="2" label="Oldest" />
-          </select>
+          </select> */}
         </div>
         <div className={styles.CardSections}>
           {showFilter ? 
