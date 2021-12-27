@@ -220,7 +220,7 @@ export const DeliveryForm = (props) => {
           onClick={() => {
             setForm(false);
             dispatch(patchOrder(inputs, detailDelivery?.orderList?.detailDelivery[0]?.id));
-            window.location.reload();
+            // window.location.reload();
           }}
           // onChange={(e) => submitChanges}
           className={styles.button}

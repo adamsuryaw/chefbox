@@ -8,7 +8,9 @@ import {
   PATCH_PROFILE_FAIL
 } from "../../constants/types";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../../constants/constants";
+import { getUser } from "../actions/profile";
 
 const currentToken = localStorage.getItem("token")
 const config = {
@@ -44,6 +46,9 @@ function* updateUser(action) {
     //     lastName: 'Flintstone'
     //   }
     // });
+    yield put ({
+      type: GET_USER_BEGIN,
+    })
     console.log(res, "res");
     yield put({
       type: PATCH_PROFILE_SUCCESS,

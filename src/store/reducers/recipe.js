@@ -14,6 +14,12 @@ import {
   GET_SEARCH_RECIPE_BEGIN,
   GET_SEARCH_RECIPE_SUCCESS,
   GET_SEARCH_RECIPE_FAIL,
+  GET_MYRECIPE_BEGIN,
+  GET_MYRECIPE_SUCCESS,
+  GET_MYRECIPE_FAIL,
+  DELETE_RECIPE_BEGIN,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_FAIL,
 } from "../../constants/types";
 
 const initialState = {
@@ -59,6 +65,36 @@ export const recipe = (state = initialState, action) => {
         },
       };
     case GET_RECIPE_FAIL:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: false,
+          error: error,
+          list: [],
+        },
+      };
+    case DELETE_RECIPE_BEGIN:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: true,
+          error: null,
+          list: [],
+        },
+      };
+    case DELETE_RECIPE_SUCCESS:
+      return {
+        ...state,
+        listRecipe: {
+          ...state.listRecipe,
+          loading: false,
+          error: null,
+          list: payload,
+        },
+      };
+    case DELETE_RECIPE_FAIL:
       return {
         ...state,
         listRecipe: {
@@ -182,6 +218,36 @@ export const recipe = (state = initialState, action) => {
             loading: false,
             error: error,
             filterList: [],
+          },
+        };
+      case GET_MYRECIPE_BEGIN:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: true,
+            error: null,
+            list: [],
+          },
+        };
+      case GET_MYRECIPE_SUCCESS:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: false,
+            error: null,
+            list: payload,
+          },
+        };
+      case GET_MYRECIPE_FAIL:
+        return {
+          ...state,
+          listRecipe: {
+            ...state.listRecipe,
+            loading: false,
+            error: error,
+            list: [],
           },
         };
       default:

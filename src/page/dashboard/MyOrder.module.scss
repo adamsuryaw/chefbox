@@ -49,7 +49,7 @@
       padding: 40px 40px;
       margin-left: 40px;
       width: 1920px;
-      height: 1080px;
+      height: 300vh;
       border: 1px solid #ffffff;
       background-color: #ffffff;
       // font-weight: bold;
@@ -126,8 +126,8 @@
         // border: 1px solid #f2f2f2;
         box-sizing: border-box;
         border-radius: 16px;
-        padding: 15px 15px;
-        margin: 20px 0;
+        padding: 20px 15px;
+        // margin: 20px 0;
 
         .menuContainer {
           display: flex;

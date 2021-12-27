@@ -19,6 +19,24 @@ function* reviewList(action) {
   const { id } = action;
   try {
     const res = yield axios.get(`${BASE_URL}review/${id}`, config);
+    console.log(res, "res review")
+    // console.log(res, "res review")
+    yield put({
+      type: GET_REVIEW_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    yield put({
+      type: GET_REVIEW_FAIL,
+      error: err,
+    });
+  }
+}
+
+function* ratingValue(action) {
+  const { id } = action;
+  try {
+    const res = yield axios.get(`${BASE_URL}rating/${id}`, config);
     // console.log(res, "res review")
     yield put({
       type: GET_REVIEW_SUCCESS,
@@ -39,10 +57,16 @@ function* postReviewList(action) {
   console.log(data, "ini data review")
   try {
     const res = yield axios.post(`${BASE_URL}review/${id}`, data, config);
-    console.log(res, "res review")
+    console.log(res, "res post review")
     yield put({
       type:  POST_REVIEW_SUCCESS,
-      payload: res.data.data,
+      // payload: res.data.data,
+    });
+    const getReview = yield axios.get(`${BASE_URL}review/${id}`, config);
+    console.log(getReview, "res getReview")
+    yield put({
+      type: GET_REVIEW_SUCCESS,
+      payload: getReview.data,
     });
   } catch (err) {
     yield put({

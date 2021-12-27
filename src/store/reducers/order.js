@@ -8,6 +8,12 @@ import {
   POST_PAYMENT_BEGIN,
   POST_PAYMENT_SUCCESS,
   POST_PAYMENT_FAIL,
+  GET_SELLER_BEGIN,
+  GET_SELLER_SUCCESS,
+  GET_SELLER_FAIL,
+  GET_MYORDER_BEGIN,
+  GET_MYORDER_SUCCESS,
+  GET_MYORDER_FAIL,
 } from "../../constants/types";
 
 const initialState = {
@@ -41,6 +47,64 @@ export const order = (state = initialState, action) => {
         },
       }
     case GET_ORDER_FAIL:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: [],
+        },
+      }
+    case GET_MYORDER_BEGIN:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: true,
+          error: null,
+        },
+      }
+    case GET_MYORDER_SUCCESS:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: payload,
+        },
+      }
+    case GET_MYORDER_FAIL:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: [],
+        },
+      }
+    case GET_SELLER_BEGIN:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: true,
+          error: null,
+        },
+      }
+    case GET_SELLER_SUCCESS:
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderDetails,
+          loading: false,
+          error: null,
+          orderList: payload,
+        },
+      }
+    case GET_SELLER_FAIL:
       return {
         ...state,
         orderDetails: {

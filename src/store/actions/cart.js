@@ -8,9 +8,9 @@ export const addToCart = (id, data) => {
     };
 };
 
-export const viewCart = (data) => {
+export const viewCart = () => {
   return {
     type: GET_CART_BEGIN,
-    data
+    // data
   };
 };
