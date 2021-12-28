@@ -11,7 +11,7 @@ import {
   SIGNUP_FAIL,
 } from "../../constants/types";
 import axios from "axios";
-import {BASE_URL} from "../../constants/constants"
+// import {BASE_URL} from "../../constants/constants"
 
 const baseUrl = "http://chefbox2021.herokuapp.com";
 //function generator
@@ -76,6 +76,7 @@ function* signup(action) {
   }
   try {
     const res = yield axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, body, config);
+    console.log(res)
     yield put(
       {
         type: SIGNUP_SUCCESS,

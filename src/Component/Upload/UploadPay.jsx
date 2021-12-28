@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadPay.css'
-import { connect, getIn } from 'formik';
-import Button from "@mui/material/Button";
+import { connect } from 'formik';
+// import Button from "@mui/material/Button";
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -17,7 +16,7 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
 function UploadPay(props) {
     // console.log(props.value, "props")
     const [image, setImage] = useState(props.value)
-    const [isUploaded, setIsUploaded] = useState(false)
+    // const [isUploaded, setIsUploaded] = useState(false)
     const {formik} = props
     const {setFieldValue} = formik
     const handleImageChange = (file) => {
@@ -47,7 +46,7 @@ function UploadPay(props) {
 
     return (
         <div className="upload-pay">
-            {image == "" || image == null ? (
+            {image === "" || image === null ? (
                 <>
                     <label htmlFor="upload-pay">
                         <div>

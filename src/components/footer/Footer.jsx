@@ -16,16 +16,16 @@ export default function Footer() {
             <h3>About Us</h3>
             <ul>
               <li>
-                <a href=''>About ChefBox</a>
+                <h4>About ChefBox</h4>
               </li>
               <li>
-                <a href=''>Contact Us</a>
+                <h4>Contact Us</h4>
               </li>
               <li>
-                <a href=''>Features</a>
+                <h4>Features</h4>
               </li>
               <li>
-                <a href=''>Careers</a>
+                <h4>Careers</h4>
               </li>
             </ul>
           </div>
@@ -33,13 +33,13 @@ export default function Footer() {
             <h3>Resources</h3>
             <ul>
               <li>
-                <a href=''>Help center</a>
+                <h4>Help center</h4>
               </li>
               <li>
-                <a href=''>Privacy Policy</a>
+                <h4>Privacy Policy</h4>
               </li>
               <li>
-                <a href=''>Term of Service</a>
+                <h4>Term of Service</h4>
               </li>
             </ul>
           </div>
@@ -47,10 +47,10 @@ export default function Footer() {
             <h3>Get in touch</h3>
             <ul>
               <li>
-                <a href=''>Questions or feedback?</a>
+                <h4>Questions or feedback?</h4>
               </li>
               <li>
-                <a href=''>We’d love to hear from you</a>
+                <h4>We’d love to hear from you</h4>
               </li>
             </ul>
           </div>

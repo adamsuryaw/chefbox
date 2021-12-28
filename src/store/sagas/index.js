@@ -1,6 +1,6 @@
 import { all } from "redux-saga/effects";
 import { watchGetUser, watchUpdateUser } from "./profile";
-import { watchGetRecipeList, watchGetDetailsList, watchFilterData, watchPagination, watchSearchData, watchMyRecipe, watchDeleteRecipe } from "./recipe";
+import { watchGetRecipeList, watchGetDetailsList, watchFilterData, watchSearchData, watchMyRecipe, watchDeleteRecipe } from "./recipe";
 import { watchLogin, watchRegister, watchSignup } from "./auth";
 import { watchGetLocationList } from "./location";
 import { watchReviewList, watchPostReview } from "./review";

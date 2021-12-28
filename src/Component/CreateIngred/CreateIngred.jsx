@@ -2,52 +2,52 @@ import React from "react";
 import "./CreateIngred.css";
 import {
   Button,
-  Box,
-  IconButton,
+  // Box,
+  // IconButton,
   InputBase,
-  Paper,
-  TextField,
+  // Paper,
+  // TextField,
   Typography,
 } from "@mui/material";
 import check from "../../Asset/check.svg";
 import { Link } from "react-router-dom";
 import { putCreateTwo } from "../../store/actions/create";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
-import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+import { Formik } from "formik";
+import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
 
-const initialValues = {
-  addRecipe: [
-    {
-      amount: '',
-      unit: '',
-      label: '',
-    },
-  ],
-};
+// const initialValues = {
+//   addRecipe: [
+//     {
+//       amount: '',
+//       unit: '',
+//       label: '',
+//     },
+//   ],
+// };
 
-const styleAmount = {
-  width: "83px",
-  border: "1px solid #9F9F9F",
-  boxSizing: "border-box",
-  borderRadius: "4px",
-  padding: "12px 16px",
-  fontFamily: "Nunito",
-  fontWeight: "normal",
-  fontSize: "14px",
-  marginRight: "30px",
-}
+// const styleAmount = {
+//   width: "83px",
+//   border: "1px solid #9F9F9F",
+//   boxSizing: "border-box",
+//   borderRadius: "4px",
+//   padding: "12px 16px",
+//   fontFamily: "Nunito",
+//   fontWeight: "normal",
+//   fontSize: "14px",
+//   marginRight: "30px",
+// }
 
 function CreateIngred() {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // const { id } = useParams();
   const {list} = useSelector((state) => state.recipe.listRecipe);
-  console.log(list, "stepTwo")
+  // console.log(list, "stepTwo")
   useEffect(() => {
     dispatch(getRecipe());
-  }, []);
+  }, [dispatch]);
   
   return (
     <div className='ingred-section'>
@@ -142,7 +142,7 @@ function CreateIngred() {
         // }}
       >
         {(formikProps) => {
-          const {values, handleChange, handleBlur, handleSubmit} = formikProps
+          const {values, handleChange, handleSubmit} = formikProps
           return (
             <form onSubmit={handleSubmit}>
               <div className='item-list'>

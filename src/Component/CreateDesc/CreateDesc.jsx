@@ -2,24 +2,24 @@ import React from "react";
 import "./CreateDesc.css";
 import {
   Button,
-  Box,
-  IconButton,
+  // Box,
+  // IconButton,
   InputBase,
-  Paper,
-  TextField,
+  // Paper,
+  // TextField,
   Typography,
 } from "@mui/material";
-import imageLogo from "../../Asset/XMLID 306.svg";
-import data from "../Data/data";
-import TextBarCreate from "../TextBar/TextBarCreate";
-import { Link, useNavigate } from "react-router-dom";
-import { putCreate, postCreate } from "../../store/actions/create";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Formik, Form } from "formik";
+// import imageLogo from "../../Asset/XMLID 306.svg";
+// import data from "../Data/data";
+// import TextBarCreate from "../TextBar/TextBarCreate";
+import { useNavigate } from "react-router-dom";
+import { postCreate } from "../../store/actions/create";
+// import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom";
+import { Formik } from "formik";
 import UploadRecipe from "../Upload/UploadRecipe";
-import { getRecipe } from "../../store/actions/recipe";
+// import { getRecipe } from "../../store/actions/recipe";
 
 export default function CreateDesc() {
   // const { id } = useParams();
@@ -57,17 +57,17 @@ export default function CreateDesc() {
     lineHeight: "20px",
   }
 
-  const stylesSelect = {
-    width: "716px",
-    border: "1px solid #9F9F9F",
-    boxSizing: "border-box",
-    borderRadius: "4px",
-    padding: "12px 16px",
-    fontFamily: "Nunito",
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "20px",
-  }
+  // const stylesSelect = {
+  //   width: "716px",
+  //   border: "1px solid #9F9F9F",
+  //   boxSizing: "border-box",
+  //   borderRadius: "4px",
+  //   padding: "12px 16px",
+  //   fontFamily: "Nunito",
+  //   fontWeight: "normal",
+  //   fontSize: "14px",
+  //   lineHeight: "20px",
+  // }
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const {list} = useSelector((state) => state?.recipe?.listRecipe);

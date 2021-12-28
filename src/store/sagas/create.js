@@ -17,10 +17,10 @@ import {
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
-import data from "../../Component/Data/data";
+// import data from "../../Component/Data/data";
 import Swal from "sweetalert2";
 
-const baseUrl = "http://chefbox2021.herokuapp.com";
+// const baseUrl = "http://chefbox2021.herokuapp.com";
 const currentToken = localStorage.getItem("token");
 const config = {
   headers: { 'access_token': currentToken },
@@ -30,12 +30,12 @@ function* postCreate(action) {
   const { data } = action;
   try {
     const res = yield axios.post(`${BASE_URL}recipe/`, data, config);
-    console.log(res, "res post create")
+    console.log(res)
     yield put({
       type: POST_CREATE_SUCCESS,
     });
     const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
-    console.log(getRecipe, "res getRecipe")
+    console.log(getRecipe)
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: getRecipe.data,
@@ -51,17 +51,17 @@ function* postCreate(action) {
 function* putCreate(action) {
   const { id, payload } = action;
   const data = payload
-  console.log(id, "ini id create")
-  console.log(data, "ini data create")
+  // console.log(id, "ini id create")
+  // console.log(data, "ini data create")
   // console.log(data, "ini data create") data.addRecipe[0]
   try {
     const res = yield axios.put(`${BASE_URL}recipe/steptwo/${id}`, data, config);
-    console.log(res, "res put create")
+    console.log(res)
     yield put({
       type: PUT_CREATE_SUCCESS,
     });
     const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
-    console.log(getRecipe, "res getRecipe")
+    console.log(getRecipe)
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: getRecipe.data,

@@ -1,19 +1,19 @@
 import React from 'react'
-import avatarPic2 from '../../Asset/Ellipse 11.svg'
-import { Rating, Divider,  Card, CardActions, CardContent, CardMedia, Button, Typography, CardActionArea, Avatar } from '@mui/material';
+// import avatarPic2 from '../../Asset/Ellipse 11.svg'
+import { Rating, Divider,  Typography } from '@mui/material';
 import './Review.css'
 
 function Review({details}) {
-    const [value, setValue] = React.useState(details.value);
+    // const [value, setValue] = React.useState(details.value);
     
-    console.log(details, 'review details')
+    // console.log(details, 'review details')
 
     return (
         <div className="review-content">
             <div className="avatar-section">
                 <img
                     alt="Remy Sharp" 
-                    src={details.user.image} 
+                    src={details?.user?.image} 
                     // sx={{ width: 34, height: 34, paddingBottom: '20px', objectFit: 'cover' }}
                 />
                 <div className="review-in">
@@ -30,7 +30,7 @@ function Review({details}) {
                                 margin: '6px 6px 0px 0px'
                             }}
                         >
-                            {details.user.userName}
+                            {details?.user?.userName}
                         </Typography>
                         <Divider 
                             orientation="vertical" 

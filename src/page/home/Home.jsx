@@ -35,7 +35,7 @@ export default function Home() {
               background: "#828282",
               // height: 50,
               borderRadius: "10px",
-              background: "white",
+              // background: "white",
               position: "absolute",
               top: "25rem",
               left: "3.5rem",
@@ -93,7 +93,7 @@ export default function Home() {
         <div className={styles.Containertext2}>
           <h1>Click</h1>
           <Link to='/recipe'>
-            <a style={{marginRight:"-0.1rem"}} href=''>here</a>
+            <h1 style={{marginRight:"-0.1rem"}}>here</h1>
           </Link>
 
           <h1>to start browsing for recipes!</h1>

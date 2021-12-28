@@ -2,29 +2,29 @@ import React from "react";
 import "./CreateDirect.css";
 import {
   Button,
-  Box,
-  IconButton,
+  // Box,
+  // IconButton,
   InputBase,
-  Paper,
-  TextField,
+  // Paper,
+  // TextField,
   Typography,
 } from "@mui/material";
 import check from "../../Asset/check.svg";
 import { Link } from "react-router-dom";
 import { putCreateThree } from "../../store/actions/create";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
-import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+import { Formik } from "formik";
+import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
 
 function CreateDirect() {
   const dispatch = useDispatch();
   const {list} = useSelector((state) => state.recipe.listRecipe);
-  console.log(list, "stepThree")
+  // console.log(list, "stepThree")
   useEffect(() => {
     dispatch(getRecipe());
-  }, []);
+  }, [dispatch]);
   return (
     <div className='direct-section'>
       <div className='direct-desc'>
@@ -111,7 +111,7 @@ function CreateDirect() {
         }}
       >
       {(formikProps) => {
-          const {values, handleChange, handleBlur, handleSubmit} = formikProps
+          const {values, handleChange, handleSubmit} = formikProps
           return (
             <form onSubmit={handleSubmit}>
             <div className='input-direct'>

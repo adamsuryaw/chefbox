@@ -1,18 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import "./Signup.css";
 import bgCover from "../../Asset/Frame 4.svg";
 import logo from "../../Asset/Group 2.svg";
-import { Grid, Paper, Box, Button, Divider, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Formik, Form } from "formik";
-import ButtonRegis from "../Button/ButtonRegis";
+import { Grid, Box, Button, Typography } from "@mui/material";
+// import { styled } from "@mui/material/styles";
+import { Formik } from "formik";
+// import ButtonRegis from "../Button/ButtonRegis";
 import * as Yup from "yup";
-import Auth from "../Auth/Auth";
-import AuthRegis from "../Auth/AuthRegis";
+// import Auth from "../Auth/Auth";
+// import AuthRegis from "../Auth/AuthRegis";
 import TextBarSignup from "../TextBar/TextBarSignup";
-import UploadImage from "../Upload/UploadImage";
-import ButtonSignup from "../Button/ButtonSignup";
+// import UploadImage from "../Upload/UploadImage";
+// import ButtonSignup from "../Button/ButtonSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupAction } from "../../store/actions/auth";
 import UploadSignup from "../Upload/UploadSignup";
@@ -22,7 +22,7 @@ const selectStyle = {
   border: '1px solid #9F9F9F',
   boxSizing: 'border-box',
   borderRadius: '4px',
-  width: '700px',
+  width: '100%',
 }
 
 function Signup() {
@@ -33,34 +33,26 @@ function Signup() {
       .matches(/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/, "Wrong Phone Number"),
     address: Yup.string()
   });
-  const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "center",
+  //   color: theme.palette.text.secondary,
+  // }));
   
 
   return (
     <div className='signup-page'>
       <div className='signup-background'>
-        <img className='bg-image' src={bgCover} alt='background image' />
+        <img className='bg-image' src={bgCover} alt='background' />
         <Grid container>
-          <Grid item xl={6}>
+          <Grid item lg={4} xl={6}>
             <Link to='/'>
-              <img className='logo-image' src={logo} alt='logo image' />
+              <img className='logo-image' src={logo} alt='logo' />
             </Link>
           </Grid>
-          <Grid item xl={6}>
-            <Box
-              sx={{
-                backgroundColor: "white",
-                width: "100%",
-                height: "911px",
-                borderRadius: "80px 0 0 80px",
-                marginTop: "60px",
-                boxShadow: "0px 4px 24px 4px rgba(0, 0, 0, 0.15)",
-              }}>
+          <Grid item lg={8} xl={6}>
+            <Box className="box-signup">
               <Formik
                 initialValues={{
                   image: "",
@@ -123,7 +115,7 @@ function Signup() {
                       </div>
                       
                       {/* <Link to='/'> */}
-                        <Box sx={{marginLeft: '88px', width:'700px', marginTop: '30px'}}>
+                        <Box className="box-btn-sign">
                           <Button 
                             variant="contained"
                             type="submit"

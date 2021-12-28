@@ -1,8 +1,8 @@
 import styles from "./MyOrder.module.scss";
 import sellerIcon from "../../Asset/sellerIcon/Dashboard/store.svg";
-import buttonShipping from "../../Asset/seller.svg";
+// import buttonShipping from "../../Asset/seller.svg";
 import buttonCompleted from "../../Asset/completed.svg";
-import MenuImage from "../../Asset/Frame 3.svg";
+// import MenuImage from "../../Asset/Frame 3.svg";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import React from "react";
@@ -11,40 +11,40 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipe } from "../../store/actions/recipe";
+// import { getRecipe } from "../../store/actions/recipe";
 import Modal from "@mui/material/Modal";
 import InputBase from "@mui/material/InputBase";
-import { Pagination } from "@mui/material";
+// import { Pagination } from "@mui/material";
 import { styled } from "@mui/system";
 import { postReview } from "../../store/actions/review";
-import { getOrder, getMyOrder } from "../../store/actions/order";
+import { getMyOrder } from "../../store/actions/order";
 
 export default function MyOrder() {
-  const [name, setName] = React.useState("");
+  // const [name, setName] = React.useState("");
   const [comment, setComment] = React.useState("");
-  const [firstValue, setFirstValue] = React.useState(0);
+  // const [firstValue, setFirstValue] = React.useState(0);
   const [secondValue, setSecondValue] = React.useState(0);
-  const [thirdValue, setThirdValue] = React.useState(0);
+  // const [thirdValue, setThirdValue] = React.useState(0);
   // console.log(comment, "comment")
   const { list } = useSelector((state) => state.recipe.listRecipe);
-  console.log("list", list);
+  // console.log("list", list);
   const detailDelivery = useSelector((state) => state?.order?.orderDetails);
-  console.log("orderan", detailDelivery)
+  // console.log("orderan", detailDelivery)
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getRecipe());
     // dispatch(viewCart());
     dispatch(getMyOrder());
-  }, []);
+  }, [dispatch]);
   const handleSubmit = () => {
     dispatch(postReview(list[0]?.id, {comment}));
     // console.log(comment)
   }
   const [open, setOpen] = React.useState(false);
-  const handleOpen = (recipe) => {
-    setOpen(true);
-    setName(recipe);
-  };
+  // const handleOpen = (recipe) => {
+  //   setOpen(true);
+  //   setName(recipe);
+  // };
   const handleClose = () => setOpen(false);
 
   const style = {
@@ -216,7 +216,7 @@ export default function MyOrder() {
               <Box sx={style}>
                 <Typography id='modal-modal-title' variant='h6' component='h2'>
                   <div className={styles.ProductContent}>
-                    <h4>{name}</h4>
+                    {/* <h4>{name}</h4> */}
                     <div className={styles.ProductList}>
                       <Box
                         className={styles.rating}

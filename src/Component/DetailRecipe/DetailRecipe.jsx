@@ -1,18 +1,18 @@
 import React from "react";
 import "./DetailRecipe.css";
-import avatarPic from "../../Asset/Ellipse 12.svg";
-import avatarPic2 from "../../Asset/Ellipse 11.svg";
-import bigPict from "../../Asset/Rectangle 65.svg";
+// import avatarPic from "../../Asset/Ellipse 12.svg";
+// import avatarPic2 from "../../Asset/Ellipse 11.svg";
+// import bigPict from "../../Asset/Rectangle 65.svg";
 import {
   Rating,
-  Divider,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
+  // Divider,
+  // Card,
+  // CardActions,
+  // CardContent,
+  // CardMedia,
   Button,
   Typography,
-  CardActionArea,
+  // CardActionArea,
   Avatar,
   InputBase
 } from "@mui/material";
@@ -21,46 +21,46 @@ import PermIdentity from "@mui/icons-material/PermIdentity";
 import Review from "../Review/Review";
 import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
-import data from "../Data/data";
-import Cart from "../Cart/Cart";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import { styled } from "@mui/system";
+// import data from "../Data/data";
+// import Cart from "../Cart/Cart";
+// import Box from "@mui/material/Box";
+// import Modal from "@mui/material/Modal";
+// import { styled } from "@mui/system";
 import { getRecipeDetails } from "../../store/actions/recipe";
 import { getReview } from "../../store/actions/review";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../store/actions/cart";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { postReview } from "../../store/actions/review";
 
-const styaleButton = {
-  width: '142px',
-  height: '36px',
-  background: '#f9c959',
-  color: '#000',
-  border: '1px solid #f9c959',
-  boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
-  borderRadius: '24px',
-  fontWeight: 'bold',
-  "&:hover": {
-    cursor: 'pointer',
-    backgroundColor: '#fff',
-    color: '#000',
-  }
-}
+// const styaleButton = {
+//   width: '142px',
+//   height: '36px',
+//   background: '#f9c959',
+//   color: '#000',
+//   border: '1px solid #f9c959',
+//   boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+//   borderRadius: '24px',
+//   fontWeight: 'bold',
+//   "&:hover": {
+//     cursor: 'pointer',
+//     backgroundColor: '#fff',
+//     color: '#000',
+//   }
+// }
 
-const Backdrop = styled("div")`
-    z-index: -1;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-tap-highlight-color: transparent;
-  `;
+// const Backdrop = styled("div")`
+//     z-index: -1;
+//     position: fixed;
+//     right: 0;
+//     bottom: 0;
+//     top: 0;
+//     left: 0;
+//     background-color: rgba(0, 0, 0, 0.5);
+//     -webkit-tap-highlight-color: transparent;
+//   `;
 
 function DetailRecipe() {
   const [count, setCount] = React.useState(0)
@@ -72,24 +72,24 @@ function DetailRecipe() {
     dispatch(getRecipeDetails(id));
     dispatch(getReview(id))
     // dispatch(addToCart(id))
-  }, [id]);
+  }, [dispatch, id]);
 
-  const handleCart = (count) => {
-    dispatch(addToCart(count))
-  }
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = (recipe) => {
-    setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
+  // const handleCart = (count) => {
+  //   dispatch(addToCart(count))
+  // }
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = (recipe) => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => setOpen(false);
   
   const {details} = useSelector((state) => state.recipe.listDetails);
-  console.log("details", details);
+  // console.log("details", details);
   const review = useSelector((state) => state.review.userReview);
-  console.log("review", review);
-  const shopCart = useSelector((state) => state.addCart.cartUser);
+  // console.log("review", review);
+  // const shopCart = useSelector((state) => state.addCart.cartUser);
   // console.log("shop", shopCart);
-  const [cartItems, setCartItems] = React.useState([]);
+  // const [cartItems, setCartItems] = React.useState([]);
   const handleSubmit = () => {
     // console.log(value, "value")
     dispatch(postReview(details?.id, {comment, value}));
@@ -406,10 +406,10 @@ function DetailRecipe() {
             </Typography>
           </div>
         </div>
-        <Cart cartItems={cartItems} />
+        {/* <Cart cartItems={cartItems} /> */}
         <div className='stock-field'>
           <div className='min-stock'>
-            {count == 0 ? 
+            {count === 0 ? 
               <Button
               disabled
                 sx={{

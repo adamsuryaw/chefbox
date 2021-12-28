@@ -2,18 +2,18 @@ import React from "react";
 import "./Account.css";
 import store from "../../Asset/store.svg";
 import { Link } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import {
   Button,
-  Box,
-  IconButton,
+  // Box,
+  // IconButton,
   InputBase,
-  Paper,
-  TextField,
+  // Paper,
+  // TextField,
   Typography,
 } from "@mui/material";
-import profilePict from "../../Asset/Ellipse 11-1.svg";
-import { useState, useEffect } from "react";
+// import profilePict from "../../Asset/Ellipse 11-1.svg";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, patchUpdate } from "../../store/actions/profile";
 import UploadImage from "../Upload/UploadImage";
@@ -37,7 +37,7 @@ function Account() {
 
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [dispatch]);
 
   // const changeUpdate = (e) => {
   //   console.log(e)
@@ -49,10 +49,10 @@ function Account() {
 
   // const [initialValues, setInitialValues] = useState(userDetails.details)
   // console.log(initialValues, "initialValues")
-  const handleDataChange = (event) => {
-    console.log(event, "event");
-    // setInitialValues(event.target.value);
-  };
+  // const handleDataChange = (event) => {
+  //   console.log(event, "event");
+  //   // setInitialValues(event.target.value);
+  // };
 
   return (
     <div className='account-section'>
@@ -164,9 +164,9 @@ function Account() {
               // navigate("/")
             }}>
             {(formikProps) => {
-              const { values, handleChange, handleBlur, handleSubmit } =
+              const { values, handleChange, handleSubmit } =
                 formikProps;
-              console.log(values, "ini value");
+              // console.log(values, "ini value");
               return (
                 <form onSubmit={handleSubmit}>
                   <div className='avatar-sec'>
@@ -291,11 +291,11 @@ function Account() {
                         fullWidth
                         name='id_location'
                         value={
-                          values.id_location == 1
+                          values.id_location === 1
                             ? "Jakarta"
-                            : values.id_location == 2
+                            : values.id_location === 2
                             ? "Bogor"
-                            : values.id_location == 3
+                            : values.id_location === 3
                             ? "Depok"
                             : "Tangerang"
                         }

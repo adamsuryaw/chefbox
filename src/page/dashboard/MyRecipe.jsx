@@ -3,56 +3,60 @@ import "./MyRecipe.css";
 import SVG from "../../Asset/sellerIcon/Dashboard/store.svg";
 import { Link } from "react-router-dom";
 import styles from "./MyRecipe.module.scss";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import { styled } from "@mui/material/styles";
+// import Card from "@mui/material/Card";
+// import CardHeader from "@mui/material/CardHeader";
+// import CardMedia from "@mui/material/CardMedia";
+// import CardContent from "@mui/material/CardContent";
+// import CardActions from "@mui/material/CardActions";
+// import Collapse from "@mui/material/Collapse";
+// import Avatar from "@mui/material/Avatar";
+// import IconButton from "@mui/material/IconButton";
+// import Typography from "@mui/material/Typography";
+// import { red } from "@mui/material/colors";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ShareIcon from "@mui/icons-material/Share";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Pagination } from "@mui/material";
-import data from "./data";
-import CardComp from "../../Component/Card/Card";
+// import data from "./data";
+// import CardComp from "../../Component/Card/Card";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
-import { getRecipe, getMyRecipe } from "../../store/actions/recipe";
+import { getMyRecipe } from "../../store/actions/recipe";
 import { useDispatch, useSelector } from "react-redux";
 import CardMy from "../../Component/Card/CardMy";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 export default function MyRecipe() {
-  const [expanded, setExpanded] = React.useState(false);
-  const { product } = data;
+  // const [expanded, setExpanded] = React.useState(false);
+  // const { product } = data;
   const [page, setPage] = useState(1)
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
+  const handlePage = (e) => {
+    e.preventDefault()
+    // console.log(e)
+    setPage(parseInt(e.target.textContent))
+  }
   const { list } = useSelector((state) => state?.recipe?.listRecipe);
-  console.log("list", list);
+  // console.log("list", list);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMyRecipe(page));
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   return (
     <div className={styles.Body}>
@@ -122,9 +126,14 @@ export default function MyRecipe() {
               ))}
             </div>
 
-            {/* <div className={styles.PaginationSection}>
-              <Pagination count={10} color='primary' />
-            </div> */}
+            <div className={styles.PaginationSection}>
+            <Pagination
+              count={10}
+              variant="outlined"
+              shape="rounded"
+              onChange={handlePage}
+            />
+            </div>
           </div>
         </div>
       </div>

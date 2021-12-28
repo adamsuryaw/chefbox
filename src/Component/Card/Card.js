@@ -1,31 +1,27 @@
 import React from "react";
 import {
-  FormControlLabel,
-  Checkbox,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
-  Button,
   Typography,
   CardActionArea,
   Avatar,
 } from "@mui/material";
-import TextBarRecipe from "../TextBar/TextBarRecipe";
+// import TextBarRecipe from "../TextBar/TextBarRecipe";
 import AccessTime from "@mui/icons-material/AccessTime";
 import PermIdentity from "@mui/icons-material/PermIdentity";
 import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
 import avatarPic from "../../Asset/Ellipse 12.svg";
 import "./Card.css";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getRecipe } from "../../store/actions/recipe";
+// import { useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { getRecipe } from "../../store/actions/recipe";
 
 function CardComp({data}) {
   // console.log("data", data);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className='container'>

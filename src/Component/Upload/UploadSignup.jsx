@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadImage.css'
-import { connect, getIn } from 'formik';
+import { connect } from 'formik';
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -16,7 +16,7 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
 function UploadSignup(props) {
     // console.log(props.value, "props")
     const [image, setImage] = useState(props.value)
-    const [isUploaded, setIsUploaded] = useState(false)
+    // const [isUploaded, setIsUploaded] = useState(false)
     const {formik} = props
     const {setFieldValue} = formik
     const handleImageChange = (file) => {
@@ -46,7 +46,7 @@ function UploadSignup(props) {
 
     return (
         <div className="upload-section">
-            {image == "" || image == null ? (
+            {image === "" || image === null ? (
                 <>
                     <label htmlFor="upload-image">
                         <div>
@@ -59,7 +59,7 @@ function UploadSignup(props) {
                                 handleImageChange(event.target.files[0] || null)
                             }
                             />
-                            <img className="upload-icon-image" src={imageLogo} alt="logo image" />
+                            <img className="upload-icon-image" src={imageLogo} alt="logo" />
                             <h6 className="upload-text">Upload Profile Photo</h6>
                         </div>
                     </label>

@@ -1,54 +1,54 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styles from "./SellerPayment.module.scss";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Photo from "../../Asset/payment-photo.svg";
 
-const style = {
-  display: "flex",
-  justifyContent: "space-around",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "#fffaef",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   display: "flex",
+//   justifyContent: "space-around",
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   bgcolor: "#fffaef",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
-const fileToImage = (file) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  console.log(reader)
-  reader.onload = (event) => {
-    resolve(event.target.result)
-  };
-  reader.readAsDataURL(file);
-  })
+// const fileToImage = (file) => new Promise((resolve, reject) => {
+//   const reader = new FileReader();
+//   console.log(reader)
+//   reader.onload = (event) => {
+//     resolve(event.target.result)
+//   };
+//   reader.readAsDataURL(file);
+//   })
 
 export default function Payment() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [image, setImage] = useState('')
-    const [isUploaded, setIsUploaded] = useState(false)
-    const handleImageChange = (file) => {
-        console.log("bisa")
-        if(!file) {
-            setImage('');
-            return;
-          }
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
+  // const [image, setImage] = useState('')
+  //   const [isUploaded, setIsUploaded] = useState(false)
+  //   const handleImageChange = (file) => {
+  //       console.log("bisa")
+  //       if(!file) {
+  //           setImage('');
+  //           return;
+  //         }
       
-        fileToImage(file)
-            .then(dataUri => {
-                console.log(dataUri)
-              setImage(dataUri)
-            })
-    }
-    console.log(image, "ini foto")
-    console.log(setImage, "ini pilih foto")
+  //       fileToImage(file)
+  //           .then(dataUri => {
+  //               console.log(dataUri)
+  //             setImage(dataUri)
+  //           })
+  //   }
+  //   console.log(image, "ini foto")
+  //   console.log(setImage, "ini pilih foto")
   return (
     <div className={styles.Body}>
       <div className={styles.SecondBody}>

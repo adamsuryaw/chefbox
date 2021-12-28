@@ -3,20 +3,20 @@ import "./CreateProduct.css";
 import {
   Button,
   Box,
-  MenuItem,
+  // MenuItem,
   InputBase,
-  Paper,
-  TextField,
+  // Paper,
+  // TextField,
   Typography,
 } from "@mui/material";
 import check from "../../Asset/check.svg";
-import data from "../Data/data";
-import { Link, useNavigate } from "react-router-dom";
+// import data from "../Data/data";
+import { useNavigate } from "react-router-dom";
 import { putCreateFour } from "../../store/actions/create";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Formik, Form, FieldArray, Field, ErrorMessage } from "formik";
-import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+import { Formik } from "formik";
+import { useEffect } from "react";
 import { getRecipe } from "../../store/actions/recipe";
 
 const stylesSub = {
@@ -31,18 +31,18 @@ const stylesSub = {
 }
 
 function CreateProduct() {
-  const { tempat } = data;
-  const [location, setLocation] = React.useState();
-  const handleChangeLocation = (event) => {
-    setLocation(event.target.value);
-  };
+  // const { tempat } = data;
+  // const [location, setLocation] = React.useState();
+  // const handleChangeLocation = (event) => {
+  //   setLocation(event.target.value);
+  // };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {list} = useSelector((state) => state?.recipe?.listRecipe);
-  console.log(list.recipe, "stepFour")
+  // console.log(list.recipe, "stepFour")
   useEffect(() => {
     dispatch(getRecipe());
-  }, []);
+  }, [dispatch]);
   return (
     <div className='product-section'>
       <div className='product-desc'>

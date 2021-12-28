@@ -23,9 +23,24 @@
   height: 115.46px;
 }
 
+.box-login {
+  background-color: white;
+  width: 100%;
+  height: 911px;
+  border-radius: 80px 0 0 80px;
+  margin-top: 60px;
+  box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.15);
+}
+
 .name-top {
   margin-left: 88px;
   padding-top: 75px;
+}
+
+.btn-login {
+  margin-left: 88px;
+  width: 700px;
+  margin-top: 42px;
 }
 
 .name-top h1 {
@@ -44,7 +59,7 @@
   margin: 0;
 }
 
-.span-name {
+.span-login {
   color: #b6340b;
 }
 
@@ -54,4 +69,78 @@
   font-weight: normal;
   font-size: 14px;
   margin: 8.79px 0 0 675px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .logo-image {
+    margin-left: 200px;
+    margin-top: 400px;
+    width: 122px;
+    height: 115.46px;
+  }
+
+  .box-login {
+    background-color: white;
+    width: 800px;
+    height: 800px;
+    border-radius: 80px 0 0 80px;
+    margin-top: 60px;
+    margin-left: 373px;
+    box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .name-top {
+    margin-left: 60px;
+    padding-top: 70px;
+  }
+
+  .btn-login {
+    margin-left: 88px;
+    width: 600px;
+    margin-top: 42px;
+  }
+
+  .span-login {
+    color: #b6340b;
+  }
+
+  .forgot {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 8.79px 0 0 574px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .logo-image {
+    margin-left: 100px;
+    margin-top: 400px;
+    width: 95px;
+    height: 80px;
+  }
+
+  .box-login {
+    background-color: white;
+    width: 600px;
+    height: 800px;
+    border-radius: 80px 0 0 80px;
+    margin-top: 60px;
+    margin-left: 0px;
+    box-shadow: 0px 4px 24px 4px rgba(0, 0, 0, 0.15);
+  }
+  .btn-login {
+    margin-left: 60px;
+    width: 500px;
+    margin-top: 42px;
+  }
+
+  .forgot {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 8.79px 0 0 447px;
+  }
 }

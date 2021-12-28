@@ -1,24 +1,25 @@
 import React from 'react'
-import { Button, Grid, Paper, Box, Typography } from '@mui/material';
-import { useField } from 'formik';
-import { styled } from '@mui/material/styles';
+import { Button, Grid, Box, Typography } from '@mui/material';
+// import { useField } from 'formik';
+import './AuthRegis.css'
+// import { styled } from '@mui/material/styles';
 import google from '../../Asset/google.svg'
 import facebook from '../../Asset/facebook.svg'
 
 function AuthRegis() {
 
-    const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
+    // const Item = styled(Paper)(({ theme }) => ({
+    //     ...theme.typography.body2,
+    //     padding: theme.spacing(1),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    // }));
 
     return (
         <div>
             <Grid container>
                 <Grid xl={12}>
-                    <Box sx={{marginLeft: '88px', width:'700px', marginTop: '20px'}}>
+                    <Box className="box-auth">
                         <Button 
                             variant="contained"
                             fullWidth

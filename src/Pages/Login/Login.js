@@ -1,6 +1,6 @@
 import React from 'react'
 import './Login.css'
-import Bar from '../../Component/Bar/Bar'
+// import Bar from '../../Component/Bar/Bar'
 import Cover from '../../Component/Cover/Cover'
 
 function Login() {

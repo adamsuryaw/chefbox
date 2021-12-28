@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadImage.css'
-import { connect, getIn } from 'formik';
+import { connect } from 'formik';
 import { useEffect } from "react";
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ function UploadImage(props) {
             setImage(props.value)
             setIsUploaded(true)
         }
-    }, [props.value])
+    }, [isUploaded, props.value])
 
     const handleImageChange = (file) => {
         // const fileReader = new FileReader();
@@ -52,10 +52,10 @@ function UploadImage(props) {
             })
     }
     // console.log("ini foto")
-    console.log(image, "ini pilih foto")
+    // console.log(image, "ini pilih foto")
     return (
         <div className="upload-section">
-            {image == "" || image == null ? (
+            {image === "" || image === null ? (
                 <>
                     <label htmlFor="upload-image">
                         <div>
@@ -68,7 +68,7 @@ function UploadImage(props) {
                                 handleImageChange(event.target.files[0] || null)
                             }
                             />
-                            <img className="upload-icon-image" src={imageLogo} alt="logo image" />
+                            <img className="upload-icon-image" src={imageLogo} alt="logo" />
                             <h6 className="upload-text">Upload Profile Photo</h6>
                         </div>
                     </label>

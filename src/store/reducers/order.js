@@ -25,7 +25,7 @@ const initialState = {
 };
 
 export const order = (state = initialState, action) => {
-  const { type, payload, error } = action;
+  const { type, payload } = action;
   switch (type) {
     case GET_ORDER_BEGIN:
       return {
