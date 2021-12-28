@@ -17,8 +17,8 @@ import CreateIngred from "../Component/CreateIngred/CreateIngred";
 import CreateProduct from "../Component/CreateProduct/CreateProduct";
 import Account from "../Component/Account/Account";
 import SellerPayment from "../page/seller/SellerPayment"
-import DefaultLayout from "../DefaultLayout/DefaultLayout"
-import HeaderToken from "../HeaderToken/HeaderToken";
+// import DefaultLayout from "../DefaultLayout/DefaultLayout"
+// import HeaderToken from "../HeaderToken/HeaderToken";
 
 export default function Routers() {
   return (

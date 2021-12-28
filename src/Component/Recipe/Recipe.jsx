@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import "./Recipe.css";
 import {
-  FormControlLabel,
-  Checkbox,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
+  // FormControlLabel,
+  // Checkbox,
+  // Card,
+  // CardActions,
+  // CardContent,
+  // CardMedia,
   Button,
-  Typography,
-  CardActionArea,
-  Avatar,
+  // Typography,
+  // CardActionArea,
+  // Avatar,
   Pagination,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import TextBarRecipe from "../TextBar/TextBarRecipe";
-import montes from "../../Asset/Frame 3.svg";
+// import TextBarRecipe from "../TextBar/TextBarRecipe";
+// import montes from "../../Asset/Frame 3.svg";
 import CardComp from "../Card/Card";
-import data from "../Data/data";
+// import data from "../Data/data";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { getRecipe, getFilterRecipe, getPagination } from "../../store/actions/recipe";
+import { getRecipe, getFilterRecipe } from "../../store/actions/recipe";
 import styles from './Recipe.module.scss'
-import axios from 'axios'
-import { BASE_URL } from "../../constants/constants";
+// import axios from 'axios'
+// import { BASE_URL } from "../../constants/constants";
 
 function Recipe() {
 
@@ -254,7 +254,7 @@ function Recipe() {
                 <CardComp key={data.id} data={data} />
               </Link>
             ))
-            : showPage && list.currentPage == page ?
+            : showPage && list.currentPage === page ?
             list?.recipe?.map((data) => (
               <Link to={`/details/${data.id}`} className={"card-section"}>
                 <CardComp key={data.id} data={data} />

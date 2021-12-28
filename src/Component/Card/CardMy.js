@@ -1,36 +1,36 @@
 import React from 'react'
 import {
-    FormControlLabel,
-    Checkbox,
+    // FormControlLabel,
+    // Checkbox,
     Card,
-    CardActions,
+    // CardActions,
     CardContent,
     CardMedia,
     Button,
     Typography,
     CardActionArea,
-    Avatar,
-    IconButton
+    // Avatar,
+    // IconButton
 } from "@mui/material";
-import TextBarRecipe from "../TextBar/TextBarRecipe";
+// import TextBarRecipe from "../TextBar/TextBarRecipe";
 import AccessTime from "@mui/icons-material/AccessTime";
 import PermIdentity from "@mui/icons-material/PermIdentity";
 import deliver from "../../Asset/carbon_delivery.svg";
 import LocationOnOutlined from "@mui/icons-material/LocationOnOutlined";
-import avatarPic from "../../Asset/Ellipse 12.svg";
+// import avatarPic from "../../Asset/Ellipse 12.svg";
 import "./CardMy.css";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import { delRecipe } from '../../store/actions/recipe';
 import { Link } from "react-router-dom";
 
 function CardMy({data}) {
     const dispatch = useDispatch();
-    const deleteCard = () => {
-        dispatch(delRecipe(data.id))
-        window.location.reload()
-    }
+    // const deleteCard = () => {
+    //     dispatch(delRecipe(data.id))
+    //     window.location.reload()
+    // }
     return (
         <div className='container'>
             <div className='cardAttend'>

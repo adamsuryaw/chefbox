@@ -1,6 +1,6 @@
 import React from 'react'
 import data from '../Data/data';
-import { TextField, Box, MenuItem, InputBase, Select } from '@mui/material';
+import { TextField, Box, MenuItem } from '@mui/material';
 import './TextBarCreate.css'
 
 function TextBarCreate(props) {
@@ -21,7 +21,7 @@ function TextBarCreate(props) {
             <Box sx={{
                 width: '346px'
             }}>
-                {model == "type" ?
+                {model === "type" ?
                     <TextField 
                         sx={{display: 'block', fontSize: '14px', marginTop: '8.21px'}}
                         type={props.type}
@@ -38,7 +38,7 @@ function TextBarCreate(props) {
                             ))}
                     </TextField>
                     :
-                    model == "category" ?
+                    model === "category" ?
                     <TextField 
                         sx={{display: 'block', fontSize: '14px', marginTop: '8.21px'}}
                         type={props.type}

@@ -2,25 +2,25 @@ import React from "react";
 import styles from "./Payment.module.scss";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Link, useNavigate } from "react-router-dom";
-import { putCreate, postCreate } from "../../store/actions/create";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// import { putCreate, postCreate } from "../../store/actions/create";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Formik, Form } from "formik";
+// import { Formik, Form } from "formik";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, postOrderPay } from "../../store/actions/order";
-import UploadPay from "../../Component/Upload/UploadPay";
+// import UploadPay from "../../Component/Upload/UploadPay";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
-import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
-import CloseIcon from '@mui/icons-material/Close';
-import Backdrop from '@mui/material/Backdrop';
+// import CircularProgress from '@mui/material/CircularProgress';
+// import Alert from '@mui/material/Alert';
+// import IconButton from '@mui/material/IconButton';
+// import Collapse from '@mui/material/Collapse';
+// import CloseIcon from '@mui/icons-material/Close';
+// import Backdrop from '@mui/material/Backdrop';
 // import Timer from "./Timer"
 
 const style = {
@@ -66,26 +66,26 @@ const Back = styled("div")`
 
 export default function Payment() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     dispatch(viewCart());
     dispatch(getOrder(id));
-  }, []);
+  }, [dispatch, id]);
   const {details} = useSelector((state) => state?.addCart?.cartUser);
-  console.log("details", details);
+  // console.log("details", details);
 
   const detailOrder = useSelector((state) => state?.order?.orderDetails);
-  console.log("detailOrder", detailOrder);
+  // console.log("detailOrder", detailOrder);
   
-  const handleSubmit = () => {
-    dispatch(postOrderPay())
-    // navigate(`/${detailOrder?.orderList?.invoice_url}`)
-    // console.log(e)
-  }
+  // const handleSubmit = () => {
+  //   dispatch(postOrderPay())
+  //   // navigate(`/${detailOrder?.orderList?.invoice_url}`)
+  //   // console.log(e)
+  // }
   const [open, setOpen] = React.useState(false);
-  const [buka, setBuka] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
+  // const [buka, setBuka] = React.useState(false);
+  // const [open2, setOpen2] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
     dispatch(postOrderPay())
@@ -94,13 +94,13 @@ export default function Payment() {
     setOpen(false)
     window.location.reload()
   }
-  const handleConfirm = () => {
-    // dispatch(postOrderPay())
-    navigate(`${detailOrder?.orderList?.invoice_url}`)
-    // console.log(e)
-  }
+  // const handleConfirm = () => {
+  //   // dispatch(postOrderPay())
+  //   navigate(`${detailOrder?.orderList?.invoice_url}`)
+  //   // console.log(e)
+  // }
   function refresh() { 
-    setBuka(true) 
+    // setBuka(true) 
     setOpen(false)
     setTimeout(function () {
         window.location.reload()
@@ -234,7 +234,7 @@ export default function Payment() {
                   <Typography id='modal-modal-title' variant='h6' component='h2'>
                     <div className={styles.ProductContent}>
                       <h4>Confirm Payment?</h4>
-                      <a href={`${detailOrder?.orderList?.invoice_url}`} target="_blank">
+                      <a href={`${detailOrder?.orderList?.invoice_url}`} target="_blank" rel="noreferrer">
                         <button onClick={refresh} style={styaleButton}>
                           Yes
                         </button>

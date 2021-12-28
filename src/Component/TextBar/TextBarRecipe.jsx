@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextField, Box, MenuItem } from '@mui/material';
-import { useField } from 'formik';
-import { styled } from '@mui/material/styles';
+// import { useField } from 'formik';
+// import { styled } from '@mui/material/styles';
 import './TextBarRecipe.css';
 import data from '../Data/data';
 
@@ -33,7 +33,7 @@ function TextBarRecipe(props) {
             <Box sx={{
                 width: '250px'
             }}>
-                {model == "location" ?
+                {model === "location" ?
                     <TextField 
                     sx={{display: 'block', fontSize: '14px', marginTop: '8.21px', padding: '0px'}}
                     type={props.type}
@@ -52,7 +52,7 @@ function TextBarRecipe(props) {
                         ))}
                     </TextField>
                     :
-                    model == "type" ?
+                    model === "type" ?
                     <TextField 
                         sx={{display: 'block', fontSize: '14px', marginTop: '8.21px'}}
                         type={props.type}
@@ -71,7 +71,7 @@ function TextBarRecipe(props) {
                             ))}
                     </TextField>
                     :
-                    model == "category" ?
+                    model === "category" ?
                     <TextField 
                         sx={{display: 'block', fontSize: '14px', marginTop: '8.21px'}}
                         type={props.type}

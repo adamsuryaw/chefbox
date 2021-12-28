@@ -8,3 +8,44 @@ label {
 .labelLogin {
   margin-top: 36px;
 }
+
+.text-login {
+  margin-left: 88px;
+  width: 700px;
+}
+
+@media only screen and (max-width: 1280px) {
+  label {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .labelLogin {
+    margin-top: 36px;
+  }
+
+  .text-login {
+    margin-left: 88px;
+    width: 600px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  label {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  .labelLogin {
+    margin-top: 36px;
+  }
+
+  .text-login {
+    margin-left: 60px;
+    width: 500px;
+  }
+}

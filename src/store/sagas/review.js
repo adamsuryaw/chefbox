@@ -33,22 +33,22 @@ function* reviewList(action) {
   }
 }
 
-function* ratingValue(action) {
-  const { id } = action;
-  try {
-    const res = yield axios.get(`${BASE_URL}rating/${id}`, config);
-    // console.log(res, "res review")
-    yield put({
-      type: GET_REVIEW_SUCCESS,
-      payload: res.data.data,
-    });
-  } catch (err) {
-    yield put({
-      type: GET_REVIEW_FAIL,
-      error: err,
-    });
-  }
-}
+// function* ratingValue(action) {
+//   const { id } = action;
+//   try {
+//     const res = yield axios.get(`${BASE_URL}rating/${id}`, config);
+//     // console.log(res, "res review")
+//     yield put({
+//       type: GET_REVIEW_SUCCESS,
+//       payload: res.data.data,
+//     });
+//   } catch (err) {
+//     yield put({
+//       type: GET_REVIEW_FAIL,
+//       error: err,
+//     });
+//   }
+// }
 
 function* postReviewList(action) {
   const { id, payload } = action;

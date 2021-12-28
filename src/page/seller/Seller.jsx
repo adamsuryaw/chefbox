@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import React from "react";
 import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
+// import Rating from "@mui/material/Rating";
 import Modal from '@mui/material/Modal';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+// import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSeller, getOrder } from "../../store/actions/order";
+import { getSeller } from "../../store/actions/order";
 
 const styleModal = {
   position: 'absolute',
@@ -35,18 +35,18 @@ export default function Seller() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [firstValue, setFirstValue] = React.useState(0);
-  const [secondValue, setSecondValue] = React.useState(0);
-  const [thirdValue, setThirdValue] = React.useState(0);
+  // const [firstValue, setFirstValue] = React.useState(0);
+  // const [secondValue, setSecondValue] = React.useState(0);
+  // const [thirdValue, setThirdValue] = React.useState(0);
   const orderan = useSelector((state) => state?.order?.orderDetails);
-  console.log("orderan", orderan)
+  // console.log("orderan", orderan)
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getRecipe());
     // dispatch(viewCart());
     // dispatch(getOrder());
     dispatch(getSeller());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.sellerContainer}>

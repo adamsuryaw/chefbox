@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Order.module.scss";
-import MenuIMG from "../../components/assets/ChefBox/Order/Frame3.png";
+// import MenuIMG from "../../components/assets/ChefBox/Order/Frame3.png";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -8,17 +8,17 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+// import { styled } from "@mui/material/styles";
+// import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { viewCart } from "../../store/actions/cart";
-import { getOrder, patchOrder, postOrderPay } from "../../store/actions/order";
-import { getRecipe } from "../../store/actions/recipe";
-import { patchUpdate } from "../../store/actions/profile";
-import { order } from "../../store/reducers/order";
+import { getOrder, patchOrder } from "../../store/actions/order";
+// import { getRecipe } from "../../store/actions/recipe";
+// import { patchUpdate } from "../../store/actions/profile";
+// import { order } from "../../store/reducers/order";
 
 const style = {
   display: "flex",
@@ -121,7 +121,7 @@ export const DeliveryForm = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  const submitChanges = (e) => [];
+  // const submitChanges = (e) => [];
   const { setForm } = props;
   console.log("setForm", setForm);
 
@@ -252,24 +252,23 @@ export const DeliveryForm = (props) => {
 
 export default function Order() {
   const dispatch = useDispatch();
+  const { id } = useParams();
   useEffect(() => {
     dispatch(viewCart());
     dispatch(getOrder(id));
     // dispatch(patchUpdate());
     // dispatch(getRecipe);
-  }, []);
+  }, [dispatch, id]);
   const { list } = useSelector((state) => state.recipe.listRecipe);
-  console.log("list", list);
+  // console.log("list", list);
 
   const {details} = useSelector((state) => state?.addCart?.cartUser);
-  console.log("details", details);
+  // console.log("details", details);
 
   const detailOrder = useSelector(
     (state) => state?.order?.orderDetails
   );
-  console.log("detailOrder", detailOrder?.orderList);
-
-  const { id } = useParams();
+  // console.log("detailOrder", detailOrder?.orderList);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, put } from "@redux-saga/core/effects";
+import { takeEvery, put } from "@redux-saga/core/effects";
 import {
   GET_RECIPE_BEGIN,
   GET_RECIPE_SUCCESS,
@@ -6,9 +6,9 @@ import {
   GET_RECIPE_DETAILS_BEGIN,
   GET_RECIPE_DETAILS_SUCCESS,
   GET_RECIPE_DETAILS_FAIL,
-  PAGINATION_BEGIN,
-  PAGINATION_SUCCESS,
-  PAGINATION_FAIL,
+  // PAGINATION_BEGIN,
+  // PAGINATION_SUCCESS,
+  // PAGINATION_FAIL,
   GET_FILTER_RECIPE_BEGIN,
   GET_FILTER_RECIPE_SUCCESS,
   GET_FILTER_RECIPE_FAIL,

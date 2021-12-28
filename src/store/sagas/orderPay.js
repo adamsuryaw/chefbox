@@ -18,8 +18,8 @@ import {
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
-import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { Link, useNavigate } from "react-router-dom";
 
 const currentToken = localStorage.getItem("token")
 const config = {
@@ -29,7 +29,7 @@ const config = {
 function* getOrderList() {
   try {
     const res = yield axios.get(`${BASE_URL}order`, config);
-    console.log(res, "res order")
+    console.log(res)
     yield put({
       type: GET_ORDER_SUCCESS,
       payload: res.data,
@@ -47,7 +47,7 @@ function* getOrderList() {
 function* myOrder() {
   try {
     const res = yield axios.get(`${BASE_URL}order/myorder`, config);
-    console.log(res, "res my order")
+    console.log(res)
     yield put({
       type: GET_MYORDER_SUCCESS,
       payload: res.data,
@@ -65,7 +65,7 @@ function* myOrder() {
 function* seller() {
   try {
     const res = yield axios.get(`${BASE_URL}order/seller`, config);
-    console.log(res, "res seller")
+    console.log(res)
     yield put({
       type: GET_SELLER_SUCCESS,
       payload: res.data,
@@ -85,6 +85,7 @@ function* patchOrderList(action) {
   // const data = payload;
   try {
     const res = yield axios.patch(`${BASE_URL}order/${id}`, data, config);
+    console.log(res)
     yield put ({
       type: GET_ORDER_BEGIN,
     })

@@ -18,9 +18,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
-import profilePict from "../../Asset/Ellipse 11-1.svg";
+// import profilePict from "../../Asset/Ellipse 11-1.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import PersonAdd from "@mui/icons-material/PersonAdd";
+// import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -28,23 +28,22 @@ import { getUser } from "../../store/actions/profile";
 import { viewCart } from "../../store/actions/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { getRecipe, getFilterRecipe, getSearchRecipe } from "../../store/actions/recipe";
+import { getSearchRecipe } from "../../store/actions/recipe";
 
 function Header() {
   const [search, setSearch] = useState(false)
-  const {list} = useSelector((state) => state.recipe.listRecipe);
-  const {filterList} = useSelector((state) => state.recipe.listFilter);
+  // const {list} = useSelector((state) => state.recipe.listRecipe);
+  // const {filterList} = useSelector((state) => state.recipe.listFilter);
   // console.log("list", list)
   // console.log("list SEARCH", filterList)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = useState('')
-  const [showFilter, setShowFilter] = useState(false)
+  // const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate();
   const handleSubmit1 = (e) => {
     e.preventDefault()
     dispatch(getSearchRecipe(keyword))
     setSearch(true)
-    setShowFilter(true)
   }
   const handleSubmit2 = (e) => {
     e.preventDefault()
@@ -68,7 +67,7 @@ function Header() {
     useEffect(() => {
         dispatch(getUser());
         dispatch(viewCart());
-      }, []);
+      }, [dispatch]);
 
     const userHeader = useSelector((state) => state?.account?.userDetails);
     console.log("user header", userHeader);
@@ -188,7 +187,7 @@ function Header() {
           placeholder='What do you want to eat today?'
           inputProps={{ "aria-label": "search google maps" }}
         />
-        {search == false ?
+        {search === false ?
           <IconButton type='submit' onClick={handleSubmit1} sx={{ p: "10px" }} aria-label='search'>
             <SearchIcon />
           </IconButton>
