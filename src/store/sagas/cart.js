@@ -9,7 +9,7 @@ import {
 } from "../../constants/types";
 import axios from "axios";
 
-const baseUrl = "http://chefbox2021.herokuapp.com";
+const baseUrl = "https://chefbox2021.herokuapp.com";
 const currentToken = localStorage.getItem("token")
 const config = {
   headers: { 'access_token': currentToken }

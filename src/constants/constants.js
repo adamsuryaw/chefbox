@@ -1,1 +1,1 @@
-export const BASE_URL = "http://chefbox2021.herokuapp.com/"
+export const BASE_URL = "https://chefbox2021.herokuapp.com/"
