@@ -104,7 +104,7 @@ function CreateDirect() {
           direction: '',
         }}
         onSubmit={(values, {resetForm}) => {
-          dispatch(putCreateThree(list?.recipe[0]?.id, values))
+          dispatch(putCreateThree(localStorage.getItem("id_recipe"), values))
           resetForm()
           // window.location.reload();
           // console.log(values)

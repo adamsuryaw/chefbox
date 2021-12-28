@@ -17,7 +17,7 @@ const fileToImage = (file) => new Promise((resolve, reject) => {
 function UploadImage(props) {
     // console.log(props.value, "props")
     const [image, setImage] = useState("")
-    console.log(image, "gambar1")
+    // console.log(image, "gambar1")
     const [isUploaded, setIsUploaded] = useState(false)
     const {formik} = props
     const {setFieldValue} = formik
@@ -38,7 +38,7 @@ function UploadImage(props) {
         //     }
         //   };
         // fileReader.readAsDataURL(e.target.files[0]);
-        console.log(file, "file")
+        // console.log(file, "file")
         if(!file) {
             // setImage('');
             return;

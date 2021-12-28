@@ -24,21 +24,21 @@ export default function Routers() {
       <Routes>
       <Route exact path='/login' element={<Login />} />
       <Route exact path='/register' element={<Register />} />
-        <Route exact path='/register/signup' element={<Signup />} />
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route exact path='/dashboard/my-order' element={<DashboardOrder />} />
-        <Route exact path='/details/:id' element={<Details />} />
-        <Route exact path='/order' element={<Order />} />
-        <Route exact path='/order/payment' element={<Payment />} />
-        <Route exact path='/recipe' element={<Recipe />} />
-        <Route exact path='/seller' element={<Seller />} />
-        <Route exact path='/seller/payment' element={<SellerPayment />} />
-        <Route exact path='/create' element={<CreateDesc />} />
-        <Route exact path='/create/ingredient' element={<CreateIngred />} />
-        <Route exact path='/create/direct' element={<CreateDirect />} />
-        <Route exact path='/create/product' element={<CreateProduct />} />
-        <Route exact path='/account' element={<Account />} />
+      <Route exact path='/register/signup' element={<Signup />} />
+      <Route exact path='/' element={<Home />} />
+      <Route exact path='/dashboard' element={<Dashboard />} />
+      <Route exact path='/dashboard/my-order' element={<DashboardOrder />} />
+      <Route exact path='/details/:id' element={<Details />} />
+      <Route exact path='/order' element={<Order />} />
+      <Route exact path='/order/payment' element={<Payment />} />
+      <Route exact path='/recipe' element={<Recipe />} />
+      <Route exact path='/seller' element={<Seller />} />
+      <Route exact path='/seller/payment' element={<SellerPayment />} />
+      <Route exact path='/create' element={<CreateDesc />} />
+      <Route exact path='/create/ingredient' element={<CreateIngred />} />
+      <Route exact path='/create/direct' element={<CreateDirect />} />
+      <Route exact path='/create/product' element={<CreateProduct />} />
+      <Route exact path='/account' element={<Account />} />  
       </Routes>
     </>
   );

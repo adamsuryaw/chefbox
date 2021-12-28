@@ -24,7 +24,7 @@ function* cartSaga (action) {
       yield put ({
         type: GET_CART_BEGIN,
       })
-      console.log(res, "res cart")
+      console.log(res)
       yield put(
         {
           type: POST_CART_SUCCESS,
@@ -46,7 +46,7 @@ function* cartSaga (action) {
 function* cartAll (action) {
   try {
     const res = yield axios.get(`${baseUrl}/cart`, config);
-    console.log(res, "res get cart")
+    // console.log(res, "res get cart")
     yield put(
       {
         type: GET_CART_SUCCESS,

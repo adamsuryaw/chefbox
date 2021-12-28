@@ -198,7 +198,7 @@ export default function CreateDesc() {
             // dispatch(getRecipe());
             navigate('/create/ingredient')
             // window.location.reload();
-            console.log(values)
+            // console.log(values)
           }}
         >
           {(formikProps) => {

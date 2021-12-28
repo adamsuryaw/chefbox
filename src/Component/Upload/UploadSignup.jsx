@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import imageLogo from '../../Asset/XMLID 306.svg'
 import './UploadImage.css'
 import { connect } from 'formik';
+import Swal from "sweetalert2"
 
 const fileToImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -20,26 +21,26 @@ function UploadSignup(props) {
     const {formik} = props
     const {setFieldValue} = formik
     const handleImageChange = (file) => {
-        // const fileReader = new FileReader();
-        // fileReader.onload = () => {
-        //     if (fileReader.readyState === 2) {
-        //         setIsUploaded('avatar', fileReader.result);
-        //         setImage(fileReader.result);
-        //     }
-        //   };
-        // fileReader.readAsDataURL(e.target.files[0]);
-        console.log(file)
+        console.log(file, "file")
         if(!file) {
             // setImage('');
             return;
-          }
-      
-        fileToImage(file)
+          } else if (file.size > 2000000) {
+            Swal.fire(
+                "Error",
+                "Image Maximum Size is 2 MB",
+                "error"
+            )
+          } else {
+            fileToImage(file)
             .then(dataUri => {
                 console.log(dataUri, "dataUri")
                 setImage(dataUri)
                 setFieldValue(props.name, file)
             })
+          }
+      
+        
     }
     // console.log("ini foto")
     // console.log(setImage, "ini pilih foto")

@@ -162,6 +162,13 @@ export const order = (state = initialState, action) => {
           orderList: payload,
         },
       }
+    case "DELETE_CART":
+      return {
+        ...state,
+        orderDetails: {
+          cart: []
+        }
+      }
     case POST_PAYMENT_FAIL:
       return {
         ...state,

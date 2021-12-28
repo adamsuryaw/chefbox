@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import { putCreate, postCreate } from "../../store/actions/create";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // import { Formik, Form } from "formik";
 import { viewCart } from "../../store/actions/cart";
 import { getOrder, postOrderPay } from "../../store/actions/order";
@@ -53,6 +53,18 @@ const styaleButton = {
   }
 }
 
+const styaleDisabled = {
+  width: '142px',
+  height: '36px',
+  background: '#f4f4f4',
+  color: '#000',
+  border: '1px solid #f9c959',
+  boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+  borderRadius: '24px',
+  fontWeight: 'bold',
+}
+
+
 const Back = styled("div")`
   z-index: -1;
   position: fixed;
@@ -66,7 +78,7 @@ const Back = styled("div")`
 
 export default function Payment() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     dispatch(viewCart());
@@ -103,9 +115,18 @@ export default function Payment() {
     // setBuka(true) 
     setOpen(false)
     setTimeout(function () {
-        window.location.reload()
-    }, 20000);
+      dispatch(getOrder())
+      dispatch(viewCart())
+      navigate("/dashboard/my-order")
+    }, 15000);
   }
+
+  // useEffect(() => {
+  //   if(detailOrder?.orderList?.cart?.length === 0) {
+  //     dispatch(getOrder())
+  //     navigate("/dashboard/my-order")
+  //   }
+  // }, [])
   return (
     <div className={styles.Body}>
       <div className={styles.SecondBody}>
@@ -235,7 +256,7 @@ export default function Payment() {
                     <div className={styles.ProductContent}>
                       <h4>Confirm Payment?</h4>
                       <a href={`${detailOrder?.orderList?.invoice_url}`} target="_blank" rel="noreferrer">
-                        <button onClick={refresh} style={styaleButton}>
+                        <button disabled={detailOrder?.orderList?.amount? false : true} onClick={refresh} style={detailOrder?.orderList?.amount ? styaleButton : styaleDisabled}>
                           Yes
                         </button>
                       </a>

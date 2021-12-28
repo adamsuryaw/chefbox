@@ -35,7 +35,7 @@ function* getRecipeList(action) {
   try {
     // const res = yield axios.get(`${BASE_URL}recipe`, config);
     const res = yield axios.get(`${BASE_URL}recipe?page=${page}&limit=6`, config);
-    console.log(res, "res recipe list")
+    // console.log(res, "res recipe list")
     yield put({
       type: GET_RECIPE_SUCCESS,
       payload: res.data,
@@ -99,7 +99,7 @@ function* detailsList(action) {
     // console.log(res, "res")
     yield put({
       type: GET_RECIPE_DETAILS_SUCCESS,
-      payload: res.data.data,
+      payload: res.data,
     });
   } catch (err) {
     yield put({
@@ -131,7 +131,7 @@ function* myRecipe(action) {
   try {
     // const res = yield axios.get(`${BASE_URL}recipe`, config);
     const res = yield axios.get(`${BASE_URL}recipe/myrecipe?page=${page}&limit=6`, config);
-    console.log(res, "res recipe list")
+    // console.log(res, "res recipe list")
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: res.data,
@@ -149,7 +149,7 @@ function* filter(action) {
   console.log(data, "data filter") 
   try {
     const res = yield axios.get(`${BASE_URL}recipe/filter?cat=${data.cat}&type=${data.type}&sort=DESC&orders=id&gte=${data.gte}&lte=${data.lte}&loc=${data.loc}`, config);
-    console.log(res, "res filter")
+    // console.log(res, "res filter")
     yield put({
       type: GET_FILTER_RECIPE_SUCCESS,
       payload: res.data.data,
@@ -165,10 +165,10 @@ function* filter(action) {
 function* search(action) {
   const { payload } = action;
   const data = payload
-  console.log(data, "data search") 
+  // console.log(data, "data search") 
   try {
     const res = yield axios.get(`${BASE_URL}recipe/search?keyword=${data}`, config);
-    console.log(res, "res search")
+    // console.log(res, "res search")
     yield put({
       type: GET_SEARCH_RECIPE_SUCCESS,
       payload: res.data.data,
@@ -182,24 +182,23 @@ function* search(action) {
 }
 
 function* deleteRecipe(action) {
-  const { id } = action;
-  console.log(id, "data search") 
+  const { id } = action; 
   try {
     const res = yield axios.delete(`${BASE_URL}recipe/${id}`, config);
     // yield put({
     //   type: GET_MYRECIPE_SUCCESS,
     // });
-    console.log(res, "res search")
+    // console.log(res)
     yield put({
       type: DELETE_RECIPE_SUCCESS,
       payload: res.data.data,
     });
-    // const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
+    const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
     // console.log(getRecipe, "res getRecipe")
-    // yield put({
-    //   type: GET_MYRECIPE_SUCCESS,
-    //   payload: getRecipe.data,
-    // });
+    yield put({
+      type: GET_MYRECIPE_SUCCESS,
+      payload: getRecipe.data,
+    });
   } catch (err) {
     yield put({
       type: DELETE_RECIPE_FAIL,

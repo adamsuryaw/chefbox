@@ -29,7 +29,7 @@ const config = {
 function* getOrderList() {
   try {
     const res = yield axios.get(`${BASE_URL}order`, config);
-    console.log(res)
+    // console.log(res)
     yield put({
       type: GET_ORDER_SUCCESS,
       payload: res.data,
@@ -47,7 +47,7 @@ function* getOrderList() {
 function* myOrder() {
   try {
     const res = yield axios.get(`${BASE_URL}order/myorder`, config);
-    console.log(res)
+    // console.log(res)
     yield put({
       type: GET_MYORDER_SUCCESS,
       payload: res.data,
@@ -65,7 +65,7 @@ function* myOrder() {
 function* seller() {
   try {
     const res = yield axios.get(`${BASE_URL}order/seller`, config);
-    console.log(res)
+    // console.log(res)
     yield put({
       type: GET_SELLER_SUCCESS,
       payload: res.data,
@@ -108,26 +108,23 @@ function* patchOrderList(action) {
 
 function* postPayment(action) {
   const { body } = action;
-  console.log("bisa")
+  // console.log("bisa")
   try {
     const res = yield axios.post(`${BASE_URL}order/checkout`, body, config);
-    console.log(res, "res post payment")
+    // console.log(res, "res post payment")
     yield put({
       type: POST_PAYMENT_SUCCESS,
       payload: res.data.data,
     });
-    // Swal.fire(
-    //   'Nice',
-    //   'Payment Success',
-    //   'success',
-    // )
-    // setTimeout(() => 
-    //   {Swal.fire(
-    //     'Nice',
-    //     'Payment Success',
-    //     'success',
-    //   )}
-    //   , 3000);
+    yield put({
+      type: "DELETE_CART",
+    });
+    // const getOrder = yield axios.get(`${BASE_URL}order`, config);
+    // console.log(getOrder)
+    // yield put({
+    //   type: GET_ORDER_SUCCESS,
+    //   payload: getOrder.data,
+    // });
   } catch (err) {
     console.log(err, "err");
     yield put({

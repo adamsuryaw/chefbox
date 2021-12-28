@@ -93,7 +93,7 @@ function DetailRecipe() {
   const handleSubmit = () => {
     // console.log(value, "value")
     dispatch(postReview(details?.id, {comment, value}));
-    window.location.reload();
+    
     // console.log(comment)
   }
   // let harga = details?.price
@@ -105,15 +105,15 @@ function DetailRecipe() {
     <div className='detail-page'>
       <div className='menu-section'>
         <div className='food-section'>
-          <h1>{details.title}</h1>
+          <h1>{details?.data?.title}</h1>
           <h3>
-            {details.description}
+            {details?.data?.description}
           </h3>
           <div className='food-mid-section'>
             <div className='avatar-section'>
               <Avatar
                 alt='Remy Sharp'
-                src={details?.user?.image}
+                src={details?.data?.user?.image}
                 sx={{ width: 32, height: 32 }}
               />
               <div className='avatar-info'>
@@ -126,7 +126,7 @@ function DetailRecipe() {
                     marginLeft: "10px",
                     color: "#333333",
                   }}>
-                  {details?.user?.userName}
+                  {details?.data?.user?.userName}
                 </Typography>
                 <Typography
                   component='div'
@@ -143,7 +143,7 @@ function DetailRecipe() {
             </div>
             <Rating
               name='read-only'
-              value={value}
+              value={details?.averageRatings}
               readOnly
               sx={{
                 color: "#B6340B",
@@ -161,7 +161,7 @@ function DetailRecipe() {
                 fontSize: "12px",
                 marginTop: "19px",
               }}>
-              12 Ratings
+              {` People`}
             </Typography>
             <div className='cooking-time'>
               <Typography
@@ -191,7 +191,7 @@ function DetailRecipe() {
                     fontWeight: "normal",
                     fontSize: "12px",
                   }}>
-                  {`${details.duration} mins`}
+                  {`${details?.data?.duration} mins`}
                 </Typography>
               </div>
             </div>
@@ -223,13 +223,13 @@ function DetailRecipe() {
                     fontWeight: "normal",
                     fontSize: "12px",
                   }}>
-                  {`${details.serving} servings`}
+                  {`${details?.data?.serving} servings`}
                 </Typography>
               </div>
             </div>
           </div>
           <div className='picture-section'>
-            <img src={details.image} alt='' />
+            <img src={details?.data?.image} alt='' />
           </div>
           <div className='ingredient-section'>
             <Typography
@@ -242,7 +242,7 @@ function DetailRecipe() {
               }}>
               Ingredients
             </Typography>
-            {details.ingredient == null ?
+            {details?.data?.ingredient == null ?
             <ul>
               <li>250 gr rolled oats</li>
               <li>125 ml milk</li>
@@ -253,7 +253,7 @@ function DetailRecipe() {
               <li>100 gr raspberries, divided</li>
             </ul>
             :
-            details.ingredient
+            details?.data?.ingredient
             }
           </div>
           <div className='method-section'>
@@ -269,7 +269,7 @@ function DetailRecipe() {
             </Typography>
             <ol>
               <li>
-              {details.direction}
+              {details?.data?.direction}
               </li>
             </ol>
             
@@ -402,7 +402,7 @@ function DetailRecipe() {
                 color: "#828282",
                 margin: 0,
               }}>
-              {details?.location?.name}
+              {details?.data?.location?.name}
             </Typography>
           </div>
         </div>
@@ -456,7 +456,7 @@ function DetailRecipe() {
               <h2>{count}</h2>
             </div>
             <h6>
-              Stock <span>{details.stock}</span>
+              Stock <span>{details?.data?.stock}</span>
             </h6>
           </div>
           <div className='plus-stock'>
@@ -522,7 +522,7 @@ function DetailRecipe() {
               color: "#000000",
               paddingLeft: "20px",
             }}>
-            {`Rp. ${details?.price}`}
+            {`Rp. ${details?.data?.price}`}
           </Typography>
         </div>
         <div className='btn-field'>

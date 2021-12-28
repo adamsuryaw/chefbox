@@ -28,7 +28,7 @@ function UploadPay(props) {
         //     }
         //   };
         // fileReader.readAsDataURL(e.target.files[0]);
-        console.log(file)
+        // console.log(file)
         if(!file) {
             // setImage('');
             return;

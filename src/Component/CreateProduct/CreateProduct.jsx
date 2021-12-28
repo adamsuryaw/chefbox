@@ -139,7 +139,7 @@ function CreateProduct() {
             id_location: ''
           }}
           onSubmit={(values, {resetForm}) => {
-            dispatch(putCreateFour(list?.recipe?.[0]?.id, values))
+            dispatch(putCreateFour(localStorage.getItem("id_recipe"), {price: values.price.toString(), stock: values.stock.toString(), id_location: values.id_location}))
             navigate('/recipe')
             // window.location.reload();
             // console.log(values)
@@ -152,8 +152,10 @@ function CreateProduct() {
               <div className='input-one'>
                 <div className='input-price'>
                   <h6>Price</h6>
+                  <i style={{fontSize: '8px', margin: 0}}>Only Number</i>
                   <InputBase
                     name="price"
+                    type="number"
                     value={values.price}
                     onChange={handleChange}
                     sx={{
@@ -176,6 +178,7 @@ function CreateProduct() {
                   <h6>Stock</h6>
                   <InputBase
                     name="stock"
+                    type="number"
                     value={values.stock}
                     onChange={handleChange}
                     sx={{

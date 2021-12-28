@@ -4,7 +4,7 @@
 .body {
   .topSections {
     @include media("<=desktop"){
-      
+
     }
 
     display: flex;
@@ -74,7 +74,6 @@
       }
       a {
         font-family: "Nunito Sans";
-        font-size: 1rem;
         font-weight: 700;
         color: #f9c959;
         text-decoration: none;

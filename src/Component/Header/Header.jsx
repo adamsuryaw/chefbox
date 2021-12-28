@@ -40,6 +40,14 @@ function Header() {
   const [keyword, setKeyword] = useState('')
   // const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate();
+  const handleAcc = () => {
+    navigate('/account')
+    window.location.reload()
+  }
+  const handleRec = () => {
+    navigate('/recipe')
+    window.location.reload()
+  }
   const handleSubmit1 = (e) => {
     e.preventDefault()
     dispatch(getSearchRecipe(keyword))
@@ -52,7 +60,7 @@ function Header() {
   }
   function clearToken() {
     localStorage.clear();
-    // window.location.reload();
+    window.location.reload();
     navigate(`/`)
   }
   const open = Boolean(anchorEl);
@@ -70,9 +78,9 @@ function Header() {
       }, [dispatch]);
 
     const userHeader = useSelector((state) => state?.account?.userDetails);
-    console.log("user header", userHeader);
+    // console.log("user header", userHeader);
     const cartShop = useSelector((state) => state?.addCart?.cartUser);
-    // console.log("cart total", cartShop?.details?.total);
+    // console.log("cart total", cartShop);
     // return (
     //     <div className="header-section">
     //         <img src={logo} alt="logo" />
@@ -167,18 +175,7 @@ function Header() {
         />
       </div>
       </Link>
-      <Paper
-        sx={{
-          p: "2px 4px",
-          display: "flex",
-          alignItems: "center",
-          width: "466px",
-          height: "40px",
-          border: "1px solid #333333",
-          borderRadius: "8px",
-          background: "#FCE4AC",
-          marginLeft: "31px",
-        }}>
+      <Paper className="paper-head">
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           name="keyword"
@@ -198,29 +195,31 @@ function Header() {
         }
       </Paper>
       <Link to='/create'>
-        <Button
-          variant='contained'
-          sx={{
-            width: "145px",
-            height: "36px",
-            background: "#B6340B",
-            boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-            borderRadius: "24px",
-            marginTop: "5px",
-            marginLeft: "505px",
-            textTransform: "none",
-          }}>
-          <Typography
-            component='div'
+        <div className="btn-create">
+          <Button
+            variant='contained'
             sx={{
-              fontFamily: "Nunito",
-              fontWeight: "bold",
-              fontSize: "16px",
-              color: "#F2F2F2",
+              width: '145px',
+              height: '36px',
+              background: '#b6340b',
+              boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)',
+              borderRadius: '24px',
+              marginTop: '5px',
+              textTransform: 'none',
             }}>
-            Create Recipe
-          </Typography>
-        </Button>
+            <Typography
+              component='div'
+              sx={{
+                fontFamily: "Nunito",
+                fontWeight: "bold",
+                fontSize: "16px",
+                color: "#F2F2F2",
+              }}>
+              Create Recipe
+            </Typography>
+          </Button>
+        </div>
+        
       </Link>
       <Link to='/order'>
         <div className='shop-button'>
@@ -311,10 +310,8 @@ function Header() {
           }}
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
-          <MenuItem>
-            <Link to='/account' style={{ textDecoration: "none" }}>
-              <Avatar /> My account
-            </Link>
+          <MenuItem onClick={handleAcc}>
+            <Avatar /> My account
           </MenuItem>
           <Divider />
           <MenuItem>

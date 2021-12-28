@@ -1,1 +1,11 @@
+.card-one {
+  width: 295px;
+  height: 379px;
+}
 
+@media only screen and (max-width: 1280px) {
+  .card-one {
+    width: 250px;
+    height: 379px;
+  }
+}
