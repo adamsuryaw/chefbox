@@ -63,10 +63,9 @@ const Backdrop = styled("div")`
   `;
 
 function DetailRecipe() {
-  const [value, setValue] = React.useState(2);
   const [count, setCount] = React.useState(0)
   const [comment, setComment] = React.useState("");
-  const [secondValue, setSecondValue] = React.useState(0);
+  const [value, setValue] = React.useState(0);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -92,10 +91,16 @@ function DetailRecipe() {
   // console.log("shop", shopCart);
   const [cartItems, setCartItems] = React.useState([]);
   const handleSubmit = () => {
-    dispatch(postReview(details?.id, {comment}));
-    // window.location.reload();
+    // console.log(value, "value")
+    dispatch(postReview(details?.id, {comment, value}));
+    window.location.reload();
     // console.log(comment)
   }
+  // let harga = details?.price
+  // const plusCount = (harga, count) => {
+  //   const plus = harga + count
+  //   return plus
+  // }
   return (
     <div className='detail-page'>
       <div className='menu-section'>
@@ -273,7 +278,7 @@ function DetailRecipe() {
         <div className='review-section'>
           <h1>Review</h1>
           <div className='review-per-section'>
-            {review.details?.map((details) => (
+            {review?.details?.length > 0 && review?.details?.map((details) => (
               <Review key={details.id} details={details} />
             ))}
 
@@ -295,6 +300,14 @@ function DetailRecipe() {
                 fontSize: "14px",
                 marginRight: "30px",
               }}
+            />
+            <Rating
+              name='simple-controlled'
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              sx={{ width: "10rem" }}
             />
             {/* <Modal
               open={open}
@@ -332,14 +345,7 @@ function DetailRecipe() {
                   sx={{ mt: 2 }}></Typography>
               </Box>
             </Modal> */}
-            {/* <Rating
-              name='simple-controlled'
-              value={secondValue}
-              onChange={(event, newValue) => {
-                setSecondValue(newValue);
-              }}
-              sx={{ width: "10rem" }}
-            /> */}
+            
             <Button
             type="submit"
             onClick={handleSubmit}
@@ -403,24 +409,47 @@ function DetailRecipe() {
         <Cart cartItems={cartItems} />
         <div className='stock-field'>
           <div className='min-stock'>
-            <Button
-              sx={{
-                minWidth: "32px",
-                color: "#000000",
-                padding: "3px 0px",
-                borderRadius: "16px",
-              }}
-              onClick={() => setCount(count - 1)}
-              >
-              <Typography
+            {count == 0 ? 
+              <Button
+              disabled
                 sx={{
-                  fontFamily: "Nunito",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}>
-                -
-              </Typography>
-            </Button>
+                  minWidth: "32px",
+                  color: "#000000",
+                  padding: "3px 0px",
+                  borderRadius: "16px",
+                }}
+                onClick={() => setCount(count - 1)}
+                >
+                <Typography
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                  }}>
+                  -
+                </Typography>
+              </Button>
+              :
+              <Button
+                sx={{
+                  minWidth: "32px",
+                  color: "#000000",
+                  padding: "3px 0px",
+                  borderRadius: "16px",
+                }}
+                onClick={() => setCount(count - 1)}
+                >
+                <Typography
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                  }}>
+                  -
+                </Typography>
+              </Button>
+            }
+            
           </div>
           <div className='text-stock'>
             <div className="counter">
@@ -431,24 +460,47 @@ function DetailRecipe() {
             </h6>
           </div>
           <div className='plus-stock'>
-            <Button
-              sx={{
-                minWidth: "32px",
-                color: "#000000",
-                padding: "3px 0px",
-                borderRadius: "16px",
-              }}
-              onClick={() => setCount(count + 1)}
-              >
-              <Typography
+            {count >= details?.stock ? 
+              <Button
+                disabled
                 sx={{
-                  fontFamily: "Nunito",
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                }}>
-                +
-              </Typography>
-            </Button>
+                  minWidth: "32px",
+                  color: "#000000",
+                  padding: "3px 0px",
+                  borderRadius: "16px",
+                }}
+                onClick={() => setCount(count + 1)}
+                >
+                <Typography
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                  }}>
+                  +
+                </Typography>
+              </Button>
+              :
+              <Button
+                sx={{
+                  minWidth: "32px",
+                  color: "#000000",
+                  padding: "3px 0px",
+                  borderRadius: "16px",
+                }}
+                onClick={() => setCount(count + 1)}
+                >
+                <Typography
+                  sx={{
+                    fontFamily: "Nunito",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                  }}>
+                  +
+                </Typography>
+              </Button>
+            }
+            
           </div>
         </div>
         <div className='price-field'>
@@ -470,40 +522,69 @@ function DetailRecipe() {
               color: "#000000",
               paddingLeft: "20px",
             }}>
-            {`Rp. ${details.price}`}
+            {`Rp. ${details?.price}`}
           </Typography>
         </div>
         <div className='btn-field'>
-          <Button
-            variant='contained'
-            onClick={
-              () => {
-              dispatch(addToCart(id, count));
-              // navigate('/register/signup')
-              console.log(id, count, "count")
-            }
-          
-            }
-            sx={{
-              minWidth: "259px",
-              height: "45px",
-              background: "#B6340B",
-              boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
-              borderRadius: "24px",
-              marginTop: "31px",
-              textTransform: "none",
-            }}>
-            <Typography
-              component='div'
+          {details.stock <= 0 ?
+            <Button
+              disabled
+              variant='contained'
+              onClick={() => {
+                dispatch(addToCart(id, count));
+                // navigate('/register/signup')
+                console.log(id, count, "count")
+              }}
               sx={{
-                fontFamily: "Nunito",
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "#F2F2F2",
+                minWidth: "259px",
+                height: "45px",
+                background: "#B6340B",
+                boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                borderRadius: "24px",
+                marginTop: "31px",
+                textTransform: "none",
               }}>
-              Add to Cart
-            </Typography>
-          </Button>
+              <Typography
+                component='div'
+                sx={{
+                  fontFamily: "Nunito",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  color: "#F2F2F2",
+                }}>
+                Add to Cart
+              </Typography>
+            </Button>
+            :
+            <Button
+              variant='contained'
+              onClick={() => {
+                dispatch(addToCart(id, count));
+                // navigate('/register/signup')
+                console.log(id, count, "count")
+              }}
+              sx={{
+                minWidth: "259px",
+                height: "45px",
+                background: "#B6340B",
+                boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                borderRadius: "24px",
+                marginTop: "31px",
+                textTransform: "none",
+              }}>
+              <Typography
+                component='div'
+                sx={{
+                  fontFamily: "Nunito",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  color: "#F2F2F2",
+                }}>
+                Add to Cart
+              </Typography>
+            </Button>
+          }
+          
         </div>
       </div>
     </div>

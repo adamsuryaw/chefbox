@@ -15,6 +15,12 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+import Backdrop from '@mui/material/Backdrop';
 // import Timer from "./Timer"
 
 const style = {
@@ -47,7 +53,7 @@ const styaleButton = {
   }
 }
 
-const Backdrop = styled("div")`
+const Back = styled("div")`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -71,21 +77,34 @@ export default function Payment() {
 
   const detailOrder = useSelector((state) => state?.order?.orderDetails);
   console.log("detailOrder", detailOrder);
+  
   const handleSubmit = () => {
     dispatch(postOrderPay())
     // navigate(`/${detailOrder?.orderList?.invoice_url}`)
     // console.log(e)
   }
   const [open, setOpen] = React.useState(false);
+  const [buka, setBuka] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
     dispatch(postOrderPay())
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false)
+    window.location.reload()
+  }
   const handleConfirm = () => {
     // dispatch(postOrderPay())
     navigate(`${detailOrder?.orderList?.invoice_url}`)
     // console.log(e)
+  }
+  function refresh() { 
+    setBuka(true) 
+    setOpen(false)
+    setTimeout(function () {
+        window.location.reload()
+    }, 20000);
   }
   return (
     <div className={styles.Body}>
@@ -168,32 +187,69 @@ export default function Payment() {
                 Confirm Payment
               </Button>
             </Stack>
+            {/* {buka ?
+              <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+                onClick={handleClose}
+              >
+                <CircularProgress color="inherit" />
+                <Typography>Loading...</Typography>
+              </Backdrop>
+              :
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
+                BackdropComponent={Back}>
+                <Box sx={style}>
+                  <Typography id='modal-modal-title' variant='h6' component='h2'>
+                    <div className={styles.ProductContent}>
+                      <h4>Confirm Payment?</h4>
+                      <a href={`${detailOrder?.orderList?.invoice_url}`} target="_blank">
+                        <button onClick={refresh} style={styaleButton}>
+                          Yes
+                        </button>
+                      </a>
+                        
+                        <button type="submit" onClick={handleClose} style={styaleButton}>
+                          No
+                        </button>
+                    </div>
+                  </Typography>
+                  <Typography
+                    id='modal-modal-description'
+                    sx={{ mt: 2 }}></Typography>
+                </Box>
+              </Modal>
+            } */}
             <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby='modal-modal-title'
-              aria-describedby='modal-modal-description'
-              BackdropComponent={Backdrop}>
-              <Box sx={style}>
-                <Typography id='modal-modal-title' variant='h6' component='h2'>
-                  <div className={styles.ProductContent}>
-                    <h4>Confirm Payment?</h4>
-                    <a href={`${detailOrder?.orderList?.invoice_url}`}>
-                      <button style={styaleButton}>
-                        Yes
-                      </button>
-                    </a>
-                      
-                      <button type="submit" onClick={handleClose} style={styaleButton}>
-                        No
-                      </button>
-                  </div>
-                </Typography>
-                <Typography
-                  id='modal-modal-description'
-                  sx={{ mt: 2 }}></Typography>
-              </Box>
-            </Modal>
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
+                BackdropComponent={Back}>
+                <Box sx={style}>
+                  <Typography id='modal-modal-title' variant='h6' component='h2'>
+                    <div className={styles.ProductContent}>
+                      <h4>Confirm Payment?</h4>
+                      <a href={`${detailOrder?.orderList?.invoice_url}`} target="_blank">
+                        <button onClick={refresh} style={styaleButton}>
+                          Yes
+                        </button>
+                      </a>
+                        
+                        <button type="submit" onClick={handleClose} style={styaleButton}>
+                          No
+                        </button>
+                    </div>
+                  </Typography>
+                  <Typography
+                    id='modal-modal-description'
+                    sx={{ mt: 2 }}></Typography>
+                </Box>
+              </Modal>
             
           </div>
         </div>

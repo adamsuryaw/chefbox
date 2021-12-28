@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import UploadRecipe from "../Upload/UploadRecipe";
+import { getRecipe } from "../../store/actions/recipe";
 
 export default function CreateDesc() {
   // const { id } = useParams();
@@ -69,6 +70,11 @@ export default function CreateDesc() {
   }
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const {list} = useSelector((state) => state?.recipe?.listRecipe);
+  // console.log(list?.recipe, "stepOne")
+  // useEffect(() => {
+  //   dispatch(getRecipe());
+  // }, []);
   // useEffect(() => {
   //   dispatch(putCreate());
   //   dispatch(postCreate());
@@ -187,7 +193,9 @@ export default function CreateDesc() {
             Object.entries(values).forEach((item)=> {
               formData.append(item[0], item[1])
             })
+            
             dispatch(postCreate(formData));
+            // dispatch(getRecipe());
             navigate('/create/ingredient')
             // window.location.reload();
             console.log(values)

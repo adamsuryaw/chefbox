@@ -9,9 +9,17 @@ import {
     POST_PAYMENT_BEGIN,
     POST_PAYMENT_SUCCESS,
     POST_PAYMENT_FAIL,
+    GET_SELLER_BEGIN,
+    GET_SELLER_SUCCESS,
+    GET_SELLER_FAIL,
+    GET_MYORDER_BEGIN,
+    GET_MYORDER_SUCCESS,
+    GET_MYORDER_FAIL,
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 const currentToken = localStorage.getItem("token")
 const config = {
@@ -35,20 +43,60 @@ function* getOrderList() {
     });
   }
 }
+
+function* myOrder() {
+  try {
+    const res = yield axios.get(`${BASE_URL}order/myorder`, config);
+    console.log(res, "res my order")
+    yield put({
+      type: GET_MYORDER_SUCCESS,
+      payload: res.data,
+    });
+    // console.log(res.data);
+  } catch (err) {
+    console.log(err, "err");
+    yield put({
+      type: GET_MYORDER_FAIL,
+      error: err,
+    });
+  }
+}
+
+function* seller() {
+  try {
+    const res = yield axios.get(`${BASE_URL}order/seller`, config);
+    console.log(res, "res seller")
+    yield put({
+      type: GET_SELLER_SUCCESS,
+      payload: res.data,
+    });
+    // console.log(res.data);
+  } catch (err) {
+    console.log(err, "err");
+    yield put({
+      type: GET_SELLER_FAIL,
+      error: err,
+    });
+  }
+}
+
 function* patchOrderList(action) {
   const { data, id } = action;
   // const data = payload;
   try {
     const res = yield axios.patch(`${BASE_URL}order/${id}`, data, config);
+    yield put ({
+      type: GET_ORDER_BEGIN,
+    })
     yield put({
       type: PATCH_ORDER_SUCCESS,
       // payload: res.data,
     });
-    const update = yield axios.get(`${BASE_URL}order`, config);
-    yield put({
-      type: GET_ORDER_SUCCESS,
-      payload: update,
-    });
+    // const update = yield axios.get(`${BASE_URL}order`, config);
+    // yield put({
+    //   type: GET_ORDER_SUCCESS,
+    //   payload: update,
+    // });
   } catch (err) {
     yield put({
       type: PATCH_ORDER_FAIL,
@@ -67,6 +115,18 @@ function* postPayment(action) {
       type: POST_PAYMENT_SUCCESS,
       payload: res.data.data,
     });
+    // Swal.fire(
+    //   'Nice',
+    //   'Payment Success',
+    //   'success',
+    // )
+    // setTimeout(() => 
+    //   {Swal.fire(
+    //     'Nice',
+    //     'Payment Success',
+    //     'success',
+    //   )}
+    //   , 3000);
   } catch (err) {
     console.log(err, "err");
     yield put({
@@ -84,5 +144,11 @@ export function* watchUpdateAddress() {
 }
 export function* watchPostPayment() {
   yield takeEvery(POST_PAYMENT_BEGIN, postPayment);
+}
+export function* watchGetSeller() {
+  yield takeEvery(GET_SELLER_BEGIN, seller);
+}
+export function* watchGetMyOrder() {
+  yield takeEvery(GET_MYORDER_BEGIN, myOrder);
 }
 

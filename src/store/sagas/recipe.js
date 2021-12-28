@@ -15,6 +15,12 @@ import {
   GET_SEARCH_RECIPE_BEGIN,
   GET_SEARCH_RECIPE_SUCCESS,
   GET_SEARCH_RECIPE_FAIL,
+  GET_MYRECIPE_BEGIN,
+  GET_MYRECIPE_SUCCESS,
+  GET_MYRECIPE_FAIL,
+  DELETE_RECIPE_BEGIN,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_FAIL,
 } from "../../constants/types";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
@@ -120,6 +126,24 @@ function* detailsList(action) {
 //   }
 // }
 
+function* myRecipe(action) {
+  const { page } = action;
+  try {
+    // const res = yield axios.get(`${BASE_URL}recipe`, config);
+    const res = yield axios.get(`${BASE_URL}recipe/myrecipe?page=${page}&limit=6`, config);
+    console.log(res, "res recipe list")
+    yield put({
+      type: GET_MYRECIPE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    yield put({
+      type: GET_MYRECIPE_FAIL,
+      error: err,
+    });
+  }
+}
+
 function* filter(action) {
   const { data } = action;
   console.log(data, "data filter") 
@@ -139,7 +163,8 @@ function* filter(action) {
 }
 
 function* search(action) {
-  const { data } = action;
+  const { payload } = action;
+  const data = payload
   console.log(data, "data search") 
   try {
     const res = yield axios.get(`${BASE_URL}recipe/search?keyword=${data}`, config);
@@ -151,6 +176,33 @@ function* search(action) {
   } catch (err) {
     yield put({
       type: GET_SEARCH_RECIPE_FAIL,
+      error: err,
+    });
+  }
+}
+
+function* deleteRecipe(action) {
+  const { id } = action;
+  console.log(id, "data search") 
+  try {
+    const res = yield axios.delete(`${BASE_URL}recipe/${id}`, config);
+    // yield put({
+    //   type: GET_MYRECIPE_SUCCESS,
+    // });
+    console.log(res, "res search")
+    yield put({
+      type: DELETE_RECIPE_SUCCESS,
+      payload: res.data.data,
+    });
+    // const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
+    // console.log(getRecipe, "res getRecipe")
+    // yield put({
+    //   type: GET_MYRECIPE_SUCCESS,
+    //   payload: getRecipe.data,
+    // });
+  } catch (err) {
+    yield put({
+      type: DELETE_RECIPE_FAIL,
       error: err,
     });
   }
@@ -170,4 +222,10 @@ export function* watchFilterData() {
 }
 export function* watchSearchData() {
   yield takeEvery(GET_SEARCH_RECIPE_BEGIN, search);
+}
+export function* watchMyRecipe() {
+  yield takeEvery(GET_MYRECIPE_BEGIN, myRecipe);
+}
+export function* watchDeleteRecipe() {
+  yield takeEvery(DELETE_RECIPE_BEGIN, deleteRecipe);
 }

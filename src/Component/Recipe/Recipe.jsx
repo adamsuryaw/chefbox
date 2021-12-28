@@ -76,15 +76,19 @@ function Recipe() {
   const [lte, setLte] = useState("")
   const [loc, setLoc] = useState("")
   const [showFilter, setShowFilter] = useState(false)
-  const [page, setPage] = useState(null)
+  const [page, setPage] = useState(1)
   const [showPage, setShowPage] = useState(false)
   // const [total, setTotal] = useState(list?.totalPages ? list?.totalPages : null)
   // console.log(total, "select")
   console.log(page, "page")
-  const handleSubmit = (e) => {
+  const handleSubmit1 = (e) => {
     e.preventDefault()
     dispatch(getFilterRecipe({cat, type, gte, lte, loc}))
     setShowFilter(true)
+  }
+  const handleSubmit2 = (e) => {
+    e.preventDefault()
+    window.location.reload()
   }
   const handlePage = (e) => {
     e.preventDefault()
@@ -175,8 +179,9 @@ function Recipe() {
             <input type="text" name="lte" style={selectStyle} placeholder="Max price..." value={lte} onChange={(e) => setLte(e.target.value)} />
           </div>
         </div>
+        <div className="btn-filter">
         <Button
-          onClick={handleSubmit}
+          onClick={handleSubmit1}
           sx={{
             marginRight: "26px",
             width: "110px",
@@ -188,6 +193,21 @@ function Recipe() {
           variant='outlined'>
           Submit
         </Button>
+        <Button
+          onClick={handleSubmit2}
+          sx={{
+            marginRight: "26px",
+            width: "110px",
+            border: "1px solid #E0E0E0",
+            color: "black",
+            marginTop: "10px",
+            borderRadius: "20px"
+          }}
+          variant='outlined'>
+          Cancel
+        </Button>
+        </div>
+        
       </div>
       <div className='browse-section'>
         <h1>Browse Recipe</h1>
@@ -249,7 +269,7 @@ function Recipe() {
           }
           <div className='pagination-section'>
             <Pagination
-              count={list.totalPages}
+              count={list?.totalPages}
               variant="outlined"
               shape="rounded"
               onChange={handlePage}

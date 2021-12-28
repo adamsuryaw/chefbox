@@ -1,5 +1,7 @@
 import { takeEvery, put } from "@redux-saga/core/effects";
 import {
+  GET_MYRECIPE_SUCCESS,
+  GET_RECIPE_SUCCESS,
   PUT_CREATE_BEGIN,
   PUT_CREATE_SUCCESS,
   PUT_CREATE_FAIL,
@@ -16,6 +18,7 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
 import data from "../../Component/Data/data";
+import Swal from "sweetalert2";
 
 const baseUrl = "http://chefbox2021.herokuapp.com";
 const currentToken = localStorage.getItem("token");
@@ -30,6 +33,12 @@ function* postCreate(action) {
     console.log(res, "res post create")
     yield put({
       type: POST_CREATE_SUCCESS,
+    });
+    const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
+    console.log(getRecipe, "res getRecipe")
+    yield put({
+      type: GET_MYRECIPE_SUCCESS,
+      payload: getRecipe.data,
     });
   } catch (err) {
     console.log(err, "err");
@@ -51,6 +60,12 @@ function* putCreate(action) {
     yield put({
       type: PUT_CREATE_SUCCESS,
     });
+    const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
+    console.log(getRecipe, "res getRecipe")
+    yield put({
+      type: GET_MYRECIPE_SUCCESS,
+      payload: getRecipe.data,
+    });
   } catch (err) {
     yield put({
       type: PUT_CREATE_FAIL,
@@ -71,6 +86,12 @@ function* putCreateThree(action) {
     yield put({
       type: PUT_CREATE_STEP_THREE_SUCCESS,
     });
+    const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
+    console.log(getRecipe, "res getRecipe")
+    yield put({
+      type: GET_MYRECIPE_SUCCESS,
+      payload: getRecipe.data,
+    });
   } catch (err) {
     yield put({
       type: PUT_CREATE_STEP_THREE_FAIL,
@@ -90,6 +111,17 @@ function* putCreateFour(action) {
     console.log(res, "res put create")
     yield put({
       type: PUT_CREATE_STEP_FOUR_SUCCESS,
+    });
+    Swal.fire(
+      'Good job!',
+      'Recipe Created',
+      'success',
+    )
+    const getRecipe = yield axios.get(`${BASE_URL}recipe/`, config);
+    console.log(getRecipe, "res getRecipe")
+    yield put({
+      type: GET_RECIPE_SUCCESS,
+      payload: getRecipe.data,
     });
   } catch (err) {
     yield put({

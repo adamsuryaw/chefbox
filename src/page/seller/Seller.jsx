@@ -8,12 +8,45 @@ import { Button } from "@mui/material";
 import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
+import Modal from '@mui/material/Modal';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import Typography from "@mui/material/Typography";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSeller, getOrder } from "../../store/actions/order";
+
+const styleModal = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Seller() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [firstValue, setFirstValue] = React.useState(0);
   const [secondValue, setSecondValue] = React.useState(0);
   const [thirdValue, setThirdValue] = React.useState(0);
+  const orderan = useSelector((state) => state?.order?.orderDetails);
+  console.log("orderan", orderan)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(getRecipe());
+    // dispatch(viewCart());
+    // dispatch(getOrder());
+    dispatch(getSeller());
+  }, []);
 
   return (
     <div className={styles.sellerContainer}>
@@ -89,7 +122,8 @@ export default function Seller() {
               </div>
             </div>
           </div>
-          <div className={styles.menuCollections}>
+          {orderan?.orderList?.data?.map((data) => 
+            <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -97,26 +131,75 @@ export default function Seller() {
               <div className={styles.menuDescriptions}>
                 <div className={styles.menuCollectionButton}>
                   <div className={styles.title3}>
-                    <h4>Baked Oatmeal with Mixed Berries</h4>
+                    <h4>{`Order ${data.id_order}`}</h4>
                   </div>
                   <div className={styles.button2}>
                   </div>
-                  <div style={{ marginLeft: "9rem" }} className={styles.button}>
-                    <Link to="/seller/payment"><button>Verify Payment</button></Link>
+                  <div className={styles.button1}>
+                    <p>
+                      Completed
+                      <img src={buttonCompleted} alt='' />
+                    </p>
                   </div>
                 </div>
                 <div className={styles.billDescription}>
-                  <h4>Rp.135.000</h4>
-                  <p>1 package</p>
+                  <h4>{`${data.orders}`}</h4>
+                  <p>{`${data.quantity} package`}</p>
                 </div>
                 <div className={styles.descriptionDates}>
-                  <Link to='/details'>see ingredient details</Link>
+                  <Button 
+                    onClick={handleOpen}
+                    sx={{
+                      fontFamily: "Nunito",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "#828282",
+                      textTransform: "none",
+                      padding: 0,
+                      marginBottom: "17px",
+                      "&:hover": {
+                        backgroundColor: "#ffffff",
+                        boxShadow: "none",
+                        color: "#000000",
+                      },
+                    }}
+                    >
+                    See Ingredient Details
+                  </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={styleModal}>
+                      <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Info
+                      </Typography>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <List>
+                          <ListItem disablePadding>
+                            <ListItemText primary={`Buyer: ${data.buyer}`} />
+                          </ListItem>
+                          <ListItem disablePadding>
+                            <ListItemText primary={`Address: ${data.delivery_address}`} />
+                          </ListItem>
+                          <ListItem disablePadding>
+                            <ListItemText primary={`Phone Number: ${data.delivery_phonenumber}`} />
+                          </ListItem>
+                        </List>
+                        
+                      </Typography>
+                    </Box>
+                  </Modal>
                   <p>26 Jul 2021</p>
                 </div>
               </div>
             </div>
           </div>
-          <div className={styles.menuCollections}>
+          )}
+          
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -146,8 +229,8 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.menuCollections}>
+          </div> */}
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -158,10 +241,10 @@ export default function Seller() {
                     <h4>Baked Oatmeal with Mixed Berries</h4>
                   </div>
                   <div className={styles.button2}>
-                    {/* <p>
+                    <p>
                       <img src={buttonShipping} alt='' />
                       Prepare Shipping
-                    </p> */}
+                    </p>
                   </div>
                   <div style={{ marginLeft: "9rem" }} className={styles.button}>
                   <Link to="/seller/payment"><button >Verify Payment</button></Link>
@@ -177,8 +260,8 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.menuCollections}>
+          </div> */}
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -220,8 +303,8 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.menuCollections}>
+          </div> */}
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -263,8 +346,8 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.menuCollections}>
+          </div> */}
+          {/* <div className={styles.menuCollections}>
             <div className={styles.menuContainer}>
               <div className={styles.menuImage}>
                 <img src={MenuImage} alt='' />
@@ -306,7 +389,7 @@ export default function Seller() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

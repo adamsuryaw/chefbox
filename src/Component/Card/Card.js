@@ -102,19 +102,41 @@ function CardComp({data}) {
                 </div>
                 <div className='right-content'>
                   <div className='top-right-content'>
-                    <Typography
-                      component='div'
-                      sx={{
-                        fontFamily: "Nunito",
-                        fontWeight: "bold",
-                        fontSize: "12px",
-                        color: "#219653",
-                        marginRight: "6px",
-                        marginLeft: "9px",
-                      }}>
-                      In Stock
-                    </Typography>
-                    <img src={deliver} alt='mobil' />
+                    {data.stock > 0 ?
+                      <>
+                        <Typography
+                          component='div'
+                          sx={{
+                            fontFamily: "Nunito",
+                            fontWeight: "bold",
+                            fontSize: "12px",
+                            color: "#219653",
+                            marginRight: "6px",
+                            marginLeft: "9px",
+                          }}>
+                          In Stock
+                        </Typography>
+                        <img src={deliver} alt='mobil' />
+                      </>
+                      :
+                      <>
+                        <Typography
+                          component='div'
+                          sx={{
+                            fontFamily: "Nunito",
+                            fontWeight: "bold",
+                            fontSize: "12px",
+                            color: "red",
+                            marginRight: "6px",
+                            marginLeft: "9px",
+                          }}>
+                          Out of Stock
+                        </Typography>
+                        <img src={deliver} alt='mobil' />
+                      </>
+                    }
+                    
+                   
                   </div>
                   <div className='bottom-right-content'>
                     <LocationOnOutlined

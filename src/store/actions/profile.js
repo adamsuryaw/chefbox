@@ -1,9 +1,9 @@
 import { GET_USER_BEGIN, PATCH_PROFILE_BEGIN } from "../../constants/types";
 
-export const getUser = (data) => {
+export const getUser = () => {
   return {
     type: GET_USER_BEGIN,
-    payload: data
+    // payload: data
   };
 };
 

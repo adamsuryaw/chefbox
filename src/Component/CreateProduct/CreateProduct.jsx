@@ -38,7 +38,7 @@ function CreateProduct() {
   };
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {list} = useSelector((state) => state.recipe.listRecipe);
+  const {list} = useSelector((state) => state?.recipe?.listRecipe);
   console.log(list.recipe, "stepFour")
   useEffect(() => {
     dispatch(getRecipe());
@@ -139,7 +139,7 @@ function CreateProduct() {
             id_location: ''
           }}
           onSubmit={(values, {resetForm}) => {
-            dispatch(putCreateFour(list?.recipe[0]?.id, values))
+            dispatch(putCreateFour(list?.recipe?.[0]?.id, values))
             navigate('/recipe')
             // window.location.reload();
             // console.log(values)

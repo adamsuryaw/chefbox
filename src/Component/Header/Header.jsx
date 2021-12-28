@@ -16,6 +16,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from '@mui/icons-material/Close';
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 import profilePict from "../../Asset/Ellipse 11-1.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -30,6 +31,7 @@ import { useState, useEffect } from "react";
 import { getRecipe, getFilterRecipe, getSearchRecipe } from "../../store/actions/recipe";
 
 function Header() {
+  const [search, setSearch] = useState(false)
   const {list} = useSelector((state) => state.recipe.listRecipe);
   const {filterList} = useSelector((state) => state.recipe.listFilter);
   // console.log("list", list)
@@ -38,10 +40,16 @@ function Header() {
   const [keyword, setKeyword] = useState('')
   const [showFilter, setShowFilter] = useState(false)
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit1 = (e) => {
     e.preventDefault()
     dispatch(getSearchRecipe(keyword))
+    setSearch(true)
     setShowFilter(true)
+  }
+  const handleSubmit2 = (e) => {
+    e.preventDefault()
+    setSearch(false)
+    window.location.reload()
   }
   function clearToken() {
     localStorage.clear();
@@ -63,7 +71,7 @@ function Header() {
       }, []);
 
     const userHeader = useSelector((state) => state?.account?.userDetails);
-    // console.log("user header", userHeader);
+    console.log("user header", userHeader);
     const cartShop = useSelector((state) => state?.addCart?.cartUser);
     // console.log("cart total", cartShop?.details?.total);
     // return (
@@ -180,9 +188,15 @@ function Header() {
           placeholder='What do you want to eat today?'
           inputProps={{ "aria-label": "search google maps" }}
         />
-        <IconButton type='submit' onClick={handleSubmit} sx={{ p: "10px" }} aria-label='search'>
-          <SearchIcon />
-        </IconButton>
+        {search == false ?
+          <IconButton type='submit' onClick={handleSubmit1} sx={{ p: "10px" }} aria-label='search'>
+            <SearchIcon />
+          </IconButton>
+          :
+          <IconButton type='submit' onClick={handleSubmit2} sx={{ p: "10px" }} aria-label='search'>
+            <CloseIcon />
+          </IconButton>
+        }
       </Paper>
       <Link to='/create'>
         <Button

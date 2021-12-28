@@ -17,7 +17,7 @@ import InputBase from "@mui/material/InputBase";
 import { Pagination } from "@mui/material";
 import { styled } from "@mui/system";
 import { postReview } from "../../store/actions/review";
-import { getOrder } from "../../store/actions/order";
+import { getOrder, getMyOrder } from "../../store/actions/order";
 
 export default function MyOrder() {
   const [name, setName] = React.useState("");
@@ -32,9 +32,9 @@ export default function MyOrder() {
   console.log("orderan", detailDelivery)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipe());
+    // dispatch(getRecipe());
     // dispatch(viewCart());
-    dispatch(getOrder());
+    dispatch(getMyOrder());
   }, []);
   const handleSubmit = () => {
     dispatch(postReview(list[0]?.id, {comment}));
@@ -144,51 +144,69 @@ export default function MyOrder() {
         <div className={styles.menuSeller}>
           <h2>My Order</h2>
           <div className={styles.menuCollections}>
-            {list?.recipe?.map((data) => (
-              <div className={styles.menuContainer}>
-                <div className={styles.menuImage}>
-                  <img src={data.image} alt='' />
-                </div>
-                <div className={styles.menuDescriptions}>
-                  <div className={styles.title3}>
-                    <h4>{data.title}</h4>
+            {detailDelivery?.orderList?.data?.length > 0 ? 
+              detailDelivery.orderList.data.map((data) => 
+                <div className={styles.menuContainer}>
+                  <div className={styles.menuImage}>
+                    <img src={data.image} alt='' />
                   </div>
-                  <div className={styles.billDescription}>
-                    <div className={styles.priceAndStock}>
-                      <h4>{data.price}</h4>
-                      <p>{data.stock}</p>
+                  <div className={styles.menuDescriptions}>
+                    <div className={styles.title3}>
+                      <h4>{`Order ${data.id}`}</h4>
                     </div>
-                    <Link to='/details/1'>see ingredient details</Link>
-                  </div>
-                  <div
-                    className={styles.leftSideDescriptions}
-                    style={{
-                      position: "absolute",
-                      marginTop: "-5rem",
-                      right: "7.5rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}>
-                    <div className={styles.menuCollectionButton}>
-                      <div className={styles.button2}></div>
-                      <div className={styles.button}>
-                        <button
-                          onClick={() => handleOpen(data.title)}
-                          open={open}>
-                          Review
-                        </button>
+                    <div className={styles.billDescription}>
+                      <div className={styles.priceAndStock}>
+                        <h4>{`Total ${data.total}`}</h4>
+                        <p>{`${data.quantity} Stock`}</p>
                       </div>
+                      <Link to='/details/1'>see ingredient details</Link>
                     </div>
                     <div
-                      className={styles.descriptionDates}
-                      style={{ marginTop: "2rem", color: "#BDBDBD" }}>
-                      <p>26 Jul 2021</p>
+                      className={styles.leftSideDescriptions}
+                      style={{
+                        position: "absolute",
+                        marginTop: "-5rem",
+                        right: "7.5rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}>
+                      <div className={styles.menuCollectionButton}>
+                        <div className={styles.button2}></div>
+                        <div className={styles.button}>
+                          {/* <button
+                            onClick={() => handleOpen(data.title)}
+                            open={open}>
+                            Review
+                          </button> */}
+                          {data.ispayment === true ?
+                            <p>
+                              Completed
+                              <img src={buttonCompleted} alt='' />
+                            </p>
+                            :
+                            <p>
+                              Pending
+                              <img src={buttonCompleted} alt='' />
+                            </p>
+                          }
+                        </div>
+                      </div>
+                      <div
+                        className={styles.descriptionDates}
+                        style={{ marginTop: "2rem", color: "#BDBDBD" }}>
+                        <p>26 Jul 2021</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+              :
+              null
+            }
+            {/* {list?.recipe?.map((data) => (
+              
+            ))} */}
             <Modal
               open={open}
               onClose={handleClose}
@@ -247,9 +265,9 @@ export default function MyOrder() {
               </Box>
             </Modal>
           </div>
-          <div className={styles.PaginationSection}>
+          {/* <div className={styles.PaginationSection}>
             <Pagination count={10} color='primary' />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

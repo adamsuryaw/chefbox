@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyRecipe.css";
 import SVG from "../../Asset/sellerIcon/Dashboard/store.svg";
 import { Link } from "react-router-dom";
@@ -23,8 +23,9 @@ import data from "./data";
 import CardComp from "../../Component/Card/Card";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
-import { getRecipe } from "../../store/actions/recipe";
+import { getRecipe, getMyRecipe } from "../../store/actions/recipe";
 import { useDispatch, useSelector } from "react-redux";
+import CardMy from "../../Component/Card/CardMy";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -40,17 +41,18 @@ const ExpandMore = styled((props) => {
 export default function MyRecipe() {
   const [expanded, setExpanded] = React.useState(false);
   const { product } = data;
+  const [page, setPage] = useState(1)
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const { list } = useSelector((state) => state.recipe.listRecipe);
+  const { list } = useSelector((state) => state?.recipe?.listRecipe);
   console.log("list", list);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRecipe());
-  }, []);
+    dispatch(getMyRecipe(page));
+  }, [dispatch]);
 
   return (
     <div className={styles.Body}>
@@ -113,16 +115,16 @@ export default function MyRecipe() {
           <div className={styles.MainContainer}>
             <h1 style={{ margin: "2rem 0 0 2rem" }}>My Recipe</h1>
             <div className={styles.CardSections}>
-              {list?.recipe?.map((data) => (
-                <Link to={`/details/${data.id}`} className='card-sections'>
-                  <CardComp key={data.id} data={data} />
-                </Link>
+              {list?.data?.map((data) => (
+                // <Link to={`/details/${data.id}`} className='card-sections'>
+                  <CardMy key={data.id} data={data} />
+                // </Link>
               ))}
             </div>
 
-            <div className={styles.PaginationSection}>
+            {/* <div className={styles.PaginationSection}>
               <Pagination count={10} color='primary' />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

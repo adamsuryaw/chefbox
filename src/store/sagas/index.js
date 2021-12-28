@@ -1,12 +1,12 @@
 import { all } from "redux-saga/effects";
 import { watchGetUser, watchUpdateUser } from "./profile";
-import { watchGetRecipeList, watchGetDetailsList, watchFilterData, watchPagination, watchSearchData } from "./recipe";
+import { watchGetRecipeList, watchGetDetailsList, watchFilterData, watchPagination, watchSearchData, watchMyRecipe, watchDeleteRecipe } from "./recipe";
 import { watchLogin, watchRegister, watchSignup } from "./auth";
 import { watchGetLocationList } from "./location";
 import { watchReviewList, watchPostReview } from "./review";
 import { watchAddCart, watchAllCart } from "./cart";
 import { watchPutCreate, watchPostCreate, watchPutCreateThree, watchPutCreateFour } from "./create";
-import { watchGetOrderList, watchUpdateAddress, watchPostPayment } from "./orderPay";
+import { watchGetOrderList, watchUpdateAddress, watchPostPayment, watchGetSeller, watchGetMyOrder } from "./orderPay";
 
 function* rootSaga() {
   yield all([
@@ -34,6 +34,10 @@ function* rootSaga() {
     watchGetOrderList(),
     watchUpdateAddress(),
     watchPostPayment(),
+    watchMyRecipe(),
+    watchDeleteRecipe(),
+    watchGetSeller(),
+    watchGetMyOrder()
   ]);
 }
 

@@ -4,7 +4,7 @@ import { Rating, Divider,  Card, CardActions, CardContent, CardMedia, Button, Ty
 import './Review.css'
 
 function Review({details}) {
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(details.value);
     
     console.log(details, 'review details')
 
@@ -54,7 +54,7 @@ function Review({details}) {
                     </div>
                     <Rating 
                         name="read-only" 
-                        value={value} 
+                        value={details.value} 
                         readOnly
                         sx={{
                             color: '#B6340B',
