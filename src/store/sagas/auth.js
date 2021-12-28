@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 // import {BASE_URL} from "../../constants/constants"
 
-const baseUrl = "http://chefbox2021.herokuapp.com";
+const baseUrl = "https://chefbox2021.herokuapp.com";
 //function generator
 function* login(action) {
   const { body } = action;
@@ -75,7 +75,7 @@ function* signup(action) {
     headers: { 'access_token': currentToken }
   }
   try {
-    const res = yield axios.patch(`http://chefbox2021.herokuapp.com/user/complete-signup`, body, config);
+    const res = yield axios.patch(`https://chefbox2021.herokuapp.com/user/complete-signup`, body, config);
     console.log(res)
     yield put(
       {
