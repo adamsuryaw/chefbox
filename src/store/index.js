@@ -18,12 +18,5 @@ let persistor = persistStore(store)
 export {store, persistor}
 
 
-
-// const store = createStore(
-//   rootReducer,
-  
-// );
-
 sagaMiddleware.run(rootSaga);
 
-// export default store;
