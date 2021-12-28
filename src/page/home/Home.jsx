@@ -16,7 +16,7 @@ import TheTelegraph from "../../components/assets/thetelegraph.png";
 import TheSun from "../../components/assets/thesun.png";
 import DailyExpress from "../../components/assets/dailyexpress.png";
 import TIA from "../../components/assets/TIA.png";
-// import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import "swiper/swiper.scss"; // core Swiper
 
 export default function Home() {
@@ -61,7 +61,7 @@ export default function Home() {
         <div className={styles.ContainerPNGS}>
           {/* <div className={styles.ContainerTopImages}></div> */}
           <img src={ContainerPNG} alt='' />
-          {/* <Swiper
+          <Swiper
             className={styles.Swiper}
             spaceBetween={50}
             slidesPerView={3}
@@ -73,7 +73,7 @@ export default function Home() {
             <SwiperSlide>
               <img className={styles.topImage1} src={TopImage2} alt='' />
             </SwiperSlide>
-          </Swiper> */}
+          </Swiper>
         </div>
       </div>
       <div className={styles.midSections}>
