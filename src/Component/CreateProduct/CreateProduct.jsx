@@ -129,7 +129,7 @@ function CreateProduct() {
           }}>
           <h4>Product contents</h4>
           <ul>
-            <li>{list?.recipe?.[0] ? list?.recipe?.[0]?.ingredient : null}</li>
+            <li>{list.recipe && list?.recipe[0] ? list?.recipe[0]?.ingredient : null}</li>
           </ul>
         </Box>
         <Formik
