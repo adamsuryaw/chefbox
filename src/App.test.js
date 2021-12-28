@@ -8,7 +8,7 @@
 // });
 import '@testing-library/jest-dom'; //Runner
 import { render, screen, fireEvent } from "@testing-library/react" //Testing Library
-import App from "../App"
+import App from "./App"
 
 describe('testing text', () => {
   test('untuk cek tulisan hello', () => {
