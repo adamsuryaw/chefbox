@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import Autocomplete from "@mui/material/Autocomplete";
 import ContainerPNG from "../../components/assets/TopContainer.png";
 import LeftIMGMidSection from "../../components/assets/img3.png";
 import MidIMGMidSection from "../../components/assets/img4.png";
 import RightIMGMidSection from "../../components/assets/img5.png";
-import TopImage1 from "../../components/assets/img1.png";
-import TopImage2 from "../../components/assets/img2.png";
+// import TopImage1 from "../../components/assets/img1.png";
+// import TopImage2 from "../../components/assets/img2.png";
 import Wired from "../../components/assets/wired.png";
 import TechCrunch from "../../components/assets/techcrunch.png";
 import TheTelegraph from "../../components/assets/thetelegraph.png";
@@ -18,8 +19,16 @@ import DailyExpress from "../../components/assets/dailyexpress.png";
 import TIA from "../../components/assets/TIA.png";
 // import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import "swiper/swiper.scss"; // core Swiper
+import { getSearchRecipe } from "../../store/actions/recipe";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
+  const [keyword, setKeyword] = React.useState('')
+  const dispatch = useDispatch();
+  const handleSubmit1 = (e) => {
+    e.preventDefault()
+    dispatch(getSearchRecipe(keyword))
+  }
   return (
     <div className={styles.body}>
       <div className={styles.topSections}>
@@ -32,7 +41,7 @@ export default function Home() {
             spacing={2}
             sx={{
               width: 400,
-              background: "#828282",
+              background: "#B6340B",
               // height: 50,
               borderRadius: "10px",
               // background: "white",
@@ -40,22 +49,35 @@ export default function Home() {
               top: "25rem",
               left: "3.5rem",
             }}>
-            <Autocomplete
+            {/* <TextField
+              onChange={(e) => setKeyword(e.target.value)}
+            >
+
+            </TextField> */}
+            <Link to="/login">
+              <Button sx={{color: "white", fontSize: "50px", borderRadius: "50px", padding: "20px"}}>
+                Get Started!
+              </Button>
+            </Link>
+            
+            {/* <Autocomplete
               freeSolo
               id='free-solo-2-demo'
               disableClearable
+              onChange={(e) => setKeyword(e.target.value)}
               // options={top100Films.map((option) => option.title)}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label='Any idea for lunch? Try “Soto ayam”'
+
                   InputProps={{
                     ...params.InputProps,
                     type: "search",
                   }}
                 />
               )}
-            />
+            /> */}
           </Stack>
         </div>
         <div className={styles.ContainerPNGS}>

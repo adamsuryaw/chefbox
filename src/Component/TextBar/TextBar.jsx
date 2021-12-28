@@ -6,8 +6,8 @@ import { styled } from '@mui/material/styles';
 
 function TextBar({label,...props}) {
     const [field, meta] = useField(props)
-    console.log(field, meta)
-    console.log(props)
+    // console.log(field, meta)
+    // console.log(props)
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),

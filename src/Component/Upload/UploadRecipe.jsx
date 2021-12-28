@@ -28,7 +28,7 @@ function UploadRecipe(props) {
         //     }
         //   };
         // fileReader.readAsDataURL(e.target.files[0]);
-        console.log(file)
+        // console.log(file)
         if(!file) {
             // setImage('');
             return;
@@ -36,7 +36,7 @@ function UploadRecipe(props) {
       
         fileToImage(file)
             .then(dataUri => {
-                console.log(dataUri, "dataUri")
+                // console.log(dataUri, "dataUri")
                 setImage(dataUri)
                 setFieldValue(props.name, file)
             })

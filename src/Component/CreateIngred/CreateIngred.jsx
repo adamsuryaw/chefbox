@@ -48,6 +48,7 @@ function CreateIngred() {
   useEffect(() => {
     dispatch(getRecipe());
   }, [dispatch]);
+  // console.log(localStorage.getItem("id_recipe"), "id recipe")
   
   return (
     <div className='ingred-section'>
@@ -131,7 +132,7 @@ function CreateIngred() {
           label: ''
         }}
         onSubmit={(values, {resetForm}) => {
-          dispatch(putCreateTwo(list?.data?.[0].id, values))
+          dispatch(putCreateTwo(localStorage.getItem("id_recipe"), values))
           resetForm()
           // window.location.reload();
           // console.log(values)

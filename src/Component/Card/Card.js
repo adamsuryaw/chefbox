@@ -27,14 +27,13 @@ function CardComp({data}) {
     <div className='container'>
       <div className='cardAttend'>
         {/* <Link to="/event/1" style={{ textDecoration: 'none' }}> */}
-        <Card
+        <Card className="card-one"
           sx={{
-            width: "295px",
-            height: "379px",
-            borderRadius: "16px",
-            padding: "0px 12px 12px 12px",
-            margin: "0px 24px 24px 0px",
-          }}>
+            borderRadius: '16px',
+            padding: '0px 12px 12px 12px',
+            margin: '0px 24px 24px 0px',
+          }}
+        >
           <CardActionArea>
             <CardMedia
               sx={{

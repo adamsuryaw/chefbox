@@ -107,12 +107,12 @@ export default function Seller() {
             <div className={styles.listButton}>
               <button className={styles.buttonAll}>All</button>
               <div className={styles.list}>
-                <button className={styles.buttonshipping}>
+                {/* <button className={styles.buttonshipping}>
                   <div className={styles.iconbutton}>
                     <img src={buttonShipping} alt='' />
                     <span>Prepare Shipping</span>
                   </div>
-                </button>
+                </button> */}
                 <button className={styles.buttoncompleted}>
                   <div className={styles.iconbutton}>
                     <img src={buttonCompleted} alt='' />

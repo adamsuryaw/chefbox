@@ -36,14 +36,14 @@ export const getRecipeDetails = (id) => {
   };
 };
 export const getFilterRecipe = (data) => {
-  console.log(data, "data action")
+  // console.log(data, "data action")
   return {
     type: GET_FILTER_RECIPE_BEGIN,
     data,
   };
 };
 export const getSearchRecipe = (data) => {
-  console.log(data, "data action")
+  // console.log(data, "data action")
   return {
     type: GET_SEARCH_RECIPE_BEGIN,
     payload: data,

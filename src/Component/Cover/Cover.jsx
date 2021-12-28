@@ -71,7 +71,7 @@ function Cover() {
                 onSubmit={(values) => {
                   dispatch(LoginAction(values));
                   navigate('/')
-                  console.log(values)
+                  // console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {

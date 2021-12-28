@@ -13,7 +13,7 @@ export const getMyOrder = () => {
 };
 
 export const patchOrder = (data, id) => {
-  console.log("data patch", "id", data, id);
+  // console.log("data patch", "id", data, id);
   return {
     type: PATCH_ORDER_BEGIN,
     data,
@@ -31,7 +31,7 @@ export const postOrderPay = (body) => {
 };
 
 export const getSeller = () => {
-  console.log("bisa seller");
+  // console.log("bisa seller");
   return {
     type: GET_SELLER_BEGIN,
     // data,

@@ -68,8 +68,8 @@ function Recipe() {
   // }, [page, dispatch]);
   const {list} = useSelector((state) => state.recipe.listRecipe);
   const {filterList} = useSelector((state) => state.recipe.listFilter);
-  console.log("list", list)
-  console.log("list filter", filterList)
+  // console.log("list", list)
+  // console.log("list filter", filterList)
   const [cat, setCat] = useState("")
   const [type, setType] = useState("")
   const [gte, setGte] = useState("")
@@ -80,7 +80,7 @@ function Recipe() {
   const [showPage, setShowPage] = useState(false)
   // const [total, setTotal] = useState(list?.totalPages ? list?.totalPages : null)
   // console.log(total, "select")
-  console.log(page, "page")
+  // console.log(page, "page")
   const handleSubmit1 = (e) => {
     e.preventDefault()
     dispatch(getFilterRecipe({cat, type, gte, lte, loc}))

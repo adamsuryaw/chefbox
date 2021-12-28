@@ -16,6 +16,7 @@ import TextBarSignup from "../TextBar/TextBarSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupAction } from "../../store/actions/auth";
 import UploadSignup from "../Upload/UploadSignup";
+import Swal from "sweetalert2"
 
 const selectStyle = {
   padding: '12px 16px',
@@ -61,7 +62,6 @@ function Signup() {
                   id_location: ""
                 }}
                 onSubmit={(values) => {
-
                   let formData = new FormData();
 
                   Object.entries(values).forEach((item)=> {
@@ -70,11 +70,15 @@ function Signup() {
 
                   dispatch(SignupAction(formData));
                   navigate("/")
+                  
+                  
+                  
+                  // console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {
                 const {values, handleChange, handleBlur, handleSubmit} = formikProps
-                // console.log(values)
+                console.log(values.image.size)
                 return (
                   <div className='field-top'>
                     <div className='name-top'>
@@ -86,11 +90,13 @@ function Signup() {
                       <UploadSignup name="image" value={values.image} valueFromApi={values.image} />
                       <TextBarSignup
                         label='Phone Number'
+                        placeholder='ex. 08'
                         name='phoneNumber'
                         type='text'
                       />
                       <TextBarSignup
                         label='Address'
+                        placeholder='Jln...'
                         name='address'
                         type='text'
                       />

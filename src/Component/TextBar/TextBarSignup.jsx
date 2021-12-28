@@ -29,12 +29,12 @@ const currencies = [
 
 function TextBarSignup({label,...props}) {
     const [field, meta] = useField(props)
-    console.log(field)
-    console.log(props)
+    // console.log(field)
+    // console.log(props)
     const [currency, setCurrency] = React.useState('EUR');
     const handleChange = (event) => {
         setCurrency(event.target.value);
-        console.log(currency)
+        // console.log(currency)
     };
     // const Item = styled(Paper)(({ theme }) => ({
     //     ...theme.typography.body2,

@@ -1,5 +1,6 @@
 import { put, takeEvery } from "@redux-saga/core/effects";
 import { 
+  GET_USER_SUCCESS,
   GET_LOGIN_BEGIN, 
   GET_LOGIN_SUCCESS, 
   GET_LOGIN_FAIL,
@@ -11,13 +12,14 @@ import {
   SIGNUP_FAIL,
 } from "../../constants/types";
 import axios from "axios";
+import { BASE_URL } from "../../constants/constants";
 // import {BASE_URL} from "../../constants/constants"
 
 const baseUrl = "https://chefbox2021.herokuapp.com";
 //function generator
 function* login(action) {
   const { body } = action;
-  console.log(body, "saga login")
+  // console.log(body, "saga login")
   try {
     const res = yield axios.post(`${baseUrl}/user/login`, body);
     yield put(
@@ -83,6 +85,12 @@ function* signup(action) {
       },
        // setup token on local storage
     );
+    const getUser = yield axios.get(`${BASE_URL}user`, config);
+    // console.log(res, "res");
+    yield put({
+      type: GET_USER_SUCCESS,
+      payload: getUser.data.data,
+    });
   } catch (err) {
     console.log(err);
     yield put({

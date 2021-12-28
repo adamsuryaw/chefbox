@@ -23,10 +23,11 @@ import { useDispatch } from "react-redux";
 // import { useEffect } from "react";
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import { delRecipe } from '../../store/actions/recipe';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CardMy({data}) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     // const deleteCard = () => {
     //     dispatch(delRecipe(data.id))
     //     window.location.reload()
@@ -156,6 +157,14 @@ function CardMy({data}) {
         startIcon={<DeleteOutline />}
         >
             Delete
+        </Button>
+        <Button 
+        type="submit"
+        onClick={() => {localStorage.setItem('id_recipe', data.id); navigate('/create/ingredient');}}
+        variant="outlined" 
+        startIcon={<DeleteOutline />}
+        >
+            Edit
         </Button>
         </Card>
         {/* </Link> */}

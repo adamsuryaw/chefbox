@@ -35,11 +35,12 @@ function* postCreate(action) {
       type: POST_CREATE_SUCCESS,
     });
     const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
-    console.log(getRecipe)
+    // console.log(getRecipe, "get recipe")
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: getRecipe.data,
     });
+    localStorage.setItem("id_recipe", getRecipe.data.data[0].id)
   } catch (err) {
     console.log(err, "err");
     yield put({
@@ -61,7 +62,7 @@ function* putCreate(action) {
       type: PUT_CREATE_SUCCESS,
     });
     const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
-    console.log(getRecipe)
+    // console.log(getRecipe)
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: getRecipe.data,
@@ -77,17 +78,17 @@ function* putCreate(action) {
 function* putCreateThree(action) {
   const { id, payload } = action;
   const data = payload
-  console.log(id, "ini id create")
-  console.log(data, "ini data create")
+  // console.log(id, "ini id create")
+  // console.log(data, "ini data create")
   // console.log(data, "ini data create") data.addRecipe[0]
   try {
     const res = yield axios.put(`${BASE_URL}recipe/stepthree/${id}`, data, config);
-    console.log(res, "res put create")
+    console.log(res)
     yield put({
       type: PUT_CREATE_STEP_THREE_SUCCESS,
     });
     const getRecipe = yield axios.get(`${BASE_URL}recipe/myrecipe`, config);
-    console.log(getRecipe, "res getRecipe")
+    // console.log(getRecipe, "res getRecipe")
     yield put({
       type: GET_MYRECIPE_SUCCESS,
       payload: getRecipe.data,
@@ -103,12 +104,12 @@ function* putCreateThree(action) {
 function* putCreateFour(action) {
   const { id, payload } = action;
   const data = payload
-  console.log(id, "ini id create")
-  console.log(data, "ini data create")
+  // console.log(id, "ini id create")
+  // console.log(data, "ini data create")
   // console.log(data, "ini data create") data.addRecipe[0]
   try {
     const res = yield axios.put(`${BASE_URL}recipe/stepfour/${id}`, data, config);
-    console.log(res, "res put create")
+    console.log(res)
     yield put({
       type: PUT_CREATE_STEP_FOUR_SUCCESS,
     });
@@ -118,7 +119,7 @@ function* putCreateFour(action) {
       'success',
     )
     const getRecipe = yield axios.get(`${BASE_URL}recipe/`, config);
-    console.log(getRecipe, "res getRecipe")
+    // console.log(getRecipe)
     yield put({
       type: GET_RECIPE_SUCCESS,
       payload: getRecipe.data,
