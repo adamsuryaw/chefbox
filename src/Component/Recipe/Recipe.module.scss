@@ -1,3 +1,5 @@
+@import "../../breakpoints/Breakpoints.scss";
+
 .CardSections{
     height:77%;
     position: relative;
@@ -8,4 +10,16 @@
     margin-right: -25px;
     padding: 0px 20px;
     justify-content: space-between;
+
+     @include media("<=desktop") {
+        
+  }
+  @include media("<=tablet") {
+    align-items: center;
+    padding: 1rem 3.5rem;
+  }
+
+  @include media("<=phone") {
+    padding: 1rem;
+  }
 }
