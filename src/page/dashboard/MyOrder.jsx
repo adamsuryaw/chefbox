@@ -2,6 +2,9 @@ import styles from "./MyOrder.module.scss";
 import sellerIcon from "../../Asset/sellerIcon/Dashboard/store.svg";
 // import buttonShipping from "../../Asset/seller.svg";
 import buttonCompleted from "../../Asset/completed.svg";
+import delivery from "../../Asset/carbon_delivery.png"
+import check from "../../Asset/checklist.png"
+import close from "../../Asset/close.png"
 // import MenuImage from "../../Asset/Frame 3.svg";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -148,7 +151,12 @@ export default function MyOrder() {
               detailDelivery.orderList.data.map((data) => 
                 <div className={styles.menuContainer}>
                   <div className={styles.menuImage}>
-                    <img src={data.image} alt='' />
+                    {data.ispayment === true ?
+                      <img src={check} alt='' />
+                      :
+                      <img src={close} alt='' />
+                    }
+                    
                   </div>
                   <div className={styles.menuDescriptions}>
                     <div className={styles.title3}>
@@ -187,7 +195,7 @@ export default function MyOrder() {
                             :
                             <p>
                               Pending
-                              <img src={buttonCompleted} alt='' />
+                              <img src={delivery} alt='' />
                             </p>
                           }
                         </div>

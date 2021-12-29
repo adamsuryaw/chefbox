@@ -83,12 +83,12 @@ export default function Payment() {
   useEffect(() => {
     dispatch(viewCart());
     dispatch(getOrder(id));
-  }, [dispatch, id]);
+  }, [id]);
   const {details} = useSelector((state) => state?.addCart?.cartUser);
-  // console.log("details", details);
+  console.log("details", details);
 
   const detailOrder = useSelector((state) => state?.order?.orderDetails);
-  // console.log("detailOrder", detailOrder);
+  console.log("detailOrder", detailOrder);
   
   // const handleSubmit = () => {
   //   dispatch(postOrderPay())
