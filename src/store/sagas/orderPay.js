@@ -29,12 +29,12 @@ const config = {
 function* getOrderList() {
   try {
     const res = yield axios.get(`${BASE_URL}order`, config);
-    // console.log(res)
+    console.log(res)
     yield put({
       type: GET_ORDER_SUCCESS,
       payload: res.data,
     });
-    // console.log(res.data);
+    console.log(res.data);
   } catch (err) {
     console.log(err, "err");
     yield put({
@@ -116,9 +116,9 @@ function* postPayment(action) {
       type: POST_PAYMENT_SUCCESS,
       payload: res.data.data,
     });
-    yield put({
-      type: "DELETE_CART",
-    });
+    // yield put({
+    //   type: "DELETE_CART",
+    // });
     // const getOrder = yield axios.get(`${BASE_URL}order`, config);
     // console.log(getOrder)
     // yield put({

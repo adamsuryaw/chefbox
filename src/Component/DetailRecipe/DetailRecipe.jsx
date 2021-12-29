@@ -93,7 +93,7 @@ function DetailRecipe() {
   const handleSubmit = () => {
     // console.log(value, "value")
     dispatch(postReview(details?.data?.id, {comment, value}));
-    
+    // window.location.reload();
     // console.log(comment)
   }
   // let harga = details?.price
@@ -143,7 +143,7 @@ function DetailRecipe() {
             </div>
             <Rating
               name='read-only'
-              value={details?.averageRatings}
+              value={parseInt(details?.averageRatings)}
               readOnly
               sx={{
                 color: "#B6340B",

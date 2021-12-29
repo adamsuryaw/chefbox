@@ -127,11 +127,9 @@ function CardComp({data}) {
                           }}>
                           Out of Stock
                         </Typography>
-                        <img src={deliver} alt='mobil' />
+                        {/* <img src={deliver} alt='mobil' /> */}
                       </>
-                    }
-                    
-                   
+                    }                   
                   </div>
                   <div className='bottom-right-content'>
                     <LocationOnOutlined

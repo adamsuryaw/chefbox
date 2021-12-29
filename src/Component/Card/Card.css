@@ -8,4 +8,12 @@
     width: 250px;
     height: 379px;
   }
+
+  .top-left-content {
+    width: 80px;
+  }
+
+  .bottom-left-content {
+    width: 100px;
+  }
 }

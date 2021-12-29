@@ -46,7 +46,7 @@ export const DeliveryDetails = (props) => {
   const detailDelivery = useSelector(
     (state) => state?.order?.orderDetails
   );
-  // console.log("detailDelivery", detailDelivery?.orderList);
+  console.log("detailDelivery", detailDelivery);
 
   return (
     <div className={styles.AddressUserName}>
