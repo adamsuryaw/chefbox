@@ -426,7 +426,7 @@ export default function Order() {
                 spacing={2}
                 direction='row'
                 style={{
-                  marginLeft: "43.5rem",
+                  marginLeft: "50.9rem",
                   paddingTop: "1rem",
                   paddingBottom: "2rem",
                 }}>

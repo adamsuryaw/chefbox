@@ -3,9 +3,15 @@
   height: 379px;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1230px) {
   .card-one {
-    width: 250px;
+    width: 280px;
     height: 379px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .card-one {
+    width: 150px;
+    height: 279px;
   }
 }

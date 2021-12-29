@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cover.css";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import bgCover from "../../Asset/Frame 4.svg";
 import logo from "../../Asset/Group 2.svg";
 import { Grid, Box, Button, Divider, Typography } from "@mui/material";
@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import Auth from "../Auth/Auth";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginAction } from "../../store/actions/auth";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Cover() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function Cover() {
   // }));
 
   function SimpleMediaQuery() {
-    const matches = useMediaQuery('(max-width:1280px)');
+    const matches = useMediaQuery("(max-width:1280px)");
     return matches;
   }
 
@@ -41,14 +41,14 @@ function Cover() {
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: "136px",
-  }
+  };
 
   const dividerStyle2 = {
     width: "600px",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: "50px",
-  }
+  };
 
   return (
     <div className='cover-page'>
@@ -61,8 +61,7 @@ function Cover() {
             </Link>
           </Grid>
           <Grid item md={8} lg={11} xl={6}>
-            <Box
-              className='box-login'>
+            <Box className='box-login'>
               <Formik
                 initialValues={{
                   email: "",
@@ -70,65 +69,65 @@ function Cover() {
                 }}
                 onSubmit={(values) => {
                   dispatch(LoginAction(values));
-                  navigate('/')
+                  navigate("/");
                   // console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {
-                  const {handleSubmit} = formikProps
-                  return(
-                  <div className='field-top'>
-                    <div className='name-top'>
-                      <h1>Login</h1>
-                      <h6>
-                        New user? <Link to="/register"><span className="span-login">Create an account</span></Link>
-                      </h6>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                      <TextBarLogin 
-                        label='Email' 
-                        name='email' 
-                        type='text' 
-                      />
-                      <TextBarLogin
-                        label='Passowrd'
-                        name='password'
-                        type='password'
-                      />
-                      <h6 className='forgot'>Forgot password?</h6>
-                      <Box className="btn-login">
-                        <Button 
-                          variant="contained"
-                          type="submit"
-                          fullWidth
-                          sx={{
-                            height: '45px',
-                            borderRadius: '24px',
-                            background: 'linear-gradient(45deg, #B6340B 30%, #B6340B 90%)',
-                            boxShadow: '0px 4px 10px rgba(33, 68, 87, 0.2)'
-                          }}
-                        >
-                          <Typography
+                  const { handleSubmit } = formikProps;
+                  return (
+                    <div className='field-top'>
+                      <div className='name-top'>
+                        <h1>Login</h1>
+                        <h6>
+                          New user?{" "}
+                          <Link to='/register'>
+                            <span className='span-login'>
+                              Create an account
+                            </span>
+                          </Link>
+                        </h6>
+                      </div>
+                      <form onSubmit={handleSubmit}>
+                        <TextBarLogin label='Email' name='email' type='text' />
+                        <TextBarLogin
+                          label='Passowrd'
+                          name='password'
+                          type='password'
+                        />
+                        <h6 className='forgot'>Forgot password?</h6>
+                        <Box className='btn-login'>
+                          <Button
+                            variant='contained'
+                            type='submit'
+                            fullWidth
                             sx={{
-                              fontFamily: 'Nunito',
-                              fontWeight: 'bold',
-                              fontSize: '16px',
-                            }}
-                          >
-                            Login
-                          </Typography>
-                        </Button>
-                      </Box>
-                    </form>
-                  </div>
-                )}}
+                              height: "45px",
+                              borderRadius: "24px",
+                              background:
+                                "linear-gradient(45deg, #B6340B 30%, #B6340B 90%)",
+                              boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
+                            }}>
+                            <Typography
+                              sx={{
+                                fontFamily: "Nunito",
+                                fontWeight: "bold",
+                                fontSize: "16px",
+                              }}>
+                              Login
+                            </Typography>
+                          </Button>
+                        </Box>
+                      </form>
+                    </div>
+                  );
+                }}
               </Formik>
-              <div className="divider-style">
+              <div className='divider-style'>
                 <Divider
                   sx={SimpleMediaQuery ? dividerStyle2 : dividerStyle1}
                 />
               </div>
-              
               <Auth />
             </Box>
           </Grid>
