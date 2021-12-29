@@ -197,3 +197,37 @@
 .btn-field {
   padding: 0 0 0 20px;
 }
+
+.rate {
+  margin-top: 10px;
+  display: flex;
+}
+
+@media only screen and (max-width: 1280px) {
+  .detail-page {
+    width: 100%;
+    height: 100%;
+    background-color: #f7f4f2;
+    padding-top: 50px;
+    display: flex;
+    padding: 64px 0px 94px 60px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .detail-page {
+    width: 100%;
+    height: 100%;
+    background-color: #f7f4f2;
+    padding-top: 50px;
+    display: block;
+    padding: 64px 0px 94px 60px;
+  }
+
+  .stock-section {
+    width: 301px;
+    height: 302px;
+    background: #ffffff;
+    margin-top: 20px;
+  }
+}

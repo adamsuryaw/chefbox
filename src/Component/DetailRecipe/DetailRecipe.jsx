@@ -301,14 +301,19 @@ function DetailRecipe() {
                 marginRight: "30px",
               }}
             />
-            <Rating
-              name='simple-controlled'
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              sx={{ width: "10rem" }}
-            />
+            <div className="rate">
+              <h4>Rate This Recipe Here..</h4>
+              <Rating
+                name='simple-controlled'
+                size="large"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                sx={{ width: "10rem" }}
+              />
+            </div>
+            
             {/* <Modal
               open={open}
               onClose={handleClose}

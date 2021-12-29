@@ -46,7 +46,7 @@ export const DeliveryDetails = (props) => {
   const detailDelivery = useSelector(
     (state) => state?.order?.orderDetails
   );
-  console.log("detailDelivery", detailDelivery);
+  // console.log("detailDelivery", detailDelivery);
 
   return (
     <div className={styles.AddressUserName}>
@@ -113,7 +113,7 @@ export const DeliveryForm = (props) => {
     firstName: "",
     address: "",
   });
-  console.log("inputs", inputs);
+  // console.log("inputs", inputs);
 
   const changeInput = (e) => {
     setInputs({
@@ -123,12 +123,12 @@ export const DeliveryForm = (props) => {
   };
   // const submitChanges = (e) => [];
   const { setForm } = props;
-  console.log("setForm", setForm);
+  // console.log("setForm", setForm);
 
   const detailDelivery = useSelector(
     (state) => state?.order?.orderDetails
   );
-  console.log("detailDelivery", detailDelivery);
+  // console.log("detailDelivery", detailDelivery);
 
   return (
     <div className={styles.BoxedTextField}>

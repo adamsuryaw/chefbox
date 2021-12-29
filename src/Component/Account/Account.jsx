@@ -110,6 +110,7 @@ function Account() {
           </Typography>
         </div>
         <div className='seller-sec'>
+          <Link to='/seller'>
           <Button
             sx={{
               fontFamily: "Nunito",
@@ -127,6 +128,8 @@ function Account() {
             <img src={store} alt='' />
             <h4>Seller Dashboard</h4>
           </Button>
+          </Link>
+          
         </div>
       </div>
       <div className='account-text'>

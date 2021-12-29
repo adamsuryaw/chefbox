@@ -103,7 +103,7 @@ function Register() {
                 onSubmit={(values) => {
                   dispatch(RegisterAction(values));
                   navigate('/register/signup')
-                  console.log(values)
+                  // console.log(values)
                 }}
                 validationSchema={validate}>
                 {(formikProps) => {

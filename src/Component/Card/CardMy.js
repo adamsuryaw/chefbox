@@ -162,8 +162,8 @@ function CardMy({data}) {
         <Button 
         type="submit"
         onClick={() => {localStorage.setItem('id_recipe', data.id); navigate('/create/ingredient');}}
-        variant="outlined" 
-        startIcon={<DeleteOutline />}
+        variant="outlined"
+        sx={{marginLeft: '20px'}}
         >
             Edit
         </Button>

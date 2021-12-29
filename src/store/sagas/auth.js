@@ -49,7 +49,7 @@ export function* watchLogin() {
 
 function* register(action) {
   const { body } = action;
-  console.log(body, "saga regis")
+  // console.log(body, "saga regis")
   try {
     const res = yield axios.post(`${baseUrl}/user/signup`, body);
     yield put(
