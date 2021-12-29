@@ -128,7 +128,7 @@ function Cover() {
                   sx={SimpleMediaQuery ? dividerStyle2 : dividerStyle1}
                 />
               </div>
-              <Auth />
+              {/* <Auth /> */}
             </Box>
           </Grid>
         </Grid>

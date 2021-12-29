@@ -34,7 +34,7 @@ function Register() {
     password: Yup.string("Please Enter Your Password")
       .required("Password must be required")
       //eslint-disable-next-line
-      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,"Password Must be at least 8 Characters"),
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,"Password Must be at least 8 Characters and use special character"),
     confirmPassword: Yup.string()
       .required("Re-enter your password")
       .oneOf([Yup.ref("password"), null], "Password must match"),
@@ -172,7 +172,7 @@ function Register() {
               <Divider
                   sx={SimpleMediaQuery ? dividerStyle2 : dividerStyle1}
               />
-              <AuthRegis />
+              {/* <AuthRegis /> */}
             </Box>
           </Grid>
         </Grid>
