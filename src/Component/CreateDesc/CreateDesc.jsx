@@ -24,7 +24,6 @@ import UploadRecipe from "../Upload/UploadRecipe";
 export default function CreateDesc() {
   // const { id } = useParams();
   const stylesTitle = {
-    width: "716px",
     border: "1px solid #9F9F9F",
     boxSizing: "border-box",
     borderRadius: "4px",
@@ -35,7 +34,6 @@ export default function CreateDesc() {
   }
 
   const stylesSub = {
-    width: "346px",
     border: "1px solid #9F9F9F",
     boxSizing: "border-box",
     borderRadius: "4px",
@@ -43,10 +41,10 @@ export default function CreateDesc() {
     fontFamily: "Nunito",
     fontWeight: "normal",
     fontSize: "14px",
+    width: "100%",
   }
 
   const stylesDesc = {
-    width: "716px",
     border: "1px solid #9F9F9F",
     boxSizing: "border-box",
     borderRadius: "4px",
@@ -207,14 +205,17 @@ export default function CreateDesc() {
               <form onSubmit={handleSubmit}>
                 <UploadRecipe name="image" value={values.image} />
                 <div className='input-text'>
-                  <h6>Title</h6>
-                  <InputBase
-                    name="title"
-                    value={values.title}
-                    placeholder='e.g. Healthy Berry Pancake'
-                    sx={stylesTitle}
-                    onChange={handleChange}
-                  />
+                  <div className="input-title">
+                    <h6>Title</h6>
+                    <InputBase
+                      name="title"
+                      fullWidth
+                      value={values.title}
+                      placeholder='e.g. Healthy Berry Pancake'
+                      sx={stylesTitle}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className='input-select'>
                     <div className='input-leftSelect'>
                       <h6>Type</h6>
@@ -294,8 +295,6 @@ export default function CreateDesc() {
                           background: "#F9C959",
                           boxShadow: "0px 4px 10px rgba(33, 68, 87, 0.2)",
                           borderRadius: "24px",
-                          marginTop: "57px",
-                          marginLeft: "590px",
                           textTransform: "none",
                         }}>
                         <Typography

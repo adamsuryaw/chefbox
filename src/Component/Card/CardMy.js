@@ -44,7 +44,7 @@ function CardMy({data}) {
                 padding: "0px 12px 12px 12px",
                 margin: "0px 24px 24px 0px",
             }}>
-            <Link to={`/details/${data.id}`} style={{textDecoration: 'none'}}>
+            <Link to={`/details/${data.id}`} style={{textDecoration: 'none', color: 'inherit'}}>
             <CardActionArea>
                 <CardMedia
                 sx={{
@@ -101,6 +101,7 @@ function CardMy({data}) {
                                 fontFamily: "Nunito",
                                 fontWeight: "normal",
                                 fontSize: "12px",
+                                width: "70px"
                             }}>
                                 {`${data.serving} servings`}
                             </Typography>

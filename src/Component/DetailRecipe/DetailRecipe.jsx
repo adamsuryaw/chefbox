@@ -84,7 +84,7 @@ function DetailRecipe() {
   // const handleClose = () => setOpen(false);
   
   const {details} = useSelector((state) => state.recipe.listDetails);
-  // console.log("details", details);
+  // console.log("details", details.averageRatings);
   const review = useSelector((state) => state.review.userReview);
   // console.log("review", review);
   // const shopCart = useSelector((state) => state.addCart.cartUser);
@@ -92,7 +92,7 @@ function DetailRecipe() {
   // const [cartItems, setCartItems] = React.useState([]);
   const handleSubmit = () => {
     // console.log(value, "value")
-    dispatch(postReview(details?.id, {comment, value}));
+    dispatch(postReview(details?.data?.id, {comment, value}));
     
     // console.log(comment)
   }
@@ -161,7 +161,7 @@ function DetailRecipe() {
                 fontSize: "12px",
                 marginTop: "19px",
               }}>
-              {` People`}
+              {`${details?.peopleRatings} People`}
             </Typography>
             <div className='cooking-time'>
               <Typography
@@ -460,7 +460,7 @@ function DetailRecipe() {
             </h6>
           </div>
           <div className='plus-stock'>
-            {count >= details?.stock ? 
+            {count >= details?.data?.stock ? 
               <Button
                 disabled
                 sx={{
@@ -526,7 +526,7 @@ function DetailRecipe() {
           </Typography>
         </div>
         <div className='btn-field'>
-          {details.stock <= 0 ?
+          {details?.data?.stock <= 0 ?
             <Button
               disabled
               variant='contained'

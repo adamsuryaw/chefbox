@@ -42,6 +42,10 @@
   margin-left: 258px;
 }
 
+.avatar-sec {
+  margin-bottom: 50px;
+}
+
 .text-field {
   margin-top: 49px;
   margin-bottom: 53px;
@@ -60,4 +64,56 @@
 .text-field-3 {
   display: flex;
   margin-bottom: 25px;
+}
+
+.text-field-4 {
+  width: 740px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .account-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: flex;
+    padding: 46px 0px 46px 70px;
+  }
+
+  .account-text {
+    width: 900px;
+    background: #ffffff;
+    margin-left: 32px;
+    padding: 64px 0px 155px 70px;
+  }
+
+  .text-field-4 {
+    width: 740px;
+  }
+
+  .btn-save {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .account-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: flex;
+    padding: 46px 0px 46px 0px;
+  }
+
+  .account-text {
+    width: 900px;
+    background: #ffffff;
+    margin-left: 32px;
+    padding: 64px 0px 155px 70px;
+  }
+
+  .text-field-4 {
+    width: 740px;
+  }
+
+  .btn-save {
+    width: 200px;
+  }
 }

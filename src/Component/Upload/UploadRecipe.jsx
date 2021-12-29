@@ -60,7 +60,7 @@ function UploadRecipe(props) {
                             }
                             />
                             <img className="logo-pict" src={imageLogo} alt="logo" />
-                            <h6>Upload Profile Photo</h6>
+                            <h6 className="text-pict" >Upload Profile Photo</h6>
                         </div>
                     </label>
                 </>
