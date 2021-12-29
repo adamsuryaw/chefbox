@@ -326,11 +326,11 @@ function Account() {
                     </div>
                   </div>
                   <div className='text-field-4'>
-                    <div>
+
                       <h5>Address</h5>
                       <InputBase
+                        fullWidth
                         sx={{
-                          width: "740px",
                           border: "1px solid #9F9F9F",
                           boxSizing: "border-box",
                           borderRadius: "4px",
@@ -349,7 +349,6 @@ function Account() {
                         value={values.address}
                         onChange={handleChange}
                       />
-                    </div>
                   </div>
                   <div className='btn-save'>
                     <Button

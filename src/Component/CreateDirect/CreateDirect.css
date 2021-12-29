@@ -26,3 +26,45 @@
 .direct-text {
   padding: 21px 52px 49px 36px;
 }
+
+@media only screen and (max-width: 1280px) {
+  .direct-section {
+    padding: 46px 0px 46px 70px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .direct-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: block;
+    padding: 46px 0px 46px 0px;
+  }
+
+  .direct-text {
+    display: flex;
+    padding: 21px 0px 21px 36px;
+  }
+
+  .direct-text img {
+    padding-right: 55px;
+  }
+
+  .direct-desc {
+    width: 700px;
+    height: 70px;
+    border-radius: 50px;
+    background: #ffffff;
+    margin-left: 100px;
+  }
+
+  .input-direct {
+    width: 854px;
+    height: 920px;
+    background: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}

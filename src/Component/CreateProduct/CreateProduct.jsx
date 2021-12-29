@@ -151,8 +151,10 @@ function CreateProduct() {
             <form onSubmit={handleSubmit}>
               <div className='input-one'>
                 <div className='input-price'>
-                  <h6>Price</h6>
-                  <i style={{fontSize: '8px', margin: 0}}>Only Number</i>
+                  <div className='input-flex-price'>
+                    <h6>Price</h6>
+                    <i style={{fontSize: '8px', margin: 0}}>Only Number</i>
+                  </div>
                   <InputBase
                     name="price"
                     type="number"
@@ -175,7 +177,10 @@ function CreateProduct() {
                   />
                 </div>
                 <div className='input-stock'>
-                  <h6>Stock</h6>
+                <div className='input-flex-stock'>
+                    <h6>Stock</h6>
+                    <i style={{fontSize: '8px', margin: 0}}>Only Number</i>
+                  </div>
                   <InputBase
                     name="stock"
                     type="number"

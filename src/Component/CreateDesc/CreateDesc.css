@@ -19,6 +19,14 @@
   padding-bottom: 60px;
 }
 
+.input-title {
+  width: 716px;
+}
+
+.input-description {
+  width: 716px;
+}
+
 .recipe-desc h4 {
   margin: 0;
 }
@@ -74,4 +82,125 @@
 .input-description {
   width: 716px;
   margin-top: 24px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .desc-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: flex;
+    padding: 46px 0px 46px 70px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .desc-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: block;
+    padding: 46px 0px 46px 0px;
+  }
+
+  .recipe-text {
+    display: flex;
+    padding: 21px 0px 21px 36px;
+  }
+
+  .recipe-text h4 {
+    padding-right: 55px;
+  }
+
+  .recipe-desc {
+    width: 700px;
+    height: 70px;
+    border-radius: 50px;
+    background: #ffffff;
+    margin-left: 100px;
+  }
+
+  .input-desc {
+    width: 854px;
+    height: 920px;
+    background: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .desc-section {
+    height: 1093px;
+    background: #f7f4f2;
+    display: block;
+    padding: 46px 0px 46px 0px;
+  }
+
+  .recipe-text {
+    display: flex;
+    padding: 10px 0px 10px 36px;
+  }
+
+  .recipe-text h4 {
+    padding-right: 55px;
+  }
+
+  .recipe-desc {
+    width: 600px;
+    height: 70px;
+    border-radius: 50px;
+    background: #ffffff;
+    margin-left: 40px;
+  }
+
+  .input-desc {
+    width: 700px;
+    height: 920px;
+    background: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .input-text {
+    padding: 0 50px;
+    margin-right: 0;
+  }
+
+  .input-title {
+    width: 616px;
+  }
+
+  .input-select {
+    display: flex;
+    margin-top: 24px;
+  }
+
+  .input-leftSelect {
+    width: 300px;
+  }
+
+  .input-rightSelect {
+    width: 300px;
+  }
+
+  .input-leftInfo {
+    width: 300px;
+  }
+
+  .input-rightInfo {
+    width: 300px;
+  }
+
+  .input-description {
+    width: 616px;
+  }
+
+  .btn-next {
+    margin-top: 57px;
+    margin-left: 490px;
+  }
 }
