@@ -1,8 +1,23 @@
+@import "../../breakpoints/Breakpoints.scss";
+
 .footer {
   background-color: #8d836a;
   width: 100%;
   color: #fff;
   padding: 2rem 2.5rem;
+
+  // @include media("<=desktop") {
+  //   width: 100%;
+  // }
+  // @include media("<=tablet") {
+  //   width: 100%;
+  //   align-items: center;
+  //   padding: 1rem 3.5rem;
+  // }
+
+  // @include media("<=phone") {
+  //   padding: 1rem;
+  // }
 
   .footerContainer {
     display: flex;

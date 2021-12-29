@@ -23,12 +23,12 @@ import { getSearchRecipe } from "../../store/actions/recipe";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const [keyword, setKeyword] = React.useState('')
+  const [keyword, setKeyword] = React.useState("");
   const dispatch = useDispatch();
   const handleSubmit1 = (e) => {
-    e.preventDefault()
-    dispatch(getSearchRecipe(keyword))
-  }
+    e.preventDefault();
+    dispatch(getSearchRecipe(keyword));
+  };
   return (
     <div className={styles.body}>
       <div className={styles.topSections}>
@@ -38,7 +38,7 @@ export default function Home() {
         </div>
         <div className={styles.Containertext}>
           <Stack
-            spacing={2}
+            spacing={0}
             sx={{
               width: 400,
               background: "#B6340B",
@@ -47,19 +47,26 @@ export default function Home() {
               // background: "white",
               position: "absolute",
               top: "25rem",
-              left: "3.5rem",
+              left: "3rem",
+              textAlign: "center",
             }}>
             {/* <TextField
               onChange={(e) => setKeyword(e.target.value)}
             >
 
             </TextField> */}
-            <Link to="/login">
-              <Button sx={{color: "white", fontSize: "50px", borderRadius: "50px", padding: "20px"}}>
+            <Link to='/login'>
+              <Button
+                sx={{
+                  color: "white",
+                  fontSize: "20px",
+                  borderRadius: "50px",
+                  padding: "20px",
+                }}>
                 Get Started!
               </Button>
             </Link>
-            
+
             {/* <Autocomplete
               freeSolo
               id='free-solo-2-demo'
@@ -115,7 +122,7 @@ export default function Home() {
         <div className={styles.Containertext2}>
           <h1>Click</h1>
           <Link to='/recipe'>
-            <h1 style={{marginRight:"-0.1rem"}}>here</h1>
+            <h1 style={{ marginRight: "-0.1rem" }}>here</h1>
           </Link>
 
           <h1>to start browsing for recipes!</h1>
